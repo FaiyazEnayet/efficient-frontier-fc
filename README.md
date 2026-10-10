@@ -28,7 +28,7 @@ frontier = efficient_frontier(ratings, budgets)  # MILP per budget
 
 Bundesliga 2023/24, seed 0. Rerun `python -m effc.pipeline` and check my work.
 
-Top rated: Wirtz 0.66, Frimpong 0.61, Grimaldo 0.58 (VAEP/90, shrunk). The unbeaten champions dominate, which is either the model working or the model being obvious. The interesting part is the wages next to them: 77k, 63k, 88k a week.
+Top rated: Wirtz 0.66, Frimpong 0.61, Grimaldo 0.58 (VAEP/90, shrunk). The unbeaten champions dominate. The interesting part is the wages next to them: 77k, 63k, 88k a week.
 
 ![Top 10 rated players by shrunk VAEP/90](runs/bundesliga_2324/vaep_leaders.png)
 
