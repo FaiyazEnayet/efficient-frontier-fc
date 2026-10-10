@@ -1,0 +1,9 @@
+run_name: bundesliga_2324
+seed: 0
+min_minutes: 90
+shrink_k: 900
+gamma: 0.0
+budgets_eur: [300000, 500000, 700000, 943000, 1500000]
+xi_budget_eur: 943000
+formation: "4-3-3"
+backtest_split: 0.5
