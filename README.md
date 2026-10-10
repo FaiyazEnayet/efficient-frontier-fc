@@ -30,6 +30,8 @@ Bundesliga 2023/24, seed 0. Rerun `python -m effc.pipeline` and check my work.
 
 Top rated: Wirtz 0.66, Frimpong 0.61, Grimaldo 0.58 (VAEP/90, shrunk). The unbeaten champions dominate, which is either the model working or the model being obvious. The interesting part is the wages next to them: 77k, 63k, 88k a week.
 
+![Top 10 rated players by shrunk VAEP/90](runs/bundesliga_2324/vaep_leaders.png)
+
 The efficient frontier:
 
 | wage budget/week | expected squad VAEP/90 |
@@ -42,6 +44,8 @@ The efficient frontier:
 
 Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: the unconstrained best 23 costs that much, and money cannot buy more VAEP in this pool. The best XI (4-3-3) costs EUR 672k/week. That flat top is a result, not a bug: the optimal squad here is a Moneyball squad.
 
+![Efficient frontier: expected squad VAEP/90 at each wage budget](runs/bundesliga_2324/frontier.png)
+
 The backtest (realized second-half squad VAEP/90):
 
 | budget/week | optimizer | stars | value | random | oracle |
@@ -50,6 +54,8 @@ The backtest (realized second-half squad VAEP/90):
 | EUR 0.70M | 12.93 | 12.23 | 6.10 | 7.85 | 16.69 |
 
 The optimizer beats every benchmark out of sample and lands below the oracle, which cheats by seeing the second half. That ordering is exactly what an honest method should produce.
+
+![Backtest: realized second-half squad VAEP/90 by selection rule](runs/bundesliga_2324/backtest.png)
 
 ## Data
 
