@@ -15,7 +15,24 @@ from effc.portfolio.portfolio import POS_QUOTA, select_squad
 
 
 def split_matches(matches: pd.DataFrame, frac: float = 0.5):
+    """Time-split matches into first/second halves.
+
+    Splits within each season when a season_id column is present, then pools
+    the halves. This keeps the player pool overlapping between halves: a raw
+    date split across seasons would rate one season's players and score them
+    on another season's matches, where almost nobody overlaps.
+    """
     matches = matches.sort_values("match_date").reset_index(drop=True)
+    if "season_id" in matches.columns:
+        firsts, seconds = [], []
+        for _, g in matches.groupby("season_id", sort=False):
+            g = g.sort_values("match_date").reset_index(drop=True)
+            cut = int(len(g) * frac)
+            firsts.append(g.iloc[:cut])
+            seconds.append(g.iloc[cut:])
+        first = pd.concat(firsts, ignore_index=True)
+        second = pd.concat(seconds, ignore_index=True)
+        return first, second
     cut = int(len(matches) * frac)
     return matches.iloc[:cut], matches.iloc[cut:]
 

@@ -72,7 +72,7 @@ def compute_target_vaep(models) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
     if cached is not None:
         print("loaded cached target VAEP")
         return cached
-    matches = list_matches([TARGET])
+    matches = list_matches(TARGET)
     pm_all, min_all = [], []
     for i, mid in enumerate(matches["match_id"].tolist()):
         try:
