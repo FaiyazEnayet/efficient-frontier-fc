@@ -3,6 +3,6 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
-data/
+/data/
 *.ipynb_checkpoints/
 .DS_Store

@@ -16,19 +16,19 @@ frontier = efficient_frontier(ratings, budgets)  # MILP per budget
 
 **Value every touch (VAEP).** 437k on-ball actions from 196 matches of StatsBomb event data. Two gradient-boosted models learn P(team scores) and P(team concedes) in the next 10 actions from the game state. An action's value is the change it causes, plus 1 for a scored goal, minus 1 for a conceded one. The two label windows are asymmetric on purpose: the "before" window includes the current action so chances count, the "after" window excludes it so a scored goal does not poison the state that follows. Getting this wrong gives goals zero value or keepers infinite value. I got it wrong twice.
 
-**Turn it into ratings.** Sum VAEP per player, divide by minutes, shrink toward position-group means (90 minutes of brilliance does not make you the best in the league). 200 rated Bundesliga 2023/24 players.
+**Turn it into ratings.** Sum VAEP per player, divide by minutes, shrink toward position-group means (90 minutes of brilliance does not make you the best in the league). 268 rated players across Bundesliga 2023/24 and 2015/16.
 
-**Price them.** EA FC 24 weekly wages, joined by normalized name matching (88% hit rate; the misses are mostly kids with no minutes). Same season on both sides.
+**Price them.** EA FC 24 weekly wages, joined by normalized name matching (63% hit rate; FC 24 has no row for most 2015/16 players, and the misses get dropped). Same game data on both seasons, which is honest about the method and loose about the history.
 
 **Optimize.** Binary portfolio: sign the player or do not. Maximize expected squad VAEP subject to wage budget, 23-man squad, and position quotas. One MILP per budget point.
 
-**Backtest.** Split the season in half by date. Ratings and squads from the first half only, scored on the second half. Benchmarks (stars, value picks, random) all respect the same quotas, so the only difference is the selection rule.
+**Backtest.** Split each season in half by date and pool the halves (splitting across seasons would rate one decade's players and score them on another's, where almost nobody overlaps). Ratings and squads from the first halves only, scored on the second halves. Benchmarks (stars, value picks, random) all respect the same quotas, so the only difference is the selection rule.
 
 ## What came out
 
-Bundesliga 2023/24, seed 0. Rerun `python -m effc.pipeline` and check my work.
+Bundesliga 2023/24 and 2015/16, seed 0. Rerun `python -m effc.pipeline configs/bundesliga_2seasons.yaml` and check my work.
 
-Top rated: Wirtz 0.66, Frimpong 0.61, Grimaldo 0.58 (VAEP/90, shrunk). The unbeaten champions dominate. The interesting part is the wages next to them: 77k, 63k, 88k a week.
+Top rated: Baumann 0.67, Wirtz 0.67, Mathenia 0.66 (VAEP/90, shrunk). Keepers sit on top, which says more about VAEP than about scouting: clean sheets and saves pile up value quietly. Among outfielders the names are familiar: Wirtz 0.67, Frimpong 0.61, Grimaldo 0.58, and the unbeaten 23/24 champions still dominate the list.
 
 ![Top 10 rated players by shrunk VAEP/90](runs/bundesliga_2324/vaep_leaders.png)
 
@@ -36,13 +36,13 @@ The efficient frontier:
 
 | wage budget/week | expected squad VAEP/90 |
 |---|---|
-| EUR 0.30M | 8.40 |
-| EUR 0.50M | 9.53 |
-| EUR 0.70M | 10.23 |
-| EUR 0.94M | 10.70 |
-| EUR 1.50M | 10.77 |
+| EUR 0.30M | 10.55 |
+| EUR 0.50M | 11.32 |
+| EUR 0.70M | 11.79 |
+| EUR 0.94M | 12.02 |
+| EUR 1.50M | 12.06 |
 
-Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: the unconstrained best 23 costs that much, and money cannot buy more VAEP in this pool. The best XI (4-3-3) costs EUR 672k/week. That flat top is a result, not a bug: the optimal squad here is a Moneyball squad.
+Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: 12.02 at 0.94M, 12.06 at 1.50M. The best XI (4-3-3) costs EUR 571k/week. That flat top is a result, not a bug: the optimal squad here is a Moneyball squad.
 
 ![Efficient frontier: expected squad VAEP/90 at each wage budget](runs/bundesliga_2324/frontier.png)
 
@@ -50,16 +50,16 @@ The backtest (realized second-half squad VAEP/90):
 
 | budget/week | optimizer | stars | value | random | oracle |
 |---|---|---|---|---|---|
-| EUR 0.50M | 14.70 | 12.23 | 6.10 | 8.51 | 18.01 |
-| EUR 0.70M | 12.93 | 12.23 | 6.10 | 7.85 | 16.69 |
+| EUR 0.50M | 15.59 | 13.03 | 13.64 | 10.73 | 17.48 |
+| EUR 0.70M | 13.14 | 13.03 | 13.64 | 9.92 | 17.25 |
 
-The optimizer beats every benchmark out of sample and lands below the oracle, which cheats by seeing the second half. That ordering is exactly what an honest method should produce.
+The optimizer beats stars and random out of sample at both budgets and lands below the oracle, which cheats by seeing the second half. It loses to the value benchmark at 0.70M. That loss is real and I am not hiding it: at a looser budget the naive value-per-euro rule found a better squad than the optimizer's risk-blind MILP. More data narrows the gap but the honest read is that the optimizer's edge is clearest when money is tight.
 
 ![Backtest: realized second-half squad VAEP/90 by selection rule](runs/bundesliga_2324/backtest.png)
 
 ## Data
 
-- Events: StatsBomb open data (free). 196 matches pooled for the goal models (Bundesliga 23/24 and 15/16, World Cups 2018 and 2022); ratings on Bundesliga 2023/24 (34 matches in the open release).
+- Events: StatsBomb open data (free). 196 matches pooled for the goal models (Bundesliga 23/24 and 15/16, World Cups 2018 and 2022); ratings on Bundesliga 2023/24 and 2015/16 (34 matches each; that is all StatsBomb publishes for these seasons).
 - Wages: EA FC 24 database (mzafram2001/ea-fc, open source), weekly wages in EUR.
 - `python -m effc.data.download` fetches everything into `data/` (gitignored, ~600MB).
 
@@ -68,8 +68,8 @@ The optimizer beats every benchmark out of sample and lands below the oracle, wh
 ```bash
 pip install -e ".[dev]"
 python -m effc.data.download   # one-time, ~10 min
-python -m effc.pipeline configs/bundesliga_2324.yaml
-pytest                        # 9 tests
+python -m effc.pipeline configs/bundesliga_2seasons.yaml
+pytest                        # 16 tests
 ```
 
 ## Live refresh
@@ -86,10 +86,10 @@ Setup: get a free key at api-football.com and set `API_FOOTBALL_KEY`. Run it dai
 
 ## Honest limitations
 
-- 34 Bundesliga matches is thin. Ratings lean heavily on shrinkage, and the backtest halves are 17 matches each. More data would tighten everything.
-- Wages are video game wages. They correlate with real wages but they are not real wages. The framework does not care where the cost vector comes from.
+- 68 Bundesliga matches across two seasons. Better than 34, still thin. Ratings lean on shrinkage, and the backtest halves are 34 matches each (17 per season, pooled). More data would tighten everything.
+- Wages are video game wages. They correlate with real wages but they are not real wages. FC 24 wages are applied to both seasons, including 2015/16 players whose actual pay that year looked nothing like these numbers. The framework does not care where the cost vector comes from, but the euro figures for the older season are fiction.
 - No chemistry, no injuries, no tactics. A squad is not 23 independent assets and I know it. The factor covariance model is a start, not an answer.
-- CPU only, single season, one league.
+- CPU only, two seasons, one league.
 
 ## Reference
 
