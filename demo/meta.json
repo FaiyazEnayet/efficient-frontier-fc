@@ -1,0 +1,22 @@
+{
+  "config": "configs/bundesliga_2seasons.yaml",
+  "run_name": "bundesliga_2seasons",
+  "seed": 0,
+  "formation": "4-3-3",
+  "xi_budget_eur": 943000.0,
+  "n_rated": 268,
+  "wage_match_rate": 0.6317280453257791,
+  "grid": {
+    "min": 300000,
+    "max": 1500000,
+    "step": 50000
+  },
+  "rules": [
+    "optimizer",
+    "stars",
+    "value",
+    "random_mean",
+    "oracle"
+  ],
+  "note": "Derived from the real pipeline output; regenerate with scripts/make_demo.py"
+}

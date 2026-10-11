@@ -19,6 +19,7 @@ dependencies = [
     "pyyaml>=6.0",
     "requests>=2.31",
     "tqdm>=4.66",
+    "plotly>=5.0",
 ]
 
 [project.optional-dependencies]

@@ -1,6 +1,6 @@
 {
   "config": "configs/bundesliga_2seasons.yaml",
-  "train_time_s": 493.9935448169708,
+  "train_time_s": 1583.0033693313599,
   "brier_scores": 0.00846651133864892,
   "brier_concedes": 0.0020762245376863137,
   "wage_match_rate": 0.6317280453257791,
