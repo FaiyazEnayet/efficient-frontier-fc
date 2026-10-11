@@ -30,7 +30,7 @@ Bundesliga 2023/24 and 2015/16, seed 0. Rerun `python -m effc.pipeline configs/b
 
 Top rated: Baumann 0.67, Wirtz 0.67, Mathenia 0.66 (VAEP/90, shrunk). Keepers sit on top, which says more about VAEP than about scouting: clean sheets and saves pile up value quietly. Among outfielders the names are familiar: Wirtz 0.67, Frimpong 0.61, Grimaldo 0.58, and the unbeaten 23/24 champions still dominate the list.
 
-![Top 10 rated players by shrunk VAEP/90](runs/bundesliga_2324/vaep_leaders.png)
+![Top 10 rated players by shrunk VAEP/90](<runs/bundesliga_2seasons/Top rated players chart.png>)
 
 The efficient frontier:
 
@@ -44,7 +44,7 @@ The efficient frontier:
 
 Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: 12.02 at 0.94M, 12.06 at 1.50M. The best XI (4-3-3) costs EUR 571k/week. That flat top is a result, not a bug: the optimal squad here is a Moneyball squad.
 
-![Efficient frontier: expected squad VAEP/90 at each wage budget](runs/bundesliga_2324/frontier.png)
+![Efficient frontier: expected squad VAEP/90 at each wage budget](<runs/bundesliga_2seasons/Efficient frontier chart.png>)
 
 The backtest (realized second-half squad VAEP/90):
 
@@ -55,7 +55,7 @@ The backtest (realized second-half squad VAEP/90):
 
 The optimizer beats stars and random out of sample at both budgets and lands below the oracle, which cheats by seeing the second half. It loses to the value benchmark at 0.70M. That loss is real and I am not hiding it: at a looser budget the naive value-per-euro rule found a better squad than the optimizer's risk-blind MILP. More data narrows the gap but the honest read is that the optimizer's edge is clearest when money is tight.
 
-![Backtest: realized second-half squad VAEP/90 by selection rule](runs/bundesliga_2324/backtest.png)
+![Backtest: realized second-half squad VAEP/90 by selection rule](<runs/bundesliga_2seasons/Backtest chart.png>)
 
 ## Data
 
