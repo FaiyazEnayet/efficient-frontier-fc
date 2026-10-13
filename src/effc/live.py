@@ -7,7 +7,7 @@ philosophy as the main pipeline, and re-runs the squad optimizer. The
 output is a rebalance report: who comes in, who goes out.
 
 What this is not: live VAEP. True VAEP needs every on-ball action and no
-free feed publishes that. The event proxy below is deliberately crude and
+free feed publishes that. The event proxy below is crude and
 calibrated to the VAEP scale so it blends honestly. Read the weights as a
 starting point, not science.
 
