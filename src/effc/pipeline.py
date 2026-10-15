@@ -43,6 +43,17 @@ def _cache_put(name, obj):
         pickle.dump(obj, f)
 
 
+def pre_split_frames(
+    frames: list[pd.DataFrame], post_split_ids: set[int]
+) -> list[pd.DataFrame]:
+    """Keep only frames from matches before the backtest split.
+
+    The backtest scores squads on second-half matches, so the goal
+    models must not train on them.
+    """
+    return [f for f in frames if int(f["match_id"].iloc[0]) not in post_split_ids]
+
+
 def featurize_pool() -> list[pd.DataFrame]:
     cached = _cache_get("pool_frames.pkl")
     if cached is not None:
@@ -101,8 +112,20 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     outdir = os.path.join("runs", cfg.get("run_name", "run"))
     os.makedirs(outdir, exist_ok=True)
 
-    # 1. goal-probability models on the pooled competitions
+    # target matches and their chronological split, shared by model
+    # training (pre-split only) and the backtest in step 7
+    from effc.backtest.runner import split_matches
+
+    target_matches = list_matches(TARGET)
+    first, second = split_matches(target_matches, frac=cfg.get("backtest_split", 0.5))
+    post_split_ids = set(second["match_id"].tolist())
+
+    # 1. goal-probability models on pre-split matches only. Training on
+    # the full pool would include the target second halves the backtest
+    # scores on.
     frames = featurize_pool()
+    frames = pre_split_frames(frames, post_split_ids)
+    print(f"training goal models on {len(frames)} pre-split matches")
     models = train_goal_models(frames, seed=cfg.get("seed", 0))
     full = pd.concat(frames, ignore_index=True)
     from effc.vaep.models import predict_proba
@@ -113,7 +136,7 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     print(f"goal models: Brier scores={brier_s:.4f} concedes={brier_c:.4f}")
 
     # 2. VAEP on the target competition
-    pm, mins, matches = compute_target_vaep(models)
+    pm, mins, _ = compute_target_vaep(models)
 
     # 3. wages + ratings
     wages = load_wages()
@@ -164,10 +187,9 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     xi = select_xi(xi_pool, formation=cfg.get("formation", "4-3-3"))
     print("best XI:\n", xi[["player", "team", "pos_group", "vaep_per90", "wage_eur"]].to_string(index=False))
 
-    # 7. backtest on a date split of the target competition
-    from effc.backtest.runner import run_backtest, split_matches
+    # 7. backtest on the date split from step 1
+    from effc.backtest.runner import run_backtest
 
-    first, second = split_matches(matches, frac=cfg.get("backtest_split", 0.5))
     pm1 = pm[pm["match_id"].isin(first["match_id"])]
     pm2 = pm[pm["match_id"].isin(second["match_id"])]
     r1 = build_ratings(pm1, mins, wmap, min_minutes=60, shrink_k=cfg.get("shrink_k", 900))
