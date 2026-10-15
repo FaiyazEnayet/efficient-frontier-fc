@@ -10,7 +10,7 @@ from effc.portfolio.portfolio import POS_QUOTA
 
 METRICS = os.path.join("runs", "bundesliga_2seasons", "metrics.json")
 HEADLINE_BUDGETS = [300_000.0, 500_000.0, 700_000.0, 943_000.0, 1_500_000.0]
-RULES = ["optimizer", "stars", "value", "random_mean", "oracle"]
+RULES = ["optimizer", "value", "random_mean", "oracle"]
 
 
 @pytest.fixture(scope="module")

@@ -11,7 +11,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from effc.portfolio.portfolio import POS_QUOTA, select_squad
+from effc.portfolio.portfolio import POS_QUOTA, _milp_select, select_squad
 
 
 def split_matches(matches: pd.DataFrame, frac: float = 0.5):
@@ -53,66 +53,51 @@ def squad_realized_score(
     return float(tot_vaep / tot_min * 90.0 * len(ids))
 
 
-def _quota_sample(
-    ratings: pd.DataFrame, rng: np.random.Generator, squad_size: int = 23
-) -> pd.DataFrame:
-    """Random squad satisfying position quotas."""
-    picks = []
-    for g, q in POS_QUOTA.items():
-        pool = ratings[ratings["pos_group"] == g]
-        picks.extend(rng.choice(pool.index.to_numpy(), size=min(q, len(pool)), replace=False))
-    rest = ratings.drop(index=picks)
-    need = squad_size - len(picks)
-    if need > 0:
-        picks.extend(rng.choice(rest.index.to_numpy(), size=need, replace=False))
-    return ratings.loc[picks]
-
-
 def random_squads(
     ratings: pd.DataFrame, budget: float, n: int = 20, seed: int = 0,
     squad_size: int = 23,
 ) -> list[pd.DataFrame]:
+    """Random baseline squads under the wage cap.
+
+    Each squad maximizes a fresh random weight vector under the same
+    quotas and budget the optimizer gets, so every squad is a valid
+    23-man team and the rule uses no rating signal. Rejection sampling
+    cannot reach tight budgets where feasible squads are rare; this
+    always finds one when a feasible squad exists. Raises RuntimeError
+    when no full squad fits the budget.
+    """
     rng = np.random.default_rng(seed)
+    wage = ratings["wage_eur"].to_numpy(dtype=float)
+    groups = ratings["pos_group"].to_numpy()
     out = []
-    wage = ratings["wage_eur"]
     for _ in range(n):
-        for _try in range(300):
-            squad = _quota_sample(ratings, rng, squad_size)
-            if squad["wage_eur"].sum() <= budget:
-                out.append(squad)
-                break
+        sel = _milp_select(
+            rng.random(len(ratings)), wage, groups, float(budget), squad_size,
+            dict(POS_QUOTA), gamma=0.0, idio_var=np.zeros(len(ratings)),
+        )
+        out.append(ratings[sel].copy())
     return out
 
 
 def _top_with_quotas(
     ratings: pd.DataFrame, key: str, budget: float, squad_size: int = 23
 ) -> pd.DataFrame:
-    """Greedy quota-respecting fill under a wage cap.
+    """Best 23 players by `key` that fit the wage cap.
 
-    Takes the best available players by `key` that fit the remaining
-    budget, filling position quotas first. Uses the same cap the
-    optimizer gets so the baselines are comparable.
+    Maximizes the summed key under the same constraints the optimizer
+    gets: position quotas, the wage budget, exactly 23 players. Solved
+    exactly, so a tight budget marks the baseline infeasible (via the
+    solver) instead of returning a short squad a greedy fill would get
+    stuck on. Raises RuntimeError when no full squad fits.
     """
-    picks: list = []
-    remaining = float(budget)
-    for g, q in POS_QUOTA.items():
-        pool = ratings[ratings["pos_group"] == g].sort_values(key, ascending=False)
-        taken = 0
-        for idx, row in pool.iterrows():
-            if taken >= q:
-                break
-            if row["wage_eur"] <= remaining:
-                picks.append(idx)
-                remaining -= row["wage_eur"]
-                taken += 1
-    rest = ratings.drop(index=picks).sort_values(key, ascending=False)
-    for idx, row in rest.iterrows():
-        if len(picks) >= squad_size:
-            break
-        if row["wage_eur"] <= remaining:
-            picks.append(idx)
-            remaining -= row["wage_eur"]
-    return ratings.loc[picks]
+    mu = ratings[key].to_numpy(dtype=float)
+    wage = ratings["wage_eur"].to_numpy(dtype=float)
+    groups = ratings["pos_group"].to_numpy()
+    sel = _milp_select(
+        mu, wage, groups, float(budget), squad_size, dict(POS_QUOTA),
+        gamma=0.0, idio_var=np.zeros(len(mu)),
+    )
+    return ratings[sel].copy()
 
 
 def run_backtest(
@@ -127,23 +112,21 @@ def run_backtest(
     for b in budgets:
         try:
             opt = select_squad(ratings_first, b)
+            mb = ratings_first.copy()
+            mb["vpe"] = mb["vaep_per90"] / mb["wage_eur"].clip(lower=1.0)
+            value = _top_with_quotas(mb, "vpe", b)
+            oracle = select_squad(ratings_second, b)
+            rands = random_squads(ratings_first, b, seed=seed)
         except RuntimeError:
-            continue  # budget too tight for a valid 23-man squad; skip
-        stars = _top_with_quotas(ratings_first, "vaep_per90", b)
-        mb = ratings_first.copy()
-        mb["vpe"] = mb["vaep_per90"] / mb["wage_eur"].clip(lower=1.0)
-        value = _top_with_quotas(mb, "vpe", b)
-        oracle = select_squad(ratings_second, b)
-        rands = random_squads(ratings_first, b, seed=seed)
+            continue  # some rule cannot field a squad here; skip the budget
         rows.append(
             {
                 "budget": b,
                 "optimizer": squad_realized_score(opt, second_half_pm, minutes),
-                "stars": squad_realized_score(stars, second_half_pm, minutes),
                 "value": squad_realized_score(value, second_half_pm, minutes),
                 "random_mean": float(np.mean(
                     [squad_realized_score(r, second_half_pm, minutes) for r in rands]
-                )) if rands else 0.0,
+                )),
                 "oracle": squad_realized_score(oracle, second_half_pm, minutes),
             }
         )
