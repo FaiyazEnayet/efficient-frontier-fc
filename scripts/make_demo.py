@@ -109,7 +109,7 @@ def main() -> None:
         "n_rated": len(ratings),
         "wage_match_rate": float(wmap["matched"].mean()),
         "grid": {"min": GRID_MIN, "max": GRID_MAX, "step": GRID_STEP},
-        "rules": ["optimizer", "stars", "value", "random_mean", "oracle"],
+        "rules": ["optimizer", "value", "random_mean", "oracle"],
         "note": "Derived from the real pipeline output; regenerate with scripts/make_demo.py",
     }
     with open(os.path.join(DEMO_DIR, "meta.json"), "w") as f:

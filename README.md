@@ -64,12 +64,12 @@ Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: 11.62
 
 The backtest (realized second half squad VAEP/90):
 
-| budget/week | optimizer | stars | value | random | oracle |
-|---|---|---|---|---|---|
-| EUR 0.50M | 15.98 | 6.50 | 16.37 | 10.44 | 17.34 |
-| EUR 0.70M | 13.51 | 10.70 | 16.37 | 9.54 | 16.87 |
+| budget/week | optimizer | value | random | oracle |
+|---|---|---|---|---|
+| EUR 0.50M | 15.98 | 16.37 | 8.04 | 17.34 |
+| EUR 0.70M | 13.51 | 16.37 | 9.28 | 16.87 |
 
-The optimizer beats stars and random out of sample at both budgets and sits below the oracle, which gets to see the second half. The value benchmark beats the optimizer at both budgets now that it plays under the same wage cap. I give that a closer look in Honest limitations below.
+The optimizer beats random out of sample at both budgets and sits below the oracle, which gets to see the second half. The value benchmark beats the optimizer at both budgets. I give that a closer look in Honest limitations below.
 
 ![Backtest: realized second half squad VAEP/90 by selection rule](<runs/bundesliga_2seasons/Backtest chart.png>)
 
@@ -83,7 +83,7 @@ The optimizer beats stars and random out of sample at both budgets and sits belo
 
 **Optimize.** Binary portfolio: sign the player or do not. Maximize expected squad VAEP subject to wage budget, a 23 player squad, and position quotas. One MILP per budget point.
 
-**Backtest.** Split each season in half by date and pool the halves. Ratings and squads from the first halves only, scored on the second halves. Benchmarks (stars, value picks, random) all respect the same quotas and the same wage budget, so the only difference is the selection rule.
+**Backtest.** Split each season in half by date and pool the halves. Ratings and squads from the first halves only, scored on the second halves. Every rule is the same constrained selection problem with a different objective: the optimizer maximizes expected VAEP, value maximizes VAEP per euro, random maximizes random weights, and the oracle re-runs the optimizer on second-half ratings. Same quotas, same wage budget, so the only difference is the selection rule.
 
 ## Data
 
@@ -121,7 +121,7 @@ The proxy turns goals, assists, and cards into value on the VAEP scale (a goal m
 ## Honest limitations
 
 - 68 Bundesliga matches across two seasons. Better than 34, still thin. Ratings lean on shrinkage, and the backtest halves are 34 matches each (17 per season, pooled). More data would tighten everything.
-- The naive value benchmark beats the optimizer out of sample at both budgets: 16.37 vs 15.98 at 500k and 16.37 vs 13.51 at 700k. That loss is real and I am not hiding it. Once every baseline plays under the same wage cap, value per euro beats the risk blind MILP. The optimizer still beats stars and random clearly, and stars cannot even fill a 23 man squad under the tightest cap.
+- The naive value benchmark beats the optimizer out of sample at both budgets: 16.37 vs 15.98 at 500k and 16.37 vs 13.51 at 700k. That loss is real and I am not hiding it. Once every baseline plays under the same wage cap, value per euro beats the risk blind MILP. The optimizer still beats random clearly. I removed the stars baseline in the process: with the risk penalty off, the optimizer already maximizes raw VAEP/90, so an exact stars rule solves the identical problem and returns the identical squad. Keeping it would have printed one squad twice. The random baseline is now built by maximizing random weights under the same constraints, since rejection sampling could not reach the tight budgets.
 - Keepers top the rating list (Baumann 0.67, Mathenia 0.66). That says more about VAEP than about scouting: clean sheets and saves pile up value quietly.
 - Wages are video game wages. They correlate with real wages but they are not real wages. FC 24 has no row for most 2015/16 players. The name match hits 63% and the misses get dropped. FC 24 wages are applied to both seasons, including 2015/16 players whose actual pay that year looked nothing like these numbers. The framework does not care where the cost vector comes from, but the euro figures for the older season are fiction.
 - No chemistry, no injuries, no tactics. A squad is not 23 independent assets and I know it. The factor covariance model is a start, not an answer.
