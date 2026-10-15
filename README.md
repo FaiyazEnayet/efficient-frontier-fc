@@ -52,13 +52,13 @@ The efficient frontier:
 
 | wage budget/week | expected squad VAEP/90 |
 |---|---|
-| EUR 0.30M | 10.55 |
-| EUR 0.50M | 11.32 |
-| EUR 0.70M | 11.79 |
-| EUR 0.94M | 12.02 |
-| EUR 1.50M | 12.06 |
+| EUR 0.30M | 9.99 |
+| EUR 0.50M | 10.76 |
+| EUR 0.70M | 11.32 |
+| EUR 0.94M | 11.62 |
+| EUR 1.50M | 11.67 |
 
-Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: 12.02 at 0.94M, 12.06 at 1.50M. The best XI (4-3-3) costs EUR 571k/week. The optimal squad here is a Moneyball squad. The flat top is a result, not a bug.
+Diminishing returns, then flat. Past ~0.94M/week the budget stops binding: 11.62 at 0.94M, 11.67 at 1.50M. The best XI (4-3-3) costs EUR 569k/week. The optimal squad here is a Moneyball squad. The flat top is a result, not a bug.
 
 ![Efficient frontier: expected squad VAEP/90 at each wage budget](<runs/bundesliga_2seasons/Efficient frontier chart.png>)
 
@@ -66,16 +66,16 @@ The backtest (realized second half squad VAEP/90):
 
 | budget/week | optimizer | stars | value | random | oracle |
 |---|---|---|---|---|---|
-| EUR 0.50M | 15.59 | 13.03 | 13.64 | 10.73 | 17.48 |
-| EUR 0.70M | 13.14 | 13.03 | 13.64 | 9.92 | 17.25 |
+| EUR 0.50M | 15.98 | 6.50 | 16.37 | 10.44 | 17.34 |
+| EUR 0.70M | 13.51 | 10.70 | 16.37 | 9.54 | 16.87 |
 
-The optimizer beats stars and random out of sample at both budgets and sits below the oracle, which gets to see the second half. The 700k row needs a closer look. I give it one in Honest limitations below.
+The optimizer beats stars and random out of sample at both budgets and sits below the oracle, which gets to see the second half. The value benchmark beats the optimizer at both budgets now that it plays under the same wage cap. I give that a closer look in Honest limitations below.
 
 ![Backtest: realized second half squad VAEP/90 by selection rule](<runs/bundesliga_2seasons/Backtest chart.png>)
 
 ## How it works
 
-**Value every touch (VAEP).** 437k on ball actions from 196 matches of StatsBomb event data. Two gradient boosted models learn P(team scores) and P(team concedes) in the next 10 actions from the game state. An action's value is the change it causes, plus 1 for a scored goal, minus 1 for a conceded one. The two label windows are asymmetric on purpose: the "before" window includes the current action so chances count, the "after" window excludes it so a scored goal does not poison the state that follows. Getting this wrong gives goals zero value or keepers infinite value. I got it wrong twice.
+**Value every touch (VAEP).** 362k on ball actions from 162 matches of StatsBomb event data. Two gradient boosted models learn P(team scores) and P(team concedes) in the next 10 actions from the game state. An action's value is the change it causes, plus 1 for a scored goal, minus 1 for a conceded one. The two label windows are asymmetric on purpose: the "before" window includes the current action so chances count, the "after" window excludes it so a scored goal does not poison the state that follows. Getting this wrong gives goals zero value or keepers infinite value. I got it wrong twice.
 
 **Turn it into ratings.** Sum VAEP per player, divide by minutes, shrink toward position group means (90 minutes of brilliance does not make you the best in the league). 268 rated players across Bundesliga 2023/24 and 2015/16.
 
@@ -83,11 +83,11 @@ The optimizer beats stars and random out of sample at both budgets and sits belo
 
 **Optimize.** Binary portfolio: sign the player or do not. Maximize expected squad VAEP subject to wage budget, a 23 player squad, and position quotas. One MILP per budget point.
 
-**Backtest.** Split each season in half by date and pool the halves. Ratings and squads from the first halves only, scored on the second halves. Benchmarks (stars, value picks, random) all respect the same quotas, so the only difference is the selection rule.
+**Backtest.** Split each season in half by date and pool the halves. Ratings and squads from the first halves only, scored on the second halves. Benchmarks (stars, value picks, random) all respect the same quotas and the same wage budget, so the only difference is the selection rule.
 
 ## Data
 
-- Events: StatsBomb open data (free). 196 matches pooled for the goal models (Bundesliga 23/24 and 15/16, World Cups 2018 and 2022); ratings on Bundesliga 2023/24 and 2015/16, 34 matches per season.
+- Events: StatsBomb open data (free). 162 matches pooled for the goal models (Bundesliga 23/24 and 15/16 first halves, World Cups 2018 and 2022); ratings on Bundesliga 2023/24 and 2015/16, 34 matches per season.
 - Wages: EA FC 24 database (mzafram2001/ea-fc, open source), weekly wages in EUR.
 - `python -m effc.data.download` fetches everything into `data/` (gitignored, ~600MB).
 
@@ -121,7 +121,7 @@ The proxy turns goals, assists, and cards into value on the VAEP scale (a goal m
 ## Honest limitations
 
 - 68 Bundesliga matches across two seasons. Better than 34, still thin. Ratings lean on shrinkage, and the backtest halves are 34 matches each (17 per season, pooled). More data would tighten everything.
-- At the 700k budget the naive value benchmark beats the optimizer out of sample: 13.64 vs 13.14. That loss is real and I am not hiding it. At a looser budget the value per euro rule found a better squad than the risk blind MILP. The optimizer's edge is clearest when money is tight.
+- The naive value benchmark beats the optimizer out of sample at both budgets: 16.37 vs 15.98 at 500k and 16.37 vs 13.51 at 700k. That loss is real and I am not hiding it. Once every baseline plays under the same wage cap, value per euro beats the risk blind MILP. The optimizer still beats stars and random clearly, and stars cannot even fill a 23 man squad under the tightest cap.
 - Keepers top the rating list (Baumann 0.67, Mathenia 0.66). That says more about VAEP than about scouting: clean sheets and saves pile up value quietly.
 - Wages are video game wages. They correlate with real wages but they are not real wages. FC 24 has no row for most 2015/16 players. The name match hits 63% and the misses get dropped. FC 24 wages are applied to both seasons, including 2015/16 players whose actual pay that year looked nothing like these numbers. The framework does not care where the cost vector comes from, but the euro figures for the older season are fiction.
 - No chemistry, no injuries, no tactics. A squad is not 23 independent assets and I know it. The factor covariance model is a start, not an answer.
