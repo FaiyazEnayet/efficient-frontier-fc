@@ -1,227 +1,227 @@
 {
   "config": "configs/bundesliga_2seasons.yaml",
-  "train_time_s": 1583.0033693313599,
-  "brier_scores": 0.00846651133864892,
-  "brier_concedes": 0.0020762245376863137,
+  "train_time_s": 136.2442808151245,
+  "brier_scores": 0.00821532666339354,
+  "brier_concedes": 0.0019680009408254364,
   "wage_match_rate": 0.6317280453257791,
   "n_rated": 268,
   "cov_info": {
-    "mean_abs_beta": 0.011789646511152644,
-    "mean_idio_var": 0.29411677151702964,
+    "mean_abs_beta": 0.011562409375406812,
+    "mean_idio_var": 0.31217156874506874,
     "n_players": 268
   },
   "frontier": [
     {
       "budget": 300000.0,
-      "exp_vaep_per90": 10.551975643245909,
-      "wage_bill": 299250.0,
+      "exp_vaep_per90": 9.987683746304828,
+      "wage_bill": 298250.0,
       "n_players": 23,
-      "squad_risk": 0.1282599404798231
+      "squad_risk": 0.13096639359033876
     },
     {
       "budget": 500000.0,
-      "exp_vaep_per90": 11.321473164032518,
-      "wage_bill": 498750.0,
+      "exp_vaep_per90": 10.759435075000514,
+      "wage_bill": 499250.0,
       "n_players": 23,
-      "squad_risk": 0.13695037390754755
+      "squad_risk": 0.13959573001622996
     },
     {
       "budget": 700000.0,
-      "exp_vaep_per90": 11.791870020236441,
-      "wage_bill": 699000.0,
+      "exp_vaep_per90": 11.319681440434954,
+      "wage_bill": 697750.0,
       "n_players": 23,
-      "squad_risk": 0.16567025193459098
+      "squad_risk": 0.167834181840269
     },
     {
       "budget": 943000.0,
-      "exp_vaep_per90": 12.019220556406916,
-      "wage_bill": 923000.0,
+      "exp_vaep_per90": 11.621195998644247,
+      "wage_bill": 936000.0,
       "n_players": 23,
-      "squad_risk": 0.19417085842943899
+      "squad_risk": 0.20650825150643
     },
     {
       "budget": 1500000.0,
-      "exp_vaep_per90": 12.06034728234844,
-      "wage_bill": 1046000.0,
+      "exp_vaep_per90": 11.674962453379782,
+      "wage_bill": 1122000.0,
       "n_players": 23,
-      "squad_risk": 0.1945982418600726
+      "squad_risk": 0.21503356191201958
     }
   ],
   "backtest": [
     {
       "budget": 300000.0,
-      "optimizer": 15.419594215661379,
-      "stars": 13.03319934727759,
-      "value": 13.639880170308759,
+      "optimizer": 16.868150225640345,
+      "stars": 4.646508689058488,
+      "value": 16.368110108761506,
       "random_mean": 0.0,
-      "oracle": 17.606043112875724
+      "oracle": 16.764737994966957
     },
     {
       "budget": 500000.0,
-      "optimizer": 15.58816858975346,
-      "stars": 13.03319934727759,
-      "value": 13.639880170308759,
-      "random_mean": 10.730155574045485,
-      "oracle": 17.475926503071907
+      "optimizer": 15.977077378901255,
+      "stars": 6.5008701023521445,
+      "value": 16.368110108761506,
+      "random_mean": 10.441823483851639,
+      "oracle": 17.339470780561285
     },
     {
       "budget": 700000.0,
-      "optimizer": 13.137319166036818,
-      "stars": 13.03319934727759,
-      "value": 13.639880170308759,
-      "random_mean": 9.921079456210743,
-      "oracle": 17.253801817917303
+      "optimizer": 13.514637997451201,
+      "stars": 10.700683519414813,
+      "value": 16.368110108761506,
+      "random_mean": 9.541995325097261,
+      "oracle": 16.869968173494907
     }
   ],
   "xi": [
     {
-      "player": "Granit Xhaka",
-      "team": "Bayer Leverkusen",
-      "pos_group": "MID",
-      "vaep_per90": 0.5288504780722638,
-      "wage_eur": 74000.0
-    },
-    {
       "player": "Pierre-Emerick Aubameyang",
       "team": "Borussia Dortmund",
       "pos_group": "FWD",
-      "vaep_per90": 0.46323463857029,
+      "vaep_per90": 0.47058816205583753,
       "wage_eur": 54000.0
+    },
+    {
+      "player": "Julian Brandt",
+      "team": "Bayer Leverkusen",
+      "pos_group": "MID",
+      "vaep_per90": 0.6050881147630687,
+      "wage_eur": 72000.0
     },
     {
       "player": "Ja-Cheol Koo",
       "team": "Augsburg",
       "pos_group": "MID",
-      "vaep_per90": 0.5688314272529063,
+      "vaep_per90": 0.611316546905621,
       "wage_eur": 2000.0
     },
     {
       "player": "Patrik Schick",
       "team": "Bayer Leverkusen",
       "pos_group": "FWD",
-      "vaep_per90": 0.44038244585432007,
+      "vaep_per90": 0.43719427699728663,
       "wage_eur": 73000.0
     },
     {
       "player": "Oliver Baumann",
       "team": "Hoffenheim",
       "pos_group": "GK",
-      "vaep_per90": 0.6702727948517939,
+      "vaep_per90": 0.599465264118135,
       "wage_eur": 34000.0
     },
     {
       "player": "Alejandro Grimaldo Garc\u00eda",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.5783490740603517,
+      "vaep_per90": 0.591085718046079,
       "wage_eur": 88000.0
     },
     {
       "player": "Manuel Gulde",
       "team": "Freiburg",
       "pos_group": "DEF",
-      "vaep_per90": 0.42021789111257235,
+      "vaep_per90": 0.41344731625028214,
       "wage_eur": 20000.0
     },
     {
       "player": "Jeremie Frimpong",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.6063258726122548,
+      "vaep_per90": 0.6247405123924286,
       "wage_eur": 63000.0
     },
     {
       "player": "Amine Adli",
       "team": "Bayer Leverkusen",
       "pos_group": "FWD",
-      "vaep_per90": 0.506427428141712,
+      "vaep_per90": 0.46383916161648675,
       "wage_eur": 45000.0
     },
     {
       "player": "Florian Wirtz",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.6660481176251278,
+      "vaep_per90": 0.6862831133122953,
       "wage_eur": 77000.0
     },
     {
       "player": "Josip Stani\u0161i\u0107",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.4707087653239025,
+      "vaep_per90": 0.4854911444169389,
       "wage_eur": 41000.0
     }
   ],
   "top10": [
     {
-      "player": "Oliver Baumann",
-      "team": "Hoffenheim",
-      "pos_group": "GK",
-      "vaep_per90": 0.6702727948517939,
-      "wage_eur": 34000.0
-    },
-    {
       "player": "Florian Wirtz",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.6660481176251278,
+      "vaep_per90": 0.6862831133122953,
       "wage_eur": 77000.0
-    },
-    {
-      "player": "Christian Mathenia",
-      "team": "Darmstadt 98",
-      "pos_group": "GK",
-      "vaep_per90": 0.6580031557379757,
-      "wage_eur": 4000.0
     },
     {
       "player": "Jeremie Frimpong",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.6063258726122548,
+      "vaep_per90": 0.6247405123924286,
       "wage_eur": 63000.0
-    },
-    {
-      "player": "Alexander N\u00fcbel",
-      "team": "VfB Stuttgart",
-      "pos_group": "GK",
-      "vaep_per90": 0.5971245418342781,
-      "wage_eur": 45000.0
-    },
-    {
-      "player": "Alejandro Grimaldo Garc\u00eda",
-      "team": "Bayer Leverkusen",
-      "pos_group": "DEF",
-      "vaep_per90": 0.5783490740603517,
-      "wage_eur": 88000.0
     },
     {
       "player": "Ja-Cheol Koo",
       "team": "Augsburg",
       "pos_group": "MID",
-      "vaep_per90": 0.5688314272529063,
+      "vaep_per90": 0.611316546905621,
       "wage_eur": 2000.0
-    },
-    {
-      "player": "Bernd Leno",
-      "team": "Bayer Leverkusen",
-      "pos_group": "GK",
-      "vaep_per90": 0.5465972188558786,
-      "wage_eur": 76000.0
-    },
-    {
-      "player": "Granit Xhaka",
-      "team": "Bayer Leverkusen",
-      "pos_group": "MID",
-      "vaep_per90": 0.5288504780722638,
-      "wage_eur": 74000.0
     },
     {
       "player": "Julian Brandt",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.5281052305294963,
+      "vaep_per90": 0.6050881147630687,
       "wage_eur": 72000.0
+    },
+    {
+      "player": "Oliver Baumann",
+      "team": "Hoffenheim",
+      "pos_group": "GK",
+      "vaep_per90": 0.599465264118135,
+      "wage_eur": 34000.0
+    },
+    {
+      "player": "Alejandro Grimaldo Garc\u00eda",
+      "team": "Bayer Leverkusen",
+      "pos_group": "DEF",
+      "vaep_per90": 0.591085718046079,
+      "wage_eur": 88000.0
+    },
+    {
+      "player": "Chris F\u00fchrich",
+      "team": "VfB Stuttgart",
+      "pos_group": "MID",
+      "vaep_per90": 0.5327666248929369,
+      "wage_eur": 25000.0
+    },
+    {
+      "player": "Christian Mathenia",
+      "team": "Darmstadt 98",
+      "pos_group": "GK",
+      "vaep_per90": 0.5293172030449509,
+      "wage_eur": 4000.0
+    },
+    {
+      "player": "Robert Andrich",
+      "team": "Bayer Leverkusen",
+      "pos_group": "MID",
+      "vaep_per90": 0.5236999751234086,
+      "wage_eur": 65000.0
+    },
+    {
+      "player": "Yunus Mall\u0131",
+      "team": "FSV Mainz 05",
+      "pos_group": "MID",
+      "vaep_per90": 0.5174052971480092,
+      "wage_eur": 9000.0
     }
   ]
 }
