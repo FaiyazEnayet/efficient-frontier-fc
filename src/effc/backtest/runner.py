@@ -84,13 +84,34 @@ def random_squads(
     return out
 
 
-def _top_with_quotas(ratings: pd.DataFrame, key: str, squad_size: int = 23) -> pd.DataFrame:
-    picks = []
+def _top_with_quotas(
+    ratings: pd.DataFrame, key: str, budget: float, squad_size: int = 23
+) -> pd.DataFrame:
+    """Greedy quota-respecting fill under a wage cap.
+
+    Takes the best available players by `key` that fit the remaining
+    budget, filling position quotas first. Uses the same cap the
+    optimizer gets so the baselines are comparable.
+    """
+    picks: list = []
+    remaining = float(budget)
     for g, q in POS_QUOTA.items():
-        pool = ratings[ratings["pos_group"] == g].nlargest(q, key)
-        picks.extend(pool.index.tolist())
-    rest = ratings.drop(index=picks).nlargest(squad_size - len(picks), key)
-    picks.extend(rest.index.tolist())
+        pool = ratings[ratings["pos_group"] == g].sort_values(key, ascending=False)
+        taken = 0
+        for idx, row in pool.iterrows():
+            if taken >= q:
+                break
+            if row["wage_eur"] <= remaining:
+                picks.append(idx)
+                remaining -= row["wage_eur"]
+                taken += 1
+    rest = ratings.drop(index=picks).sort_values(key, ascending=False)
+    for idx, row in rest.iterrows():
+        if len(picks) >= squad_size:
+            break
+        if row["wage_eur"] <= remaining:
+            picks.append(idx)
+            remaining -= row["wage_eur"]
     return ratings.loc[picks]
 
 
@@ -108,10 +129,10 @@ def run_backtest(
             opt = select_squad(ratings_first, b)
         except RuntimeError:
             continue  # budget too tight for a valid 23-man squad; skip
-        stars = _top_with_quotas(ratings_first, "vaep_per90")
+        stars = _top_with_quotas(ratings_first, "vaep_per90", b)
         mb = ratings_first.copy()
         mb["vpe"] = mb["vaep_per90"] / mb["wage_eur"].clip(lower=1.0)
-        value = _top_with_quotas(mb, "vpe")
+        value = _top_with_quotas(mb, "vpe", b)
         oracle = select_squad(ratings_second, b)
         rands = random_squads(ratings_first, b, seed=seed)
         rows.append(
