@@ -32,6 +32,10 @@ Event-derived player ratings are shrunk and joined to wage proxies. The optimize
 | EUR 0.70M weekly cap, same backtest | Optimizer 13.51; value baseline 16.37; random 9.28 |
 | Interpretation | The optimizer beats random but loses to the value baseline at both caps |
 
+## Updating this project
+
+Dashboard source language: **Python**. Generator: `scripts/make_dashboard.py`. To keep the interactive page, figures, data animation, and README consistent, follow [the coding-agent update guide](AGENT-DASHBOARD-GUIDE.md). The local interactive output is `docs/dashboard.html`.
+
 ## Run locally
 
 
