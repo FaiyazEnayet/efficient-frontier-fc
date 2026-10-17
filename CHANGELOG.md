@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [v1.1.0] - 2026-10-16
 
 ### Fixed
 - Backtest baselines are now exact constrained selections instead of a greedy fill. The greedy `_top_with_quotas` got trapped by tight budgets and returned short squads (7 players at 300k, 11 at 500k), whose scores were reported next to full 23-man squads. Baselines now maximize their key under the identical quotas and wage cap via the same MILP the optimizer uses, and raise when no full squad fits. Added regression tests: full squads where the greedy got stuck, RuntimeError on infeasible budgets.
