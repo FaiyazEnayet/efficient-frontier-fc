@@ -10,7 +10,7 @@ Efficient Frontier FC treats squad construction as a constrained allocation prob
 
 **Python · VAEP · constrained optimization**
 
-[![Efficient Frontier FC demo](docs/demo.gif)](https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html)
+[![Efficient Frontier FC demo](docs/demo.gif?v=data-20261017)](https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html)
 
 
 ## Explore
