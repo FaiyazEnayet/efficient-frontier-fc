@@ -29,10 +29,10 @@ def plot_backtest(bt: pd.DataFrame, outdir: str):
     fig, ax = plt.subplots(figsize=(8, 5))
     x = np.arange(len(bt))
     w = 0.15
-    for i, col in enumerate(["optimizer", "value", "stars", "random_mean", "oracle"]):
-        ax.bar(x + (i - 2) * w, bt[col], width=w, label=col)
+    for i, col in enumerate(["optimizer", "value", "random_mean", "oracle"]):
+        ax.bar(x + (i - 1.5) * w, bt[col], width=w, label=col)
     ax.set_xticks(x)
-    ax.set_xticklabels([f"{b/1e6:.0f}m" for b in bt["budget"]])
+    ax.set_xticklabels([f"{b/1e6:.1f}m" for b in bt["budget"]])
     ax.set_xlabel("wage budget (EURm / week)")
     ax.set_ylabel("realized second-half squad VAEP/90")
     ax.set_title("Backtest: first-half squads, second-half reality")

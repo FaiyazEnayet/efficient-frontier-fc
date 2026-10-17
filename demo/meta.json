@@ -13,7 +13,6 @@
   },
   "rules": [
     "optimizer",
-    "stars",
     "value",
     "random_mean",
     "oracle"
