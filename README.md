@@ -1,6 +1,6 @@
 # Efficient Frontier FC
 
-![tests](https://img.shields.io/badge/tests-27%20passing-brightgreen)
+![tests](https://img.shields.io/badge/tests-36%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 [![live demo](https://img.shields.io/badge/live_demo-interactive-blue)](https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html)
