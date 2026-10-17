@@ -268,10 +268,20 @@ def main() -> None:
         div_ratings=div_ratings, div_backtest=div_backtest,
     )
     os.makedirs("docs", exist_ok=True)
-    with open(OUT, "w") as f:
-        f.write(html)
+    with open(OUT, "w", encoding="utf-8") as f:
+        f.write(_portfolio_html(html))
     print(f"wrote {OUT} ({os.path.getsize(OUT) / 1e6:.1f} MB)")
 
+
+
+def _portfolio_html(raw):
+    """Presentation-only transform of this run’s freshly calculated figures."""
+    import sys
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "portfolio_ui"))
+    from renderer import render_html
+    return render_html(root, 'efficient-frontier-fc', raw)[0]
 
 if __name__ == "__main__":
     main()
