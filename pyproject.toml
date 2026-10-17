@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Faiyaz Enayet" }]
-dependencies = [
+dependencies = ["beautifulsoup4>=4.11", 
     "numpy>=1.24",
     "pandas>=2.0",
     "scikit-learn>=1.3",
