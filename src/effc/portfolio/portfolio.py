@@ -22,6 +22,71 @@ FORMATIONS = {
 }
 
 
+class InfeasibleError(RuntimeError):
+    """The requested squad cannot be built.
+
+    `reason` is a short machine-readable code; the message explains it.
+    Subclasses RuntimeError so existing `except RuntimeError` handlers
+    (e.g. the frontier's skip-on-infeasible-budget) keep working.
+    """
+
+    EMPTY_GROUP = "empty_group"
+    QUOTA_EXCEEDS_SQUAD = "quota_exceeds_squad"
+    QUOTAS_EXCEED_SQUAD = "quotas_exceed_squad"
+    POOL_TOO_SMALL = "pool_too_small"
+    MILP_INFEASIBLE = "milp_infeasible"
+
+    def __init__(self, reason: str, detail: str = ""):
+        self.reason = reason
+        self.detail = detail
+        msg = f"infeasible squad ({reason})"
+        if detail:
+            msg += f": {detail}"
+        super().__init__(msg)
+
+
+def _validate_inputs(mu, wage, groups, budget, n_pick, quota, idio_var):
+    """Fail fast on inputs that can never yield a valid squad.
+
+    Every requested quota is enforced: a quota on an empty group is an
+    error, never a silently skipped constraint.
+    """
+    n = len(mu)
+    if n_pick <= 0:
+        raise ValueError(f"squad size must be positive, got {n_pick}")
+    if n_pick > n:
+        raise InfeasibleError(
+            InfeasibleError.POOL_TOO_SMALL,
+            f"need {n_pick} players from a pool of {n}",
+        )
+    for name, arr in (("vaep_per90", mu), ("wage_eur", wage), ("idio_var", idio_var)):
+        if np.isnan(np.asarray(arr, dtype=float)).any():
+            raise ValueError(f"NaN in {name}: cannot optimize on missing values")
+    if np.isnan(budget):
+        raise ValueError("NaN budget")
+    total_min = 0
+    for g, q in quota.items():
+        if q < 0:
+            raise ValueError(f"negative quota for {g}: {q}")
+        if q > n_pick:
+            raise InfeasibleError(
+                InfeasibleError.QUOTA_EXCEEDS_SQUAD,
+                f"{g} minimum {q} exceeds squad size {n_pick}",
+            )
+        n_group = int((groups == g).sum())
+        if q > 0 and n_group == 0:
+            raise InfeasibleError(
+                InfeasibleError.EMPTY_GROUP,
+                f"quota needs {q} {g} but the pool has no {g} players",
+            )
+        total_min += q
+    if total_min > n_pick:
+        raise InfeasibleError(
+            InfeasibleError.QUOTAS_EXCEED_SQUAD,
+            f"positional minima sum to {total_min} but squad size is {n_pick}",
+        )
+
+
 def _milp_select(
     mu: np.ndarray,
     wage: np.ndarray,
@@ -32,6 +97,7 @@ def _milp_select(
     gamma: float,
     idio_var: np.ndarray,
 ) -> np.ndarray:
+    _validate_inputs(mu, wage, groups, budget, n_pick, quota, idio_var)
     n = len(mu)
     c = -(mu - gamma * idio_var)  # minimize negative utility
     A_rows, lb, ub = [], [], []
@@ -43,9 +109,9 @@ def _milp_select(
     lb.append(n_pick)
     ub.append(n_pick)
     for g, q in quota.items():
+        # Every quota is enforced. Validation above guarantees a
+        # positive quota always has candidates; nothing is skipped.
         row = (groups == g).astype(float)
-        if row.sum() == 0:
-            continue
         A_rows.append(row)
         lb.append(q)
         ub.append(n_pick)
@@ -57,7 +123,10 @@ def _milp_select(
         bounds=Bounds(np.zeros(n), np.ones(n)),
     )
     if not res.success:
-        raise RuntimeError(f"MILP failed: {res.message}")
+        raise InfeasibleError(
+            InfeasibleError.MILP_INFEASIBLE,
+            f"{res.message} (budget={budget}, squad_size={n_pick})",
+        )
     return (res.x > 0.5).astype(bool)
 
 
@@ -122,6 +191,15 @@ def select_xi(
         else np.zeros(len(mu))
     )
     n = len(mu)
+    for name, arr in (("vaep_per90", mu), ("idio_var", iv)):
+        if np.isnan(np.asarray(arr, dtype=float)).any():
+            raise ValueError(f"NaN in {name}: cannot optimize on missing values")
+    for g, q in quota.items():
+        if q > 0 and int((groups == g).sum()) == 0:
+            raise InfeasibleError(
+                InfeasibleError.EMPTY_GROUP,
+                f"formation needs {q} {g} but the pool has no {g} players",
+            )
     c = -(mu - gamma * iv)
     A_rows, lb, ub = [], [], []
     for g, q in quota.items():
@@ -136,7 +214,9 @@ def select_xi(
         bounds=Bounds(np.zeros(n), np.ones(n)),
     )
     if not res.success:
-        raise RuntimeError(f"XI MILP failed: {res.message}")
+        raise InfeasibleError(
+            InfeasibleError.MILP_INFEASIBLE, f"XI: {res.message}"
+        )
     return ratings[res.x > 0.5].copy()
 
 
