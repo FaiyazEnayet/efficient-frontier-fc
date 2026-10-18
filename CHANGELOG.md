@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.2.1] - 2026-10-18
+### Fixed
+- Impossible position quotas are now rejected instead of silently skipped (`src/effc/portfolio/portfolio.py`). `_milp_select` used to drop a quota when the player pool had zero members of that group, so a goalkeeper minimum on a forward-only pool returned forwards instead of infeasibility. Quotas are validated against available candidates and squad size before solving, and violations raise a typed `InfeasibleError` carrying a machine-readable reason (`empty_group`, `quota_exceeds_squad`, `quotas_exceed_squad`, `pool_too_small`, `milp_infeasible`); it subclasses `RuntimeError` so existing handlers keep working. NaN wages, ratings or budgets raise clear `ValueError`s. Added regression tests: no-GK pool with GK>=1 fails, quota/squad-size contradictions fail, feasible squads meet exact size, wage cap and all minima, NaN inputs fail loudly.
+
 ## [v1.2.0] - 2026-10-18
 ### Fixed
 - VAEP caches are now keyed by model and split (`src/effc/pipeline.py`). `compute_target_vaep` used to load a single fixed `target_vaep.pkl` no matter which model was supplied, so changing the seed, training matches, features or split silently reused another model's values. The cache filename is now versioned and content-addressed from the sorted training match IDs, the feature schema version (`FEATURE_VERSION`), the run config and a hash of the fitted models; legacy unversioned `target_vaep.pkl` files are rejected, never loaded. Added regression tests: two different dummy models never share a cache, config/train-ID changes invalidate it, identical inputs reuse it exactly.

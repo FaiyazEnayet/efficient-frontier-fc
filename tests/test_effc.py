@@ -176,3 +176,70 @@ def test_norm_and_positions():
     assert position_group("ST, LW") == "FWD"
     assert position_group("CDM") == "MID"
     assert position_group("GK") == "GK"
+
+
+def test_no_gk_pool_with_gk_quota_raises():
+    # The reported defect: a pool with no goalkeepers and a GK minimum
+    # must fail, not silently return players that violate the quota.
+    from effc.portfolio.portfolio import InfeasibleError
+    ratings = _fake_ratings()
+    no_gk = ratings[ratings["pos_group"] != "GK"].reset_index(drop=True)
+    assert (no_gk["pos_group"] == "GK").sum() == 0
+    with pytest.raises(InfeasibleError) as exc:
+        select_squad(no_gk, budget=5_000_000, squad_size=11,
+                     quota={"GK": 1, "FWD": 1})
+    assert exc.value.reason == InfeasibleError.EMPTY_GROUP
+
+
+def test_quota_exceeding_squad_size_raises():
+    from effc.portfolio.portfolio import InfeasibleError
+    ratings = _fake_ratings()
+    with pytest.raises(InfeasibleError) as exc:
+        select_squad(ratings, budget=5_000_000, squad_size=11,
+                     quota={"GK": 12})
+    assert exc.value.reason == InfeasibleError.QUOTA_EXCEEDS_SQUAD
+
+
+def test_quotas_summing_past_squad_size_raise():
+    from effc.portfolio.portfolio import InfeasibleError
+    ratings = _fake_ratings()
+    with pytest.raises(InfeasibleError) as exc:
+        select_squad(ratings, budget=5_000_000, squad_size=11,
+                     quota={"GK": 6, "DEF": 6})
+    assert exc.value.reason == InfeasibleError.QUOTAS_EXCEED_SQUAD
+
+
+def test_feasible_squad_meets_all_constraints():
+    ratings = _fake_ratings()
+    quota = {"GK": 2, "DEF": 4, "MID": 4, "FWD": 2}
+    squad = select_squad(ratings, budget=5_000_000, squad_size=23, quota=quota)
+    assert len(squad) == 23
+    assert squad["wage_eur"].sum() <= 5_000_000 + 1e-6
+    counts = squad["pos_group"].value_counts()
+    for g, q in quota.items():
+        assert counts.get(g, 0) >= q, f"{g} minimum {q} not met"
+
+
+def test_nan_wage_raises_clear_error():
+    ratings = _fake_ratings()
+    ratings.loc[0, "wage_eur"] = float("nan")
+    with pytest.raises(ValueError, match="NaN in wage_eur"):
+        select_squad(ratings, budget=5_000_000, squad_size=23)
+
+
+def test_nan_rating_raises_clear_error():
+    ratings = _fake_ratings()
+    ratings.loc[0, "vaep_per90"] = float("nan")
+    with pytest.raises(ValueError, match="NaN in vaep_per90"):
+        select_squad(ratings, budget=5_000_000, squad_size=23)
+
+
+def test_infeasible_budget_raises_typed_error():
+    # A budget no 23-man squad can meet surfaces as infeasible, and the
+    # typed error still satisfies `except RuntimeError` handlers.
+    from effc.portfolio.portfolio import InfeasibleError
+    ratings = _fake_ratings()
+    with pytest.raises(InfeasibleError):
+        select_squad(ratings, budget=1.0, squad_size=23)
+    with pytest.raises(RuntimeError):
+        select_squad(ratings, budget=1.0, squad_size=23)
