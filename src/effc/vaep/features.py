@@ -13,6 +13,10 @@ import math
 import numpy as np
 import pandas as pd
 
+# Bump whenever the feature set or schema changes: it feeds the VAEP
+# cache key so stale values are never silently reused.
+FEATURE_VERSION = 1
+
 # event types we value as actions
 ACTION_TYPES = [
     "Pass",

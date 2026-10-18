@@ -7,6 +7,7 @@ Writes metrics.json + plots to runs/<name>/.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import pickle
@@ -22,11 +23,14 @@ from effc.data.statsbomb import list_matches, load_events, minutes_played
 from effc.data.wages import load_wages, match_players
 from effc.ratings.covariance import fit_factor_model, match_vaep_panel, team_factor
 from effc.ratings.ratings import build_ratings
-from effc.vaep.features import featurize_match
+from effc.vaep.features import FEATURE_VERSION, featurize_match
 from effc.vaep.models import brier_score, train_goal_models
 from effc.vaep.values import add_vaep, player_match_vaep
 
 CACHE = os.path.join(DATA_DIR, "cache")
+# Bump to invalidate every VAEP cache when the cached schema changes.
+CACHE_VERSION = 2
+LEGACY_VAEP_CACHE = "target_vaep.pkl"
 
 
 def _cache_get(name):
@@ -41,6 +45,44 @@ def _cache_put(name, obj):
     os.makedirs(CACHE, exist_ok=True)
     with open(os.path.join(CACHE, name), "wb") as f:
         pickle.dump(obj, f)
+
+
+def _model_hash(models) -> str:
+    """Stable hash of the fitted goal models' pickled bytes.
+
+    Different seeds, features or training data produce different fitted
+    models, hence different hashes. A new library version may also
+    change the bytes, which safely misses the cache instead of reusing
+    stale values.
+    """
+    return hashlib.sha256(pickle.dumps(models, protocol=4)).hexdigest()[:16]
+
+
+def vaep_cache_key(models, train_match_ids, config=None) -> str:
+    """Versioned, content-addressed cache filename for target VAEP.
+
+    The key binds the sorted training match IDs, the feature schema
+    version, the run config and the fitted model hash, so changing any
+    of them invalidates the cache while identical inputs reuse it.
+    """
+    h = hashlib.sha256()
+    h.update(json.dumps(sorted(int(m) for m in train_match_ids)).encode())
+    h.update(str(FEATURE_VERSION).encode())
+    h.update(json.dumps(config or {}, sort_keys=True, default=str).encode())
+    h.update(_model_hash(models).encode())
+    return f"target_vaep_v{CACHE_VERSION}_{h.hexdigest()[:16]}.pkl"
+
+
+def _reject_legacy_cache():
+    """The old unversioned target_vaep.pkl is never trusted: it cannot
+    say which model produced it. Leave the file alone, but refuse to
+    read it."""
+    legacy = os.path.join(CACHE, LEGACY_VAEP_CACHE)
+    if os.path.exists(legacy):
+        print(
+            f"ignoring legacy unversioned cache {LEGACY_VAEP_CACHE}; "
+            "recomputing under a versioned key"
+        )
 
 
 def pre_split_frames(
@@ -77,11 +119,18 @@ def featurize_pool() -> list[pd.DataFrame]:
     return frames
 
 
-def compute_target_vaep(models) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Returns (player_match vaep, minutes, matches) for the target competition."""
-    cached = _cache_get("target_vaep.pkl")
+def compute_target_vaep(models, train_match_ids, config=None) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Returns (player_match vaep, minutes, matches) for the target competition.
+
+    Results are cached under a versioned key derived from the training
+    match IDs, feature version, config and model hash. A cache entry
+    from a different model, seed, split or feature set is never reused.
+    """
+    _reject_legacy_cache()
+    key = vaep_cache_key(models, train_match_ids, config)
+    cached = _cache_get(key)
     if cached is not None:
-        print("loaded cached target VAEP")
+        print(f"loaded cached target VAEP ({key})")
         return cached
     matches = list_matches(TARGET)
     pm_all, min_all = [], []
@@ -100,7 +149,7 @@ def compute_target_vaep(models) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFram
             print(f"valued {i + 1}/{len(matches)} target matches")
     pm = pd.concat(pm_all, ignore_index=True)
     mins = pd.concat(min_all, ignore_index=True)
-    _cache_put("target_vaep.pkl", (pm, mins, matches))
+    _cache_put(key, (pm, mins, matches))
     return pm, mins, matches
 
 
@@ -135,8 +184,10 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     brier_c = brier_score(full["concedes_incl"].to_numpy(), preds["concedes_incl"])
     print(f"goal models: Brier scores={brier_s:.4f} concedes={brier_c:.4f}")
 
-    # 2. VAEP on the target competition
-    pm, mins, _ = compute_target_vaep(models)
+    # 2. VAEP on the target competition. The cache key binds the training
+    # matches, feature version, config and model hash.
+    train_ids = sorted({int(f["match_id"].iloc[0]) for f in frames})
+    pm, mins, _ = compute_target_vaep(models, train_ids, config=cfg)
 
     # 3. wages + ratings
     wages = load_wages()

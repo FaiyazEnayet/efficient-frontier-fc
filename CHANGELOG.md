@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.2.0] - 2026-10-18
+### Fixed
+- VAEP caches are now keyed by model and split (`src/effc/pipeline.py`). `compute_target_vaep` used to load a single fixed `target_vaep.pkl` no matter which model was supplied, so changing the seed, training matches, features or split silently reused another model's values. The cache filename is now versioned and content-addressed from the sorted training match IDs, the feature schema version (`FEATURE_VERSION`), the run config and a hash of the fitted models; legacy unversioned `target_vaep.pkl` files are rejected, never loaded. Added regression tests: two different dummy models never share a cache, config/train-ID changes invalidate it, identical inputs reuse it exactly.
+
 ## [v1.1.0] - 2026-10-16
 
 ### Fixed
