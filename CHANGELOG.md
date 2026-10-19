@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.3.0] - 2026-10-19
+### Fixed
+- Selection and evaluation now share one objective: exposure-weighted expected total VAEP (`src/effc/backtest/runner.py`, `src/effc/portfolio/portfolio.py`). `select_squad` used to maximize summed per-90 rates while `squad_realized_score` measured a pooled minutes-weighted rate times squad size, so the "oracle" optimized a different objective than the one it was scored on and need not upper-bound anything. Selection now maximizes expected total VAEP (first-half minutes x VAEP/90); evaluation sums realized second-half VAEP over squad members. The value baseline maximizes the same objective per euro. The oracle maximizes realized second-half totals in-sample, so it genuinely solves the scored objective and upper-bounds by construction. Players with no second-half action contribute 0 and are counted explicitly (`optimizer_unavail` etc.) instead of silently dragging a pooled rate. Added regression tests: unequal-minutes hand fixture matches the summed objective, oracle upper-bounds, unavailable players counted.
+
+### Tests
+- 4 new regression tests in `tests/test_backtest.py`; full suite 47/47 green.
+
 ## [v1.2.1] - 2026-10-18
 ### Fixed
 - Impossible position quotas are now rejected instead of silently skipped (`src/effc/portfolio/portfolio.py`). `_milp_select` used to drop a quota when the player pool had zero members of that group, so a goalkeeper minimum on a forward-only pool returned forwards instead of infeasibility. Quotas are validated against available candidates and squad size before solving, and violations raise a typed `InfeasibleError` carrying a machine-readable reason (`empty_group`, `quota_exceeds_squad`, `quotas_exceed_squad`, `pool_too_small`, `milp_infeasible`); it subclasses `RuntimeError` so existing handlers keep working. NaN wages, ratings or budgets raise clear `ValueError`s. Added regression tests: no-GK pool with GK>=1 fails, quota/squad-size contradictions fail, feasible squads meet exact size, wage cap and all minima, NaN inputs fail loudly.
