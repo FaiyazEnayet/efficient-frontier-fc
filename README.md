@@ -28,9 +28,9 @@ Event-derived player ratings are shrunk and joined to wage proxies. The optimize
 
 | Scope | Recorded result or contract |
 | :--- | :--- |
-| EUR 0.50M weekly cap, second-half squad VAEP/90 | Optimizer 15.98; value baseline 16.37; random 8.04 |
+| EUR 0.50M weekly cap, second-half squad VAEP/90 (pre-FC3 pooled-rate objective) | Optimizer 15.98; value baseline 16.37; random 8.04 |
 | EUR 0.70M weekly cap, same backtest | Optimizer 13.51; value baseline 16.37; random 9.28 |
-| Interpretation | The optimizer beats random but loses to the value baseline at both caps |
+| Interpretation | The optimizer beats random but loses to the value baseline at both caps. As of FC3, selection and evaluation share one objective (expected/realized total VAEP, exposure-weighted); figures above used the previous pooled-rate objective and are being refreshed |
 
 ## Updating this project
 
