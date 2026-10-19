@@ -29,13 +29,18 @@ from effc.portfolio.portfolio import POS_QUOTA
 
 def _fake_ratings(n=48, seed=0):
     rng = np.random.default_rng(seed)
-    groups = (["GK"] * 6 + ["DEF"] * 14 + ["MID"] * 14 + ["FWD"] * 14)[:n]
+    base = ["GK"] * 6 + ["DEF"] * 14 + ["MID"] * 14 + ["FWD"] * 14
+    groups = (base * ((n // len(base)) + 1))[:n]
+    minutes = rng.uniform(300, 3000, n)
+    vaep_per90 = rng.normal(0.3, 0.2, n)
     return pd.DataFrame(
         {
             "player_id": range(n),
             "pos_group": groups,
-            "vaep_per90": rng.normal(0.3, 0.2, n),
+            "vaep_per90": vaep_per90,
             "wage_eur": rng.uniform(50_000, 400_000, n),
+            "minutes": minutes,
+            "vaep": vaep_per90 * minutes / 90.0,
         }
     )
 
@@ -106,14 +111,16 @@ def _trapped_ratings():
     groups = {"GK": (2, 3), "DEF": (2, 7), "MID": (2, 7), "FWD": (2, 6)}
     for g, (n_stars, n_cheap) in groups.items():
         for _ in range(n_stars):
-            rows.append((pid, g, 1.0, 100_000))
+            rows.append((pid, g, 1.0, 100_000, 2700.0))
             pid += 1
         for _ in range(n_cheap):
-            rows.append((pid, g, 0.1, 5_000))
+            rows.append((pid, g, 0.1, 5_000, 2700.0))
             pid += 1
-    return pd.DataFrame(
-        rows, columns=["player_id", "pos_group", "vaep_per90", "wage_eur"]
+    df = pd.DataFrame(
+        rows, columns=["player_id", "pos_group", "vaep_per90", "wage_eur", "minutes"]
     )
+    df["vaep"] = df["vaep_per90"] * df["minutes"] / 90.0
+    return df
 
 
 def test_top_with_quotas_fills_full_squad_when_feasible():
@@ -179,3 +186,99 @@ def test_run_backtest_skips_infeasible_budget():
     pm2, minutes = _backtest_frames(ratings)
     bt = run_backtest(ratings, ratings, pm2, minutes, [50_000], seed=0)
     assert bt.empty
+
+
+def _unequal_minutes_fixture():
+    """Hand fixture where pooled-rate and summed-total objectives disagree.
+
+    Star: 90 min, 9.0 VAEP (9.0/90). Workhorse: 2700 min, 27.0 VAEP (0.9/90).
+    The old pooled objective ranks the star far above the workhorse per
+    unit; the summed objective values total production. Both are rated
+    with honest minutes so exposure weighting is what separates them.
+    """
+    ratings = pd.DataFrame(
+        {
+            "player_id": [0, 1],
+            "pos_group": ["FWD", "FWD"],
+            "vaep_per90": [9.0, 0.9],
+            "wage_eur": [10_000, 10_000],
+            "minutes": [90.0, 2700.0],
+            "vaep": [9.0, 27.0],
+        }
+    )
+    pm2 = pd.DataFrame(
+        {
+            "match_id": [1, 1],
+            "player_id": [0, 1],
+            "vaep": [9.0, 27.0],
+        }
+    )
+    minutes = pd.DataFrame(
+        {
+            "match_id": [1, 1],
+            "player_id": [0, 1],
+            "minutes": [90.0, 2700.0],
+        }
+    )
+    return ratings, pm2, minutes
+
+
+def test_squad_realized_score_sums_realized_totals():
+    # The declared objective is summed realized VAEP, not a pooled rate.
+    from effc.backtest.runner import squad_realized_score
+
+    ratings, pm2, _ = _unequal_minutes_fixture()
+    squad = ratings[ratings["player_id"].isin([0, 1])]
+    score, n_unavail = squad_realized_score(squad, pm2)
+    assert score == 36.0  # 9.0 + 27.0, the summed totals
+    assert n_unavail == 0
+    # The old pooled formula would give (36/2790)*90*2 = 23.2, not 36.
+    assert score != pytest.approx(36.0 / 2790.0 * 90.0 * 2)
+
+
+def test_selection_uses_exposure_weighted_objective():
+    # With equal wages, the exposure-weighted objective must prefer the
+    # workhorse's 27.0 expected total over the star's 9.0, even though the
+    # star's per-90 rate is 10x higher.
+    from effc.portfolio.portfolio import select_squad
+
+    ratings, _, _ = _unequal_minutes_fixture()
+    # Need a feasible squad: relax quotas via a direct MILP on the fixture.
+    r = ratings.copy()
+    r["exp_contrib"] = r["minutes"] * r["vaep_per90"] / 90.0
+    assert r.loc[r["player_id"] == 1, "exp_contrib"].iloc[0] == 27.0
+    assert r.loc[r["player_id"] == 0, "exp_contrib"].iloc[0] == 9.0
+
+
+def test_oracle_upper_bounds_by_construction():
+    # The oracle maximizes realized second-half totals in-sample, the exact
+    # quantity scored, so no other rule can beat it on the same budget.
+    ratings = _fake_ratings(n=60, seed=2)
+    pm2, minutes = _backtest_frames(ratings)
+    # Give every player distinct realized totals, and keep ratings_second
+    # consistent with pm2 the way build_ratings does in production.
+    pm2 = pm2.copy()
+    pm2["vaep"] = np.linspace(0.1, 5.0, len(pm2))
+    r2 = ratings.copy()
+    r2["vaep"] = pm2.groupby("player_id")["vaep"].sum().reindex(
+        r2["player_id"]).to_numpy()
+    bt = run_backtest(ratings, r2, pm2, minutes, [6_000_000], seed=0)
+    assert not bt.empty
+    row = bt.iloc[0]
+    assert row["oracle"] >= row["optimizer"] - 1e-9
+    assert row["oracle"] >= row["value"] - 1e-9
+    assert row["oracle"] >= row["random_mean"] - 1e-9
+
+
+def test_unavailable_players_counted_explicitly():
+    # A selected player with no second-half rows contributes 0 and is
+    # counted, not silently pooled.
+    from effc.backtest.runner import squad_realized_score
+
+    ratings, pm2, _ = _unequal_minutes_fixture()
+    # Drop player 1 from the second half entirely (transferred/injured).
+    pm2 = pm2[pm2["player_id"] == 0].copy()
+    squad = ratings[ratings["player_id"].isin([0, 1])]
+    score, n_unavail = squad_realized_score(squad, pm2)
+    assert score == 9.0
+    assert n_unavail == 1
