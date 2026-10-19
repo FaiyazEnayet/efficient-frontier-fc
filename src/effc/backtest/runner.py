@@ -38,19 +38,26 @@ def split_matches(matches: pd.DataFrame, frac: float = 0.5):
 
 
 def squad_realized_score(
-    squad: pd.DataFrame, second_half_pm: pd.DataFrame, minutes: pd.DataFrame
-) -> float:
-    """Sum of squad members' realized second-half VAEP/90 (no shrinkage)."""
+    squad: pd.DataFrame, second_half_pm: pd.DataFrame
+) -> tuple[float, int]:
+    """Realized second-half total VAEP summed over squad members.
+
+    The scored objective is the sum of what each selected player actually
+    produced, not a pooled per-90 rate. This matches the selection
+    objective (FC3): selection maximizes expected total VAEP
+    (first-half minutes x VAEP/90), evaluation sums realized total VAEP.
+
+    Returns (score, n_unavailable): players with no second-half action
+    rows contribute 0 and are counted explicitly instead of silently
+    dragging a pooled rate.
+    """
     ids = set(squad["player_id"].tolist())
     sh = second_half_pm[second_half_pm["player_id"].isin(ids)]
+    seen = set(sh["player_id"].unique().tolist())
+    n_unavailable = len(ids - seen)
     if sh.empty:
-        return 0.0
-    m = minutes[minutes["match_id"].isin(sh["match_id"].unique())]
-    tot_vaep = sh["vaep"].sum()
-    tot_min = m[m["player_id"].isin(ids)]["minutes"].sum()
-    if tot_min < 1e-9:
-        return 0.0
-    return float(tot_vaep / tot_min * 90.0 * len(ids))
+        return 0.0, n_unavailable
+    return float(sh["vaep"].sum()), n_unavailable
 
 
 def random_squads(
@@ -108,26 +115,53 @@ def run_backtest(
     budgets: list[float],
     seed: int = 0,
 ) -> pd.DataFrame:
+    """Backtest with a unified selection/evaluation objective (FC3).
+
+    Selection maximizes expected total VAEP: first-half minutes times
+    VAEP/90, i.e. the total goal-value the squad is expected to produce
+    if second-half exposure matches first-half exposure. Evaluation sums
+    realized second-half VAEP over squad members: the same quantity,
+    measured. The value baseline maximizes the same objective per euro.
+    The oracle maximizes realized second-half totals in-sample, so it
+    genuinely solves the scored objective and upper-bounds by construction.
+    """
+    r1 = ratings_first.copy()
+    r1["exp_contrib"] = (
+        r1["minutes"].fillna(0.0) * r1["vaep_per90"] / 90.0
+    )
+    r2 = ratings_second.copy()
+    # Oracle signal: raw realized second-half totals (no shrinkage), the
+    # exact quantity the evaluation sums.
+    r2["realized_total"] = r2["vaep"].fillna(0.0)
+
     rows = []
     for b in budgets:
         try:
-            opt = select_squad(ratings_first, b)
-            mb = ratings_first.copy()
-            mb["vpe"] = mb["vaep_per90"] / mb["wage_eur"].clip(lower=1.0)
+            opt = select_squad(r1, b, value_col="exp_contrib")
+            mb = r1.copy()
+            mb["vpe"] = mb["exp_contrib"] / mb["wage_eur"].clip(lower=1.0)
             value = _top_with_quotas(mb, "vpe", b)
-            oracle = select_squad(ratings_second, b)
-            rands = random_squads(ratings_first, b, seed=seed)
+            oracle = select_squad(r2, b, value_col="realized_total")
+            rands = random_squads(r1, b, seed=seed)
         except RuntimeError:
             continue  # some rule cannot field a squad here; skip the budget
+        opt_score, opt_un = squad_realized_score(opt, second_half_pm)
+        val_score, val_un = squad_realized_score(value, second_half_pm)
+        orc_score, orc_un = squad_realized_score(oracle, second_half_pm)
+        rand_scores, rand_uns = zip(
+            *[squad_realized_score(r, second_half_pm) for r in rands]
+        )
         rows.append(
             {
                 "budget": b,
-                "optimizer": squad_realized_score(opt, second_half_pm, minutes),
-                "value": squad_realized_score(value, second_half_pm, minutes),
-                "random_mean": float(np.mean(
-                    [squad_realized_score(r, second_half_pm, minutes) for r in rands]
-                )),
-                "oracle": squad_realized_score(oracle, second_half_pm, minutes),
+                "optimizer": opt_score,
+                "value": val_score,
+                "random_mean": float(np.mean(rand_scores)),
+                "oracle": orc_score,
+                "optimizer_unavail": opt_un,
+                "value_unavail": val_un,
+                "random_unavail_mean": float(np.mean(rand_uns)),
+                "oracle_unavail": orc_un,
             }
         )
     return pd.DataFrame(rows)
