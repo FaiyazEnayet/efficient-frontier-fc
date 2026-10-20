@@ -28,9 +28,10 @@ Event-derived player ratings are shrunk and joined to wage proxies. The optimize
 
 | Scope | Recorded result or contract |
 | :--- | :--- |
-| EUR 0.50M weekly cap, second-half total squad VAEP (unified objective) | Optimizer 58.26; value baseline 57.11; random 8.76 |
-| EUR 0.70M weekly cap, same backtest | Optimizer 90.34; value baseline 84.22; random 13.28 |
-| Interpretation | The optimizer beats the value baseline at both caps now that selection and evaluation share one objective (expected/realized total VAEP, exposure-weighted); it trails value narrowly at the tightest 0.30M cap (43.35 vs 44.12). All rules beat random comfortably; the hindsight oracle bounds them from above. |
+| EUR 0.30M weekly cap, second-half total squad VAEP (unified objective) | Optimizer 37.35; value baseline 35.38; random 7.00 |
+| EUR 0.50M weekly cap, same backtest | Optimizer 49.83; value baseline 55.60; random 7.50 |
+| EUR 0.70M weekly cap, same backtest | Optimizer 75.92; value baseline 72.09; random 11.44 |
+| Interpretation | With the improved goal models (v1.5.0), the optimizer beats the value baseline at the 0.30M and 0.70M caps and trails at 0.50M. Totals are lower than in v1.4.0 at every cap because the pooled, calibrated models produce less extreme VAEP values; the comparison that matters is optimizer vs baseline within the same run. All rules beat random comfortably; the hindsight oracle bounds them from above. |
 
 ## Updating this project
 
@@ -63,11 +64,11 @@ flowchart LR
 
 The backtest selects using the earlier part of the season and compares realized later value under common wage caps. The hindsight oracle is a reference bound, not an attainable forecasting policy. A flat frontier means the additional wage budget no longer binds for the modeled objective.
 
-Goal-model accuracy is measured on held-out matches, never on the training data. The pipeline trains the P(scores)/P(concedes) models on 130 matches and scores 32 held-out matches: Brier 0.0099 (95% CI 0.0081-0.0117) for scoring and 0.0030 (0.0022-0.0039) for conceding, both beating a base-rate baseline (0.0113 / 0.0033). The in-sample Brier (0.0079 / 0.0018) is reported separately and labeled as such. A season-transfer test trains on 2015/16 and scores 2023/24: Brier 0.0110 vs baseline 0.0107 for scoring — the model does not beat the baseline eight seasons later, when only 13% of players (24% of minutes) overlap between the seasons.
+Goal-model accuracy is measured on held-out matches, never on the training data, and the evaluation protocol is unchanged since v1.4.0: the same 130 training matches, the same 32 held-out matches, the same base-rate baseline, the same season-transfer setup. What changed in v1.5.0 is the model. The training pool grew from 130 matches to 1,813 by pooling other StatsBomb competitions (the full 2015/16 La Liga, Premier League, Serie A and Ligue 1 seasons, UEFA Euro 2020, the 2021/22 Indian Super League, plus the existing World Cup and Bundesliga pool), and the raw gradient-boosting probabilities are Platt-calibrated and lightly shrunk toward the training base rate, with both fitted by chronological cross-fitting on the training matches only. Held-out Brier is now 0.0096 (95% CI 0.0080-0.0113) for scoring and 0.0028 (0.0021-0.0036) for conceding, against the same 0.0113 / 0.0033 base-rate baseline (v1.4.0: 0.0099 / 0.0030). The in-sample Brier (0.0087 / 0.0020) is reported separately and labeled as such. The season-transfer test (train 2015/16 and score 2023/24, with pooled training restricted to the contemporaneous 2015/16 leagues) now beats the baseline on both labels: 0.0097 vs 0.0107 for scoring and 0.00219 vs 0.00222 for conceding, where v1.4.0 lost both (0.0110 vs 0.0107; 0.0023 vs 0.0022). The conceding margin is narrow and the confidence intervals overlap; only 13% of players (24% of minutes) overlap between the seasons. A Dixon-Coles team-strength model was built for this push and is in the codebase (`src/effc/vaep/team_strength.py`), but its features did not beat plain pooling on internal validation, so the shipped models do not use them; per-configuration validation scores are in `runs/beat_baseline/results.json`.
 
 ![Backtest against feasible baselines](docs/results.png)
 
-The value-per-euro benchmark beats the optimizer at both reported budgets. The optimizer beats random selection, but that is not enough to claim that added optimization complexity improves squad building. Proxy wages and rating uncertainty remain central limitations.
+The optimizer beats the value-per-euro benchmark at two of the three reported budgets and trails at the middle one, so the evidence that added optimization complexity improves squad building is mixed rather than decisive. Proxy wages and rating uncertainty remain central limitations.
 
 ## Code and data
 
