@@ -1,5 +1,20 @@
 # Changelog
 
+## [v1.4.0] - 2026-10-19
+### Fixed
+- Restored the FC2 quota validation the FC3 rewrite accidentally deleted (`src/effc/portfolio/portfolio.py`). The FC3 objective change rewrote `_milp_select`/`select_xi` and dropped the `InfeasibleError` class, `_validate_inputs` and the formation checks, so impossible quotas, empty groups, NaN inputs and MILP failures degraded to generic errors or silently skipped constraints. Restored verbatim (keeping FC3's `value_col`); the six FC2 regression tests pass again.
+- `scripts/make_demo.py` was broken: it called `compute_target_vaep(None)` after FC1 changed the signature, and its backtest melt leaked the FC3 `*_unavail` diagnostic columns into the demo rules. It now reuses the pipeline's `prepare_model_data` and melts only the rule score columns.
+
+### Added
+- Held-out match-group calibration for the goal-probability models (`src/effc/vaep/calibration.py`, `src/effc/pipeline.py`). The pipeline trains on 130 matches and scores 32 held-out matches (chronological within each competition, disjoint match IDs): Brier 0.0099 (95% CI 0.0081-0.0117) for P(scores) vs 0.0113 for a base-rate baseline; 0.0030 vs 0.0033 for P(concedes). The old headline Brier is now explicitly labeled in-sample (`brier_*_in_sample`: 0.0079/0.0018).
+- Chronological season-transfer evaluation: goal models trained on 2015/16, scored on 2023/24. Brier 0.0110 vs baseline 0.0107 for scores (0.0023 vs 0.0022 for concedes): the model does not beat the baseline eight seasons later. Roster stability: only 13% of 2023/24 players (24% of minutes) appeared in 2015/16.
+
+### Changed
+- Reran the full pipeline (first regeneration since before FC1): metrics and demo tables now reflect the FC3 unified total-VAEP objective and the FC6 train-split models. Backtest (total VAEP): the optimizer beats the value baseline at 0.50M (58.26 vs 57.11) and 0.70M (90.34 vs 84.22), trails at 0.30M (43.35 vs 44.12). README evidence table refreshed.
+
+### Tests
+- 12 new regression tests in `tests/test_calibration.py`; full suite 66/66 green.
+
 ## [v1.3.0] - 2026-10-19
 ### Fixed
 - Selection and evaluation now share one objective: exposure-weighted expected total VAEP (`src/effc/backtest/runner.py`, `src/effc/portfolio/portfolio.py`). `select_squad` used to maximize summed per-90 rates while `squad_realized_score` measured a pooled minutes-weighted rate times squad size, so the "oracle" optimized a different objective than the one it was scored on and need not upper-bound anything. Selection now maximizes expected total VAEP (first-half minutes x VAEP/90); evaluation sums realized second-half VAEP over squad members. The value baseline maximizes the same objective per euro. The oracle maximizes realized second-half totals in-sample, so it genuinely solves the scored objective and upper-bounds by construction. Players with no second-half action contribute 0 and are counted explicitly (`optimizer_unavail` etc.) instead of silently dragging a pooled rate. Added regression tests: unequal-minutes hand fixture matches the summed objective, oracle upper-bounds, unavailable players counted.

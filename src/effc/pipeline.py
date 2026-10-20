@@ -23,6 +23,7 @@ from effc.data.statsbomb import list_matches, load_events, minutes_played
 from effc.data.wages import load_wages, match_players
 from effc.ratings.covariance import fit_factor_model, match_vaep_panel, team_factor
 from effc.ratings.ratings import build_ratings
+from effc.vaep import calibration as cal
 from effc.vaep.features import FEATURE_VERSION, featurize_match
 from effc.vaep.models import brier_score, train_goal_models
 from effc.vaep.values import add_vaep, player_match_vaep
@@ -153,6 +154,105 @@ def compute_target_vaep(models, train_match_ids, config=None) -> tuple[pd.DataFr
     return pm, mins, matches
 
 
+def prepare_model_data(cfg: dict) -> dict:
+    """Model-training inputs shared by the pipeline and scripts/make_demo.py.
+
+    Applies the backtest's chronological split, drops post-split frames,
+    then splits the rest into a chronological train group and a held-out
+    calibration group (FC6). The deployed goal models train on the train
+    group only; the calibration group is scored but never trained on.
+
+    Returns dict with first, second (the backtest split), frames, meta,
+    train_frames, calib_frames, train_ids, calib_ids and models.
+    """
+    from effc.backtest.runner import split_matches
+
+    target_matches = list_matches(TARGET)
+    first, second = split_matches(target_matches, frac=cfg.get("backtest_split", 0.5))
+    post_split_ids = set(second["match_id"].tolist())
+
+    frames = featurize_pool()
+    frames = pre_split_frames(frames, post_split_ids)
+    meta = list_matches(MODEL_POOL)
+    train_frames, calib_frames = cal.match_group_split(
+        frames, meta, calib_frac=cfg.get("calib_frac", 0.2)
+    )
+    train_ids = sorted({int(f["match_id"].iloc[0]) for f in train_frames})
+    calib_ids = sorted({int(f["match_id"].iloc[0]) for f in calib_frames})
+    cal.assert_disjoint(train_ids, calib_ids)
+    print(
+        f"training goal models on {len(train_frames)} matches; "
+        f"holding out {len(calib_frames)} for calibration"
+    )
+    models = train_goal_models(train_frames, seed=cfg.get("seed", 0))
+    return {
+        "first": first,
+        "second": second,
+        "frames": frames,
+        "meta": meta,
+        "train_frames": train_frames,
+        "calib_frames": calib_frames,
+        "train_ids": train_ids,
+        "calib_ids": calib_ids,
+        "models": models,
+    }
+
+
+def season_transfer_evaluation(
+    frames: list[pd.DataFrame], meta: pd.DataFrame, seed: int = 0
+) -> dict:
+    """Train on the earlier season, score on the later season (FC6).
+
+    `frames` are the pre-split action frames, so no model ever trains on
+    the backtest's scored half. A genuine chronological deployment
+    simulation: what the goal models would have scored had they been
+    deployed a season later. The caller adds roster stability once the
+    target VAEP tables exist.
+    """
+    tr_season, sc_season, season_names = cal.transfer_seasons(meta, competition_id=9)
+    season_of = dict(
+        zip(meta["match_id"].astype(int), meta["season_id"].astype(int))
+    )
+    tr_frames = [
+        f
+        for f in frames
+        if season_of.get(int(f["match_id"].iloc[0])) == tr_season
+    ]
+    sc_frames = [
+        f
+        for f in frames
+        if season_of.get(int(f["match_id"].iloc[0])) == sc_season
+    ]
+    tr_ids = sorted({int(f["match_id"].iloc[0]) for f in tr_frames})
+    sc_ids = sorted({int(f["match_id"].iloc[0]) for f in sc_frames})
+    cal.assert_disjoint(tr_ids, sc_ids)
+    print(
+        f"season transfer: training on {len(tr_frames)} "
+        f"{season_names.get(tr_season, tr_season)} matches, scoring on "
+        f"{len(sc_frames)} {season_names.get(sc_season, sc_season)} matches"
+    )
+    tr_models = train_goal_models(tr_frames, seed=seed)
+    tr_scored = cal.per_match_scores(tr_models, sc_frames)
+    tr_base = cal.base_rate_scores(tr_frames, sc_frames)
+    model_summary = cal.summarize(tr_scored)
+    baseline_summary = cal.summarize(tr_base)
+    return {
+        "train_season": season_names.get(tr_season, str(tr_season)),
+        "scored_season": season_names.get(sc_season, str(sc_season)),
+        "train_season_id": tr_season,
+        "scored_season_id": sc_season,
+        "n_train_matches": len(tr_ids),
+        "n_scored_matches": len(sc_ids),
+        "held_out": {
+            label: {
+                "model": model_summary[label],
+                "base_rate_baseline": baseline_summary[label],
+            }
+            for label in cal.LABELS
+        },
+    }
+
+
 def main(config_path: str = "configs/bundesliga_2324.yaml"):
     t0 = time.time()
     with open(config_path) as f:
@@ -161,33 +261,77 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     outdir = os.path.join("runs", cfg.get("run_name", "run"))
     os.makedirs(outdir, exist_ok=True)
 
-    # target matches and their chronological split, shared by model
-    # training (pre-split only) and the backtest in step 7
-    from effc.backtest.runner import split_matches
+    # model-training inputs, shared with scripts/make_demo.py
+    data = prepare_model_data(cfg)
+    first, second = data["first"], data["second"]
+    train_frames, calib_frames = data["train_frames"], data["calib_frames"]
+    train_ids, calib_ids, models = data["train_ids"], data["calib_ids"], data["models"]
+    meta = data["meta"]
 
-    target_matches = list_matches(TARGET)
-    first, second = split_matches(target_matches, frac=cfg.get("backtest_split", 0.5))
-    post_split_ids = set(second["match_id"].tolist())
-
-    # 1. goal-probability models on pre-split matches only. Training on
-    # the full pool would include the target second halves the backtest
-    # scores on.
-    frames = featurize_pool()
-    frames = pre_split_frames(frames, post_split_ids)
-    print(f"training goal models on {len(frames)} pre-split matches")
-    models = train_goal_models(frames, seed=cfg.get("seed", 0))
-    full = pd.concat(frames, ignore_index=True)
+    # 1. held-out match-group calibration (FC6). The Brier scores the old
+    # pipeline reported were computed on the training frames; the
+    # in-sample values below are now explicitly labeled, and the
+    # headline accuracy comes from the held-out match group, whose match
+    # IDs are disjoint from the training set by construction.
     from effc.vaep.models import predict_proba
 
-    preds = predict_proba(models, full)
-    brier_s = brier_score(full["scores_incl"].to_numpy(), preds["scores_incl"])
-    brier_c = brier_score(full["concedes_incl"].to_numpy(), preds["concedes_incl"])
-    print(f"goal models: Brier scores={brier_s:.4f} concedes={brier_c:.4f}")
+    train_full = pd.concat(train_frames, ignore_index=True)
+    preds = predict_proba(models, train_full)
+    in_sample_scores = {}
+    for label in cal.LABELS:
+        y = train_full[label].to_numpy()
+        in_sample_scores[label] = {
+            "brier": brier_score(y, preds[label]),
+            "logloss": cal.log_loss(y, preds[label]),
+        }
+    print(
+        "goal models in-sample: "
+        + ", ".join(
+            f"{label} Brier={in_sample_scores[label]['brier']:.4f}"
+            for label in ("scores_incl", "concedes_incl")
+        )
+    )
+    held_model = cal.per_match_scores(models, calib_frames)
+    held_base = cal.base_rate_scores(train_frames, calib_frames)
+    calibration_report = cal.build_report(
+        train_ids=train_ids,
+        calib_ids=calib_ids,
+        in_sample_scores=in_sample_scores,
+        model_summary=cal.summarize(held_model),
+        baseline_summary=cal.summarize(held_base),
+    )
+    hb = calibration_report["held_out"]["scores_incl"]["model"]["brier"]
+    print(
+        f"held-out calibration ({hb['n_matches']} matches): "
+        f"scores Brier={hb['mean']:.4f} 95% CI "
+        f"[{hb['ci95'][0]:.4f}, {hb['ci95'][1]:.4f}]"
+    )
+
+    # 1b. genuine chronological season-transfer evaluation (FC6)
+    transfer_report = season_transfer_evaluation(
+        data["frames"], meta, seed=cfg.get("seed", 0)
+    )
 
     # 2. VAEP on the target competition. The cache key binds the training
     # matches, feature version, config and model hash.
-    train_ids = sorted({int(f["match_id"].iloc[0]) for f in frames})
-    pm, mins, _ = compute_target_vaep(models, train_ids, config=cfg)
+    pm, mins, matches = compute_target_vaep(models, train_ids, config=cfg)
+
+    # roster stability for the season transfer (FC6): how much of the
+    # scored season's player pool the training season actually covers
+    mins_season = mins.merge(
+        matches[["match_id", "season_id"]], on="match_id", how="left"
+    )
+    tr_id, sc_id = (
+        transfer_report["train_season_id"],
+        transfer_report["scored_season_id"],
+    )
+    transfer_report["roster_stability"] = cal.roster_overlap(
+        set(mins_season.loc[mins_season["season_id"] == tr_id, "player_id"]),
+        set(mins_season.loc[mins_season["season_id"] == sc_id, "player_id"]),
+        mins_season.loc[
+            mins_season["season_id"] == sc_id, ["player_id", "minutes"]
+        ],
+    )
 
     # 3. wages + ratings
     wages = load_wages()
@@ -261,8 +405,15 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     metrics = {
         "config": config_path,
         "train_time_s": time.time() - t0,
-        "brier_scores": brier_s,
-        "brier_concedes": brier_c,
+        # In-sample fit, explicitly labeled: measured on the training
+        # frames, not a generalization claim (FC6). Held-out accuracy
+        # lives under "calibration" / "season_transfer".
+        "brier_scores_in_sample": in_sample_scores["scores_incl"]["brier"],
+        "brier_concedes_in_sample": in_sample_scores["concedes_incl"]["brier"],
+        "logloss_scores_in_sample": in_sample_scores["scores_incl"]["logloss"],
+        "logloss_concedes_in_sample": in_sample_scores["concedes_incl"]["logloss"],
+        "calibration": calibration_report,
+        "season_transfer": transfer_report,
         "wage_match_rate": float(wmap["matched"].mean()),
         "n_rated": len(ratings),
         "cov_info": cov_info,

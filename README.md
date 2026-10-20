@@ -28,9 +28,9 @@ Event-derived player ratings are shrunk and joined to wage proxies. The optimize
 
 | Scope | Recorded result or contract |
 | :--- | :--- |
-| EUR 0.50M weekly cap, second-half squad VAEP/90 (pre-FC3 pooled-rate objective) | Optimizer 15.98; value baseline 16.37; random 8.04 |
-| EUR 0.70M weekly cap, same backtest | Optimizer 13.51; value baseline 16.37; random 9.28 |
-| Interpretation | The optimizer beats random but loses to the value baseline at both caps. As of FC3, selection and evaluation share one objective (expected/realized total VAEP, exposure-weighted); figures above used the previous pooled-rate objective and are being refreshed |
+| EUR 0.50M weekly cap, second-half total squad VAEP (unified objective) | Optimizer 58.26; value baseline 57.11; random 8.76 |
+| EUR 0.70M weekly cap, same backtest | Optimizer 90.34; value baseline 84.22; random 13.28 |
+| Interpretation | The optimizer beats the value baseline at both caps now that selection and evaluation share one objective (expected/realized total VAEP, exposure-weighted); it trails value narrowly at the tightest 0.30M cap (43.35 vs 44.12). All rules beat random comfortably; the hindsight oracle bounds them from above. |
 
 ## Updating this project
 
@@ -62,6 +62,8 @@ flowchart LR
 ## Evaluation protocol
 
 The backtest selects using the earlier part of the season and compares realized later value under common wage caps. The hindsight oracle is a reference bound, not an attainable forecasting policy. A flat frontier means the additional wage budget no longer binds for the modeled objective.
+
+Goal-model accuracy is measured on held-out matches, never on the training data. The pipeline trains the P(scores)/P(concedes) models on 130 matches and scores 32 held-out matches: Brier 0.0099 (95% CI 0.0081-0.0117) for scoring and 0.0030 (0.0022-0.0039) for conceding, both beating a base-rate baseline (0.0113 / 0.0033). The in-sample Brier (0.0079 / 0.0018) is reported separately and labeled as such. A season-transfer test trains on 2015/16 and scores 2023/24: Brier 0.0110 vs baseline 0.0107 for scoring — the model does not beat the baseline eight seasons later, when only 13% of players (24% of minutes) overlap between the seasons.
 
 ![Backtest against feasible baselines](docs/results.png)
 

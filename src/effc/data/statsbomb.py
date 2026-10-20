@@ -24,11 +24,13 @@ def list_matches(pool: list[tuple[int, int]] | None = None) -> pd.DataFrame:
         if not os.path.exists(path):
             continue
         for m in _load_json(path):
+            season = m.get("season") or {}
             rows.append(
                 {
                     "match_id": m["match_id"],
                     "competition_id": comp_id,
                     "season_id": season_id,
+                    "season_name": season.get("season_name", ""),
                     "match_date": m["match_date"],
                     "home_team": m["home_team"]["home_team_name"],
                     "away_team": m["away_team"]["away_team_name"],

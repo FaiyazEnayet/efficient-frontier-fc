@@ -1,73 +1,454 @@
 {
   "config": "configs/bundesliga_2seasons.yaml",
-  "train_time_s": 136.2442808151245,
-  "brier_scores": 0.00821532666339354,
-  "brier_concedes": 0.0019680009408254364,
+  "train_time_s": 122.0618634223938,
+  "brier_scores_in_sample": 0.007873627611846734,
+  "brier_concedes_in_sample": 0.001845177333938474,
+  "logloss_scores_in_sample": 0.034981051517132156,
+  "logloss_concedes_in_sample": 0.009324767714387052,
+  "calibration": {
+    "n_train_matches": 130,
+    "n_calib_matches": 32,
+    "brier_scores_incl_in_sample": 0.007873627611846734,
+    "logloss_scores_incl_in_sample": 0.034981051517132156,
+    "brier_scores_excl_in_sample": 0.008322630858998712,
+    "logloss_scores_excl_in_sample": 0.03833814600162958,
+    "brier_concedes_incl_in_sample": 0.001845177333938474,
+    "logloss_concedes_incl_in_sample": 0.009324767714387052,
+    "brier_concedes_excl_in_sample": 0.0019370410597079237,
+    "logloss_concedes_excl_in_sample": 0.009011605508909597,
+    "held_out": {
+      "scores_incl": {
+        "model": {
+          "brier": {
+            "mean": 0.009859782465921415,
+            "std": 0.00540361165579033,
+            "n_matches": 32,
+            "ci95": [
+              0.00814111807195683,
+              0.011700249901609788
+            ]
+          },
+          "logloss": {
+            "mean": 0.0498886068500114,
+            "std": 0.024047657149459396,
+            "n_matches": 32,
+            "ci95": [
+              0.04169671199375431,
+              0.05791634921792245
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.01125976794814207,
+            "std": 0.006133670201099372,
+            "n_matches": 32,
+            "ci95": [
+              0.009326124462645873,
+              0.013370817434703326
+            ]
+          },
+          "logloss": {
+            "mean": 0.062413030230309086,
+            "std": 0.028907575857108254,
+            "n_matches": 32,
+            "ci95": [
+              0.05273099615793503,
+              0.07185193065148023
+            ]
+          }
+        }
+      },
+      "scores_excl": {
+        "model": {
+          "brier": {
+            "mean": 0.010344568286417536,
+            "std": 0.005712788558927173,
+            "n_matches": 32,
+            "ci95": [
+              0.008436981836174478,
+              0.012361495098644362
+            ]
+          },
+          "logloss": {
+            "mean": 0.05284044294456533,
+            "std": 0.025627315256549273,
+            "n_matches": 32,
+            "ci95": [
+              0.04458816032361203,
+              0.062024021671292916
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.010705614996519525,
+            "std": 0.0059268913862587595,
+            "n_matches": 32,
+            "ci95": [
+              0.008727936279993393,
+              0.012763874599914155
+            ]
+          },
+          "logloss": {
+            "mean": 0.059848337474511654,
+            "std": 0.028156874247015802,
+            "n_matches": 32,
+            "ci95": [
+              0.05080254159738213,
+              0.06996641631243074
+            ]
+          }
+        }
+      },
+      "concedes_incl": {
+        "model": {
+          "brier": {
+            "mean": 0.0029889582326059474,
+            "std": 0.002367858302878172,
+            "n_matches": 32,
+            "ci95": [
+              0.0022281685972065177,
+              0.003874533642317056
+            ]
+          },
+          "logloss": {
+            "mean": 0.01659802799496448,
+            "std": 0.01206847111101037,
+            "n_matches": 32,
+            "ci95": [
+              0.012600582560158651,
+              0.020991528655675284
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.0033282054351875074,
+            "std": 0.00277621754823197,
+            "n_matches": 32,
+            "ci95": [
+              0.00243589620627876,
+              0.0043425018065100405
+            ]
+          },
+          "logloss": {
+            "mean": 0.022711266123009038,
+            "std": 0.017262535615720578,
+            "n_matches": 32,
+            "ci95": [
+              0.017000564902479278,
+              0.02889799918209111
+            ]
+          }
+        }
+      },
+      "concedes_excl": {
+        "model": {
+          "brier": {
+            "mean": 0.0034030966445133537,
+            "std": 0.0026213206733109763,
+            "n_matches": 32,
+            "ci95": [
+              0.0025271366598215634,
+              0.004353549388842757
+            ]
+          },
+          "logloss": {
+            "mean": 0.019729557116908342,
+            "std": 0.01426535422856568,
+            "n_matches": 32,
+            "ci95": [
+              0.015028045463624006,
+              0.02461046920039392
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.0037242244351806267,
+            "std": 0.0029974737004928517,
+            "n_matches": 32,
+            "ci95": [
+              0.0027042487826811367,
+              0.004855836713810842
+            ]
+          },
+          "logloss": {
+            "mean": 0.024923165248176473,
+            "std": 0.018139419565664575,
+            "n_matches": 32,
+            "ci95": [
+              0.019163395491521226,
+              0.03158584662803909
+            ]
+          }
+        }
+      }
+    }
+  },
+  "season_transfer": {
+    "train_season": "2015/2016",
+    "scored_season": "2023/2024",
+    "train_season_id": 27,
+    "scored_season_id": 281,
+    "n_train_matches": 17,
+    "n_scored_matches": 17,
+    "held_out": {
+      "scores_incl": {
+        "model": {
+          "brier": {
+            "mean": 0.01096372278613543,
+            "std": 0.004359499890641652,
+            "n_matches": 17,
+            "ci95": [
+              0.009050035838641014,
+              0.013002802621610134
+            ]
+          },
+          "logloss": {
+            "mean": 0.06442554016412885,
+            "std": 0.026326948288021425,
+            "n_matches": 17,
+            "ci95": [
+              0.05345672603324612,
+              0.07736875692925033
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.010745953957142876,
+            "std": 0.004649826265434959,
+            "n_matches": 17,
+            "ci95": [
+              0.008764385483867156,
+              0.012928533738273474
+            ]
+          },
+          "logloss": {
+            "mean": 0.059962701689811736,
+            "std": 0.0217714527839772,
+            "n_matches": 17,
+            "ci95": [
+              0.05033976107901846,
+              0.07013723271151805
+            ]
+          }
+        }
+      },
+      "scores_excl": {
+        "model": {
+          "brier": {
+            "mean": 0.011033646502943603,
+            "std": 0.004478692146146829,
+            "n_matches": 17,
+            "ci95": [
+              0.00905740120504704,
+              0.013030582271878524
+            ]
+          },
+          "logloss": {
+            "mean": 0.0667757493604563,
+            "std": 0.02794131298563622,
+            "n_matches": 17,
+            "ci95": [
+              0.05474574720454556,
+              0.0799324827426155
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.010326022262900868,
+            "std": 0.00457724499417233,
+            "n_matches": 17,
+            "ci95": [
+              0.008264472941243616,
+              0.012424544915329187
+            ]
+          },
+          "logloss": {
+            "mean": 0.0580154750940259,
+            "std": 0.0215927606333423,
+            "n_matches": 17,
+            "ci95": [
+              0.048451027097187946,
+              0.06776466566256154
+            ]
+          }
+        }
+      },
+      "concedes_incl": {
+        "model": {
+          "brier": {
+            "mean": 0.0022852918634711002,
+            "std": 0.0017879949094539913,
+            "n_matches": 17,
+            "ci95": [
+              0.0015278754169448672,
+              0.003159865368769432
+            ]
+          },
+          "logloss": {
+            "mean": 0.016981937030221505,
+            "std": 0.012636719499960238,
+            "n_matches": 17,
+            "ci95": [
+              0.011193647153035833,
+              0.02262106400742174
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.0022186674284397803,
+            "std": 0.0018028642105733551,
+            "n_matches": 17,
+            "ci95": [
+              0.0014619642679081204,
+              0.003109394820779183
+            ]
+          },
+          "logloss": {
+            "mean": 0.015804357966191354,
+            "std": 0.011051673778086302,
+            "n_matches": 17,
+            "ci95": [
+              0.010748661959727542,
+              0.02084768502083246
+            ]
+          }
+        }
+      },
+      "concedes_excl": {
+        "model": {
+          "brier": {
+            "mean": 0.0027658042301574974,
+            "std": 0.0020313454141100053,
+            "n_matches": 17,
+            "ci95": [
+              0.0019007022840601719,
+              0.0037157519528046405
+            ]
+          },
+          "logloss": {
+            "mean": 0.019053675633233073,
+            "std": 0.012872550378683048,
+            "n_matches": 17,
+            "ci95": [
+              0.01340155533325022,
+              0.025057280833285244
+            ]
+          }
+        },
+        "base_rate_baseline": {
+          "brier": {
+            "mean": 0.0026455589451238612,
+            "std": 0.002057899169215515,
+            "n_matches": 17,
+            "ci95": [
+              0.001760969747947093,
+              0.003608168490480576
+            ]
+          },
+          "logloss": {
+            "mean": 0.01838528523883682,
+            "std": 0.012304829865370934,
+            "n_matches": 17,
+            "ci95": [
+              0.012994206156190067,
+              0.023974718235478896
+            ]
+          }
+        }
+      }
+    },
+    "roster_stability": {
+      "n_train_players": 421,
+      "n_scored_players": 460,
+      "n_overlap_players": 61,
+      "player_overlap_frac": 0.13260869565217392,
+      "minutes_overlap_frac": 0.2383804758639891
+    }
+  },
   "wage_match_rate": 0.6317280453257791,
   "n_rated": 268,
   "cov_info": {
-    "mean_abs_beta": 0.011562409375406812,
-    "mean_idio_var": 0.31217156874506874,
+    "mean_abs_beta": 0.012963178744584292,
+    "mean_idio_var": 0.3384605341844993,
     "n_players": 268
   },
   "frontier": [
     {
       "budget": 300000.0,
-      "exp_vaep_per90": 9.987683746304828,
-      "wage_bill": 298250.0,
+      "exp_vaep_per90": 10.2790870694264,
+      "wage_bill": 299250.0,
       "n_players": 23,
-      "squad_risk": 0.13096639359033876
+      "squad_risk": 0.13003998719849846
     },
     {
       "budget": 500000.0,
-      "exp_vaep_per90": 10.759435075000514,
-      "wage_bill": 499250.0,
+      "exp_vaep_per90": 11.048780422938814,
+      "wage_bill": 498250.0,
       "n_players": 23,
-      "squad_risk": 0.13959573001622996
+      "squad_risk": 0.15893412375932564
     },
     {
       "budget": 700000.0,
-      "exp_vaep_per90": 11.319681440434954,
-      "wage_bill": 697750.0,
+      "exp_vaep_per90": 11.571138069369491,
+      "wage_bill": 699250.0,
       "n_players": 23,
-      "squad_risk": 0.167834181840269
+      "squad_risk": 0.17652349156404054
     },
     {
       "budget": 943000.0,
-      "exp_vaep_per90": 11.621195998644247,
-      "wage_bill": 936000.0,
+      "exp_vaep_per90": 11.989905998071622,
+      "wage_bill": 942000.0,
       "n_players": 23,
-      "squad_risk": 0.20650825150643
+      "squad_risk": 0.21919646888440397
     },
     {
       "budget": 1500000.0,
-      "exp_vaep_per90": 11.674962453379782,
-      "wage_bill": 1122000.0,
+      "exp_vaep_per90": 12.06986451961531,
+      "wage_bill": 1103000.0,
       "n_players": 23,
-      "squad_risk": 0.21503356191201958
+      "squad_risk": 0.2547206079897818
     }
   ],
   "backtest": [
     {
       "budget": 300000.0,
-      "optimizer": 16.868150225640345,
-      "value": 16.368110108761506,
-      "random_mean": 8.045412842108949,
-      "oracle": 16.764737994966957
+      "optimizer": 43.3462139667672,
+      "value": 44.11821003398058,
+      "random_mean": 7.973262386661986,
+      "oracle": 60.76930790609991,
+      "optimizer_unavail": 3,
+      "value_unavail": 3,
+      "random_unavail_mean": 5.3,
+      "oracle_unavail": 0
     },
     {
       "budget": 500000.0,
-      "optimizer": 15.977077378901255,
-      "value": 16.368110108761506,
-      "random_mean": 8.037796282613304,
-      "oracle": 17.339470780561285
+      "optimizer": 58.263059833048175,
+      "value": 57.11213352010462,
+      "random_mean": 8.760357137190233,
+      "oracle": 90.64487060953671,
+      "optimizer_unavail": 3,
+      "value_unavail": 3,
+      "random_unavail_mean": 5.75,
+      "oracle_unavail": 0
     },
     {
       "budget": 700000.0,
-      "optimizer": 13.514637997451201,
-      "value": 16.368110108761506,
-      "random_mean": 9.282936170733294,
-      "oracle": 16.869968173494907
+      "optimizer": 90.34163781176358,
+      "value": 84.22207261143407,
+      "random_mean": 13.284139390750145,
+      "oracle": 115.9240757170611,
+      "optimizer_unavail": 1,
+      "value_unavail": 2,
+      "random_unavail_mean": 5.45,
+      "oracle_unavail": 0
     }
   ],
   "xi": [
@@ -75,77 +456,77 @@
       "player": "Pierre-Emerick Aubameyang",
       "team": "Borussia Dortmund",
       "pos_group": "FWD",
-      "vaep_per90": 0.47058816205583753,
+      "vaep_per90": 0.5253290029421306,
       "wage_eur": 54000.0
     },
     {
       "player": "Julian Brandt",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.6050881147630687,
+      "vaep_per90": 0.579152276174515,
       "wage_eur": 72000.0
     },
     {
       "player": "Ja-Cheol Koo",
       "team": "Augsburg",
       "pos_group": "MID",
-      "vaep_per90": 0.611316546905621,
+      "vaep_per90": 0.5762121672076439,
       "wage_eur": 2000.0
     },
     {
       "player": "Patrik Schick",
       "team": "Bayer Leverkusen",
       "pos_group": "FWD",
-      "vaep_per90": 0.43719427699728663,
+      "vaep_per90": 0.5290657631874136,
       "wage_eur": 73000.0
     },
     {
       "player": "Oliver Baumann",
       "team": "Hoffenheim",
       "pos_group": "GK",
-      "vaep_per90": 0.599465264118135,
+      "vaep_per90": 0.5033865149515667,
       "wage_eur": 34000.0
+    },
+    {
+      "player": "Nico Elvedi",
+      "team": "Borussia M\u00f6nchengladbach",
+      "pos_group": "DEF",
+      "vaep_per90": 0.4340441592424834,
+      "wage_eur": 25000.0
     },
     {
       "player": "Alejandro Grimaldo Garc\u00eda",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.591085718046079,
+      "vaep_per90": 0.5945619205583321,
       "wage_eur": 88000.0
-    },
-    {
-      "player": "Manuel Gulde",
-      "team": "Freiburg",
-      "pos_group": "DEF",
-      "vaep_per90": 0.41344731625028214,
-      "wage_eur": 20000.0
     },
     {
       "player": "Jeremie Frimpong",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.6247405123924286,
+      "vaep_per90": 0.6476794811503174,
       "wage_eur": 63000.0
     },
     {
       "player": "Amine Adli",
       "team": "Bayer Leverkusen",
       "pos_group": "FWD",
-      "vaep_per90": 0.46383916161648675,
+      "vaep_per90": 0.5238771319682115,
       "wage_eur": 45000.0
     },
     {
       "player": "Florian Wirtz",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.6862831133122953,
+      "vaep_per90": 0.7151622990458415,
       "wage_eur": 77000.0
     },
     {
       "player": "Josip Stani\u0161i\u0107",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.4854911444169389,
+      "vaep_per90": 0.5789721307478086,
       "wage_eur": 41000.0
     }
   ],
@@ -154,71 +535,71 @@
       "player": "Florian Wirtz",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.6862831133122953,
+      "vaep_per90": 0.7151622990458415,
       "wage_eur": 77000.0
     },
     {
       "player": "Jeremie Frimpong",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.6247405123924286,
+      "vaep_per90": 0.6476794811503174,
       "wage_eur": 63000.0
-    },
-    {
-      "player": "Ja-Cheol Koo",
-      "team": "Augsburg",
-      "pos_group": "MID",
-      "vaep_per90": 0.611316546905621,
-      "wage_eur": 2000.0
-    },
-    {
-      "player": "Julian Brandt",
-      "team": "Bayer Leverkusen",
-      "pos_group": "MID",
-      "vaep_per90": 0.6050881147630687,
-      "wage_eur": 72000.0
-    },
-    {
-      "player": "Oliver Baumann",
-      "team": "Hoffenheim",
-      "pos_group": "GK",
-      "vaep_per90": 0.599465264118135,
-      "wage_eur": 34000.0
     },
     {
       "player": "Alejandro Grimaldo Garc\u00eda",
       "team": "Bayer Leverkusen",
       "pos_group": "DEF",
-      "vaep_per90": 0.591085718046079,
+      "vaep_per90": 0.5945619205583321,
       "wage_eur": 88000.0
     },
     {
-      "player": "Chris F\u00fchrich",
-      "team": "VfB Stuttgart",
+      "player": "Julian Brandt",
+      "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.5327666248929369,
-      "wage_eur": 25000.0
+      "vaep_per90": 0.579152276174515,
+      "wage_eur": 72000.0
     },
     {
-      "player": "Christian Mathenia",
-      "team": "Darmstadt 98",
-      "pos_group": "GK",
-      "vaep_per90": 0.5293172030449509,
-      "wage_eur": 4000.0
+      "player": "Josip Stani\u0161i\u0107",
+      "team": "Bayer Leverkusen",
+      "pos_group": "DEF",
+      "vaep_per90": 0.5789721307478086,
+      "wage_eur": 41000.0
+    },
+    {
+      "player": "Ja-Cheol Koo",
+      "team": "Augsburg",
+      "pos_group": "MID",
+      "vaep_per90": 0.5762121672076439,
+      "wage_eur": 2000.0
     },
     {
       "player": "Robert Andrich",
       "team": "Bayer Leverkusen",
       "pos_group": "MID",
-      "vaep_per90": 0.5236999751234086,
+      "vaep_per90": 0.5325246571762764,
       "wage_eur": 65000.0
     },
     {
-      "player": "Yunus Mall\u0131",
-      "team": "FSV Mainz 05",
+      "player": "Chris F\u00fchrich",
+      "team": "VfB Stuttgart",
       "pos_group": "MID",
-      "vaep_per90": 0.5174052971480092,
-      "wage_eur": 9000.0
+      "vaep_per90": 0.5321358039383398,
+      "wage_eur": 25000.0
+    },
+    {
+      "player": "Patrik Schick",
+      "team": "Bayer Leverkusen",
+      "pos_group": "FWD",
+      "vaep_per90": 0.5290657631874136,
+      "wage_eur": 73000.0
+    },
+    {
+      "player": "Pierre-Emerick Aubameyang",
+      "team": "Borussia Dortmund",
+      "pos_group": "FWD",
+      "vaep_per90": 0.5253290029421306,
+      "wage_eur": 54000.0
     }
   ]
 }
