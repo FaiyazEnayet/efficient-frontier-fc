@@ -1,9 +1,13 @@
-"""Export small derived CSVs under demo/ for the Streamlit dashboard.
+"""Export small derived CSVs under demo/ for the dashboard.
 
-Reads the pipeline's on-disk caches (no model retraining needed), rebuilds
-ratings, the frontier on a fine budget grid, the selected squad at each grid
-point, the best XI, and the backtest using the same functions and seed as
-the pipeline, then writes demo/*.csv + demo/meta.json.
+Rebuilds ratings, the frontier on a fine budget grid, the selected squad
+at each grid point, the best XI, and the backtest using the same functions
+and seed as the pipeline, then writes demo/*.csv + demo/meta.json.
+
+The goal models are retrained exactly as the pipeline trains them via
+effc.pipeline.prepare_model_data (deterministic given the seed), so the
+versioned VAEP cache hits and no event re-processing is needed. The demo
+tables therefore always reflect the pipeline's deployed models.
 
 Run from the repo root after the pipeline has been run at least once:
 
@@ -24,7 +28,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from effc.backtest.runner import run_backtest, split_matches  # noqa: E402
 from effc.data.wages import load_wages, match_players  # noqa: E402
-from effc.pipeline import compute_target_vaep  # noqa: E402
+from effc.pipeline import compute_target_vaep, prepare_model_data  # noqa: E402
 from effc.portfolio.portfolio import efficient_frontier, select_squad, select_xi  # noqa: E402
 from effc.ratings.ratings import build_ratings  # noqa: E402
 
@@ -37,8 +41,13 @@ def main() -> None:
     with open(CONFIG) as f:
         cfg = yaml.safe_load(f)
 
-    # target-competition VAEP comes from the pipeline cache; pass no models
-    pm, mins, matches = compute_target_vaep(None)
+    # target-competition VAEP from the pipeline's deployed goal models.
+    # Retraining is deterministic given the seed, so the versioned VAEP
+    # cache hits and the demo tables always match the pipeline output.
+    data = prepare_model_data(cfg)
+    pm, mins, matches = compute_target_vaep(
+        data["models"], data["train_ids"], config=cfg
+    )
 
     wages = load_wages()
     sb_players = pm[["player", "team"]].drop_duplicates().reset_index(drop=True)
@@ -96,7 +105,14 @@ def main() -> None:
     r1 = build_ratings(pm1, mins, wmap, min_minutes=60, shrink_k=cfg.get("shrink_k", 900))
     r2 = build_ratings(pm2, mins, wmap, min_minutes=60, shrink_k=cfg.get("shrink_k", 900))
     bt = run_backtest(r1, r2, pm2, mins, [300_000.0, 500_000.0, 700_000.0], seed=cfg.get("seed", 0))
-    bt_long = bt.melt(id_vars="budget", var_name="rule", value_name="score")
+    # melt only the rule score columns; the *_unavail availability counts
+    # are pipeline diagnostics, not demo rules
+    bt_long = bt.melt(
+        id_vars="budget",
+        value_vars=["optimizer", "value", "random_mean", "oracle"],
+        var_name="rule",
+        value_name="score",
+    )
     bt_long.to_csv(os.path.join(DEMO_DIR, "backtest.csv"), index=False)
     print(bt.to_string(index=False))
 
