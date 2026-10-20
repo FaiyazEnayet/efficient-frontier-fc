@@ -42,6 +42,16 @@ def train_goal_models(
 def predict_proba(models: dict, df: pd.DataFrame) -> dict[str, np.ndarray]:
     from effc.vaep.features import design_matrix
 
+    if "strengths" in models:
+        # Improved bundle: attach the frozen Dixon-Coles strengths
+        # (fit on training matches only) before featurizing. Pure
+        # inference on this frame; nothing is fit here.
+        from effc.vaep.team_strength import attach_strength_features
+
+        home = models.get("home_team_by_match", {}).get(
+            int(df["match_id"].iloc[0]), ""
+        )
+        df = attach_strength_features(df, models["strengths"], home)
     X = design_matrix(df).reindex(columns=models["columns"], fill_value=0.0)
     return {label: models[label].predict_proba(X)[:, 1] for label in LABELS}
 

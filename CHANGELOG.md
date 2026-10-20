@@ -1,5 +1,20 @@
 # Changelog
 
+## [v1.5.0] - 2026-10-20
+### Added
+- Pooled goal-model training data (`src/effc/data/download.py`, `src/effc/pipeline.py`): the P(scores)/P(concedes) models now train on 1,813 matches instead of 130. Competitions added from StatsBomb open data, for training only and never scored as a test set: La Liga 2015/16 (380 matches), Premier League 2015/16 (380), Serie A 2015/16 (380), Ligue 1 2015/16 (377), UEFA Euro 2020 (51), Indian Super League 2021/22 (115). Other La Liga seasons in the open data are Barcelona-only samples (31-38 matches each) and Champions League seasons are the final only, so they were deliberately not pooled. Match-ID leakage guards run on every pipeline execution: pooled matches must be disjoint from the 32 held-out matches and from every 2023/24 Bundesliga match (the season-transfer test set).
+- Improved goal-model recipe (`src/effc/vaep/improved.py`): gradient boosting on the pooled data, then Platt calibration plus shrinkage toward the training base rate, both fitted by chronological cross-fitting on training matches only; no held-out or transfer test data is ever fit on. The shipped configuration (`fc6_pool`) was chosen on an internal chronological validation split. The experiment is reproducible via `scripts/run_beat_baseline.py` and recorded in `runs/beat_baseline/results.json`. Cross-fit and trained-model disk caches (keyed by the exact training match-ID sets) make reruns resumable.
+- Dixon-Coles team-strength model (`src/effc/vaep/team_strength.py`): penalized Poisson fit with exponential recency decay, per-team attack/defence strengths, home advantage, and goal-expectancy features, wired in as an optional feature set. It did not beat plain pooling on internal validation for either evaluation arm, so the shipped configuration does not use it; the model and its tests stay in the codebase.
+- `runs/bundesliga_2seasons/metrics.json` keeps the v1.4.0 numbers verbatim under `fc6_reference` and records the new recipe and its cross-fit calibration under `improvement`.
+
+### Changed
+- Same frozen evaluation protocol as v1.4.0: same 130/32 chronological split, same held-out match IDs, same base-rate baselines, same season-transfer setup. New held-out Brier: P(scores) 0.0096 (95% CI 0.0080-0.0113) vs base-rate 0.0113 (v1.4.0: 0.0099); P(concedes) 0.0028 vs 0.0033 (v1.4.0: 0.0030). Season transfer (train 2015/16 plus the contemporaneous 2015/16 leagues, score 2023/24) now beats the baseline on both labels: P(scores) 0.0097 vs 0.0107 (v1.4.0: 0.0110 vs 0.0107, a loss) and P(concedes) 0.00219 vs 0.00222 (v1.4.0: 0.0023 vs 0.0022, a loss). The conceding margin is narrow and the intervals overlap. In-sample Brier is now 0.0087 / 0.0020, still labeled in-sample.
+- Backtest rerun with the improved models' VAEP: the optimizer beats the value baseline at 0.30M (37.35 vs 35.38) and 0.70M (75.92 vs 72.09) and trails at 0.50M (49.83 vs 55.60). Totals are lower at every cap than in v1.4.0 because the pooled, calibrated models produce less extreme VAEP values. Demo tables regenerated from the same run.
+- `FEATURE_VERSION` bumped to 2 (`src/effc/vaep/features.py`): the design matrix always carries the seven team-strength columns (zeros when no strengths are attached), so version-1 VAEP caches are never reused for the new models.
+
+### Tests
+- 11 new tests: Dixon-Coles fit sanity, ranking and feature attachment (`tests/test_team_strength.py`); calibration/blend contract, cross-fitting coverage, calibration-fits-on-the-training-group-only, chronological-fold partitioning, and a planted-overlap leakage guard (`tests/test_improved.py`). Full suite 77/77 green.
+
 ## [v1.4.0] - 2026-10-19
 ### Fixed
 - Restored the FC2 quota validation the FC3 rewrite accidentally deleted (`src/effc/portfolio/portfolio.py`). The FC3 objective change rewrote `_milp_select`/`select_xi` and dropped the `InfeasibleError` class, `_validate_inputs` and the formation checks, so impossible quotas, empty groups, NaN inputs and MILP failures degraded to generic errors or silently skipped constraints. Restored verbatim (keeping FC3's `value_col`); the six FC2 regression tests pass again.

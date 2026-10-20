@@ -15,7 +15,8 @@ import pandas as pd
 
 # Bump whenever the feature set or schema changes: it feeds the VAEP
 # cache key so stale values are never silently reused.
-FEATURE_VERSION = 1
+# v2: optional Dixon-Coles team-strength columns (team_strength.py).
+FEATURE_VERSION = 2
 
 # event types we value as actions
 ACTION_TYPES = [
@@ -194,7 +195,15 @@ FEATURE_COLS = [
 
 
 def design_matrix(df: pd.DataFrame) -> pd.DataFrame:
+    from effc.vaep.team_strength import STRENGTH_COLS
+
     X = df[FEATURE_COLS].copy()
+    # Team-strength features (v2): attached to frames by the training /
+    # scoring code from a frozen Dixon-Coles fit. Frames that never had
+    # strengths attached (legacy caches, synthetic test frames) get the
+    # neutral league-average value 0.0.
+    for col in STRENGTH_COLS:
+        X[col] = df[col].astype(float) if col in df.columns else 0.0
     for col in ["action", "prev_action"]:
         d = pd.get_dummies(df[col], prefix=col[:4])
         X = pd.concat([X, d], axis=1)

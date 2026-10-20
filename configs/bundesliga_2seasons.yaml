@@ -8,3 +8,11 @@ xi_budget_eur: 943000
 formation: "4-3-3"
 backtest_split: 0.5
 calib_frac: 0.2
+# Improved goal-model recipe (see effc.vaep.improved.CONFIGS). Both
+# values were chosen on internal validation only (the experiment in
+# runs/beat_baseline/results.json), never on a test set: pooled
+# training data + cross-fitted Platt calibration and base-rate
+# blending. The Dixon-Coles strength-feature configs were tried and
+# did not beat this one on validation.
+goal_model_config: fc6_pool
+transfer_goal_model_config: fc6_pool

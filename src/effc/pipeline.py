@@ -120,6 +120,83 @@ def featurize_pool() -> list[pd.DataFrame]:
     return frames
 
 
+def _featurize_one(mid: int):
+    try:
+        events = load_events(int(mid))
+    except Exception:
+        return None
+    df = featurize_match(events, match_id=int(mid))
+    return df if not df.empty else None
+
+
+def featurize_matches(match_ids, cache_name: str) -> list[pd.DataFrame]:
+    """Featurize an arbitrary match list in parallel, cached as a whole.
+
+    Used for the pooled training competitions: pooled matches are
+    training data only, so a single cache entry per pool is enough.
+    """
+    cached = _cache_get(cache_name)
+    if cached is not None:
+        print(f"loaded {len(cached)} cached frames ({cache_name})")
+        return cached
+    import multiprocessing
+
+    ids = sorted({int(m) for m in match_ids})
+    with multiprocessing.Pool(processes=min(8, os.cpu_count() or 1)) as pool:
+        results = pool.map(_featurize_one, ids, chunksize=8)
+    frames = [r for r in results if r is not None]
+    total = sum(len(f) for f in frames)
+    print(f"featurized {len(frames)}/{len(ids)} pooled matches, {total} actions")
+    _cache_put(cache_name, frames)
+    return frames
+
+
+_POOL_MEMO: dict = {}
+
+
+def _memoized(key, loader):
+    if key not in _POOL_MEMO:
+        _POOL_MEMO[key] = loader()
+    return _POOL_MEMO[key]
+
+
+def extra_pool() -> tuple[list[pd.DataFrame], pd.DataFrame]:
+    """EXTRA_POOL + ERA_2015_POOL: goal-model training data only.
+
+    The main models pool both; the season-transfer model uses only
+    era2015_pool(). Union of the two caches, no re-featurization.
+    Memoized per process: the era frames are shared, not reloaded.
+    """
+    return _memoized("extra_pool", _extra_pool_impl)
+
+
+def _extra_pool_impl() -> tuple[list[pd.DataFrame], pd.DataFrame]:
+    from effc.data.download import EXTRA_POOL
+
+    era_frames, era_meta = era2015_pool()
+    meta = list_matches(EXTRA_POOL)
+    frames = featurize_matches(meta["match_id"].tolist(), "pool_frames_extra.pkl")
+    meta_all = pd.concat([era_meta, meta], ignore_index=True)
+    return era_frames + frames, meta_all
+
+
+def era2015_pool() -> tuple[list[pd.DataFrame], pd.DataFrame]:
+    """ERA_2015_POOL competitions: contemporaneous 2015/2016 leagues.
+
+    The only pooled data the season-transfer model may train on.
+    Memoized per process (shared with extra_pool).
+    """
+    return _memoized("era2015_pool", _era2015_pool_impl)
+
+
+def _era2015_pool_impl() -> tuple[list[pd.DataFrame], pd.DataFrame]:
+    from effc.data.download import ERA_2015_POOL
+
+    meta = list_matches(ERA_2015_POOL)
+    frames = featurize_matches(meta["match_id"].tolist(), "pool_frames_era2015.pkl")
+    return frames, meta
+
+
 def compute_target_vaep(models, train_match_ids, config=None) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Returns (player_match vaep, minutes, matches) for the target competition.
 
@@ -180,26 +257,69 @@ def prepare_model_data(cfg: dict) -> dict:
     train_ids = sorted({int(f["match_id"].iloc[0]) for f in train_frames})
     calib_ids = sorted({int(f["match_id"].iloc[0]) for f in calib_frames})
     cal.assert_disjoint(train_ids, calib_ids)
-    print(
-        f"training goal models on {len(train_frames)} matches; "
-        f"holding out {len(calib_frames)} for calibration"
+
+    # Beat-baseline: the deployed goal models are the improved recipe
+    # (pooled training data + Dixon-Coles strength features +
+    # cross-fitted Platt calibration and base-rate blending, all fit
+    # on training matches only). The FC6 split above is unchanged: the
+    # same 130 train / 32 held-out match IDs.
+    from effc.vaep import improved as imp
+
+    pool_frames, pool_meta = extra_pool()
+    meta_all = (
+        pd.concat([meta, pool_meta], ignore_index=True)
+        .drop_duplicates("match_id")
+        .reset_index(drop=True)
     )
-    models = train_goal_models(train_frames, seed=cfg.get("seed", 0))
+    pool_ids = {int(f["match_id"].iloc[0]) for f in pool_frames}
+    target_2024_ids = set(
+        target_matches.loc[target_matches["season_id"] == 281, "match_id"]
+        .astype(int)
+    )
+    # Leakage guards, by match ID, on every run: pooled training data
+    # must contain neither held-out matches nor any 2023/2024
+    # Bundesliga match (the season-transfer test set).
+    cal.assert_disjoint(pool_ids, calib_ids, "pooled/held-out match")
+    cal.assert_disjoint(pool_ids, target_2024_ids, "pooled/2023-24 match")
+    config_name = cfg.get("goal_model_config", "dc365")
+    print(
+        f"training improved goal models (config {config_name}) on "
+        f"{len(train_frames)} train-group + {len(pool_frames)} pooled "
+        f"matches; holding out {len(calib_frames)} for calibration"
+    )
+    models, calib_report = imp.train_improved_models_cached(
+        train_frames, pool_frames, meta_all, config_name,
+        seed=cfg.get("seed", 0),
+    )
+    improvement = {
+        "config": config_name,
+        "calibration": calib_report,
+        "pool_counts": {
+            "train_group_matches": len(train_ids),
+            "held_out_matches": len(calib_ids),
+            "pooled_training_matches": len(pool_ids),
+        },
+    }
     return {
         "first": first,
         "second": second,
         "frames": frames,
         "meta": meta,
+        "meta_all": meta_all,
         "train_frames": train_frames,
         "calib_frames": calib_frames,
         "train_ids": train_ids,
         "calib_ids": calib_ids,
         "models": models,
+        "improvement": improvement,
     }
 
 
 def season_transfer_evaluation(
-    frames: list[pd.DataFrame], meta: pd.DataFrame, seed: int = 0
+    frames: list[pd.DataFrame],
+    meta: pd.DataFrame,
+    seed: int = 0,
+    config_name: str = "dc365",
 ) -> dict:
     """Train on the earlier season, score on the later season (FC6).
 
@@ -208,7 +328,15 @@ def season_transfer_evaluation(
     simulation: what the goal models would have scored had they been
     deployed a season later. The caller adds roster stability once the
     target VAEP tables exist.
+
+    Beat-baseline: the transfer model uses the same improved recipe as
+    the deployed models, but its pooled training data is restricted to
+    contemporaneous 2015/2016 leagues (era2015_pool): a model trained
+    in 2016 cannot use later data, and no 2023/2024 Bundesliga match
+    (the scored set) appears in any training pool.
     """
+    from effc.vaep import improved as imp
+
     tr_season, sc_season, season_names = cal.transfer_seasons(meta, competition_id=9)
     season_of = dict(
         zip(meta["match_id"].astype(int), meta["season_id"].astype(int))
@@ -226,12 +354,25 @@ def season_transfer_evaluation(
     tr_ids = sorted({int(f["match_id"].iloc[0]) for f in tr_frames})
     sc_ids = sorted({int(f["match_id"].iloc[0]) for f in sc_frames})
     cal.assert_disjoint(tr_ids, sc_ids)
-    print(
-        f"season transfer: training on {len(tr_frames)} "
-        f"{season_names.get(tr_season, tr_season)} matches, scoring on "
-        f"{len(sc_frames)} {season_names.get(sc_season, sc_season)} matches"
+
+    era_frames, era_meta = era2015_pool()
+    era_ids = {int(f["match_id"].iloc[0]) for f in era_frames}
+    cal.assert_disjoint(era_ids, sc_ids, "era-pooled/scored match")
+    meta_all = (
+        pd.concat([meta, era_meta], ignore_index=True)
+        .drop_duplicates("match_id")
+        .reset_index(drop=True)
     )
-    tr_models = train_goal_models(tr_frames, seed=seed)
+    print(
+        f"season transfer: training improved models (config {config_name}) "
+        f"on {len(tr_frames)} {season_names.get(tr_season, tr_season)} "
+        f"matches + {len(era_frames)} pooled 2015/2016 league matches, "
+        f"scoring on {len(sc_frames)} "
+        f"{season_names.get(sc_season, sc_season)} matches"
+    )
+    tr_models, calib_report = imp.train_improved_models_cached(
+        tr_frames, era_frames, meta_all, config_name, seed=seed,
+    )
     tr_scored = cal.per_match_scores(tr_models, sc_frames)
     tr_base = cal.base_rate_scores(tr_frames, sc_frames)
     model_summary = cal.summarize(tr_scored)
@@ -243,6 +384,11 @@ def season_transfer_evaluation(
         "scored_season_id": sc_season,
         "n_train_matches": len(tr_ids),
         "n_scored_matches": len(sc_ids),
+        "improvement": {
+            "config": config_name,
+            "calibration": calib_report,
+            "pooled_training_matches": len(era_ids),
+        },
         "held_out": {
             label: {
                 "model": model_summary[label],
@@ -309,7 +455,10 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
 
     # 1b. genuine chronological season-transfer evaluation (FC6)
     transfer_report = season_transfer_evaluation(
-        data["frames"], meta, seed=cfg.get("seed", 0)
+        data["frames"],
+        meta,
+        seed=cfg.get("seed", 0),
+        config_name=cfg.get("transfer_goal_model_config", "dc365"),
     )
 
     # 2. VAEP on the target competition. The cache key binds the training
@@ -402,6 +551,21 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     except Exception as exc:
         print(f"[warn] plotting failed: {exc}")
 
+    # Preserve the FC6 run's numbers verbatim before overwriting: the
+    # beat-baseline metrics below replace them as the headline, and the
+    # before/after comparison stays in the file (and the README).
+    fc6_reference = None
+    metrics_path = os.path.join(outdir, "metrics.json")
+    if os.path.exists(metrics_path):
+        with open(metrics_path) as f:
+            _old = json.load(f)
+        if "calibration" in _old and "fc6_reference" not in _old:
+            fc6_reference = {
+                "calibration": _old.get("calibration"),
+                "season_transfer": _old.get("season_transfer"),
+                "backtest": _old.get("backtest"),
+            }
+
     metrics = {
         "config": config_path,
         "train_time_s": time.time() - t0,
@@ -423,8 +587,15 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
         "top10": ratings.nlargest(10, "vaep_per90")[
             ["player", "team", "pos_group", "vaep_per90", "wage_eur"]
         ].to_dict("records"),
+        "improvement": {
+            "main": data.get("improvement"),
+            "season_transfer": transfer_report.get("improvement"),
+            "experiment": "runs/beat_baseline/results.json",
+        },
     }
-    with open(os.path.join(outdir, "metrics.json"), "w") as f:
+    if fc6_reference is not None:
+        metrics["fc6_reference"] = fc6_reference
+    with open(metrics_path, "w") as f:
         json.dump(metrics, f, indent=2, default=float)
     print(f"\nsaved metrics + plots to {outdir}")
 
