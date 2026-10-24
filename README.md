@@ -2,8 +2,6 @@
 
 <h1 align="center">Efficient Frontier FC</h1>
 
-<p align="center">Football squad selection under a wage budget, treated as a constrained allocation problem.</p>
-
 <p align="center">
   <a href="https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml"><img src="https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml/badge.svg?label=CI&labelColor=24292f" alt="CI"></a>
   <img src="https://img.shields.io/badge/license-MIT-795b1b?labelColor=24292f" alt="License: MIT">
