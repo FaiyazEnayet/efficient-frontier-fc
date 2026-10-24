@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+### Docs
+- Centered the README header: uniform dark badge labels and three action buttons in the dashboard palette (Open Dashboard, Explore Method, Run Locally).
+
 ## [v1.5.0] - 2026-10-20
 ### Added
 - Pooled goal-model training data (`src/effc/data/download.py`, `src/effc/pipeline.py`): the P(scores)/P(concedes) models now train on 1,813 matches instead of 130. Competitions added from StatsBomb open data, for training only and never scored as a test set: La Liga 2015/16 (380 matches), Premier League 2015/16 (380), Serie A 2015/16 (380), Ligue 1 2015/16 (377), UEFA Euro 2020 (51), Indian Super League 2021/22 (115). Other La Liga seasons in the open data are Barcelona-only samples (31-38 matches each) and Champions League seasons are the final only, so they were deliberately not pooled. Match-ID leakage guards run on every pipeline execution: pooled matches must be disjoint from the 32 held-out matches and from every 2023/24 Bundesliga match (the season-transfer test set).

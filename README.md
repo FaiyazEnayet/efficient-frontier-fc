@@ -1,15 +1,24 @@
 <p align="center"><img src="docs/readme-banner.svg?v=type-20261017b" alt="Efficient Frontier FC: Football squad selection under a wage budget" width="1200"></p>
 
-[![Tests](https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml/badge.svg)](https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-007EC6)](LICENSE) ![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB) ![Built with SciPy + VAEP](https://img.shields.io/badge/built%20with-SciPy%20%2B%20VAEP-555555) [![Interactive demo](https://img.shields.io/badge/demo-interactive-4C9D39)](https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html)
+<h1 align="center">Efficient Frontier FC</h1>
 
-<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><b>Open interactive demo</b></a> · <a href="#method">Method</a> · <a href="#run-locally">Run locally</a></p>
+<p align="center">
+  <a href="https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml"><img src="https://github.com/FaiyazEnayet/efficient-frontier-fc/actions/workflows/ci.yml/badge.svg?label=CI&labelColor=24292f" alt="CI"></a>
+  <img src="https://img.shields.io/badge/license-MIT-795b1b?labelColor=24292f" alt="License: MIT">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?labelColor=24292f" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/built%20with-SciPy%20%2B%20VAEP-0054A6?labelColor=24292f" alt="Built with SciPy + VAEP">
+</p>
 
-# Efficient Frontier FC
+<p align="center">
+  <a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="https://img.shields.io/badge/Open-Dashboard-795b1b?style=for-the-badge&labelColor=000000" alt="Open Dashboard"></a>
+  <a href="#method"><img src="https://img.shields.io/badge/Explore-Method-183f30?style=for-the-badge&labelColor=000000" alt="Explore Method"></a>
+  <a href="#run-locally"><img src="https://img.shields.io/badge/Run-Locally-526554?style=for-the-badge&labelColor=000000" alt="Run Locally"></a>
+</p>
 
 Efficient Frontier FC treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
 
 
-[![Efficient Frontier FC demo](docs/demo.gif?v=showcase-20261017b)](https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html)
+<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-20261017b" alt="Efficient Frontier FC demo"></a></p>
 
 
 The frontier is a decision surface rather than a player ranking. Moving the wage budget changes the feasible squad, which in turn changes the best XI and positional tradeoffs. Inspect the selected players and actual wage bill together with the objective, especially because wage proxies and historical rating estimates introduce uncertainty into any recruitment interpretation.
