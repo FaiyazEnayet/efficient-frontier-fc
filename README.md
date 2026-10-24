@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="https://img.shields.io/badge/Open-Dashboard-795b1b?style=for-the-badge&labelColor=f2f0e4" alt="Open Dashboard"></a>
-  <a href="#method"><img src="https://img.shields.io/badge/Explore-Method-183f30?style=for-the-badge&labelColor=f2f0e4" alt="Explore Method"></a>
-  <a href="#run-locally"><img src="https://img.shields.io/badge/Run-Locally-526554?style=for-the-badge&labelColor=f2f0e4" alt="Run Locally"></a>
+  <a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="https://img.shields.io/badge/Open-Dashboard-795b1b?style=for-the-badge&labelColor=000000" alt="Open Dashboard"></a>
+  <a href="#method"><img src="https://img.shields.io/badge/Explore-Method-183f30?style=for-the-badge&labelColor=000000" alt="Explore Method"></a>
+  <a href="#run-locally"><img src="https://img.shields.io/badge/Run-Locally-526554?style=for-the-badge&labelColor=000000" alt="Run Locally"></a>
 </p>
 
 Efficient Frontier FC treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
