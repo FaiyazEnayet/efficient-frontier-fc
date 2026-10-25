@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+### Fixed
+- Spatial coordinate mismatch in VAEP features (Stage 3 C1): raw StatsBomb event locations (120x80 frame) are now converted to the 105x68 SPADL frame (x times 105/120, y times 68/80) in `_loc`/`_end_loc` before any distance, angle, or displacement feature is computed, for every event type and for both start and end locations (`src/effc/vaep/features.py`). `FEATURE_VERSION` is bumped from 2 to 3, so v2 VAEP caches are invalidated by the pipeline cache key. The published v1.5.0 FC6 numbers were computed with the unconverted frame and are not recomputed by this change; corrected-model results require a new forward or development benchmark, decided by the owner.
 ### Docs
 - Centered the README header: uniform dark badge labels and three action buttons in the dashboard palette (Open Dashboard, Explore Method, Run Locally).
 
