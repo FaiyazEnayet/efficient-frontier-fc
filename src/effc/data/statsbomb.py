@@ -1,4 +1,11 @@
-"""Loading cached StatsBomb open data into workable frames."""
+"""Loading cached StatsBomb open data into workable frames.
+
+Coordinate contract: `load_events` returns raw StatsBomb events
+unchanged, in the 120x80 frame (possessing team attacks toward x = 120).
+Conversion to the 105x68 SPADL frame happens in exactly one place,
+`effc.vaep.features.featurize_match`, so no loader in this module
+rescales coordinates on its own.
+"""
 
 from __future__ import annotations
 

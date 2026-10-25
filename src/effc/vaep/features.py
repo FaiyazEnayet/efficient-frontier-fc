@@ -16,7 +16,10 @@ import pandas as pd
 # Bump whenever the feature set or schema changes: it feeds the VAEP
 # cache key so stale values are never silently reused.
 # v2: optional Dixon-Coles team-strength columns (team_strength.py).
-FEATURE_VERSION = 2
+# v3: StatsBomb raw coordinates (120x80) are converted to the SPADL
+# frame (105x68) before any feature is computed; v2 frames used the raw
+# values directly, so v2 caches must never be reused.
+FEATURE_VERSION = 3
 
 # event types we value as actions
 ACTION_TYPES = [
@@ -39,11 +42,30 @@ K = 10  # lookahead window in actions
 PITCH_X, PITCH_Y = 105.0, 68.0
 GOAL_X, GOAL_Y = 105.0, 34.0
 
+# Coordinate contract for this module. Input events are raw StatsBomb
+# events: a 120x80 frame in which StatsBomb normalises every event so
+# the team in possession always attacks toward x = 120. Output features
+# (start_x, start_y, end_x, end_y, dx, dy, distances, angles) are in the
+# 105x68 SPADL frame, in metres, with the goal at (105, 34). Because the
+# input direction is already normalised, no flip by team or period is
+# applied: the same goal serves every event. Conversion is scale-only
+# (the socceraction StatsBomb-to-SPADL scaling); distance to the goal
+# centre and the shot angle are unaffected by the y-axis orientation
+# choice, since both use the centre line as reference.
+STATSBOMB_PITCH_X, STATSBOMB_PITCH_Y = 120.0, 80.0
+
+
+def _to_spadl(x, y):
+    """Convert one raw StatsBomb point to the SPADL frame."""
+    if np.isnan(x) or np.isnan(y):
+        return np.nan, np.nan
+    return x * PITCH_X / STATSBOMB_PITCH_X, y * PITCH_Y / STATSBOMB_PITCH_Y
+
 
 def _loc(e):
     loc = e.get("location")
     if loc and len(loc) == 2:
-        return float(loc[0]), float(loc[1])
+        return _to_spadl(float(loc[0]), float(loc[1]))
     return np.nan, np.nan
 
 
@@ -53,7 +75,7 @@ def _end_loc(e):
         block = e.get(key)
         if isinstance(block, dict) and block.get("end_location"):
             el = block["end_location"]
-            return float(el[0]), float(el[1])
+            return _to_spadl(float(el[0]), float(el[1]))
     if t == "Dribble" and e.get("dribble", {}).get("overrun"):
         return _loc(e)
     return _loc(e)
@@ -78,7 +100,13 @@ def is_goal(e) -> bool:
 
 
 def featurize_match(events: list[dict], match_id: int | None = None) -> pd.DataFrame:
-    """One row per action with features, labels, and actor metadata."""
+    """One row per action with features, labels, and actor metadata.
+
+    Input `events` are raw StatsBomb events (120x80 frame). All location
+    features in the returned frame are converted to the 105x68 SPADL
+    frame by `_loc`/`_end_loc` before use; see the coordinate contract
+    above the constants in this module.
+    """
     events = sorted(events, key=lambda e: e["index"])
     rows = []
     # running score per team for the score-differential feature
