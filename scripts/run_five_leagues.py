@@ -21,7 +21,9 @@ Ligue 1), published as-is:
    min_minutes 60, seed 0).
 
 Writes runs/five_leagues/results.json and runs/five_leagues/report.md.
-No version bump and no v2.0.0 tag from this script; the tag stays held
+The results file also carries a squads section: per league per budget,
+the selected 23-man squad rows plus best XI names, drawn from the run's
+own rated players. No version bump and no v2.0.0 tag from this script; the tag stays held
 until U01/U02 validation plus owner signoff. No dashboard HTML or
 generator output is touched here.
 
@@ -58,7 +60,7 @@ from effc.leagues import (  # noqa: E402
     squad_constraints_ok,
 )
 from effc.pipeline import featurize_matches  # noqa: E402
-from effc.portfolio.portfolio import efficient_frontier, select_squad  # noqa: E402
+from effc.portfolio.portfolio import efficient_frontier, select_squad, select_xi  # noqa: E402
 from effc.ratings.covariance import fit_factor_model, match_vaep_panel, team_factor  # noqa: E402
 from effc.ratings.ratings import build_ratings  # noqa: E402
 from effc.vaep import calibration as cal  # noqa: E402
@@ -292,7 +294,13 @@ def main() -> None:
         print(f"[backtest] {name}: {len(bt)} budget rows")
 
         # Squad-constraint + determinism checks on the full ratings.
+        # Squad compositions for the dashboard squad view (additive:
+        # the checks below are unchanged). Names come from the selected
+        # ratings rows only; nothing is generated. Best XI uses the
+        # existing select_xi logic on the selected squad, formation
+        # 4-3-3, as scripts/make_dashboard.py does.
         checks = {}
+        squads = {}
         for b in BACKTEST_BUDGETS:
             try:
                 squad = select_squad(ratings, float(b), gamma=0.0, idio_var=idio)
@@ -305,9 +313,35 @@ def main() -> None:
                     ),
                     "n_players": len(squad),
                 }
+                ordered = squad.sort_values("vaep_per90", ascending=False)
+                squads[str(int(b))] = {
+                    "squad": [
+                        {
+                            "player": str(r["player"]),
+                            "team": str(r["team"]),
+                            "pos_group": str(r["pos_group"]),
+                            "vaep_per90": float(r["vaep_per90"]),
+                            "wage_eur": float(r["wage_eur"]),
+                        }
+                        for _, r in ordered.iterrows()
+                    ],
+                    "best_xi": None,
+                }
+                try:
+                    xi = select_xi(squad, "4-3-3").sort_values(
+                        "vaep_per90", ascending=False
+                    )
+                    squads[str(int(b))]["best_xi"] = [
+                        str(p) for p in xi["player"].tolist()
+                    ]
+                except Exception as exc:  # noqa: BLE001 - recorded, not hidden
+                    squads[str(int(b))]["best_xi_error"] = str(exc)
+                    print(f"[squads] {name} {int(b)}: best XI failed: {exc}")
             except RuntimeError as exc:
                 checks[str(int(b))] = {"infeasible": str(exc)}
+                squads[str(int(b))] = {"infeasible": str(exc)}
         entry["squad_checks"] = checks
+        entry["squads"] = squads
         results["leagues"][name] = entry
 
     results["elapsed_s"] = time.time() - t0

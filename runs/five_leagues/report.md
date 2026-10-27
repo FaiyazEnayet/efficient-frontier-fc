@@ -230,6 +230,24 @@ Every league, every budget: squad constraints hold (23 players,
 position minimums, wage bill within budget) and clean regeneration
 (selecting twice) yields identical player IDs and hashes.
 
+## Squads (added 2026-10-27, owner-authorized follow-up)
+
+`results.json` now carries a `squads` section alongside the existing
+figures: per league per budget, the selected 23-man squad (player,
+team, pos_group, vaep_per90, wage_eur per player) and the best XI
+(11 names via the existing `select_xi` logic, formation 4-3-3, as
+`scripts/make_dashboard.py` does). Every name comes from the run's
+own rated/selected players; nothing is generated. All five leagues
+at all three budgets have a full 23-man squad and an 11-name best
+XI, and every best XI name is a member of its squad. Squad counts
+match the existing `squad_checks` (23 per cell).
+
+Diff-verified against the FV4 file: every field except the new
+`squads` section (and `elapsed_s` timing) is identical, including
+model hash `b86caaed47f745d4`, all scoreboards, frontiers, and
+backtests. No selection, split, seed, config, budget, or number
+changed. This is the data the dashboard squad view renders.
+
 ## Comparability labels
 
 - These scoreboards supersede the FEATURE_VERSION 3 five-league

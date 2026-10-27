@@ -439,6 +439,542 @@
           "regeneration_identical": true,
           "n_players": 23
         }
+      },
+      "squads": {
+        "300000": {
+          "squad": [
+            {
+              "player": "Kasper Schmeichel",
+              "team": "Leicester City",
+              "pos_group": "GK",
+              "vaep_per90": 0.6910699837628305,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Jamie Vardy",
+              "team": "Leicester City",
+              "pos_group": "FWD",
+              "vaep_per90": 0.688229998189292,
+              "wage_eur": 37000.0
+            },
+            {
+              "player": "Roberto Firmino Barbosa de Oliveira",
+              "team": "Liverpool",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6321352450011121,
+              "wage_eur": 48000.0
+            },
+            {
+              "player": "Andy Carroll",
+              "team": "West Ham United",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5964950980227686,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "\u0141ukasz Fabia\u0144ski",
+              "team": "Swansea City",
+              "pos_group": "GK",
+              "vaep_per90": 0.5933316073707227,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Gerard Deulofeu L\u00e1zaro",
+              "team": "Everton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5420554584746449,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Santiago Cazorla Gonz\u00e1lez",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.5109000051052218,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Hugo Lloris",
+              "team": "Tottenham Hotspur",
+              "pos_group": "GK",
+              "vaep_per90": 0.5076975979640272,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Manuel Lanzini",
+              "team": "West Ham United",
+              "pos_group": "MID",
+              "vaep_per90": 0.4997041085910492,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Aaron Ramsey",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.4910551486961831,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Vito Mannone",
+              "team": "Sunderland",
+              "pos_group": "GK",
+              "vaep_per90": 0.48893443899268785,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "John Ruddy",
+              "team": "Norwich City",
+              "pos_group": "GK",
+              "vaep_per90": 0.4610569878626183,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Joe Allen",
+              "team": "Liverpool",
+              "pos_group": "MID",
+              "vaep_per90": 0.4601357982424145,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "Charlie Austin",
+              "team": "Southampton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.43970971339044496,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Steven Fletcher",
+              "team": "Sunderland",
+              "pos_group": "FWD",
+              "vaep_per90": 0.4384283962944543,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Chung-Yong Lee",
+              "team": "Crystal Palace",
+              "pos_group": "MID",
+              "vaep_per90": 0.42684562465604337,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Tom Carroll",
+              "team": "Tottenham Hotspur",
+              "pos_group": "MID",
+              "vaep_per90": 0.41323281986435134,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Carl Jenkinson",
+              "team": "West Ham United",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3986749315304652,
+              "wage_eur": 700.0
+            },
+            {
+              "player": "Steve Cook",
+              "team": "AFC Bournemouth",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3812895866597629,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Federico Fern\u00e1ndez",
+              "team": "Swansea City",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3802508763604012,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Maya Yoshida",
+              "team": "Southampton",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3646353196076571,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Allan Romeo Nyom",
+              "team": "Watford",
+              "pos_group": "DEF",
+              "vaep_per90": 0.35793733641793263,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Adrian Mariappa",
+              "team": "Crystal Palace",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3421614691073854,
+              "wage_eur": 2000.0
+            }
+          ],
+          "best_xi": [
+            "Kasper Schmeichel",
+            "Jamie Vardy",
+            "Roberto Firmino Barbosa de Oliveira",
+            "Andy Carroll",
+            "Santiago Cazorla Gonz\u00e1lez",
+            "Manuel Lanzini",
+            "Aaron Ramsey",
+            "Carl Jenkinson",
+            "Steve Cook",
+            "Federico Fern\u00e1ndez",
+            "Maya Yoshida"
+          ]
+        },
+        "500000": {
+          "squad": [
+            {
+              "player": "Riyad Mahrez",
+              "team": "Leicester City",
+              "pos_group": "MID",
+              "vaep_per90": 0.7265683608396977,
+              "wage_eur": 72000.0
+            },
+            {
+              "player": "Kasper Schmeichel",
+              "team": "Leicester City",
+              "pos_group": "GK",
+              "vaep_per90": 0.6910699837628305,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Jamie Vardy",
+              "team": "Leicester City",
+              "pos_group": "FWD",
+              "vaep_per90": 0.688229998189292,
+              "wage_eur": 37000.0
+            },
+            {
+              "player": "Roberto Firmino Barbosa de Oliveira",
+              "team": "Liverpool",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6321352450011121,
+              "wage_eur": 48000.0
+            },
+            {
+              "player": "Du\u0161an Tadi\u0107",
+              "team": "Southampton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6115905233433123,
+              "wage_eur": 52000.0
+            },
+            {
+              "player": "Andy Carroll",
+              "team": "West Ham United",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5964950980227686,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "\u0141ukasz Fabia\u0144ski",
+              "team": "Swansea City",
+              "pos_group": "GK",
+              "vaep_per90": 0.5933316073707227,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Andros Townsend",
+              "team": "Newcastle United",
+              "pos_group": "MID",
+              "vaep_per90": 0.5594610503453701,
+              "wage_eur": 39000.0
+            },
+            {
+              "player": "Gerard Deulofeu L\u00e1zaro",
+              "team": "Everton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5420554584746449,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Santiago Cazorla Gonz\u00e1lez",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.5109000051052218,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Hugo Lloris",
+              "team": "Tottenham Hotspur",
+              "pos_group": "GK",
+              "vaep_per90": 0.5076975979640272,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Alex McCarthy",
+              "team": "Crystal Palace",
+              "pos_group": "GK",
+              "vaep_per90": 0.503944099445958,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Manuel Lanzini",
+              "team": "West Ham United",
+              "pos_group": "MID",
+              "vaep_per90": 0.4997041085910492,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Aaron Ramsey",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.4910551486961831,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Vito Mannone",
+              "team": "Sunderland",
+              "pos_group": "GK",
+              "vaep_per90": 0.48893443899268785,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "John Ruddy",
+              "team": "Norwich City",
+              "pos_group": "GK",
+              "vaep_per90": 0.4610569878626183,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Joe Allen",
+              "team": "Liverpool",
+              "pos_group": "MID",
+              "vaep_per90": 0.4601357982424145,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "Daley Blind",
+              "team": "Manchester United",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4161607520534438,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Carl Jenkinson",
+              "team": "West Ham United",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3986749315304652,
+              "wage_eur": 700.0
+            },
+            {
+              "player": "Ritchie De Laet",
+              "team": "Leicester City",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3944356516956323,
+              "wage_eur": 19000.0
+            },
+            {
+              "player": "Steve Cook",
+              "team": "AFC Bournemouth",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3812895866597629,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Maya Yoshida",
+              "team": "Southampton",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3646353196076571,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Allan Romeo Nyom",
+              "team": "Watford",
+              "pos_group": "DEF",
+              "vaep_per90": 0.35793733641793263,
+              "wage_eur": 6000.0
+            }
+          ],
+          "best_xi": [
+            "Riyad Mahrez",
+            "Kasper Schmeichel",
+            "Jamie Vardy",
+            "Roberto Firmino Barbosa de Oliveira",
+            "Du\u0161an Tadi\u0107",
+            "Andros Townsend",
+            "Santiago Cazorla Gonz\u00e1lez",
+            "Daley Blind",
+            "Carl Jenkinson",
+            "Ritchie De Laet",
+            "Steve Cook"
+          ]
+        },
+        "700000": {
+          "squad": [
+            {
+              "player": "Riyad Mahrez",
+              "team": "Leicester City",
+              "pos_group": "MID",
+              "vaep_per90": 0.7265683608396977,
+              "wage_eur": 72000.0
+            },
+            {
+              "player": "Kasper Schmeichel",
+              "team": "Leicester City",
+              "pos_group": "GK",
+              "vaep_per90": 0.6910699837628305,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Jamie Vardy",
+              "team": "Leicester City",
+              "pos_group": "FWD",
+              "vaep_per90": 0.688229998189292,
+              "wage_eur": 37000.0
+            },
+            {
+              "player": "Roberto Firmino Barbosa de Oliveira",
+              "team": "Liverpool",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6321352450011121,
+              "wage_eur": 48000.0
+            },
+            {
+              "player": "Du\u0161an Tadi\u0107",
+              "team": "Southampton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6115905233433123,
+              "wage_eur": 52000.0
+            },
+            {
+              "player": "Sadio Man\u00e9",
+              "team": "Southampton",
+              "pos_group": "MID",
+              "vaep_per90": 0.5976993802933257,
+              "wage_eur": 74000.0
+            },
+            {
+              "player": "Andy Carroll",
+              "team": "West Ham United",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5964950980227686,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "\u0141ukasz Fabia\u0144ski",
+              "team": "Swansea City",
+              "pos_group": "GK",
+              "vaep_per90": 0.5933316073707227,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Michail Antonio",
+              "team": "West Ham United",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5916191915826937,
+              "wage_eur": 71000.0
+            },
+            {
+              "player": "Andros Townsend",
+              "team": "Newcastle United",
+              "pos_group": "MID",
+              "vaep_per90": 0.5594610503453701,
+              "wage_eur": 39000.0
+            },
+            {
+              "player": "Gerard Deulofeu L\u00e1zaro",
+              "team": "Everton",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5420554584746449,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Jordan Pickford",
+              "team": "Sunderland",
+              "pos_group": "GK",
+              "vaep_per90": 0.5228637323997519,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Santiago Cazorla Gonz\u00e1lez",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.5109000051052218,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Hugo Lloris",
+              "team": "Tottenham Hotspur",
+              "pos_group": "GK",
+              "vaep_per90": 0.5076975979640272,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Alex McCarthy",
+              "team": "Crystal Palace",
+              "pos_group": "GK",
+              "vaep_per90": 0.503944099445958,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Manuel Lanzini",
+              "team": "West Ham United",
+              "pos_group": "MID",
+              "vaep_per90": 0.4997041085910492,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Aaron Ramsey",
+              "team": "Arsenal",
+              "pos_group": "MID",
+              "vaep_per90": 0.4910551486961831,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Toby Alderweireld",
+              "team": "Tottenham Hotspur",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4276769957596167,
+              "wage_eur": 37000.0
+            },
+            {
+              "player": "Daley Blind",
+              "team": "Manchester United",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4161607520534438,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Carl Jenkinson",
+              "team": "West Ham United",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3986749315304652,
+              "wage_eur": 700.0
+            },
+            {
+              "player": "Ritchie De Laet",
+              "team": "Leicester City",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3944356516956323,
+              "wage_eur": 19000.0
+            },
+            {
+              "player": "Steve Cook",
+              "team": "AFC Bournemouth",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3812895866597629,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Federico Fern\u00e1ndez",
+              "team": "Swansea City",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3802508763604012,
+              "wage_eur": 12000.0
+            }
+          ],
+          "best_xi": [
+            "Riyad Mahrez",
+            "Kasper Schmeichel",
+            "Jamie Vardy",
+            "Roberto Firmino Barbosa de Oliveira",
+            "Du\u0161an Tadi\u0107",
+            "Sadio Man\u00e9",
+            "Andros Townsend",
+            "Toby Alderweireld",
+            "Daley Blind",
+            "Carl Jenkinson",
+            "Ritchie De Laet"
+          ]
+        }
       }
     },
     "La Liga": {
@@ -871,6 +1407,542 @@
           "constraints_ok": true,
           "regeneration_identical": true,
           "n_players": 23
+        }
+      },
+      "squads": {
+        "300000": {
+          "squad": [
+            {
+              "player": "Karim Benzema",
+              "team": "Real Madrid",
+              "pos_group": "FWD",
+              "vaep_per90": 0.9245022258258679,
+              "wage_eur": 86000.0
+            },
+            {
+              "player": "Jaume Dom\u00e9nech S\u00e1nchez",
+              "team": "Valencia",
+              "pos_group": "GK",
+              "vaep_per90": 0.8891351119477809,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Kevin Gameiro",
+              "team": "Sevilla",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6978974421600567,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Borja Gonz\u00e1lez Tom\u00e1s",
+              "team": "Eibar",
+              "pos_group": "FWD",
+              "vaep_per90": 0.570202846791706,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Denis Cheryshev",
+              "team": "Valencia",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5592908779031002,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Jonathan Viera Ramos",
+              "team": "Las Palmas",
+              "pos_group": "MID",
+              "vaep_per90": 0.5544129565575809,
+              "wage_eur": 33000.0
+            },
+            {
+              "player": "Ivan Rakiti\u0107",
+              "team": "Barcelona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5476239764925587,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Ra\u00fal Lizo\u00e1in Cruz",
+              "team": "Las Palmas",
+              "pos_group": "GK",
+              "vaep_per90": 0.5407790660306132,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Jon Bautista Orgilles",
+              "team": "Real Sociedad",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5301842395507236,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "\u00c1lvaro Negredo S\u00e1nchez",
+              "team": "Valencia",
+              "pos_group": "FWD",
+              "vaep_per90": 0.49195360370744556,
+              "wage_eur": 7000.0
+            },
+            {
+              "player": "Marc Bartra Aregall",
+              "team": "Barcelona",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4878970666137338,
+              "wage_eur": 24000.0
+            },
+            {
+              "player": "Antonio Ad\u00e1n Garrido",
+              "team": "Real Betis",
+              "pos_group": "GK",
+              "vaep_per90": 0.48499636396779044,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Jes\u00fas Fern\u00e1ndez Collado",
+              "team": "Granada",
+              "pos_group": "GK",
+              "vaep_per90": 0.4798065273998576,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Andreu Font\u00e0s Prat",
+              "team": "Celta Vigo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.47269759693558033,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Sabin Merino Zuloaga",
+              "team": "Athletic Club",
+              "pos_group": "FWD",
+              "vaep_per90": 0.46746135422861346,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Diego Gonz\u00e1lez Polanco",
+              "team": "Sevilla",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4285412844591034,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Ander Capa Rodr\u00edguez",
+              "team": "Eibar",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42375366450911206,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Pedro Bigas Rigo",
+              "team": "Las Palmas",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4195057745560449,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Zakaria Bakkali",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.4182988871714701,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Sofiane Feghouli",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.41064007617371306,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Cristiano Piccini",
+              "team": "Real Betis",
+              "pos_group": "DEF",
+              "vaep_per90": 0.37595970709903015,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Mikel Rico Moreno",
+              "team": "Athletic Club",
+              "pos_group": "MID",
+              "vaep_per90": 0.3641376314083769,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Rub\u00e9n Salvador P\u00e9rez Del M\u00e1rmol",
+              "team": "Granada",
+              "pos_group": "MID",
+              "vaep_per90": 0.33083937324163676,
+              "wage_eur": 850.0
+            }
+          ],
+          "best_xi": [
+            "Karim Benzema",
+            "Jaume Dom\u00e9nech S\u00e1nchez",
+            "Kevin Gameiro",
+            "Borja Gonz\u00e1lez Tom\u00e1s",
+            "Jonathan Viera Ramos",
+            "Ivan Rakiti\u0107",
+            "Marc Bartra Aregall",
+            "Andreu Font\u00e0s Prat",
+            "Diego Gonz\u00e1lez Polanco",
+            "Ander Capa Rodr\u00edguez",
+            "Zakaria Bakkali"
+          ]
+        },
+        "500000": {
+          "squad": [
+            {
+              "player": "Karim Benzema",
+              "team": "Real Madrid",
+              "pos_group": "FWD",
+              "vaep_per90": 0.9245022258258679,
+              "wage_eur": 86000.0
+            },
+            {
+              "player": "Jaume Dom\u00e9nech S\u00e1nchez",
+              "team": "Valencia",
+              "pos_group": "GK",
+              "vaep_per90": 0.8891351119477809,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Kevin Gameiro",
+              "team": "Sevilla",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6978974421600567,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Alphonse Areola",
+              "team": "Villarreal",
+              "pos_group": "GK",
+              "vaep_per90": 0.6238346119510344,
+              "wage_eur": 57000.0
+            },
+            {
+              "player": "Iago Aspas Juncal",
+              "team": "Celta Vigo",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5756650395168956,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Borja Gonz\u00e1lez Tom\u00e1s",
+              "team": "Eibar",
+              "pos_group": "FWD",
+              "vaep_per90": 0.570202846791706,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Daniel Parejo Mu\u00f1oz",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.5593953298069054,
+              "wage_eur": 54000.0
+            },
+            {
+              "player": "Denis Cheryshev",
+              "team": "Valencia",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5592908779031002,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Jonathan Viera Ramos",
+              "team": "Las Palmas",
+              "pos_group": "MID",
+              "vaep_per90": 0.5544129565575809,
+              "wage_eur": 33000.0
+            },
+            {
+              "player": "Ivan Rakiti\u0107",
+              "team": "Barcelona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5476239764925587,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Ra\u00fal Lizo\u00e1in Cruz",
+              "team": "Las Palmas",
+              "pos_group": "GK",
+              "vaep_per90": 0.5407790660306132,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "C\u00e9dric Bakambu",
+              "team": "Villarreal",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5372922816784931,
+              "wage_eur": 23000.0
+            },
+            {
+              "player": "Jon Bautista Orgilles",
+              "team": "Real Sociedad",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5301842395507236,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "I\u00f1aki Williams Arthuer",
+              "team": "Athletic Club",
+              "pos_group": "MID",
+              "vaep_per90": 0.5029758394176393,
+              "wage_eur": 40000.0
+            },
+            {
+              "player": "\u00c1lvaro Negredo S\u00e1nchez",
+              "team": "Valencia",
+              "pos_group": "FWD",
+              "vaep_per90": 0.49195360370744556,
+              "wage_eur": 7000.0
+            },
+            {
+              "player": "Marc Bartra Aregall",
+              "team": "Barcelona",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4878970666137338,
+              "wage_eur": 24000.0
+            },
+            {
+              "player": "Andreu Font\u00e0s Prat",
+              "team": "Celta Vigo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.47269759693558033,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Diego Gonz\u00e1lez Polanco",
+              "team": "Sevilla",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4285412844591034,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Ander Capa Rodr\u00edguez",
+              "team": "Eibar",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42375366450911206,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Pedro Bigas Rigo",
+              "team": "Las Palmas",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4195057745560449,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Zakaria Bakkali",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.4182988871714701,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Sofiane Feghouli",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.41064007617371306,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Hugo Miguel Almeida Costa Lopes",
+              "team": "Granada",
+              "pos_group": "DEF",
+              "vaep_per90": 0.38692838003998536,
+              "wage_eur": 4000.0
+            }
+          ],
+          "best_xi": [
+            "Karim Benzema",
+            "Jaume Dom\u00e9nech S\u00e1nchez",
+            "Kevin Gameiro",
+            "Iago Aspas Juncal",
+            "Daniel Parejo Mu\u00f1oz",
+            "Jonathan Viera Ramos",
+            "Ivan Rakiti\u0107",
+            "Marc Bartra Aregall",
+            "Andreu Font\u00e0s Prat",
+            "Diego Gonz\u00e1lez Polanco",
+            "Ander Capa Rodr\u00edguez"
+          ]
+        },
+        "700000": {
+          "squad": [
+            {
+              "player": "Karim Benzema",
+              "team": "Real Madrid",
+              "pos_group": "FWD",
+              "vaep_per90": 0.9245022258258679,
+              "wage_eur": 86000.0
+            },
+            {
+              "player": "Jaume Dom\u00e9nech S\u00e1nchez",
+              "team": "Valencia",
+              "pos_group": "GK",
+              "vaep_per90": 0.8891351119477809,
+              "wage_eur": 17000.0
+            },
+            {
+              "player": "Antoine Griezmann",
+              "team": "Atl\u00e9tico Madrid",
+              "pos_group": "FWD",
+              "vaep_per90": 0.785389924498767,
+              "wage_eur": 135000.0
+            },
+            {
+              "player": "Kevin Gameiro",
+              "team": "Sevilla",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6978974421600567,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "\u00c1ngel Mart\u00edn Correa",
+              "team": "Atl\u00e9tico Madrid",
+              "pos_group": "FWD",
+              "vaep_per90": 0.638571300520749,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Alphonse Areola",
+              "team": "Villarreal",
+              "pos_group": "GK",
+              "vaep_per90": 0.6238346119510344,
+              "wage_eur": 57000.0
+            },
+            {
+              "player": "Iago Aspas Juncal",
+              "team": "Celta Vigo",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5756650395168956,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Borja Gonz\u00e1lez Tom\u00e1s",
+              "team": "Eibar",
+              "pos_group": "FWD",
+              "vaep_per90": 0.570202846791706,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Daniel Parejo Mu\u00f1oz",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.5593953298069054,
+              "wage_eur": 54000.0
+            },
+            {
+              "player": "Denis Cheryshev",
+              "team": "Valencia",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5592908779031002,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Jonathan Viera Ramos",
+              "team": "Las Palmas",
+              "pos_group": "MID",
+              "vaep_per90": 0.5544129565575809,
+              "wage_eur": 33000.0
+            },
+            {
+              "player": "Ivan Rakiti\u0107",
+              "team": "Barcelona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5476239764925587,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Ra\u00fal Lizo\u00e1in Cruz",
+              "team": "Las Palmas",
+              "pos_group": "GK",
+              "vaep_per90": 0.5407790660306132,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Jon Bautista Orgilles",
+              "team": "Real Sociedad",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5301842395507236,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "I\u00f1aki Williams Arthuer",
+              "team": "Athletic Club",
+              "pos_group": "MID",
+              "vaep_per90": 0.5029758394176393,
+              "wage_eur": 40000.0
+            },
+            {
+              "player": "Marc Bartra Aregall",
+              "team": "Barcelona",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4878970666137338,
+              "wage_eur": 24000.0
+            },
+            {
+              "player": "Andreu Font\u00e0s Prat",
+              "team": "Celta Vigo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.47269759693558033,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Denis Su\u00e1rez Fern\u00e1ndez",
+              "team": "Villarreal",
+              "pos_group": "MID",
+              "vaep_per90": 0.45398942009746224,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Diego Gonz\u00e1lez Polanco",
+              "team": "Sevilla",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4285412844591034,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Ander Capa Rodr\u00edguez",
+              "team": "Eibar",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42375366450911206,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Pedro Bigas Rigo",
+              "team": "Las Palmas",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4195057745560449,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Zakaria Bakkali",
+              "team": "Valencia",
+              "pos_group": "MID",
+              "vaep_per90": 0.4182988871714701,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Hugo Miguel Almeida Costa Lopes",
+              "team": "Granada",
+              "pos_group": "DEF",
+              "vaep_per90": 0.38692838003998536,
+              "wage_eur": 4000.0
+            }
+          ],
+          "best_xi": [
+            "Karim Benzema",
+            "Jaume Dom\u00e9nech S\u00e1nchez",
+            "Antoine Griezmann",
+            "Kevin Gameiro",
+            "Daniel Parejo Mu\u00f1oz",
+            "Jonathan Viera Ramos",
+            "Ivan Rakiti\u0107",
+            "Marc Bartra Aregall",
+            "Andreu Font\u00e0s Prat",
+            "Diego Gonz\u00e1lez Polanco",
+            "Ander Capa Rodr\u00edguez"
+          ]
         }
       }
     },
@@ -1305,6 +2377,542 @@
           "regeneration_identical": true,
           "n_players": 23
         }
+      },
+      "squads": {
+        "300000": {
+          "squad": [
+            {
+              "player": "Andrea Seculin",
+              "team": "Chievo",
+              "pos_group": "GK",
+              "vaep_per90": 0.7572916273655418,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nicola Leali",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.7181995036748066,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Boris Radunovi\u0107",
+              "team": "Atalanta",
+              "pos_group": "GK",
+              "vaep_per90": 0.6850193249457828,
+              "wage_eur": 10000.0
+            },
+            {
+              "player": "Luca Lezzerini",
+              "team": "Fiorentina",
+              "pos_group": "GK",
+              "vaep_per90": 0.6800052965669565,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Francesco Bardi",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.6760965955640519,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Gianluca Pegolo",
+              "team": "Sassuolo",
+              "pos_group": "GK",
+              "vaep_per90": 0.6731889099275048,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Eugenio Lamanna",
+              "team": "Genoa",
+              "pos_group": "GK",
+              "vaep_per90": 0.6676922988780232,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Antonio Candreva",
+              "team": "Lazio",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6199300347165012,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Lorenzo Insigne",
+              "team": "Napoli",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6066966427991579,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Stephan El Shaarawy",
+              "team": "AS Roma",
+              "pos_group": "MID",
+              "vaep_per90": 0.5994907325630882,
+              "wage_eur": 66000.0
+            },
+            {
+              "player": "Dries Mertens",
+              "team": "Napoli",
+              "pos_group": "MID",
+              "vaep_per90": 0.5952091446984715,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Simone Verdi",
+              "team": "Carpi",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5934612466279767,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Alessandro Florenzi",
+              "team": "AS Roma",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5455773961847324,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Federico Viviani",
+              "team": "Hellas Verona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5392675463630437,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Domenico Berardi",
+              "team": "Sassuolo",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5372000649205053,
+              "wage_eur": 40000.0
+            },
+            {
+              "player": "Panagiotis Tachtsidis",
+              "team": "Genoa",
+              "pos_group": "MID",
+              "vaep_per90": 0.5035410926830157,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Jonathan de Guzm\u00e1n",
+              "team": "Carpi",
+              "pos_group": "MID",
+              "vaep_per90": 0.4761496718247777,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Luca Cigarini",
+              "team": "Atalanta",
+              "pos_group": "MID",
+              "vaep_per90": 0.45607610404324517,
+              "wage_eur": 900.0
+            },
+            {
+              "player": "Andrea Conti",
+              "team": "Atalanta",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4497030434326339,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Gaetano Letizia",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4389339073466333,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Riccardo Gagliolo",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4246660476745058,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Stefano Sabelli",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.40717529445849876,
+              "wage_eur": 14000.0
+            },
+            {
+              "player": "Edoardo Goldaniga",
+              "team": "Palermo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.38383342664338305,
+              "wage_eur": 3000.0
+            }
+          ],
+          "best_xi": [
+            "Andrea Seculin",
+            "Antonio Candreva",
+            "Lorenzo Insigne",
+            "Stephan El Shaarawy",
+            "Dries Mertens",
+            "Simone Verdi",
+            "Alessandro Florenzi",
+            "Federico Viviani",
+            "Andrea Conti",
+            "Gaetano Letizia",
+            "Riccardo Gagliolo"
+          ]
+        },
+        "500000": {
+          "squad": [
+            {
+              "player": "Andrea Seculin",
+              "team": "Chievo",
+              "pos_group": "GK",
+              "vaep_per90": 0.7572916273655418,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nicola Leali",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.7181995036748066,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Boris Radunovi\u0107",
+              "team": "Atalanta",
+              "pos_group": "GK",
+              "vaep_per90": 0.6850193249457828,
+              "wage_eur": 10000.0
+            },
+            {
+              "player": "Luca Lezzerini",
+              "team": "Fiorentina",
+              "pos_group": "GK",
+              "vaep_per90": 0.6800052965669565,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Francesco Bardi",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.6760965955640519,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Gianluca Pegolo",
+              "team": "Sassuolo",
+              "pos_group": "GK",
+              "vaep_per90": 0.6731889099275048,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Eugenio Lamanna",
+              "team": "Genoa",
+              "pos_group": "GK",
+              "vaep_per90": 0.6676922988780232,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Antonio Candreva",
+              "team": "Lazio",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6199300347165012,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Lorenzo Insigne",
+              "team": "Napoli",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6066966427991579,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Stephan El Shaarawy",
+              "team": "AS Roma",
+              "pos_group": "MID",
+              "vaep_per90": 0.5994907325630882,
+              "wage_eur": 66000.0
+            },
+            {
+              "player": "Dries Mertens",
+              "team": "Napoli",
+              "pos_group": "MID",
+              "vaep_per90": 0.5952091446984715,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Simone Verdi",
+              "team": "Carpi",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5934612466279767,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Alessandro Florenzi",
+              "team": "AS Roma",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5455773961847324,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Federico Viviani",
+              "team": "Hellas Verona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5392675463630437,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Domenico Berardi",
+              "team": "Sassuolo",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5372000649205053,
+              "wage_eur": 40000.0
+            },
+            {
+              "player": "Panagiotis Tachtsidis",
+              "team": "Genoa",
+              "pos_group": "MID",
+              "vaep_per90": 0.5035410926830157,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Marcelo Brozovi\u0107",
+              "team": "Inter Milan",
+              "pos_group": "MID",
+              "vaep_per90": 0.5021180261570501,
+              "wage_eur": 56000.0
+            },
+            {
+              "player": "Jonathan de Guzm\u00e1n",
+              "team": "Carpi",
+              "pos_group": "MID",
+              "vaep_per90": 0.4761496718247777,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Andrea Conti",
+              "team": "Atalanta",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4497030434326339,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Francesco Acerbi",
+              "team": "Sassuolo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4410742149673602,
+              "wage_eur": 67000.0
+            },
+            {
+              "player": "Gaetano Letizia",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4389339073466333,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Alex Sandro Lobo Silva",
+              "team": "Juventus",
+              "pos_group": "DEF",
+              "vaep_per90": 0.43009167769144807,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Riccardo Gagliolo",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4246660476745058,
+              "wage_eur": 2000.0
+            }
+          ],
+          "best_xi": [
+            "Andrea Seculin",
+            "Antonio Candreva",
+            "Lorenzo Insigne",
+            "Stephan El Shaarawy",
+            "Dries Mertens",
+            "Simone Verdi",
+            "Alessandro Florenzi",
+            "Federico Viviani",
+            "Andrea Conti",
+            "Francesco Acerbi",
+            "Gaetano Letizia"
+          ]
+        },
+        "700000": {
+          "squad": [
+            {
+              "player": "Andrea Seculin",
+              "team": "Chievo",
+              "pos_group": "GK",
+              "vaep_per90": 0.7572916273655418,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nicola Leali",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.7181995036748066,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Boris Radunovi\u0107",
+              "team": "Atalanta",
+              "pos_group": "GK",
+              "vaep_per90": 0.6850193249457828,
+              "wage_eur": 10000.0
+            },
+            {
+              "player": "Luca Lezzerini",
+              "team": "Fiorentina",
+              "pos_group": "GK",
+              "vaep_per90": 0.6800052965669565,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Francesco Bardi",
+              "team": "Frosinone",
+              "pos_group": "GK",
+              "vaep_per90": 0.6760965955640519,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Gianluca Pegolo",
+              "team": "Sassuolo",
+              "pos_group": "GK",
+              "vaep_per90": 0.6731889099275048,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Eugenio Lamanna",
+              "team": "Genoa",
+              "pos_group": "GK",
+              "vaep_per90": 0.6676922988780232,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Antonio Candreva",
+              "team": "Lazio",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6199300347165012,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Mohamed Salah",
+              "team": "AS Roma",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6078873890132084,
+              "wage_eur": 260000.0
+            },
+            {
+              "player": "Lorenzo Insigne",
+              "team": "Napoli",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6066966427991579,
+              "wage_eur": 13000.0
+            },
+            {
+              "player": "Stephan El Shaarawy",
+              "team": "AS Roma",
+              "pos_group": "MID",
+              "vaep_per90": 0.5994907325630882,
+              "wage_eur": 66000.0
+            },
+            {
+              "player": "Dries Mertens",
+              "team": "Napoli",
+              "pos_group": "MID",
+              "vaep_per90": 0.5952091446984715,
+              "wage_eur": 35000.0
+            },
+            {
+              "player": "Simone Verdi",
+              "team": "Carpi",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5934612466279767,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Alessandro Florenzi",
+              "team": "AS Roma",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5455773961847324,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Federico Viviani",
+              "team": "Hellas Verona",
+              "pos_group": "MID",
+              "vaep_per90": 0.5392675463630437,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Panagiotis Tachtsidis",
+              "team": "Genoa",
+              "pos_group": "MID",
+              "vaep_per90": 0.5035410926830157,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Marcelo Brozovi\u0107",
+              "team": "Inter Milan",
+              "pos_group": "MID",
+              "vaep_per90": 0.5021180261570501,
+              "wage_eur": 56000.0
+            },
+            {
+              "player": "Luca Cigarini",
+              "team": "Atalanta",
+              "pos_group": "MID",
+              "vaep_per90": 0.45607610404324517,
+              "wage_eur": 900.0
+            },
+            {
+              "player": "Andrea Conti",
+              "team": "Atalanta",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4497030434326339,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Francesco Acerbi",
+              "team": "Sassuolo",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4410742149673602,
+              "wage_eur": 67000.0
+            },
+            {
+              "player": "Gaetano Letizia",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4389339073466333,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Alex Sandro Lobo Silva",
+              "team": "Juventus",
+              "pos_group": "DEF",
+              "vaep_per90": 0.43009167769144807,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Riccardo Gagliolo",
+              "team": "Carpi",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4246660476745058,
+              "wage_eur": 2000.0
+            }
+          ],
+          "best_xi": [
+            "Andrea Seculin",
+            "Antonio Candreva",
+            "Mohamed Salah",
+            "Lorenzo Insigne",
+            "Stephan El Shaarawy",
+            "Dries Mertens",
+            "Alessandro Florenzi",
+            "Federico Viviani",
+            "Andrea Conti",
+            "Francesco Acerbi",
+            "Gaetano Letizia"
+          ]
+        }
       }
     },
     "Bundesliga": {
@@ -1737,6 +3345,542 @@
           "constraints_ok": true,
           "regeneration_identical": true,
           "n_players": 23
+        }
+      },
+      "squads": {
+        "300000": {
+          "squad": [
+            {
+              "player": "Christian Mathenia",
+              "team": "Darmstadt 98",
+              "pos_group": "GK",
+              "vaep_per90": 0.7382884413960877,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Oliver Baumann",
+              "team": "Hoffenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.7309595035684657,
+              "wage_eur": 34000.0
+            },
+            {
+              "player": "Florian Wirtz",
+              "team": "Bayer Leverkusen",
+              "pos_group": "MID",
+              "vaep_per90": 0.6483605276552253,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Ja-Cheol Koo",
+              "team": "Augsburg",
+              "pos_group": "MID",
+              "vaep_per90": 0.5677730710485948,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Kevin M\u00fcller",
+              "team": "FC Heidenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.5555732615642572,
+              "wage_eur": 19000.0
+            },
+            {
+              "player": "Ron-Robert Zieler",
+              "team": "Hannover 96",
+              "pos_group": "GK",
+              "vaep_per90": 0.5452826375315636,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Przemys\u0142aw Tyto\u0144",
+              "team": "VfB Stuttgart",
+              "pos_group": "GK",
+              "vaep_per90": 0.5390693145865564,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Ralf F\u00e4hrmann",
+              "team": "Schalke 04",
+              "pos_group": "GK",
+              "vaep_per90": 0.5338979027798096,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Marwin Hitz",
+              "team": "Augsburg",
+              "pos_group": "GK",
+              "vaep_per90": 0.5198933420906686,
+              "wage_eur": 7000.0
+            },
+            {
+              "player": "Chris F\u00fchrich",
+              "team": "VfB Stuttgart",
+              "pos_group": "MID",
+              "vaep_per90": 0.5140241944992552,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Yunus Mall\u0131",
+              "team": "FSV Mainz 05",
+              "pos_group": "MID",
+              "vaep_per90": 0.4892296060150285,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Anton Stach",
+              "team": "Hoffenheim",
+              "pos_group": "MID",
+              "vaep_per90": 0.4377814996105914,
+              "wage_eur": 30000.0
+            },
+            {
+              "player": "Manuel Gulde",
+              "team": "Freiburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42024529258220494,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Mathew Leckie",
+              "team": "Ingolstadt",
+              "pos_group": "MID",
+              "vaep_per90": 0.4088788352093768,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Timo Baumgartl",
+              "team": "VfB Stuttgart",
+              "pos_group": "DEF",
+              "vaep_per90": 0.34933213410340647,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Rasmus Carstensen",
+              "team": "FC K\u00f6ln",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3479707154194435,
+              "wage_eur": 7000.0
+            },
+            {
+              "player": "Steven Zuber",
+              "team": "Hoffenheim",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3461726284471408,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Sebastian Jung",
+              "team": "Wolfsburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3440841861528581,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Marcelo Ant\u00f4nio Guedes Filho",
+              "team": "Hannover 96",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3425776912925211,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Tim Drexler",
+              "team": "Hoffenheim",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3408360838742607,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Oscar Vilhelmsson",
+              "team": "Darmstadt 98",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3308149704442797,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Josip Drmic",
+              "team": "Borussia M\u00f6nchengladbach",
+              "pos_group": "FWD",
+              "vaep_per90": 0.2677998872855653,
+              "wage_eur": 500.0
+            },
+            {
+              "player": "Alexander Esswein",
+              "team": "Augsburg",
+              "pos_group": "FWD",
+              "vaep_per90": 0.2670671370022537,
+              "wage_eur": 1000.0
+            }
+          ],
+          "best_xi": [
+            "Christian Mathenia",
+            "Florian Wirtz",
+            "Ja-Cheol Koo",
+            "Chris F\u00fchrich",
+            "Manuel Gulde",
+            "Timo Baumgartl",
+            "Rasmus Carstensen",
+            "Steven Zuber",
+            "Sebastian Jung",
+            "Oscar Vilhelmsson",
+            "Josip Drmic"
+          ]
+        },
+        "500000": {
+          "squad": [
+            {
+              "player": "Christian Mathenia",
+              "team": "Darmstadt 98",
+              "pos_group": "GK",
+              "vaep_per90": 0.7382884413960877,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Oliver Baumann",
+              "team": "Hoffenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.7309595035684657,
+              "wage_eur": 34000.0
+            },
+            {
+              "player": "Florian Wirtz",
+              "team": "Bayer Leverkusen",
+              "pos_group": "MID",
+              "vaep_per90": 0.6483605276552253,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Ja-Cheol Koo",
+              "team": "Augsburg",
+              "pos_group": "MID",
+              "vaep_per90": 0.5677730710485948,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Julian Brandt",
+              "team": "Bayer Leverkusen",
+              "pos_group": "MID",
+              "vaep_per90": 0.5581733069865896,
+              "wage_eur": 72000.0
+            },
+            {
+              "player": "Kevin M\u00fcller",
+              "team": "FC Heidenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.5555732615642572,
+              "wage_eur": 19000.0
+            },
+            {
+              "player": "Jeremie Frimpong",
+              "team": "Bayer Leverkusen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5538401517505193,
+              "wage_eur": 63000.0
+            },
+            {
+              "player": "Ron-Robert Zieler",
+              "team": "Hannover 96",
+              "pos_group": "GK",
+              "vaep_per90": 0.5452826375315636,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Przemys\u0142aw Tyto\u0144",
+              "team": "VfB Stuttgart",
+              "pos_group": "GK",
+              "vaep_per90": 0.5390693145865564,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Ralf F\u00e4hrmann",
+              "team": "Schalke 04",
+              "pos_group": "GK",
+              "vaep_per90": 0.5338979027798096,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Marwin Hitz",
+              "team": "Augsburg",
+              "pos_group": "GK",
+              "vaep_per90": 0.5198933420906686,
+              "wage_eur": 7000.0
+            },
+            {
+              "player": "Chris F\u00fchrich",
+              "team": "VfB Stuttgart",
+              "pos_group": "MID",
+              "vaep_per90": 0.5140241944992552,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Yunus Mall\u0131",
+              "team": "FSV Mainz 05",
+              "pos_group": "MID",
+              "vaep_per90": 0.4892296060150285,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Josip Stani\u0161i\u0107",
+              "team": "Bayer Leverkusen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4580175641580898,
+              "wage_eur": 41000.0
+            },
+            {
+              "player": "Maxence Lacroix",
+              "team": "Wolfsburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4236947879423376,
+              "wage_eur": 31000.0
+            },
+            {
+              "player": "Manuel Gulde",
+              "team": "Freiburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42024529258220494,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Mathew Leckie",
+              "team": "Ingolstadt",
+              "pos_group": "MID",
+              "vaep_per90": 0.4088788352093768,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Amine Adli",
+              "team": "Bayer Leverkusen",
+              "pos_group": "FWD",
+              "vaep_per90": 0.40503335847249883,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Steven Zuber",
+              "team": "Hoffenheim",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3461726284471408,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Marcelo Ant\u00f4nio Guedes Filho",
+              "team": "Hannover 96",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3425776912925211,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Tim Drexler",
+              "team": "Hoffenheim",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3408360838742607,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Oscar Vilhelmsson",
+              "team": "Darmstadt 98",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3308149704442797,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Josip Drmic",
+              "team": "Borussia M\u00f6nchengladbach",
+              "pos_group": "FWD",
+              "vaep_per90": 0.2677998872855653,
+              "wage_eur": 500.0
+            }
+          ],
+          "best_xi": [
+            "Christian Mathenia",
+            "Florian Wirtz",
+            "Ja-Cheol Koo",
+            "Julian Brandt",
+            "Jeremie Frimpong",
+            "Josip Stani\u0161i\u0107",
+            "Maxence Lacroix",
+            "Manuel Gulde",
+            "Amine Adli",
+            "Steven Zuber",
+            "Oscar Vilhelmsson"
+          ]
+        },
+        "700000": {
+          "squad": [
+            {
+              "player": "Christian Mathenia",
+              "team": "Darmstadt 98",
+              "pos_group": "GK",
+              "vaep_per90": 0.7382884413960877,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Oliver Baumann",
+              "team": "Hoffenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.7309595035684657,
+              "wage_eur": 34000.0
+            },
+            {
+              "player": "Gregor Kobel",
+              "team": "Borussia Dortmund",
+              "pos_group": "GK",
+              "vaep_per90": 0.6565389718267715,
+              "wage_eur": 64000.0
+            },
+            {
+              "player": "Florian Wirtz",
+              "team": "Bayer Leverkusen",
+              "pos_group": "MID",
+              "vaep_per90": 0.6483605276552253,
+              "wage_eur": 77000.0
+            },
+            {
+              "player": "Ja-Cheol Koo",
+              "team": "Augsburg",
+              "pos_group": "MID",
+              "vaep_per90": 0.5677730710485948,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Julian Brandt",
+              "team": "Bayer Leverkusen",
+              "pos_group": "MID",
+              "vaep_per90": 0.5581733069865896,
+              "wage_eur": 72000.0
+            },
+            {
+              "player": "Kevin M\u00fcller",
+              "team": "FC Heidenheim",
+              "pos_group": "GK",
+              "vaep_per90": 0.5555732615642572,
+              "wage_eur": 19000.0
+            },
+            {
+              "player": "Jeremie Frimpong",
+              "team": "Bayer Leverkusen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5538401517505193,
+              "wage_eur": 63000.0
+            },
+            {
+              "player": "Alejandro Grimaldo Garc\u00eda",
+              "team": "Bayer Leverkusen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5459350114693428,
+              "wage_eur": 88000.0
+            },
+            {
+              "player": "Ron-Robert Zieler",
+              "team": "Hannover 96",
+              "pos_group": "GK",
+              "vaep_per90": 0.5452826375315636,
+              "wage_eur": 18000.0
+            },
+            {
+              "player": "Przemys\u0142aw Tyto\u0144",
+              "team": "VfB Stuttgart",
+              "pos_group": "GK",
+              "vaep_per90": 0.5390693145865564,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Ralf F\u00e4hrmann",
+              "team": "Schalke 04",
+              "pos_group": "GK",
+              "vaep_per90": 0.5338979027798096,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Chris F\u00fchrich",
+              "team": "VfB Stuttgart",
+              "pos_group": "MID",
+              "vaep_per90": 0.5140241944992552,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Yunus Mall\u0131",
+              "team": "FSV Mainz 05",
+              "pos_group": "MID",
+              "vaep_per90": 0.4892296060150285,
+              "wage_eur": 9000.0
+            },
+            {
+              "player": "Josip Stani\u0161i\u0107",
+              "team": "Bayer Leverkusen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4580175641580898,
+              "wage_eur": 41000.0
+            },
+            {
+              "player": "Maxence Lacroix",
+              "team": "Wolfsburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4236947879423376,
+              "wage_eur": 31000.0
+            },
+            {
+              "player": "Manuel Gulde",
+              "team": "Freiburg",
+              "pos_group": "DEF",
+              "vaep_per90": 0.42024529258220494,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Pierre-Emerick Aubameyang",
+              "team": "Borussia Dortmund",
+              "pos_group": "FWD",
+              "vaep_per90": 0.41604298073003165,
+              "wage_eur": 54000.0
+            },
+            {
+              "player": "Mathew Leckie",
+              "team": "Ingolstadt",
+              "pos_group": "MID",
+              "vaep_per90": 0.4088788352093768,
+              "wage_eur": 12000.0
+            },
+            {
+              "player": "Amine Adli",
+              "team": "Bayer Leverkusen",
+              "pos_group": "FWD",
+              "vaep_per90": 0.40503335847249883,
+              "wage_eur": 45000.0
+            },
+            {
+              "player": "Timo Baumgartl",
+              "team": "VfB Stuttgart",
+              "pos_group": "DEF",
+              "vaep_per90": 0.34933213410340647,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Steven Zuber",
+              "team": "Hoffenheim",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3461726284471408,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Oscar Vilhelmsson",
+              "team": "Darmstadt 98",
+              "pos_group": "FWD",
+              "vaep_per90": 0.3308149704442797,
+              "wage_eur": 6000.0
+            }
+          ],
+          "best_xi": [
+            "Christian Mathenia",
+            "Florian Wirtz",
+            "Ja-Cheol Koo",
+            "Julian Brandt",
+            "Jeremie Frimpong",
+            "Alejandro Grimaldo Garc\u00eda",
+            "Josip Stani\u0161i\u0107",
+            "Maxence Lacroix",
+            "Pierre-Emerick Aubameyang",
+            "Amine Adli",
+            "Steven Zuber"
+          ]
         }
       }
     },
@@ -2171,10 +4315,546 @@
           "regeneration_identical": true,
           "n_players": 23
         }
+      },
+      "squads": {
+        "300000": {
+          "squad": [
+            {
+              "player": "Ludovic Butelle",
+              "team": "Angers",
+              "pos_group": "GK",
+              "vaep_per90": 0.6829625244836587,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Mathieu Gorgelin",
+              "team": "Lyon",
+              "pos_group": "GK",
+              "vaep_per90": 0.6552291667113237,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Kamil Grosicki",
+              "team": "Rennes",
+              "pos_group": "MID",
+              "vaep_per90": 0.655033329154166,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Jesper Hansen",
+              "team": "Bastia",
+              "pos_group": "GK",
+              "vaep_per90": 0.6439252496496516,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Rachid Ghezzal",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6410468305396282,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Salvatore Sirigu",
+              "team": "Paris Saint-Germain",
+              "pos_group": "GK",
+              "vaep_per90": 0.6330788487577587,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "Mamadou Samassa",
+              "team": "Guingamp",
+              "pos_group": "GK",
+              "vaep_per90": 0.6175750963609477,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Johny Placide",
+              "team": "Stade de Reims",
+              "pos_group": "GK",
+              "vaep_per90": 0.5914221191507765,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nabil Fekir",
+              "team": "Lyon",
+              "pos_group": "MID",
+              "vaep_per90": 0.5852207993277334,
+              "wage_eur": 36000.0
+            },
+            {
+              "player": "Alexandre Lacazette",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5729906481190282,
+              "wage_eur": 51000.0
+            },
+            {
+              "player": "Denis Petri\u0107",
+              "team": "Troyes",
+              "pos_group": "GK",
+              "vaep_per90": 0.5602367796783814,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Valentin Eysseric",
+              "team": "Saint-\u00c9tienne",
+              "pos_group": "MID",
+              "vaep_per90": 0.5566032804101153,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Wahbi Khazri",
+              "team": "Bordeaux",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5288145743721699,
+              "wage_eur": 21000.0
+            },
+            {
+              "player": "Almamy Tour\u00e9",
+              "team": "AS Monaco",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5270545492214773,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Adam Ounas",
+              "team": "Bordeaux",
+              "pos_group": "MID",
+              "vaep_per90": 0.5263822385805949,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Jimmy Cabot",
+              "team": "Troyes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5131933119508849,
+              "wage_eur": 22000.0
+            },
+            {
+              "player": "Thomas Mangani",
+              "team": "Angers",
+              "pos_group": "MID",
+              "vaep_per90": 0.49663702393651954,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "A\u00efssa Mandi",
+              "team": "Stade de Reims",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4828387397596392,
+              "wage_eur": 27000.0
+            },
+            {
+              "player": "Val\u00e8re Germain",
+              "team": "OGC Nice",
+              "pos_group": "FWD",
+              "vaep_per90": 0.47830707335158257,
+              "wage_eur": 5000.0
+            },
+            {
+              "player": "Cl\u00e9ment Grenier",
+              "team": "Lyon",
+              "pos_group": "MID",
+              "vaep_per90": 0.46465332690514793,
+              "wage_eur": 10000.0
+            },
+            {
+              "player": "Syam Ben Youssef",
+              "team": "Stade Malherbe Caen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.40959777390987884,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Djibril Sidib\u00e9",
+              "team": "Lille",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3902584895732565,
+              "wage_eur": 900.0
+            },
+            {
+              "player": "Charles Traor\u00e9",
+              "team": "Troyes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.38297185764348435,
+              "wage_eur": 2000.0
+            }
+          ],
+          "best_xi": [
+            "Ludovic Butelle",
+            "Kamil Grosicki",
+            "Rachid Ghezzal",
+            "Nabil Fekir",
+            "Alexandre Lacazette",
+            "Valentin Eysseric",
+            "Wahbi Khazri",
+            "Almamy Tour\u00e9",
+            "Jimmy Cabot",
+            "A\u00efssa Mandi",
+            "Syam Ben Youssef"
+          ]
+        },
+        "500000": {
+          "squad": [
+            {
+              "player": "Mike Maignan",
+              "team": "Lille",
+              "pos_group": "GK",
+              "vaep_per90": 0.742066666276415,
+              "wage_eur": 90000.0
+            },
+            {
+              "player": "Ludovic Butelle",
+              "team": "Angers",
+              "pos_group": "GK",
+              "vaep_per90": 0.6829625244836587,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Mathieu Gorgelin",
+              "team": "Lyon",
+              "pos_group": "GK",
+              "vaep_per90": 0.6552291667113237,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Kamil Grosicki",
+              "team": "Rennes",
+              "pos_group": "MID",
+              "vaep_per90": 0.655033329154166,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Jesper Hansen",
+              "team": "Bastia",
+              "pos_group": "GK",
+              "vaep_per90": 0.6439252496496516,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Rachid Ghezzal",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6410468305396282,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Salvatore Sirigu",
+              "team": "Paris Saint-Germain",
+              "pos_group": "GK",
+              "vaep_per90": 0.6330788487577587,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "Wissam Ben Yedder",
+              "team": "Toulouse",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6215922044880162,
+              "wage_eur": 73000.0
+            },
+            {
+              "player": "Mamadou Samassa",
+              "team": "Guingamp",
+              "pos_group": "GK",
+              "vaep_per90": 0.6175750963609477,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Johny Placide",
+              "team": "Stade de Reims",
+              "pos_group": "GK",
+              "vaep_per90": 0.5914221191507765,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nabil Fekir",
+              "team": "Lyon",
+              "pos_group": "MID",
+              "vaep_per90": 0.5852207993277334,
+              "wage_eur": 36000.0
+            },
+            {
+              "player": "Alexandre Lacazette",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5729906481190282,
+              "wage_eur": 51000.0
+            },
+            {
+              "player": "Valentin Eysseric",
+              "team": "Saint-\u00c9tienne",
+              "pos_group": "MID",
+              "vaep_per90": 0.5566032804101153,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Wahbi Khazri",
+              "team": "Bordeaux",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5288145743721699,
+              "wage_eur": 21000.0
+            },
+            {
+              "player": "Almamy Tour\u00e9",
+              "team": "AS Monaco",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5270545492214773,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Adam Ounas",
+              "team": "Bordeaux",
+              "pos_group": "MID",
+              "vaep_per90": 0.5263822385805949,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Jimmy Cabot",
+              "team": "Troyes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5131933119508849,
+              "wage_eur": 22000.0
+            },
+            {
+              "player": "Thomas Mangani",
+              "team": "Angers",
+              "pos_group": "MID",
+              "vaep_per90": 0.49663702393651954,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Alassane Pl\u00e9a",
+              "team": "OGC Nice",
+              "pos_group": "MID",
+              "vaep_per90": 0.48916440633586733,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "A\u00efssa Mandi",
+              "team": "Stade de Reims",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4828387397596392,
+              "wage_eur": 27000.0
+            },
+            {
+              "player": "Youssouf Sabaly",
+              "team": "Nantes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.44640003656257143,
+              "wage_eur": 22000.0
+            },
+            {
+              "player": "Syam Ben Youssef",
+              "team": "Stade Malherbe Caen",
+              "pos_group": "DEF",
+              "vaep_per90": 0.40959777390987884,
+              "wage_eur": 2000.0
+            },
+            {
+              "player": "Djibril Sidib\u00e9",
+              "team": "Lille",
+              "pos_group": "DEF",
+              "vaep_per90": 0.3902584895732565,
+              "wage_eur": 900.0
+            }
+          ],
+          "best_xi": [
+            "Mike Maignan",
+            "Kamil Grosicki",
+            "Rachid Ghezzal",
+            "Wissam Ben Yedder",
+            "Nabil Fekir",
+            "Alexandre Lacazette",
+            "Valentin Eysseric",
+            "Almamy Tour\u00e9",
+            "Jimmy Cabot",
+            "A\u00efssa Mandi",
+            "Youssouf Sabaly"
+          ]
+        },
+        "700000": {
+          "squad": [
+            {
+              "player": "Mike Maignan",
+              "team": "Lille",
+              "pos_group": "GK",
+              "vaep_per90": 0.742066666276415,
+              "wage_eur": 90000.0
+            },
+            {
+              "player": "Ludovic Butelle",
+              "team": "Angers",
+              "pos_group": "GK",
+              "vaep_per90": 0.6829625244836587,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Mathieu Gorgelin",
+              "team": "Lyon",
+              "pos_group": "GK",
+              "vaep_per90": 0.6552291667113237,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Kamil Grosicki",
+              "team": "Rennes",
+              "pos_group": "MID",
+              "vaep_per90": 0.655033329154166,
+              "wage_eur": 6000.0
+            },
+            {
+              "player": "Ousmane Demb\u00e9l\u00e9",
+              "team": "Rennes",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6535361474367003,
+              "wage_eur": 150000.0
+            },
+            {
+              "player": "Jesper Hansen",
+              "team": "Bastia",
+              "pos_group": "GK",
+              "vaep_per90": 0.6439252496496516,
+              "wage_eur": 4000.0
+            },
+            {
+              "player": "Rachid Ghezzal",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6410468305396282,
+              "wage_eur": 29000.0
+            },
+            {
+              "player": "Salvatore Sirigu",
+              "team": "Paris Saint-Germain",
+              "pos_group": "GK",
+              "vaep_per90": 0.6330788487577587,
+              "wage_eur": 11000.0
+            },
+            {
+              "player": "Wissam Ben Yedder",
+              "team": "Toulouse",
+              "pos_group": "FWD",
+              "vaep_per90": 0.6215922044880162,
+              "wage_eur": 73000.0
+            },
+            {
+              "player": "Mamadou Samassa",
+              "team": "Guingamp",
+              "pos_group": "GK",
+              "vaep_per90": 0.6175750963609477,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "Johny Placide",
+              "team": "Stade de Reims",
+              "pos_group": "GK",
+              "vaep_per90": 0.5914221191507765,
+              "wage_eur": 1000.0
+            },
+            {
+              "player": "Nabil Fekir",
+              "team": "Lyon",
+              "pos_group": "MID",
+              "vaep_per90": 0.5852207993277334,
+              "wage_eur": 36000.0
+            },
+            {
+              "player": "Alexandre Lacazette",
+              "team": "Lyon",
+              "pos_group": "FWD",
+              "vaep_per90": 0.5729906481190282,
+              "wage_eur": 51000.0
+            },
+            {
+              "player": "Valentin Eysseric",
+              "team": "Saint-\u00c9tienne",
+              "pos_group": "MID",
+              "vaep_per90": 0.5566032804101153,
+              "wage_eur": 20000.0
+            },
+            {
+              "player": "Almamy Tour\u00e9",
+              "team": "AS Monaco",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5270545492214773,
+              "wage_eur": 8000.0
+            },
+            {
+              "player": "Adam Ounas",
+              "team": "Bordeaux",
+              "pos_group": "MID",
+              "vaep_per90": 0.5263822385805949,
+              "wage_eur": 25000.0
+            },
+            {
+              "player": "Jimmy Cabot",
+              "team": "Troyes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.5131933119508849,
+              "wage_eur": 22000.0
+            },
+            {
+              "player": "Morgan Sanson",
+              "team": "Montpellier",
+              "pos_group": "MID",
+              "vaep_per90": 0.4986234714473088,
+              "wage_eur": 40000.0
+            },
+            {
+              "player": "Thomas Mangani",
+              "team": "Angers",
+              "pos_group": "MID",
+              "vaep_per90": 0.49663702393651954,
+              "wage_eur": 3000.0
+            },
+            {
+              "player": "A\u00efssa Mandi",
+              "team": "Stade de Reims",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4828387397596392,
+              "wage_eur": 27000.0
+            },
+            {
+              "player": "Youssouf Sabaly",
+              "team": "Nantes",
+              "pos_group": "DEF",
+              "vaep_per90": 0.44640003656257143,
+              "wage_eur": 22000.0
+            },
+            {
+              "player": "Layvin Kurzawa",
+              "team": "Paris Saint-Germain",
+              "pos_group": "DEF",
+              "vaep_per90": 0.43555978373263643,
+              "wage_eur": 41000.0
+            },
+            {
+              "player": "Bouna Sarr",
+              "team": "Olympique de Marseille",
+              "pos_group": "DEF",
+              "vaep_per90": 0.4163587352439642,
+              "wage_eur": 28000.0
+            }
+          ],
+          "best_xi": [
+            "Mike Maignan",
+            "Kamil Grosicki",
+            "Ousmane Demb\u00e9l\u00e9",
+            "Rachid Ghezzal",
+            "Wissam Ben Yedder",
+            "Nabil Fekir",
+            "Valentin Eysseric",
+            "Almamy Tour\u00e9",
+            "Jimmy Cabot",
+            "A\u00efssa Mandi",
+            "Youssouf Sabaly"
+          ]
+        }
       }
     }
   },
   "model_hash": "b86caaed47f745d4",
   "train_pool_matches": 1116,
-  "elapsed_s": 2033.3691177368164
+  "elapsed_s": 282.33063435554504
 }
