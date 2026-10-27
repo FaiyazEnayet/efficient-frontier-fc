@@ -18,9 +18,34 @@ def test_dashboard_exists_and_self_contained():
     # self-contained: the plotly.js bundle is inlined; no external scripts
     assert 'script src="http' not in html
     assert "script src='http" not in html
-    # real content from the pipeline's demo tables
-    for token in ("Wirtz", "EUR 0.70M", "optimizer", "Best XI"):
-        assert token in html
+    # Current release content must be the frozen five-league FV4 payload.
+    marker = "const EVIDENCE="
+    assert marker in html
+    evidence, _ = json.JSONDecoder().raw_decode(html.split(marker, 1)[1])
+    assert evidence.get("release") == "v2.0.0"
+    assert "five_leagues" in evidence
+    results = evidence["five_leagues"]
+    assert results["feature_version"] == 4
+    assert list(results["leagues"]) == [
+        "English Premier League", "La Liga", "Serie A", "Bundesliga", "Ligue 1"
+    ]
+    budgets = [300000.0, 500000.0, 700000.0]
+    assert results["budgets_eur"] == budgets
+    for league in results["leagues"].values():
+        assert [point["budget"] for point in league["frontier"]] == budgets
+        assert [point["budget"] for point in league["backtest"]] == budgets
+    bundesliga = results["leagues"]["Bundesliga"]
+    assert bundesliga["audit"]["matches"] == 68
+    exception = bundesliga["backtest"][0]
+    assert round(exception["optimizer"], 2) == 40.83
+    assert round(exception["value"], 2) == 41.53
+    losses = [
+        (name, point["budget"])
+        for name, league in results["leagues"].items()
+        for point in league["backtest"]
+        if point["optimizer"] < point["value"]
+    ]
+    assert losses == [("Bundesliga", 300000.0)]
 
 
 def test_dashboard_has_all_sections():

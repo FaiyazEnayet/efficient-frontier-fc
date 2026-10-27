@@ -18,91 +18,165 @@
 Efficient Frontier FC treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
 
 
-<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-20261017b" alt="Efficient Frontier FC demo"></a></p>
+<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-v2-fv4-20261027" alt="Efficient Frontier FC demo"></a></p>
 
+**v2.0.0 is the five-league release**, built on the corrected FEATURE_VERSION 4 results. It extends the same constrained squad-selection question across the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000.
 
-The frontier is a decision surface rather than a player ranking. Moving the wage budget changes the feasible squad, which in turn changes the best XI and positional tradeoffs. Inspect the selected players and actual wage bill together with the objective, especially because wage proxies and historical rating estimates introduce uncertainty into any recruitment interpretation.
+The optimizer beats the value baseline in **14 of 15 league-budget cells**. The exception is **Bundesliga at €300,000: 40.83 optimizer versus 41.53 value**. The goal model has lower exact mean Brier and logloss on all 20 held-out test lines, but **model and baseline confidence intervals overlap on all 20 lines**. Those are mean improvements, not evidence of statistically separated intervals.
 
 ## Explore
 
-- Move between feasible budget points and inspect the actual selected squad and starting XI.
-- Read full player names, positional breakdowns and ratings without clipped labels.
-- Compare the optimizer with the value benchmark before interpreting the frontier.
+The interactive dashboard opens with a five-league comparison, then gives each league its own evidence sheet:
 
-## Method
+- **Scoreboard:** model versus train-slice base rate, with Brier and logloss means and the recorded 95% confidence intervals for all four prediction labels. Validation results are separate and explicitly report-only.
+- **Frontier:** the three recorded feasible budget points, expected squad VAEP/90, actual wage bills, squad size and the run's constraint and regeneration checks.
+- **Backtest:** optimizer, value, random mean and hindsight oracle under the same weekly caps, plus recorded scoring-half player unavailability.
+- **Coverage:** match counts, event and lineup file availability, chronological split counts, player matching and split fingerprints.
 
-Event-derived player ratings are shrunk and joined to wage proxies. The optimizer applies budget, squad-size and positional constraints. A chronological backtest compares its selections with value, random and hindsight-oracle baselines.
-
-## Evidence at a glance
-
-| Scope | Recorded result or contract |
-| :--- | :--- |
-| EUR 0.30M weekly cap, second-half total squad VAEP (unified objective) | Optimizer 37.35; value baseline 35.38; random 7.00 |
-| EUR 0.50M weekly cap, same backtest | Optimizer 49.83; value baseline 55.60; random 7.50 |
-| EUR 0.70M weekly cap, same backtest | Optimizer 75.92; value baseline 72.09; random 11.44 |
-| Interpretation | With the improved goal models (v1.5.0), the optimizer beats the value baseline at the 0.30M and 0.70M caps and trails at 0.50M. Totals are lower than in v1.4.0 at every cap because the pooled, calibrated models produce less extreme VAEP values; the comparison that matters is optimizer vs baseline within the same run. All rules beat random comfortably; the hindsight oracle bounds them from above. |
+The budget controls select recorded solutions. They do not infer an intermediate squad, and this release results file does not contain player identities from which to build a new squad register or Best XI.
 
 ## Five-league expansion
 
-The repo now covers the big five European leagues, not only the Bundesliga: English Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Each league gets its own chronological split (60% train, 20% validation, 20% test), its own VAEP ratings, frozen scoreboard, frontier, and backtest at the same three budgets, computed with the corrected SPADL features (FEATURE_VERSION 4) and published as-is. Full numbers are in `runs/five_leagues/results.json`, with a per-league report in `runs/five_leagues/report.md`.
+The release uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train / validation / test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
 
-| League | Test matches | Scores, model vs base | Concedes, model vs base | Players rated (wage matched) |
-| :--- | ---: | :--- | :--- | :--- |
-| English Premier League | 76 | 0.0104 vs 0.0115 | 0.00239 vs 0.00242 | 179 (37.7%) |
-| La Liga | 76 | 0.0094 vs 0.0104 | 0.00225 vs 0.00228 | 146 (29.4%) |
-| Serie A | 76 | 0.0093 vs 0.0104 | 0.00221 vs 0.00226 | 143 (26.8%) |
-| Bundesliga | 15 | 0.0101 vs 0.0112 | 0.00233 vs 0.00238 | 268 (63.2%) |
-| Ligue 1 | 76 | 0.0090 vs 0.0101 | 0.00227 vs 0.00230 | 145 (28.5%) |
+### Coverage before performance
 
-The goal model beats the base rate on all 20 test lines (5 leagues by scores/concedes, including/excluding) on exact means; concedes margins are narrow and confidence intervals overlap the base rate on some lines. Validation slices (report-only, never tuned on) agree in every league. Backtest: the optimizer beats the value baseline at 14 of 15 league-budget cells, compared within each league only, since totals scale with second-half match counts; the one exception is Bundesliga at 0.30M, where it trails value (40.83 vs 41.53). Two caveats, stated plainly: Bundesliga open data covers only 34 matches per season (68 total), so its test set is 15 matches with wide intervals; and the four 2015/16 leagues' ratings cover only EA FC 24-matched players (27-38%), because 2024 rosters miss most 2015/16 squads, so their frontiers and backtests run on that subset. These numbers are not comparable to the v1.5.0 FC6 figures: different populations and splits, and corrected features. No version bump and no v2.0.0 tag come from this recompute; U01/U02 validation has landed and the tag stays held pending owner signoff on these recomputed numbers.
+**Bundesliga has only 68 open-data matches, against roughly 380 for each other league.** Its held-out test contains 15 matches. Complete event and lineup files therefore do not make its evidence pool equivalent to the others.
 
-## Updating this project
+| League | Matches | Event files present | Lineup files present | Train / validation / test | Rated players | Wage match rate |
+| :--- | ---: | ---: | ---: | :--- | ---: | ---: |
+| English Premier League | 380 | 380/380 | 380/380 | 228 / 76 / 76 | 179 | 37.7% |
+| La Liga | 380 | 380/380 | 380/380 | 228 / 76 / 76 | 146 | 29.4% |
+| Serie A | 380 | 380/380 | 380/380 | 228 / 76 / 76 | 143 | 26.8% |
+| Bundesliga | 68 | 68/68 | 68/68 | 40 / 13 / 15 | 268 | 63.2% |
+| Ligue 1 | 377 | 377/377 | 377/377 | 226 / 75 / 76 | 145 | 28.5% |
 
-Dashboard source language: **Python**. Generator: `scripts/make_dashboard.py`. The local interactive output is `docs/dashboard.html`.
+Event and lineup counts above refer to match files, not individual actions. Rated-player counts cover the wage-matched subset. EA FC 24 rosters miss much of the historical player population, so a complete event pool still produces an incomplete economic player pool.
+
+### Test scoreboard
+
+The base rate is estimated from each league's own training slice. Both Brier and logloss are lower-is-better probability errors. The main table shows the including variants; the full four-label table follows.
+
+| League | Test matches | Scores Brier: model / base | Concedes Brier: model / base | Scores logloss: model / base | Concedes logloss: model / base |
+| :--- | ---: | :--- | :--- | :--- | :--- |
+| English Premier League | 76 | 0.01045 / 0.01150 | 0.00239 / 0.00242 | 0.05263 / 0.06347 | 0.01473 / 0.01705 |
+| La Liga | 76 | 0.00937 / 0.01043 | 0.00225 / 0.00228 | 0.04801 / 0.05849 | 0.01436 / 0.01617 |
+| Serie A | 76 | 0.00932 / 0.01038 | 0.00221 / 0.00226 | 0.04713 / 0.05824 | 0.01355 / 0.01604 |
+| Bundesliga | 15 | 0.01011 / 0.01123 | 0.00233 / 0.00238 | 0.05039 / 0.06216 | 0.01386 / 0.01679 |
+| Ligue 1 | 76 | 0.00896 / 0.01006 | 0.00227 / 0.00230 | 0.04589 / 0.05680 | 0.01452 / 0.01630 |
+
+All 20 test lines favor the model on exact Brier means and exact logloss means. **Confidence intervals overlap the base rate on all 20 lines**, including the narrow conceding margins. The dashboard retains the full stored interval endpoints instead of turning rounded mean differences into significance claims.
+
+<details>
+<summary>Full four-label scoreboard: means and 95% confidence intervals</summary>
+
+| League / label | Model Brier [95% CI] | Base Brier [95% CI] | Model logloss [95% CI] | Base logloss [95% CI] |
+| :--- | :--- | :--- | :--- | :--- |
+| English Premier League / Scores including | 0.01045 [0.00926, 0.01165] | 0.01150 [0.01013, 0.01288] | 0.05263 [0.04779, 0.05780] | 0.06347 [0.05743, 0.06970] |
+| English Premier League / Scores excluding | 0.01085 [0.00962, 0.01211] | 0.01110 [0.00982, 0.01242] | 0.05567 [0.05028, 0.06131] | 0.06167 [0.05546, 0.06785] |
+| English Premier League / Concedes including | 0.00239 [0.00200, 0.00278] | 0.00242 [0.00204, 0.00282] | 0.01473 [0.01242, 0.01698] | 0.01705 [0.01444, 0.01955] |
+| English Premier League / Concedes excluding | 0.00279 [0.00236, 0.00324] | 0.00282 [0.00239, 0.00328] | 0.01719 [0.01479, 0.01980] | 0.01945 [0.01682, 0.02223] |
+| La Liga / Scores including | 0.00937 [0.00817, 0.01064] | 0.01043 [0.00902, 0.01194] | 0.04801 [0.04261, 0.05360] | 0.05849 [0.05195, 0.06506] |
+| La Liga / Scores excluding | 0.00974 [0.00844, 0.01105] | 0.01002 [0.00865, 0.01140] | 0.05061 [0.04453, 0.05686] | 0.05659 [0.04977, 0.06343] |
+| La Liga / Concedes including | 0.00225 [0.00182, 0.00271] | 0.00228 [0.00184, 0.00274] | 0.01436 [0.01180, 0.01690] | 0.01617 [0.01346, 0.01879] |
+| La Liga / Concedes excluding | 0.00266 [0.00216, 0.00320] | 0.00269 [0.00218, 0.00323] | 0.01689 [0.01421, 0.01982] | 0.01867 [0.01581, 0.02178] |
+| Serie A / Scores including | 0.00932 [0.00807, 0.01061] | 0.01038 [0.00896, 0.01184] | 0.04713 [0.04192, 0.05266] | 0.05824 [0.05165, 0.06514] |
+| Serie A / Scores excluding | 0.00976 [0.00848, 0.01112] | 0.01006 [0.00873, 0.01147] | 0.05042 [0.04481, 0.05635] | 0.05675 [0.05041, 0.06354] |
+| Serie A / Concedes including | 0.00221 [0.00179, 0.00267] | 0.00226 [0.00182, 0.00272] | 0.01355 [0.01121, 0.01611] | 0.01604 [0.01332, 0.01913] |
+| Serie A / Concedes excluding | 0.00254 [0.00203, 0.00308] | 0.00258 [0.00206, 0.00313] | 0.01562 [0.01294, 0.01851] | 0.01801 [0.01491, 0.02132] |
+| Bundesliga / Scores including | 0.01011 [0.00745, 0.01310] | 0.01123 [0.00833, 0.01455] | 0.05039 [0.03951, 0.06268] | 0.06216 [0.04949, 0.07655] |
+| Bundesliga / Scores excluding | 0.01063 [0.00776, 0.01377] | 0.01090 [0.00798, 0.01412] | 0.05388 [0.04195, 0.06632] | 0.06067 [0.04799, 0.07415] |
+| Bundesliga / Concedes including | 0.00233 [0.00167, 0.00302] | 0.00238 [0.00171, 0.00307] | 0.01386 [0.01004, 0.01817] | 0.01679 [0.01287, 0.02098] |
+| Bundesliga / Concedes excluding | 0.00267 [0.00191, 0.00346] | 0.00271 [0.00195, 0.00350] | 0.01608 [0.01176, 0.02104] | 0.01879 [0.01459, 0.02359] |
+| Ligue 1 / Scores including | 0.00896 [0.00769, 0.01021] | 0.01006 [0.00860, 0.01151] | 0.04589 [0.04039, 0.05152] | 0.05680 [0.04984, 0.06373] |
+| Ligue 1 / Scores excluding | 0.00933 [0.00802, 0.01066] | 0.00966 [0.00828, 0.01104] | 0.04859 [0.04277, 0.05494] | 0.05492 [0.04816, 0.06218] |
+| Ligue 1 / Concedes including | 0.00227 [0.00185, 0.00273] | 0.00230 [0.00187, 0.00276] | 0.01452 [0.01214, 0.01707] | 0.01630 [0.01364, 0.01915] |
+| Ligue 1 / Concedes excluding | 0.00268 [0.00221, 0.00318] | 0.00270 [0.00223, 0.00321] | 0.01710 [0.01422, 0.01999] | 0.01876 [0.01560, 0.02183] |
+
+</details>
+
+Validation slices are report-only and were not used to tune this evaluation. They agree with the test direction in each league, as documented in the report; they are not additional test data.
+
+### Efficient frontier
+
+Expected squad VAEP/90 at each weekly cap:
+
+| League | €300,000 | €500,000 | €700,000 |
+| :--- | ---: | ---: | ---: |
+| English Premier League | 11.10597 | 11.87750 | 12.26491 |
+| La Liga | 11.87052 | 12.55341 | 12.99147 |
+| Serie A | 13.03440 | 13.16060 | 13.21122 |
+| Bundesliga | 10.58591 | 11.23844 | 11.73518 |
+| Ligue 1 | 12.59603 | 13.00909 | 13.19533 |
+
+Every recorded solution contains 23 players. The run reports passing constraints and identical regeneration at each league-budget point. A small increase in expected value as the cap rises is part of the result; it should not be disguised as a large recruitment gain.
+
+### Backtest: 14 of 15 cells
+
+First-half selection is evaluated on second-half total squad VAEP. **Compare the optimizer with baselines within each league only.** Raw totals scale with scoring-half match counts and are not a ranking of league quality. The random figure is a recorded mean; the oracle uses second-half hindsight and is not an attainable forecasting policy.
+
+| League | Weekly cap | Optimizer | Value | Random mean | Oracle |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| English Premier League | €300,000 | 128.29 | 96.79 | 75.48 | 179.71 |
+| English Premier League | €500,000 | 147.88 | 96.79 | 85.79 | 208.82 |
+| English Premier League | €700,000 | 173.70 | 96.79 | 89.76 | 224.48 |
+| La Liga | €300,000 | 128.55 | 98.15 | 85.86 | 183.11 |
+| La Liga | €500,000 | 148.61 | 98.15 | 95.10 | 200.88 |
+| La Liga | €700,000 | 159.68 | 98.15 | 102.04 | 210.75 |
+| Serie A | €300,000 | 149.39 | 124.38 | 97.70 | 195.36 |
+| Serie A | €500,000 | 157.73 | 124.38 | 98.20 | 209.43 |
+| Serie A | €700,000 | 162.20 | 124.38 | 101.78 | 216.79 |
+| Bundesliga | €300,000 | 40.83 | 41.53 | 8.23 | 55.29 |
+| Bundesliga | €500,000 | 62.14 | 58.68 | 8.60 | 81.81 |
+| Bundesliga | €700,000 | 82.23 | 79.43 | 12.57 | 103.55 |
+| Ligue 1 | €300,000 | 122.56 | 82.98 | 86.08 | 187.32 |
+| Ligue 1 | €500,000 | 150.41 | 82.98 | 90.78 | 207.07 |
+| Ligue 1 | €700,000 | 150.41 | 82.98 | 93.79 | 216.69 |
+
+Bundesliga at €300,000 is the sole optimizer-versus-value loss: **40.83 versus 41.53**. The other 14 cells favor the optimizer. The value baseline saturates below the lowest cap in the four full-season leagues, while Ligue 1's optimizer has the same realized total at the two higher caps. Neither pattern is corrected or smoothed away in the dashboard.
+
+![Five-league FV4 backtest, coverage and held-out uncertainty](docs/results.png)
+
+## Method
+
+Event-based scoring and conceding probabilities feed VAEP-style player ratings. Rating shrinkage and an EA FC wage-proxy join define the modeled player pool. The squad optimizer enforces the budget, squad-size and positional constraints, while the backtest evaluates selections using the later part of the season.
+
+FEATURE_VERSION 4 includes the own-goal correction described in the report. The five-league recompute used fresh feature and model caches; the resulting model fingerprint is recorded with the published results. The earlier Bundesliga-only evaluation and previous-feature five-league runs use different populations, splits or features and should not be mixed into this release's comparisons.
 
 ## Run locally
-
 
 ```sh
 python -m pip install -e ".[dev]"
 python -m pip install -r portfolio_ui/requirements.txt
-python -m pytest tests -q
 python scripts/make_dashboard.py
+python scripts/make_portfolio_gif.py
 ```
 
-## Technical design
+The dashboard command reads the five-league release through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts and result data for local viewing.
 
-Player value comes from event-derived VAEP-style ratings with shrinkage, rather than manually invented scouting scores. A wage-proxy join supplies the economic constraint. The selection engine enforces the actual squad and positional rules at every budget point, and the dashboard displays those precomputed feasible selections.
+To reproduce the research rather than only its presentation:
 
-```mermaid
-flowchart LR
-  N0["Event data"] --> N1["Player value estimates"]
-  N1["Player value estimates"] --> N2["Constrained squad selection"]
-  N3["Wage proxies"] --> N2["Constrained squad selection"]
-  N2["Constrained squad selection"] --> N4["Frontier and selected XI"]
-  N2["Constrained squad selection"] --> N5["Chronological backtest"]
+```sh
+python scripts/run_five_leagues.py
+python -m pytest tests -q
 ```
 
-## Evaluation protocol
-
-The backtest selects using the earlier part of the season and compares realized later value under common wage caps. The hindsight oracle is a reference bound, not an attainable forecasting policy. A flat frontier means the additional wage budget no longer binds for the modeled objective.
-
-Goal-model accuracy is measured on held-out matches, never on the training data, and the evaluation protocol is unchanged since v1.4.0: the same 130 training matches, the same 32 held-out matches, the same base-rate baseline, the same season-transfer setup. What changed in v1.5.0 is the model. The training pool grew from 130 matches to 1,813 by pooling other StatsBomb competitions (the full 2015/16 La Liga, Premier League, Serie A and Ligue 1 seasons, UEFA Euro 2020, the 2021/22 Indian Super League, plus the existing World Cup and Bundesliga pool), and the raw gradient-boosting probabilities are Platt-calibrated and lightly shrunk toward the training base rate, with both fitted by chronological cross-fitting on the training matches only. Held-out Brier is now 0.0096 (95% CI 0.0080-0.0113) for scoring and 0.0028 (0.0021-0.0036) for conceding, against the same 0.0113 / 0.0033 base-rate baseline (v1.4.0: 0.0099 / 0.0030). The in-sample Brier (0.0087 / 0.0020) is reported separately and labeled as such. The season-transfer test (train 2015/16 and score 2023/24, with pooled training restricted to the contemporaneous 2015/16 leagues) now beats the baseline on both labels: 0.0097 vs 0.0107 for scoring and 0.00219 vs 0.00222 for conceding, where v1.4.0 lost both (0.0110 vs 0.0107; 0.0023 vs 0.0022). The conceding margin is narrow and the confidence intervals overlap; only 13% of players (24% of minutes) overlap between the seasons. A Dixon-Coles team-strength model was built for this push and is in the codebase (`src/effc/vaep/team_strength.py`), but its features did not beat plain pooling on internal validation, so the shipped models do not use them; per-configuration validation scores are in `runs/beat_baseline/results.json`.
-
-![Backtest against feasible baselines](docs/results.png)
-
-The optimizer beats the value-per-euro benchmark at two of the three reported budgets and trails at the middle one, so the evidence that added optimization complexity improves squad building is mixed rather than decisive. Proxy wages and rating uncertainty remain central limitations.
+The research command uses the source data and caches described in the report and may download missing public lineup files. It is separate from rebuilding the presentation and was not rerun to create these visuals.
 
 ## Code and data
 
-`src/effc/` contains data joins, ratings, selection and backtesting. `demo/` holds the compact tables used by the dashboard. Rebuilding the full research pipeline additionally requires the source download described in the configuration.
-
+`src/effc/` contains the research pipeline, ratings, selection and backtesting. `runs/five_leagues/results.json` is the numeric source for this release; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
 
 ## Limitations
 
-- Wages are EA FC proxies, not verified current player contracts.
-- Name-based entity matching needs ambiguity checks and stable player identifiers.
-- The pitch arranges the selected XI; it does not simulate tactics or team chemistry.
+- **Unequal samples:** Bundesliga has 68 matches in its open-data pool and 15 held-out test matches. The other league pools are 380, 380, 380 and 377 matches. Smaller samples and wide intervals limit the strength of conclusions.
+- **Overlapping uncertainty:** all 20 test-line confidence intervals overlap the base rate. Lower exact means do not establish separated model performance.
+- **Proxy economics:** EA FC 24 wages are not verified historical or current contracts. Wage matching restricts the modeled player population, particularly in the older-season leagues.
+- **Within-league comparisons:** realized backtest totals depend on the scoring-half pool. Do not compare raw league totals as if their exposure were equal.
+- **Recorded points only:** there are three evaluated caps. A connecting line is not evidence of an optimal squad at every intermediate budget.
+- **Incomplete roster detail:** this frozen release does not include selected player identities. The dashboard does not invent a squad, Best XI or tactical fit.
+- **Hindsight reference:** the oracle has information unavailable at selection time. Random means and backtest point totals are not confidence intervals.
+- **Release comparability:** corrected-feature five-league results are not interchangeable with the previous single-league or previous-feature figures.
 
 ## License
 
