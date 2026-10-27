@@ -75,6 +75,32 @@ def add_vaep(df: pd.DataFrame, models: dict) -> pd.DataFrame:
         if len(cands):
             df.loc[cands[0], "vaep_def"] -= 1.0
             df.loc[cands[0], "vaep"] -= 1.0
+    # Same debit after own goals. Own goals are not action rows, so they
+    # have no is_goal row and the loop above never sees them; the
+    # artifact it corrects applies to them exactly as to regular goals
+    # (the keeper's pre-goal concedes probability now includes the own
+    # goal through the labels). Own goals come from df.attrs, set by
+    # featurize_match; frames built any other way simply have none.
+    # Deliberate asymmetry, documented: no +1 realization is assigned
+    # for an own goal, because no action row scored it; the benefiting
+    # team's players earn nothing for it, and the conceding side bears
+    # the debit. Assigning the +1 to an arbitrary preceding action
+    # would fabricate credit.
+    for own_idx, benefit, own_period in df.attrs.get("own_goals", []):
+        if not len(df) or "match_id" not in df.columns:
+            break
+        mid = df["match_id"].iloc[0]
+        mask = (
+            (df["match_id"] == mid)
+            & (df["period"] == own_period)
+            & (df["match_index"] > own_idx)
+            & (df["match_index"] <= own_idx + 3)
+            & (df["team"] != benefit)
+        )
+        cands = df.index[mask]
+        if len(cands):
+            df.loc[cands[0], "vaep_def"] -= 1.0
+            df.loc[cands[0], "vaep"] -= 1.0
     return df
 
 
