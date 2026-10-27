@@ -9,6 +9,7 @@ rescales coordinates on its own.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 
@@ -50,6 +51,30 @@ def list_matches(pool: list[tuple[int, int]] | None = None) -> pd.DataFrame:
 def load_events(match_id: int) -> list[dict]:
     path = os.path.join(DATA_DIR, "events", f"{match_id}.json")
     return _load_json(path)
+
+
+def event_content_digest(match_ids, data_dir: str | None = None) -> str | None:
+    """SHA-256 binding the event-file bytes for the given match IDs.
+
+    Hashes each existing data/events/<id>.json file (sorted IDs) and
+    combines the per-file digests. Returns None when no file exists, so
+    callers fall back to the previous key behavior. Order-independent:
+    the same ID set always yields the same digest. Used by the VAEP
+    cache keys so the same IDs with changed raw content miss the cache
+    instead of reusing stale values.
+    """
+    base = data_dir or DATA_DIR
+    h = hashlib.sha256()
+    found = False
+    for mid in sorted({int(m) for m in match_ids}):
+        path = os.path.join(base, "events", f"{mid}.json")
+        if not os.path.exists(path):
+            continue
+        with open(path, "rb") as f:
+            h.update(str(mid).encode())
+            h.update(hashlib.sha256(f.read()).hexdigest().encode())
+        found = True
+    return h.hexdigest()[:16] if found else None
 
 
 def minutes_played(match_id: int) -> pd.DataFrame:
