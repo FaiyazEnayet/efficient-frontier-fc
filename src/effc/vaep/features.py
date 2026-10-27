@@ -19,7 +19,10 @@ import pandas as pd
 # v3: StatsBomb raw coordinates (120x80) are converted to the SPADL
 # frame (105x68) before any feature is computed; v2 frames used the raw
 # values directly, so v2 caches must never be reused.
-FEATURE_VERSION = 3
+# v4: own goals (the "Own Goal For" / "Own Goal Against" pair) count in
+# the scores/concedes labels and in score_diff, and the goal-conceded
+# debit in values.py extends to them; v3 caches must never be reused.
+FEATURE_VERSION = 4
 
 # event types we value as actions
 ACTION_TYPES = [
@@ -42,16 +45,27 @@ K = 10  # lookahead window in actions
 PITCH_X, PITCH_Y = 105.0, 68.0
 GOAL_X, GOAL_Y = 105.0, 34.0
 
-# Coordinate contract for this module. Input events are raw StatsBomb
-# events: a 120x80 frame in which StatsBomb normalises every event so
-# the team in possession always attacks toward x = 120. Output features
-# (start_x, start_y, end_x, end_y, dx, dy, distances, angles) are in the
-# 105x68 SPADL frame, in metres, with the goal at (105, 34). Because the
-# input direction is already normalised, no flip by team or period is
-# applied: the same goal serves every event. Conversion is scale-only
-# (the socceraction StatsBomb-to-SPADL scaling); distance to the goal
-# centre and the shot angle are unaffected by the y-axis orientation
-# choice, since both use the centre line as reference.
+# Coordinate contract for this module (verified against real StatsBomb
+# open data). Each event's coordinates are recorded in the ACTING
+# TEAM's attacking frame: the acting team attacks toward x = 120 raw
+# (x = 105 SPADL). Evidence: shots by both teams in both periods start
+# in the attacking third; an opponent action after a pass sits at the
+# mirror (120-x, 80-y) of the pass end (distance to the mirror about
+# 0.1 m, versus 26-54 m to the shared-frame point); same-team pass
+# chains are continuous (distance about 0.0 m); goalkeepers sit near
+# their own goal (raw x about 2.5) in their own acting frame. Output
+# features (start_x, start_y, end_x, end_y, dx, dy, distances, angles)
+# are in the 105x68 SPADL frame, in metres, with the attacked goal at
+# (105, 34) for every event. Conversion is scale-only (the socceraction
+# StatsBomb-to-SPADL scaling) because each event is already in its
+# acting team's attacking frame, so no flip by team or period is
+# applied. Consequence: start_y/end_y are relative to attacking
+# direction, not absolute pitch side. No feature depends on cross-action
+# spatial continuity: all spatial features are within a single event
+# (start to end) or relative to the attacked goal, so the per-event
+# frame is exactly what those features need. The earlier comment
+# describing a shared possession-normalized frame was imprecise and
+# has been corrected to this verified convention.
 STATSBOMB_PITCH_X, STATSBOMB_PITCH_Y = 120.0, 80.0
 
 
@@ -106,18 +120,37 @@ def featurize_match(events: list[dict], match_id: int | None = None) -> pd.DataF
     features in the returned frame are converted to the 105x68 SPADL
     frame by `_loc`/`_end_loc` before use; see the coordinate contract
     above the constants in this module.
+
+    Own goals (the StatsBomb "Own Goal For" / "Own Goal Against" pair)
+    count in the scores/concedes labels and in score_diff, but add no
+    action rows. Each own goal's event position, benefiting team, and
+    period are recorded in df.attrs["own_goals"] so the goal-conceded
+    debit in values.py can find them.
     """
     events = sorted(events, key=lambda e: e["index"])
     rows = []
     # running score per team for the score-differential feature
     goals_for: dict[str, int] = {}
+    # (event position, benefiting team, period) for each own goal seen
+    own_goals: list[tuple[int, str, int]] = []
 
     for idx, e in enumerate(events):
         tname = e["type"]["name"]
         if tname not in ACTION_TYPES:
-            if is_goal(e):
+            # Own goals arrive as a consecutive pair, "Own Goal For"
+            # for the benefiting team and "Own Goal Against" for the
+            # conceding team, in either order. Count only the For
+            # event, once, so the pair is never double-counted.
+            # Record the pair's event position (idx in the sorted
+            # event list, the same space as match_index) for the label
+            # step below and the debit in values.py. Own goals are
+            # deliberately NOT action rows: adding rows would change
+            # row counts, the design matrix shape, and player VAEP
+            # aggregation.
+            if tname == "Own Goal For":
                 team = e["team"]["name"]
                 goals_for[team] = goals_for.get(team, 0) + 1
+                own_goals.append((idx, team, e.get("period", 1)))
             continue
         # actor's own team (not the possession team: that changes mid-sequence
         # and would credit a player's actions to the opponent)
@@ -162,6 +195,7 @@ def featurize_match(events: list[dict], match_id: int | None = None) -> pd.DataF
             goals_for[team] = goals_for.get(team, 0) + 1
 
     df = pd.DataFrame(rows)
+    df.attrs["own_goals"] = own_goals
     if df.empty:
         return df
     if match_id is not None:
@@ -170,6 +204,34 @@ def featurize_match(events: list[dict], match_id: int | None = None) -> pd.DataF
     df["scores_excl"] = _lookahead(df, "is_goal", "team", K, True, False)
     df["concedes_incl"] = _lookahead(df, "is_goal", "team", K, False, True)
     df["concedes_excl"] = _lookahead(df, "is_goal", "team", K, False, False)
+    # Own goals are not action rows, so _lookahead never sees them. OR
+    # them into the labels directly: for each own goal, the k rows
+    # immediately before it (same period only) get scores for the
+    # benefiting team or concedes for every other team, identically in
+    # the incl and excl windows, because an own goal is never any
+    # action's own goal. p is the insertion point: the number of rows
+    # with match_index below the own-goal event position.
+    if own_goals:
+        match_idx = df["match_index"].to_numpy()
+        teams = df["team"].to_numpy()
+        periods = df["period"].to_numpy()
+        s_in = df["scores_incl"].to_numpy().copy()
+        s_ex = df["scores_excl"].to_numpy().copy()
+        c_in = df["concedes_incl"].to_numpy().copy()
+        c_ex = df["concedes_excl"].to_numpy().copy()
+        for own_idx, benefit, own_period in own_goals:
+            p = int((match_idx < own_idx).sum())
+            for i in range(max(0, p - K), p):
+                if periods[i] != own_period:
+                    continue
+                if teams[i] == benefit:
+                    s_in[i] = s_ex[i] = 1.0
+                else:
+                    c_in[i] = c_ex[i] = 1.0
+        df["scores_incl"] = s_in
+        df["scores_excl"] = s_ex
+        df["concedes_incl"] = c_in
+        df["concedes_excl"] = c_ex
     return df
 
 

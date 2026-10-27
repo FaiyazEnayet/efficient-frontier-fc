@@ -145,4 +145,6 @@ def test_stage3_efficient_frontier_fc_1_both_teams_same_goal_distance():
 def test_stage3_efficient_frontier_fc_1_feature_version_bumped():
     # The schema changed with the coordinate fix, so v2 VAEP caches must
     # never be reused: the pipeline cache key includes FEATURE_VERSION.
-    assert FEATURE_VERSION == 3
+    # U02 bumped the version again (own-goal labels/score_diff), so the
+    # pinned value moves from 3 to 4; the U02 test pins it at 4.
+    assert FEATURE_VERSION == 4
