@@ -59,18 +59,24 @@ def _model_hash(models) -> str:
     return hashlib.sha256(pickle.dumps(models, protocol=4)).hexdigest()[:16]
 
 
-def vaep_cache_key(models, train_match_ids, config=None) -> str:
+def vaep_cache_key(models, train_match_ids, config=None, content_digest=None) -> str:
     """Versioned, content-addressed cache filename for target VAEP.
 
     The key binds the sorted training match IDs, the feature schema
     version, the run config and the fitted model hash, so changing any
     of them invalidates the cache while identical inputs reuse it.
+    content_digest, when given (see event_content_digest), additionally
+    binds the raw event-file bytes, so the same IDs with changed raw
+    content miss the cache instead of reusing stale values. None
+    reproduces the previous key exactly.
     """
     h = hashlib.sha256()
     h.update(json.dumps(sorted(int(m) for m in train_match_ids)).encode())
     h.update(str(FEATURE_VERSION).encode())
     h.update(json.dumps(config or {}, sort_keys=True, default=str).encode())
     h.update(_model_hash(models).encode())
+    if content_digest is not None:
+        h.update(str(content_digest).encode())
     return f"target_vaep_v{CACHE_VERSION}_{h.hexdigest()[:16]}.pkl"
 
 
@@ -201,11 +207,23 @@ def compute_target_vaep(models, train_match_ids, config=None) -> tuple[pd.DataFr
     """Returns (player_match vaep, minutes, matches) for the target competition.
 
     Results are cached under a versioned key derived from the training
-    match IDs, feature version, config and model hash. A cache entry
-    from a different model, seed, split or feature set is never reused.
+    match IDs, feature version, config, model hash and (when event
+    files are present) the raw event content digest. A cache entry
+    from a different model, seed, split, feature set or raw content is
+    never reused. The digest is best effort: if it cannot be computed,
+    the key falls back to the previous behavior with a warning, so a
+    hashing failure can never break the pipeline.
     """
     _reject_legacy_cache()
-    key = vaep_cache_key(models, train_match_ids, config)
+    try:
+        from effc.data.statsbomb import event_content_digest
+
+        target_ids = list_matches(TARGET)["match_id"].tolist()
+        content_digest = event_content_digest(target_ids)
+    except Exception as exc:
+        print(f"[warn] event content digest unavailable ({exc}); using unbound cache key")
+        content_digest = None
+    key = vaep_cache_key(models, train_match_ids, config, content_digest=content_digest)
     cached = _cache_get(key)
     if cached is not None:
         print(f"loaded cached target VAEP ({key})")

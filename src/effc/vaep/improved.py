@@ -19,6 +19,7 @@ Discipline (the frozen FC6 scoreboard):
 
 from __future__ import annotations
 
+import hashlib
 import os
 
 import numpy as np
@@ -248,6 +249,7 @@ def crossfit_oof(
     config: dict,
     seed: int = 0,
     n_folds: int = 4,
+    content_digest: str | None = None,
 ) -> dict:
     """Out-of-fold predictions for every match in `group_frames`.
 
@@ -256,6 +258,10 @@ def crossfit_oof(
     (never group members, never test matches); group matches are never
     trained on before their own fold is predicted. Returns
     {match_id: {label: preds}}.
+
+    content_digest, when given, additionally binds raw content, so the
+    same IDs with changed raw data miss the cache instead of reusing
+    stale predictions.
     """
     match_dates = dict(
         zip(meta["match_id"].astype(int), meta["match_date"].astype(str))
@@ -281,6 +287,8 @@ def crossfit_oof(
         + "|"
         + ",".join(map(str, sorted(_frame_id(f) for f in pool_capped)))
     )
+    if content_digest is not None:
+        key_src += f"|{content_digest}"
     key = hashlib.md5(key_src.encode()).hexdigest()[:16]
     cache_dir = os.path.join(DATA_DIR, "cache")
     os.makedirs(cache_dir, exist_ok=True)
@@ -373,6 +381,7 @@ def train_improved_models(
     meta: pd.DataFrame,
     config: dict,
     seed: int = 0,
+    content_digest: str | None = None,
 ) -> tuple[dict, dict]:
     """Full recipe: cross-fit calibration on the group, then retrain on
     pool + group with the frozen calibration applied.
@@ -380,11 +389,15 @@ def train_improved_models(
     Returns (models, calibration_report) where the report records the
     chosen config name (if set), per-label Platt/blend parameters and
     the OOF Brier of raw vs calibrated predictions.
+
+    content_digest, when given, is forwarded to crossfit_oof so the
+    OOF cache binds raw content as well as IDs.
     """
     match_dates = dict(
         zip(meta["match_id"].astype(int), meta["match_date"].astype(str))
     )
-    oof = crossfit_oof(group_frames, pool_frames, meta, config, seed=seed)
+    oof = crossfit_oof(group_frames, pool_frames, meta, config, seed=seed,
+                       content_digest=content_digest)
     calibration = fit_calibration(oof, group_frames)
     bundle = train_bundle(
         pool_frames + group_frames, meta, config, seed=seed,
@@ -457,12 +470,45 @@ def select_config(
     return best, scores
 
 
+def improved_cache_key(
+    config_name: str,
+    seed: int,
+    group_ids,
+    pool_ids,
+    content_digest: str | None = None,
+    feature_version: int | None = None,
+) -> str:
+    """Disk-cache key for train_improved_models_cached.
+
+    The historical derivation: config name, seed, feature version and
+    the exact sorted group/pool match-ID sets. content_digest, when
+    given, additionally binds raw content, so the same IDs with changed
+    raw data miss the cache instead of reusing a stale bundle.
+    feature_version defaults to the current FEATURE_VERSION; the FC6
+    manifest validator passes the recorded run-time version (2) to
+    recompute the historical fingerprints.
+    """
+    from effc.vaep.features import FEATURE_VERSION
+
+    version = FEATURE_VERSION if feature_version is None else feature_version
+    key_src = (
+        f"{config_name}|{seed}|v{version}|"
+        + ",".join(map(str, sorted(int(i) for i in group_ids)))
+        + "|"
+        + ",".join(map(str, sorted(int(i) for i in pool_ids)))
+    )
+    if content_digest is not None:
+        key_src += f"|{content_digest}"
+    return hashlib.md5(key_src.encode()).hexdigest()[:16]
+
+
 def train_improved_models_cached(
     group_frames: list[pd.DataFrame],
     pool_frames: list[pd.DataFrame],
     meta: pd.DataFrame,
     config_name: str,
     seed: int = 0,
+    content_digest: str | None = None,
 ):
     """train_improved_models with a disk cache (data/cache, gitignored).
 
@@ -470,22 +516,19 @@ def train_improved_models_cached(
     identical recipe; the cache key covers the config name, seed,
     feature version, and the exact group/pool match-ID sets, so a hit
     is bit-identical training work already done, never stale data.
+    content_digest, when given, additionally binds raw content (outer
+    bundle key and the cross-fit OOF key) so the same IDs with changed
+    raw data retrain instead of reusing stale bundles.
     """
-    import hashlib
     import pickle
 
     from effc.data.download import DATA_DIR
-    from effc.vaep.features import FEATURE_VERSION
 
     group_ids = sorted(_frame_id(f) for f in group_frames)
     pool_ids = sorted(_frame_id(f) for f in pool_frames)
-    key_src = (
-        f"{config_name}|{seed}|v{FEATURE_VERSION}|"
-        + ",".join(map(str, group_ids))
-        + "|"
-        + ",".join(map(str, pool_ids))
+    key = improved_cache_key(
+        config_name, seed, group_ids, pool_ids, content_digest=content_digest
     )
-    key = hashlib.md5(key_src.encode()).hexdigest()[:16]
     cache_dir = os.path.join(DATA_DIR, "cache")
     os.makedirs(cache_dir, exist_ok=True)
     path = os.path.join(cache_dir, f"improved_models_{key}.pkl")
@@ -495,7 +538,8 @@ def train_improved_models_cached(
         print(f"loaded cached improved models ({config_name}, key {key})")
         return models, report
     models, report = train_improved_models(
-        group_frames, pool_frames, meta, CONFIGS[config_name], seed=seed
+        group_frames, pool_frames, meta, CONFIGS[config_name], seed=seed,
+        content_digest=content_digest,
     )
     with open(path, "wb") as fh:
         pickle.dump((models, report), fh)
