@@ -42,6 +42,20 @@ Event-derived player ratings are shrunk and joined to wage proxies. The optimize
 | EUR 0.70M weekly cap, same backtest | Optimizer 75.92; value baseline 72.09; random 11.44 |
 | Interpretation | With the improved goal models (v1.5.0), the optimizer beats the value baseline at the 0.30M and 0.70M caps and trails at 0.50M. Totals are lower than in v1.4.0 at every cap because the pooled, calibrated models produce less extreme VAEP values; the comparison that matters is optimizer vs baseline within the same run. All rules beat random comfortably; the hindsight oracle bounds them from above. |
 
+## Five-league expansion
+
+The repo now covers the big five European leagues, not only the Bundesliga: English Premier League, La Liga, Serie A, Bundesliga, and Ligue 1. Each league gets its own chronological split (60% train, 20% validation, 20% test), its own VAEP ratings, frozen scoreboard, frontier, and backtest at the same three budgets, computed with the corrected SPADL features (FEATURE_VERSION 3) and published as-is. Full numbers are in `runs/five_leagues/results.json`, with a per-league report in `runs/five_leagues/report.md`.
+
+| League | Test matches | Scores, model vs base | Concedes, model vs base | Players rated (wage matched) |
+| :--- | ---: | :--- | :--- | :--- |
+| English Premier League | 76 | 0.0102 vs 0.0112 | 0.00226 vs 0.00229 | 179 (37.7%) |
+| La Liga | 76 | 0.00920 vs 0.0103 | 0.00218 vs 0.00221 | 146 (29.4%) |
+| Serie A | 76 | 0.00921 vs 0.0103 | 0.00214 vs 0.00218 | 143 (26.8%) |
+| Bundesliga | 15 | 0.0101 vs 0.0112 | 0.00233 vs 0.00238 | 268 (63.2%) |
+| Ligue 1 | 76 | 0.00860 vs 0.00970 | 0.00215 vs 0.00217 | 145 (28.5%) |
+
+The goal model beats the base rate on all 20 test lines (5 leagues by scores/concedes, including/excluding) on exact means; concedes margins are narrow and confidence intervals overlap the base rate on some lines. Validation slices (report-only, never tuned on) agree in every league. Backtest: the optimizer beats the value baseline at all three budgets in all five leagues, compared within each league only, since totals scale with second-half match counts. Two caveats, stated plainly: Bundesliga open data covers only 34 matches per season (68 total), so its test set is 15 matches with wide intervals; and the four 2015/16 leagues' ratings cover only EA FC 24-matched players (27-38%), because 2024 rosters miss most 2015/16 squads, so their frontiers and backtests run on that subset. These numbers are not comparable to the v1.5.0 FC6 figures: different populations and splits, and corrected features. No version bump and no v2.0.0 tag come from this expansion; the tag stays held until U01/U02 validation plus owner signoff.
+
 ## Updating this project
 
 Dashboard source language: **Python**. Generator: `scripts/make_dashboard.py`. The local interactive output is `docs/dashboard.html`.
