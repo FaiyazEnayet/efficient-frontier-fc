@@ -20,11 +20,11 @@ Efficient Frontier FC treats squad construction as a constrained allocation prob
 
 <p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-squads-20261027" alt="Efficient Frontier FC demo"></a></p>
 
-**v2.0.0 is the five-league release**, built on the corrected FEATURE_VERSION 4 results. It extends the same constrained squad-selection question across the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000.
+The five-league edition covers the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000, evaluated on the corrected FEATURE_VERSION 4 results.
 
 The optimizer beats the value baseline in **14 of 15 league-budget cells**. The exception is **Bundesliga at €300,000: 40.83 optimizer versus 41.53 value**. The goal model has lower exact mean Brier and logloss on all 20 held-out test lines, but **model and baseline confidence intervals overlap on all 20 lines**. Those are mean improvements, not evidence of statistically separated intervals.
 
-Named 23-player squads and 4-3-3 Best XIs are available for every league at each of the three wage budgets.
+Named 23-player squads and 4-3-3 Best XIs are stored in the published results for every league at each of the three wage budgets.
 
 ## Explore
 
@@ -35,11 +35,11 @@ The interactive dashboard opens with a five-league comparison, then gives each l
 - **Backtest:** optimizer, value, random mean and hindsight oracle under the same weekly caps, plus recorded scoring-half player unavailability.
 - **Coverage:** match counts, event and lineup file availability, chronological split counts, player matching and split fingerprints.
 
-The budget controls select recorded solutions. They do not infer an intermediate squad; the named squad register and Best XI show the selections stored for each league and budget.
+The budget controls select recorded solutions. They do not infer an intermediate squad.
 
 ## Five-league expansion
 
-The release uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train / validation / test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
+The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train / validation / test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
 
 ### Coverage before performance
 
@@ -143,7 +143,7 @@ Bundesliga at €300,000 is the sole optimizer-versus-value loss: **40.83 versus
 
 Event-based scoring and conceding probabilities feed VAEP-style player ratings. Rating shrinkage and an EA FC wage-proxy join define the modeled player pool. The squad optimizer enforces the budget, squad-size and positional constraints, while the backtest evaluates selections using the later part of the season.
 
-FEATURE_VERSION 4 includes the own-goal correction described in the report. The five-league recompute used fresh feature and model caches; the resulting model fingerprint is recorded with the published results. The earlier Bundesliga-only evaluation and previous-feature five-league runs use different populations, splits or features and should not be mixed into this release's comparisons.
+FEATURE_VERSION 4 includes the own-goal correction described in the report. The five-league recompute used fresh feature and model caches; the resulting model fingerprint is recorded with the published results. The earlier Bundesliga-only evaluation and previous-feature five-league runs use different populations, splits or features and are not comparable with the figures above.
 
 ## Run locally
 
@@ -154,7 +154,7 @@ python scripts/make_dashboard.py
 python scripts/make_portfolio_gif.py
 ```
 
-The dashboard command reads the five-league release through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts and result data for local viewing.
+The dashboard command reads the five-league results through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts and result data for local viewing.
 
 To reproduce the research rather than only its presentation:
 
@@ -167,7 +167,7 @@ The research command uses the source data and caches described in the report and
 
 ## Code and data
 
-`src/effc/` contains the research pipeline, ratings, selection and backtesting. `runs/five_leagues/results.json` is the numeric source for this release; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
+`src/effc/` contains the research pipeline, ratings, selection and backtesting. `runs/five_leagues/results.json` is the numeric source for the figures above; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
 
 ## Limitations
 
@@ -178,7 +178,7 @@ The research command uses the source data and caches described in the report and
 - **Recorded points only:** there are three evaluated caps. A connecting line is not evidence of an optimal squad at every intermediate budget.
 - **Roster interpretation:** recorded names and Best XI membership are shown directly; tactical fit is not modeled.
 - **Hindsight reference:** the oracle has information unavailable at selection time. Random means and backtest point totals are not confidence intervals.
-- **Release comparability:** corrected-feature five-league results are not interchangeable with the previous single-league or previous-feature figures.
+- **Comparability:** corrected-feature five-league results are not interchangeable with the previous single-league or previous-feature figures.
 
 ## License
 
