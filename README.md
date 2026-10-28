@@ -15,12 +15,12 @@
   <a href="#run-locally"><img src="https://img.shields.io/badge/Run-Locally-526554?style=for-the-badge&labelColor=f4edda" alt="Run Locally"></a>
 </p>
 
-It treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
+Efficient Frontier FC treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
 
 
 <p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-squads-20261027" alt="Efficient Frontier FC demo"></a></p>
 
-Efficient Frontier FC covers the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000, evaluated on the corrected FEATURE_VERSION 4 results.
+It covers the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000, evaluated on the corrected FEATURE_VERSION 4 results.
 
 The optimizer beats the value baseline in 14 of 15 league-budget cells. The exception is Bundesliga at €300,000: 40.83 optimizer versus 41.53 value. The goal model has lower exact mean Brier and logloss on all 20 held-out test lines, but model and baseline confidence intervals overlap on all 20 lines. Those are mean improvements, not evidence of statistically separated intervals.
 
