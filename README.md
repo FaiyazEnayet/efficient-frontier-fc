@@ -30,8 +30,8 @@ Named 23-player squads and 4-3-3 Best XIs are stored in the published results fo
 
 The interactive dashboard opens with a five-league comparison, then gives each league its own evidence sheet:
 
-- **Scoreboard:** model versus train-slice base rate, with Brier and logloss means and the recorded 95% confidence intervals for all four prediction labels. Validation results are separate and explicitly report-only.
-- **Frontier:** the three recorded feasible budget points, expected squad VAEP/90, actual wage bills, squad size and the run's constraint and regeneration checks.
+- **Scoreboard:** model versus train-slice base rate, with Brier and logloss means and the recorded 95% confidence intervals for all four prediction labels. Validation results are separate and report-only.
+- **Frontier:** the three recorded feasible budget points, expected squad VAEP/90, actual wage bills, squad size, and the run's constraint and regeneration checks.
 - **Backtest:** optimizer, value, random mean and hindsight oracle under the same weekly caps, plus recorded scoring-half player unavailability.
 - **Coverage:** match counts, event and lineup file availability, chronological split counts, player matching and split fingerprints.
 
@@ -39,7 +39,7 @@ The budget controls select recorded solutions. They do not infer an intermediate
 
 ## Evaluation
 
-The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train / validation / test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
+The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train/validation/test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
 
 ### Coverage before performance
 
@@ -57,7 +57,7 @@ Event and lineup counts above refer to match files, not individual actions. Rate
 
 ### Test scoreboard
 
-The base rate is estimated from each league's own training slice. Both Brier and logloss are lower-is-better probability errors. The main table shows the including variants; the full four-label table follows.
+The base rate is estimated from each league's own training slice. Both Brier and logloss are lower-is-better probability errors. The main table shows the included variants; the full four-label table follows.
 
 | League | Test matches | Scores Brier: model / base | Concedes Brier: model / base | Scores logloss: model / base | Concedes logloss: model / base |
 | :--- | ---: | :--- | :--- | :--- | :--- |
@@ -154,7 +154,7 @@ python scripts/make_dashboard.py
 python scripts/make_portfolio_gif.py
 ```
 
-The dashboard command reads the five-league results through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts and result data for local viewing.
+The dashboard command reads the five-league results through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts, and result data for local viewing.
 
 To reproduce the research rather than only its presentation:
 
@@ -167,12 +167,12 @@ The research command uses the source data and caches described in the report and
 
 ## Code and data
 
-`src/effc/` contains the research pipeline, ratings, selection and backtesting. `runs/five_leagues/results.json` is the numeric source for the figures above; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
+`src/effc/` contains the research pipeline, ratings, selection, and backtesting. `runs/five_leagues/results.json` is the numeric source for the figures above; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
 
 ## Limitations
 
 - **Unequal samples:** Bundesliga has 68 matches in its open-data pool and 15 held-out test matches. The other league pools are 380, 380, 380 and 377 matches. Smaller samples and wide intervals limit the strength of conclusions.
-- **Overlapping uncertainty:** all 20 test-line confidence intervals overlap the base rate. Lower exact means do not establish separated model performance.
+- **Overlapping uncertainty:** All 20 test-line confidence intervals overlap the base rate. Lower exact means do not establish separated model performance.
 - **Proxy economics:** EA FC 24 wages are not verified historical or current contracts. Wage matching restricts the modeled player population, particularly in the older-season leagues.
 - **Within-league comparisons:** realized backtest totals depend on the scoring-half pool. Do not compare raw league totals as if their exposure were equal.
 - **Recorded points only:** there are three evaluated caps. A connecting line is not evidence of an optimal squad at every intermediate budget.
