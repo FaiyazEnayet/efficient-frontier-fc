@@ -9,6 +9,4 @@ To rebuild this exact recorded snapshot without retraining:
 
 `python portfolio_ui/renderer.py --repo efficient-frontier-fc --root . --input portfolio_ui/original-dashboard-snapshot.html --output docs/dashboard.html`
 
-For SukukLab, `python examples/make_dashboard.py` is the Julia-free alternative. The supplied Python alternative retains the original structure-schedule snapshot and recomputes valuation/curve data from the documented source formulas.
-
-The HTML itself needs no Python, Julia, Go, network or server. Keep DeepArcade's game.html beside dashboard.html for local gameplay.
+The HTML itself needs no Python, network or server.
