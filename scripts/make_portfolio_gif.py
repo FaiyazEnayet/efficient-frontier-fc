@@ -29,7 +29,7 @@ def five_league_showcase(root):
   font_manager.fontManager.addfont(str(path));return font_manager.FontProperties(fname=str(path)).get_name()
  body=family('IBM Plex Sans');display=family('Cinzel');plt.rcParams.update({'font.family':body,'text.color':ink,'axes.labelcolor':muted,'xtick.color':muted,'ytick.color':muted,'font.size':11})
  def header(fig,subtitle):
-  fig.patch.set_facecolor(paper);fig.text(.055,.948,'EFFICIENT FRONTIER FC',fontfamily=display,fontsize=22,color=ink);fig.text(.945,.954,'v2.0.0 / FEATURE_VERSION 4',ha='right',fontsize=10,color=muted);fig.text(.055,.906,subtitle,fontsize=12,color=muted)
+  fig.patch.set_facecolor(paper);fig.text(.055,.948,'EFFICIENT FRONTIER FC',fontfamily=display,fontsize=22,color=ink);fig.text(.945,.954,'v2.0.0',ha='right',fontsize=10,color=muted);fig.text(.055,.906,subtitle,fontsize=12,color=muted)
  def tidy(ax):
   ax.set_facecolor(paper);ax.spines[['top','right']].set_visible(False)
   for s in ax.spines.values():s.set_color(line)
@@ -58,6 +58,20 @@ def five_league_showcase(root):
    fig.text(.075,.218,f"€{budget:,.0f} / week",fontsize=19,fontfamily=display);fig.text(.075,.171,f"Actual wage bill €{point['wage_bill']:,.0f} · {point['n_players']} players · {d['n_rated']} rated",fontsize=11,color=muted)
    delta=b['optimizer']-b['value'];fig.text(.60,.218,f"{delta:+.2f} vs value",fontsize=19,color=colors[0] if delta>0 else rust);fig.text(.60,.171,f"Wage match rate {d['wage_match_rate']:.1%}",fontsize=11,color=muted)
    fig.text(.075,.095,'Bundesliga: 68 matches vs roughly 380 elsewhere. Compare backtests within each league.',fontsize=10,color=muted);fig.text(.075,.05,'Recorded budget points only / model estimates and proxy wages / no player identities invented',fontsize=9,color=muted);capture(fig,800 if j<2 else 1200)
+   fig=plt.figure(figsize=(11,7.4));header(fig,n+' / '+('2015/16 + 2023/24' if n=='Bundesliga' else '2015/16')+' / '+f'€{budget:,.0f} per week')
+   selected=d['squads'][str(int(budget))];pitch=fig.add_axes([.055,.10,.55,.74]);pitch.set(xlim=(0,100),ylim=(0,100));pitch.axis('off')
+   for strip in range(8):pitch.add_patch(Rectangle((0,strip*12.5),100,12.5,facecolor='#245b3b' if strip%2 else '#2b6441',edgecolor='none'))
+   for x,y,w,h in [(2,2,96,96),(27,2,46,15),(27,83,46,15)]:pitch.add_patch(Rectangle((x,y),w,h,fill=False,edgecolor='#c2d4b4',lw=1,alpha=.7))
+   pitch.plot([2,98],[50,50],color='#c2d4b4',lw=1,alpha=.7);pitch.add_patch(Circle((50,50),11,fill=False,edgecolor='#c2d4b4',lw=1,alpha=.7))
+   for pos,y in [('FWD',82),('MID',61),('DEF',36),('GK',13)]:
+    players=[next(r for r in selected['squad'] if r['player']==name) for name in selected['best_xi']];players=[r for r in players if r['pos_group']==pos]
+    for k,player in enumerate(players):
+     x=(k+.5)*100/len(players);name='\n'.join(textwrap.wrap(player['player'],15));pitch.text(x,y,pos+'\n'+name,ha='center',va='center',fontsize=8.2,color=ink,linespacing=1.15,bbox=dict(facecolor='#fffdf3',edgecolor='#c6cba9',pad=4))
+   ax=fig.add_axes([.65,.10,.295,.74]);ax.axis('off');rows=[[r['player'],r['pos_group'],f"€{r['wage_eur']:,.0f}"] for r in selected['squad']]
+   tb=ax.table(cellText=rows,colLabels=['Player','Pos','Wage/wk'],colWidths=[.70,.10,.20],cellLoc='left',colLoc='left',bbox=[0,0,1,1]);tb.auto_set_font_size(False);tb.set_fontsize(6.6)
+   for (row,col),cell in tb.get_celld().items():
+    cell.set_edgecolor(line);cell.set_linewidth(.4);cell.set_facecolor('#e5eddf' if row==0 else paper);cell.set_text_props(color=ink,weight='bold' if row==0 else 'normal')
+   fig.text(.055,.055,'Best XI · 4-3-3 / recorded names and positions / EA FC 24 wage proxies',fontsize=10,color=muted);capture(fig,1800)
  capture(overview(),2000);dest=root/'docs/demo.gif';frames[0].save(dest,save_all=True,append_images=frames[1:],duration=durations,loop=0,optimize=True,disposal=2)
  # Results figure uses the same frozen FV4 object, never the older demo tables.
  fig=plt.figure(figsize=(12,10));header(fig,'Five-league evidence / optimizer vs value, coverage and held-out uncertainty');matrix(fig,[.055,.445,.89,.43]);fig.text(.055,.407,'Within-league backtest deltas above. Bundesliga €300,000 trails value: 40.83 vs 41.53.',fontsize=11,color=rust)

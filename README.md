@@ -18,11 +18,13 @@
 Efficient Frontier FC treats squad construction as a constrained allocation problem. It combines event-based player value with wage proxies, then asks which feasible 23-player squad fits a specified weekly budget.
 
 
-<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-v2-fv4-20261027" alt="Efficient Frontier FC demo"></a></p>
+<p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-squads-20261027" alt="Efficient Frontier FC demo"></a></p>
 
 **v2.0.0 is the five-league release**, built on the corrected FEATURE_VERSION 4 results. It extends the same constrained squad-selection question across the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000.
 
 The optimizer beats the value baseline in **14 of 15 league-budget cells**. The exception is **Bundesliga at €300,000: 40.83 optimizer versus 41.53 value**. The goal model has lower exact mean Brier and logloss on all 20 held-out test lines, but **model and baseline confidence intervals overlap on all 20 lines**. Those are mean improvements, not evidence of statistically separated intervals.
+
+Named 23-player squads and 4-3-3 Best XIs are available for every league at each of the three wage budgets.
 
 ## Explore
 
@@ -33,7 +35,7 @@ The interactive dashboard opens with a five-league comparison, then gives each l
 - **Backtest:** optimizer, value, random mean and hindsight oracle under the same weekly caps, plus recorded scoring-half player unavailability.
 - **Coverage:** match counts, event and lineup file availability, chronological split counts, player matching and split fingerprints.
 
-The budget controls select recorded solutions. They do not infer an intermediate squad, and this release results file does not contain player identities from which to build a new squad register or Best XI.
+The budget controls select recorded solutions. They do not infer an intermediate squad; the named squad register and Best XI show the selections stored for each league and budget.
 
 ## Five-league expansion
 
@@ -174,7 +176,7 @@ The research command uses the source data and caches described in the report and
 - **Proxy economics:** EA FC 24 wages are not verified historical or current contracts. Wage matching restricts the modeled player population, particularly in the older-season leagues.
 - **Within-league comparisons:** realized backtest totals depend on the scoring-half pool. Do not compare raw league totals as if their exposure were equal.
 - **Recorded points only:** there are three evaluated caps. A connecting line is not evidence of an optimal squad at every intermediate budget.
-- **Incomplete roster detail:** this frozen release does not include selected player identities. The dashboard does not invent a squad, Best XI or tactical fit.
+- **Roster interpretation:** recorded names and Best XI membership are shown directly; tactical fit is not modeled.
 - **Hindsight reference:** the oracle has information unavailable at selection time. Random means and backtest point totals are not confidence intervals.
 - **Release comparability:** corrected-feature five-league results are not interchangeable with the previous single-league or previous-feature figures.
 
