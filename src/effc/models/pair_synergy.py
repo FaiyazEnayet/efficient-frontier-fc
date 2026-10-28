@@ -19,13 +19,14 @@ exist on top of it. It is deliberately fail-closed:
   constraint set, so a pair bonus applies exactly when both players are
   selected, and never otherwise.
 
-Part 1 scope: source contract, baseline capture, fixture and independent
-oracle. No performance promotion is made here. In particular, no match-level
-player panel is stored in this repo (the five-league results carry squads and
-scoreboards, not per-match coappearances), so a real-data coverage audit can
-only run where such a panel is supplied by the caller; until then the honest
-Part 1 result is the estimator, the oracle, and the rule that retains
-nothing without qualifying coverage. The additive selector is never modified:
+Part 2 scope: the end-to-end experiment runner (``run_synergy_experiment``)
+ties the Part 1 pieces together on a caller-supplied panel: coverage audit,
+cross-period effect estimates in both directions, the stability retention
+rule, and the zero-synergy comparison on identical selection inputs. The
+honest real-data result is still the null: no match-level player panel is
+stored in this repo (the five-league results carry squads and scoreboards,
+not per-match coappearances), so the runner retains nothing from real data
+until a caller supplies a panel. The additive selector is never modified:
 with no pair effects, the synergy selector reproduces it exactly.
 """
 
@@ -47,6 +48,7 @@ __all__ = [
     "enumerate_optimum",
     "estimate_pair_effects",
     "linearization_rows",
+    "run_synergy_experiment",
     "select_squad_with_synergy",
     "stability_check",
 ]
@@ -427,6 +429,149 @@ def compare_zero_synergy(
             synergy, mu, gamma, iv, pairs, effects
         ),
     }
+
+
+def run_synergy_experiment(
+    panel: pd.DataFrame,
+    *,
+    min_coappear: int = 10,
+    n_periods: int = 2,
+    shrink: float = 10.0,
+    cap: float | None = None,
+    floor: float = 0.0,
+    selection: dict | None = None,
+) -> dict:
+    """End-to-end synergy experiment on a caller-supplied panel.
+
+    Steps, in order: (1) coverage audit; (2) cross-period effect estimates
+    in both directions (baselines from one period, effects measured in the
+    other); (3) the stability retention rule, intersected with the
+    qualifying pairs, so a pair is retained only if it is estimable in
+    every period AND stable across both; (4) when ``selection`` inputs are
+    given, the zero-synergy comparison on identical inputs, with retained
+    pairs mapped from player names to selection indices (pairs whose
+    players are missing from the pool are skipped, never silently dropped
+    from the report).
+
+    The experiment requires exactly two periods: the retention rule is
+    defined over two independent periods. It fails closed: insufficient
+    coverage, an empty panel, or no stable pair all end with nothing
+    retained, and the comparison then runs with no pairs, which reproduces
+    the additive selection exactly. Nothing here reads repo data: a
+    match-level panel must be supplied by the caller, and until one is,
+    the honest result is the null reported below.
+    """
+    if n_periods != 2:
+        raise ValueError(
+            "run_synergy_experiment requires exactly 2 periods "
+            "for the stability rule"
+        )
+    if min_coappear < 1:
+        raise ValueError("min_coappear must be at least 1")
+    if shrink <= 0:
+        raise ValueError("shrink must be positive")
+    if cap is not None and cap < 0:
+        raise ValueError("cap must be non-negative")
+    if floor < 0:
+        raise ValueError("floor must be non-negative")
+    coverage = coverage_audit(panel, min_coappear=min_coappear, n_periods=2)
+    report: dict = {
+        "coverage": coverage,
+        "effects_forward": pd.DataFrame(
+            columns=["player_a", "player_b", "n_coappear", "raw_effect", "effect"]
+        ),
+        "effects_reverse": pd.DataFrame(
+            columns=["player_a", "player_b", "n_coappear", "raw_effect", "effect"]
+        ),
+        "stability": {
+            "n_common": 0,
+            "n_same_sign": 0,
+            "sign_agreement": 0.0,
+            "stable_pairs": [],
+        },
+        "retained_pairs": [],
+        "retained_effects": {},
+        "skipped_pairs": [],
+        "comparison": None,
+        "verdict": "",
+    }
+    if coverage["decision"] != "sufficient":
+        report["verdict"] = (
+            "nothing retained: coverage insufficient for real estimation "
+            f"({coverage['reason']})"
+        )
+    else:
+        periods = chronological_periods(panel, 2)
+        eff_fwd = estimate_pair_effects(
+            periods[0], periods[1],
+            min_coappear=min_coappear, shrink=shrink, cap=cap,
+        )
+        eff_rev = estimate_pair_effects(
+            periods[1], periods[0],
+            min_coappear=min_coappear, shrink=shrink, cap=cap,
+        )
+        stability = stability_check(eff_fwd, eff_rev, floor=floor)
+        qualifying = {_canonical_pair(a, b) for a, b in coverage["qualifying_pairs"]}
+        retained = [p for p in stability["stable_pairs"] if p in qualifying]
+
+        def _as_map(frame: pd.DataFrame) -> dict[tuple[str, str], float]:
+            out = {}
+            for r in frame.itertuples():
+                out[_canonical_pair(str(r.player_a), str(r.player_b))] = float(r.effect)
+            return out
+
+        map_fwd, map_rev = _as_map(eff_fwd), _as_map(eff_rev)
+        retained_effects = {
+            p: (map_fwd[p] + map_rev[p]) / 2.0 for p in retained
+        }
+        report.update(
+            {
+                "effects_forward": eff_fwd,
+                "effects_reverse": eff_rev,
+                "stability": stability,
+                "retained_pairs": retained,
+                "retained_effects": retained_effects,
+            }
+        )
+        if retained:
+            report["verdict"] = (
+                f"retained {len(retained)} pair(s): "
+                + ", ".join(f"{a}+{b}" for a, b in retained)
+            )
+        else:
+            report["verdict"] = (
+                "nothing retained: no pair is stable across both periods"
+            )
+    if selection is not None:
+        players = list(selection["players"])
+        index = {name: i for i, name in enumerate(players)}
+        pairs_idx: list[tuple[int, int]] = []
+        effects: list[float] = []
+        skipped: list[tuple[str, str]] = []
+        for pair, effect in report["retained_effects"].items():
+            if pair[0] in index and pair[1] in index:
+                pairs_idx.append((index[pair[0]], index[pair[1]]))
+                effects.append(float(effect))
+            else:
+                skipped.append(pair)
+        report["skipped_pairs"] = skipped
+        report["comparison"] = compare_zero_synergy(
+            np.asarray(selection["mu"], dtype=float),
+            np.asarray(selection["wage"], dtype=float),
+            np.asarray(selection["groups"]),
+            float(selection["budget"]),
+            int(selection["n_pick"]),
+            dict(selection["quota"]),
+            pairs_idx,
+            np.array(effects, dtype=float),
+            gamma=float(selection.get("gamma", 0.0)),
+            idio_var=(
+                None
+                if selection.get("idio_var") is None
+                else np.asarray(selection["idio_var"], dtype=float)
+            ),
+        )
+    return report
 
 
 def enumerate_optimum(
