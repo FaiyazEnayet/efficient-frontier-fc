@@ -32,6 +32,7 @@ from effc.models.pair_synergy import (
     enumerate_optimum,
     estimate_pair_effects,
     linearization_rows,
+    run_synergy_experiment,
     select_squad_with_synergy,
     stability_check,
 )
@@ -249,3 +250,226 @@ def test_stage3_efficient_frontier_fc_13_part_1_demo_baseline_unchanged_by_syner
     assert sorted(players["player_id"].to_numpy()[sel]) == sorted(
         base["player_id"].to_numpy()
     )
+
+
+# ---------------------------------------------------------------------------
+# Part 2 (U13#2/2): bounded remaining functionality and experiments.
+# The experiment runner ties the Part 1 pieces together end to end: coverage
+# audit, cross-period effect estimates in both directions, the stability
+# retention rule, and the zero-synergy comparison on identical selection
+# inputs. The honest real-data result is the null: no match-level panel is
+# stored in this repo, so nothing is retained from real data.
+# ---------------------------------------------------------------------------
+
+
+def _synergy_panel(bump):
+    """Twelve matches x three players, six per period, identical structure.
+
+    Per period: m1, m2: A+C; m3, m4: B+C; m5, m6: A+B+C. Alone values are
+    A 1.0, B 2.0, C 3.0. When A and B play together each gains ``bump``
+    (A 1.0 + bump, B 2.0 + bump). With bump 5.0 the cross-period raw AB
+    effect is +5.0 in both directions; with bump 0.0 every effect is 0.
+    """
+    rows = []
+    for _ in range(2):
+        rows.append({"A": 1.0, "B": np.nan, "C": 3.0})
+        rows.append({"A": 1.0, "B": np.nan, "C": 3.0})
+        rows.append({"A": np.nan, "B": 2.0, "C": 3.0})
+        rows.append({"A": np.nan, "B": 2.0, "C": 3.0})
+        rows.append({"A": 1.0 + bump, "B": 2.0 + bump, "C": 3.0})
+        rows.append({"A": 1.0 + bump, "B": 2.0 + bump, "C": 3.0})
+    return pd.DataFrame(rows, index=[f"m{i + 1}" for i in range(12)])
+
+
+def _selection_inputs():
+    """Micro selection where pair (0, 2) flips the pick when its bonus is
+    large: additive optimum is [1, 3, 5] (value 6); [0, 2, 5] needs a bonus
+    above 2.0 to win. Player names map A -> 0, B -> 2."""
+    mu, wage, groups, budget, n_pick, quota = _micro_instance()
+    return {
+        "players": ["A", "X", "B", "Y", "Z", "W"],
+        "mu": mu,
+        "wage": wage,
+        "groups": groups,
+        "budget": budget,
+        "n_pick": n_pick,
+        "quota": quota,
+    }
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_retains_stable_pair():
+    out = run_synergy_experiment(
+        _synergy_panel(5.0),
+        min_coappear=2,
+        shrink=0.5,
+        floor=0.1,
+        selection=_selection_inputs(),
+    )
+    assert out["coverage"]["decision"] == "sufficient"
+    assert out["retained_pairs"] == [("A", "B")]
+    # Raw AB effect +5.0, n = 2, shrink 0.5 -> 5.0 * 2 / 2.5 = 4.0 in both
+    # directions, so the retained mean effect is 4.0.
+    assert out["retained_effects"][("A", "B")] == pytest.approx(4.0)
+    comp = out["comparison"]
+    assert list(np.flatnonzero(comp["additive_selection"])) == [1, 3, 5]
+    assert list(np.flatnonzero(comp["synergy_selection"])) == [0, 2, 5]
+    assert comp["additive_value"] == pytest.approx(6.0)
+    assert comp["synergy_value"] == pytest.approx(8.0)
+    assert "retained" in out["verdict"]
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_no_signal_retains_nothing():
+    out = run_synergy_experiment(
+        _synergy_panel(0.0),
+        min_coappear=2,
+        shrink=10.0,
+        floor=0.1,
+        selection=_selection_inputs(),
+    )
+    assert out["coverage"]["decision"] == "sufficient"
+    assert out["retained_pairs"] == []
+    assert out["retained_effects"] == {}
+    comp = out["comparison"]
+    # Nothing retained, so the synergy selection is exactly the additive one.
+    assert list(np.flatnonzero(comp["synergy_selection"])) == list(
+        np.flatnonzero(comp["additive_selection"])
+    )
+    assert comp["synergy_value"] == pytest.approx(comp["additive_value"])
+    assert "nothing retained" in out["verdict"]
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_sign_flip_not_retained():
+    # Period 1 has no bump, period 2 has the bump. Coverage is sufficient
+    # (AB coappears twice per period), but the directional effects have
+    # opposite signs, so stability rejects the pair.
+    p1 = _synergy_panel(0.0).iloc[:6]
+    p2 = _synergy_panel(5.0).iloc[6:]
+    panel = pd.concat([p1, p2], ignore_index=True)
+    out = run_synergy_experiment(
+        panel, min_coappear=2, shrink=10.0, floor=0.1
+    )
+    assert out["coverage"]["decision"] == "sufficient"
+    fwd = out["effects_forward"]
+    rev = out["effects_reverse"]
+    ab_fwd = fwd[(fwd.player_a == "A") & (fwd.player_b == "B")].iloc[0].effect
+    ab_rev = rev[(rev.player_a == "A") & (rev.player_b == "B")].iloc[0].effect
+    assert ab_fwd > 0 and ab_rev < 0
+    assert out["retained_pairs"] == []
+    assert out["comparison"] is None
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_insufficient_coverage():
+    panel = pd.DataFrame(
+        {"A": [1.0, 1.0], "B": [2.0, 2.0]}, index=["m1", "m2"]
+    )
+    out = run_synergy_experiment(panel, min_coappear=2, floor=0.1)
+    assert out["coverage"]["decision"] == "insufficient"
+    assert out["retained_pairs"] == []
+    assert out["comparison"] is None
+    # With selection inputs the comparison still runs, with no pairs, so it
+    # reproduces the additive selection exactly.
+    out = run_synergy_experiment(
+        panel, min_coappear=2, floor=0.1, selection=_selection_inputs()
+    )
+    comp = out["comparison"]
+    assert list(np.flatnonzero(comp["synergy_selection"])) == list(
+        np.flatnonzero(comp["additive_selection"])
+    )
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_empty_panel_fail_closed():
+    out = run_synergy_experiment(pd.DataFrame(), min_coappear=2, floor=0.1)
+    assert out["coverage"]["decision"] == "insufficient"
+    assert out["retained_pairs"] == []
+    assert out["retained_effects"] == {}
+    assert out["comparison"] is None
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_rejects_bad_inputs():
+    panel = _synergy_panel(5.0)
+    with pytest.raises(ValueError):
+        run_synergy_experiment(panel, n_periods=3)
+    with pytest.raises(ValueError):
+        run_synergy_experiment(panel, floor=-0.1)
+    with pytest.raises(ValueError):
+        run_synergy_experiment(panel, min_coappear=0)
+    with pytest.raises(ValueError):
+        run_synergy_experiment(panel, shrink=0.0)
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_experiment_skips_unmapped_pairs():
+    sel = _selection_inputs()
+    sel["players"] = ["A", "X", "Y", "Z", "W", "V"]  # no "B" in the pool
+    out = run_synergy_experiment(
+        _synergy_panel(5.0),
+        min_coappear=2,
+        shrink=0.5,
+        floor=0.1,
+        selection=sel,
+    )
+    assert out["retained_pairs"] == [("A", "B")]
+    assert out["skipped_pairs"] == [("A", "B")]
+    comp = out["comparison"]
+    assert list(np.flatnonzero(comp["synergy_selection"])) == list(
+        np.flatnonzero(comp["additive_selection"])
+    )
+
+
+def test_stage3_efficient_frontier_fc_13_part_2_real_data_audit_finds_no_panel():
+    """The honest real-data audit: no match-level player panel is stored in
+    this repo, so no real-data experiment can run. runs/five_leagues/
+    results.json carries counts, scoreboards, frontiers, backtests and
+    per-budget squad selections, never per-match per-player values."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parent.parent
+    data = json.loads((root / "runs" / "five_leagues" / "results.json").read_text())
+    assert set(data.keys()) == {
+        "feature_version",
+        "model_config",
+        "seed",
+        "budgets_eur",
+        "leagues",
+        "model_hash",
+        "train_pool_matches",
+        "elapsed_s",
+    }
+    found_match_id = []
+
+    def walk(node):
+        if isinstance(node, dict):
+            if "match_id" in node:
+                found_match_id.append(node["match_id"])
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(data)
+    assert found_match_id == []
+    for league in data["leagues"].values():
+        assert set(league.keys()) == {
+            "audit",
+            "split",
+            "scoreboard_test",
+            "scoreboard_val_report_only",
+            "wage_match_rate",
+            "n_rated",
+            "pm_matches",
+            "frontier",
+            "backtest",
+            "squad_checks",
+            "squads",
+        }
+        assert isinstance(league["audit"]["matches"], int)
+        for squad in league["squads"].values():
+            for row in squad["squad"]:
+                assert set(row.keys()) == {
+                    "player",
+                    "team",
+                    "pos_group",
+                    "vaep_per90",
+                    "wage_eur",
+                }
