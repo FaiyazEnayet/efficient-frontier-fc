@@ -63,8 +63,11 @@ def match_group_split(
     training with a warning.
 
     Returns (train_frames, calib_frames); the two groups' match IDs are
-    disjoint by construction.
+    disjoint by construction. calib_frac must lie in [0, 1); values
+    outside that range raise ValueError.
     """
+    if not 0.0 <= float(calib_frac) < 1.0:
+        raise ValueError(f"calib_frac must be in [0, 1), got {calib_frac}")
     by_match = {}
     for f in frames:
         by_match.setdefault(_frame_match_id(f), []).append(f)

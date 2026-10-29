@@ -78,6 +78,33 @@ def test_split_small_group_stays_in_train():
     assert len(train) == 1 and len(calib) == 0
 
 
+def test_split_rejects_calib_frac_one():
+    with pytest.raises(ValueError, match="calib_frac"):
+        cal.match_group_split(
+            [_frame(1, seed=1), _frame(2, seed=2)],
+            _meta(
+                [
+                    (1, 9, 27, "2015/2016", "2015-09-01"),
+                    (2, 9, 27, "2015/2016", "2015-09-02"),
+                ]
+            ),
+            calib_frac=1.0,
+        )
+
+
+def test_split_rejects_calib_frac_out_of_range():
+    meta = _meta(
+        [
+            (1, 9, 27, "2015/2016", "2015-09-01"),
+            (2, 9, 27, "2015/2016", "2015-09-02"),
+        ]
+    )
+    frames = [_frame(1, seed=1), _frame(2, seed=2)]
+    for bad in (-0.1, 1.5):
+        with pytest.raises(ValueError, match="calib_frac"):
+            cal.match_group_split(frames, meta, calib_frac=bad)
+
+
 def test_assert_disjoint_raises_on_overlap():
     with pytest.raises(ValueError, match="disjoint"):
         cal.assert_disjoint([1, 2, 3], [3, 4])
