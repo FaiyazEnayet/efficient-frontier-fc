@@ -39,8 +39,11 @@ def build_ratings(
     ).reset_index()
     tot["vaep_per90_raw"] = tot["vaep"] / tot["minutes"].clip(lower=1e-9) * 90.0
 
+    wage_cols = ["player", "team", "wage_eur", "value_eur", "pos_group", "matched"]
+    if "match_type" in wage_map.columns:
+        wage_cols.append("match_type")
     tot = tot.merge(
-        wage_map[["player", "team", "wage_eur", "value_eur", "pos_group", "matched"]],
+        wage_map[wage_cols],
         on=["player", "team"],
         how="left",
     )
