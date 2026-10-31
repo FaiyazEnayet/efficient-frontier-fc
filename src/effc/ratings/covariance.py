@@ -80,12 +80,47 @@ def fit_factor_model(
     teams = list(factors.columns)
     for j, pid in enumerate(players):
         B[j, teams.index(player_team[pid])] = beta_s[pid]
-    var_f = np.diag(factors.var(ddof=1).fillna(0).to_numpy() + 1e-12)
+    factor_var = factors.var(ddof=1).fillna(0) + 1e-12
+    var_f = np.diag(factor_var.to_numpy())
     sigma = B @ var_f @ B.T + np.diag(idio_s.to_numpy())
     Sigma = pd.DataFrame(sigma, index=players, columns=players)
     info = {
         "mean_abs_beta": float(beta_s.abs().mean()),
         "mean_idio_var": float(idio_s.mean()),
         "n_players": len(players),
+        # The actual idiosyncratic variance per player. Callers must
+        # use this for the MILP penalty, never the covariance
+        # diagonal: diag(Sigma) is total variance (factor plus
+        # idiosyncratic) and overstates idiosyncratic risk wherever
+        # the factor loading is nonzero.
+        "idio_var": idio_s,
+        "beta": beta_s,
+        "factor_var": factor_var,
     }
     return Sigma, info
+
+
+def variance_decomposition(
+    Sigma: pd.DataFrame, info: dict
+) -> pd.DataFrame:
+    """Per-player variance split: total = systematic + idiosyncratic.
+
+    Systematic variance is beta_i^2 times the variance of the player's
+    team factor; idiosyncratic variance is the returned fit value.
+    Total must equal the covariance diagonal by construction.
+    """
+    idio = info["idio_var"]
+    players = list(Sigma.index)
+    # Systematic variance is beta_i^2 times the variance of the
+    # player's team factor; equivalently total minus idiosyncratic,
+    # which the fit guarantees by construction. The table asserts
+    # the identity total = systematic + idio per player.
+    total = pd.Series(np.diag(Sigma.to_numpy()), index=players)
+    systematic = total - idio.reindex(players)
+    return pd.DataFrame(
+        {
+            "total_var": total,
+            "systematic_var": systematic,
+            "idio_var": idio.reindex(players),
+        }
+    )

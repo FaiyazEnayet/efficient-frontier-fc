@@ -4,6 +4,14 @@ A squad is a binary portfolio: x_i = 1 if the player is signed. The
 efficient frontier traces max expected VAEP against the wage budget.
 Risk enters as a penalty on idiosyncratic variance (linear, so the
 problem stays a MILP); the full factor-model risk is reported ex post.
+
+Risk objective, stated plainly: the MILP maximizes summed value minus
+gamma times summed idiosyncratic variance, where idiosyncratic
+variance is the factor fit's own residual variance per player (see
+effc.ratings.covariance.fit_factor_model). It does NOT penalize full
+covariance: the covariance diagonal is total variance, not
+idiosyncratic variance, and must never be passed as idio_var. Full
+factor covariance is reported ex post by squad_risk.
 """
 
 from __future__ import annotations
@@ -235,3 +243,79 @@ def squad_risk(selection: pd.DataFrame, Sigma: pd.DataFrame) -> float:
     w = np.ones(len(ids)) / len(ids)
     S = Sigma.loc[ids, ids].to_numpy()
     return float(np.sqrt(w @ S @ w))
+
+
+def describe_risk_objective(gamma: float) -> dict:
+    """Name the risk objective the MILP optimizes, in plain terms.
+
+    The MILP maximizes summed value minus gamma times summed
+    idiosyncratic variance (a linear penalty, so the problem stays a
+    MILP). Full factor covariance is not optimized; it is reported
+    ex post by squad_risk. Callers record this dict alongside results
+    so a reader never mistakes the penalty for a covariance objective.
+    """
+    return {
+        "objective": (
+            "maximize summed value minus gamma times summed "
+            "idiosyncratic variance (linear penalty); full factor "
+            "covariance reported ex post via squad_risk"
+        ),
+        "risk_term": "linear_idio_var_penalty",
+        "full_covariance": "ex_post_squad_risk",
+        "gamma": float(gamma),
+    }
+
+
+def build_wage_scenarios(ratings: pd.DataFrame) -> dict[str, pd.Series]:
+    """Predeclared wage scenarios, as wage series indexed by player_id.
+
+    base: point wages. high: every wage at its interval high. fuzzy_high:
+    only fuzzy matches at their high, the rest at point wages. proxy_high:
+    only proxy wages at their high, the rest at point wages. A roster
+    that fits base but not high is exposed to wage uncertainty, not
+    feasible under stress.
+    """
+    for col in ("wage_eur", "wage_low", "wage_high", "match_type"):
+        if col not in ratings.columns:
+            raise ValueError(f"build_wage_scenarios needs a {col} column")
+    by_id = ratings.set_index("player_id")
+    base = by_id["wage_eur"]
+    high = by_id["wage_high"]
+    fuzzy_high = base.where(by_id["match_type"] != "fuzzy", high)
+    proxy_high = base.where(by_id["match_type"] != "proxy", high)
+    return {
+        "base": base,
+        "high": high,
+        "fuzzy_high": fuzzy_high,
+        "proxy_high": proxy_high,
+    }
+
+
+def check_roster_feasibility(
+    selection: pd.DataFrame,
+    budget: float,
+    scenarios: dict[str, pd.Series],
+    quota: dict[str, int] | None = None,
+) -> dict[str, dict]:
+    """Check a selected roster against every predeclared wage scenario.
+
+    Returns, per scenario, the wage bill, whether it fits the budget,
+    whether every positional minimum is met, and whether the roster is
+    feasible overall (both conditions). Selection rows need player_id
+    and pos_group; scenario series are indexed by player_id.
+    """
+    quota = quota or POS_QUOTA
+    ids = selection["player_id"].to_numpy()
+    counts = selection["pos_group"].value_counts().to_dict()
+    meets_quotas = all(counts.get(g, 0) >= q for g, q in quota.items())
+    report = {}
+    for name, wages in scenarios.items():
+        bill = float(wages.reindex(ids).sum())
+        within = bill <= budget + 1e-6
+        report[name] = {
+            "wage_bill": bill,
+            "within_budget": bool(within),
+            "meets_quotas": bool(meets_quotas),
+            "feasible": bool(within and meets_quotas),
+        }
+    return report

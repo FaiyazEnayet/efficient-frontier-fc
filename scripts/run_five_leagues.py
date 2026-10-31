@@ -276,7 +276,9 @@ def main() -> None:
         player_team = ratings.set_index("player_id")["team"]
         factors = team_factor(panel, player_team)
         sigma, cov_info = fit_factor_model(panel, factors, player_team)
-        idio = pd.Series(np.diag(sigma.to_numpy()), index=sigma.index)
+        # Idiosyncratic variance from the fit itself, never the
+        # covariance diagonal (total variance, not idiosyncratic).
+        idio = cov_info["idio_var"]
         frontier = efficient_frontier(
             ratings, np.array(BACKTEST_BUDGETS, dtype=float),
             gamma=0.0, idio_var=idio,

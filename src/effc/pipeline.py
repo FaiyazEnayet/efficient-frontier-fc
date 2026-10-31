@@ -522,7 +522,9 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     print("covariance:", cov_info)
 
     # 5. efficient frontier
+    from effc.data.wages import summarize_wage_matches
     from effc.portfolio.portfolio import (
+        describe_risk_objective,
         efficient_frontier,
         select_squad,
         select_xi,
@@ -530,7 +532,12 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     )
 
     budgets = np.array(cfg.get("budgets_eur", [50e6, 100e6, 200e6]), dtype=float)
-    idio = pd.Series(np.diag(Sigma.to_numpy()), index=Sigma.index)
+    # Idiosyncratic variance comes from the factor fit itself, never
+    # from the covariance diagonal: diag(Sigma) is total variance
+    # (factor plus idiosyncratic) and would overstate the penalty.
+    idio = cov_info["idio_var"]
+    risk_objective = describe_risk_objective(gamma=cfg.get("gamma", 0.0))
+    print("risk objective:", risk_objective["objective"])
     frontier = efficient_frontier(
         ratings, budgets, gamma=cfg.get("gamma", 0.0), idio_var=idio
     )
@@ -597,8 +604,12 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
         "calibration": calibration_report,
         "season_transfer": transfer_report,
         "wage_match_rate": float(wmap["matched"].mean()),
+        "wage_match_split": summarize_wage_matches(wmap),
+        "risk_objective": risk_objective,
         "n_rated": len(ratings),
-        "cov_info": cov_info,
+        # cov_info now carries per-player Series (idio_var, beta,
+        # factor_var); metrics.json keeps only the scalar entries.
+        "cov_info": {k: v for k, v in cov_info.items() if np.isscalar(v)},
         "frontier": frontier.to_dict("records"),
         "backtest": bt.to_dict("records"),
         "xi": xi[["player", "team", "pos_group", "vaep_per90", "wage_eur"]].to_dict("records"),
