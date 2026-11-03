@@ -22,7 +22,7 @@ def test_dashboard_exists_and_self_contained():
     marker = "const EVIDENCE="
     assert marker in html
     evidence, _ = json.JSONDecoder().raw_decode(html.split(marker, 1)[1])
-    assert evidence.get("release") == "v2.0.0"
+    assert "v2.0.0" not in html  # Rebuilding evidence does not announce a release.
     assert "five_leagues" in evidence
     results = evidence["five_leagues"]
     assert results["feature_version"] == 4
