@@ -17,5 +17,46 @@
     "random_mean",
     "oracle"
   ],
-  "note": "Derived from the real pipeline output; regenerate with scripts/make_demo.py"
+  "note": "Derived from the real pipeline output; regenerate with scripts/make_demo.py",
+  "provenance": {
+    "sources": [
+      {
+        "name": "statsbomb_open_data",
+        "role": "raw event data (matches, events, lineups)",
+        "url": "https://github.com/statsbomb/open-data",
+        "data_url": "https://raw.githubusercontent.com/statsbomb/open-data/master/data",
+        "license": "StatsBomb Public Data User Agreement (last updated 8 September 2023)",
+        "license_url": "https://raw.githubusercontent.com/statsbomb/open-data/master/LICENSE.pdf",
+        "license_note": "Free for non-commercial research and personal use; no commercial exploitation of the data or derived analysis; publications of analysis must credit StatsBomb with its brand logo. Not a Creative Commons license.",
+        "retrieval_date": "not recorded in repo (verified 2026-11-05)"
+      },
+      {
+        "name": "ea_fc_24_wages",
+        "role": "wage proxy (EA FC 24 player wages)",
+        "url": "https://raw.githubusercontent.com/mzafram2001/ea-fc/main/data/dataset_ea_fc_24.csv",
+        "data_url": "https://raw.githubusercontent.com/mzafram2001/ea-fc/main/data/dataset_ea_fc_24.csv",
+        "license": "No license statement found",
+        "license_url": null,
+        "license_note": "No license statement for the wage file is recorded in this repo. The source repository page and the raw file URL both return 404 when checked on 2026-11-05, so the file is used as a wage proxy only and is not redistributed.",
+        "retrieval_date": "not recorded in repo (verified 2026-11-05)"
+      }
+    ],
+    "config_path": "configs/bundesliga_2seasons.yaml",
+    "config_hash": "86e40fda714d21a78027747473d8de4a6dc2c9f561a372ea1c8123ece54435c7",
+    "feature_version": 4,
+    "seed": 0,
+    "wage_units": {
+      "weekly": "EUR/week",
+      "annual": "EUR/year (weekly x 52)"
+    },
+    "matching_audit": {
+      "exact": 435,
+      "fuzzy": 11,
+      "proxy": 0,
+      "unmatched": 260,
+      "n_players": 706,
+      "match_rate": 0.6317280453257791
+    },
+    "run_name": "bundesliga_2seasons"
+  }
 }
