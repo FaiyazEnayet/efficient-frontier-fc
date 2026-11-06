@@ -1,4 +1,9 @@
-"""EA FC 24 wages joined to StatsBomb players by normalized name matching."""
+"""EA FC 24 wages joined to StatsBomb players by normalized name matching.
+
+Wage units: ``wage_eur`` is EUR per week, the unit EA FC 24 reports and
+the unit the README budgets use. Annual figures are weekly x 52; see
+``annual_wage_eur`` and the provenance record in ``effc.data.provenance``.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +13,15 @@ import unicodedata
 import pandas as pd
 
 from effc.data.download import DATA_DIR
+
+# Wage unit for every wage_eur value in this module: EUR per week.
+WAGE_UNIT = "EUR/week"
+WEEKS_PER_YEAR = 52
+
+
+def annual_wage_eur(weekly_eur: float) -> float:
+    """Annual EUR for a weekly EUR wage (52 weeks per year)."""
+    return float(weekly_eur) * WEEKS_PER_YEAR
 
 POSITION_GROUPS = {
     "GK": "GK",

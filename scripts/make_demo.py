@@ -27,10 +27,12 @@ import yaml
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from effc.backtest.runner import run_backtest, split_matches  # noqa: E402
+from effc.data.provenance import build_provenance  # noqa: E402
 from effc.data.wages import load_wages, match_players  # noqa: E402
 from effc.pipeline import compute_target_vaep, prepare_model_data  # noqa: E402
 from effc.portfolio.portfolio import efficient_frontier, select_squad, select_xi  # noqa: E402
 from effc.ratings.ratings import build_ratings  # noqa: E402
+from effc.vaep.features import FEATURE_VERSION  # noqa: E402
 
 CONFIG = "configs/bundesliga_2seasons.yaml"
 DEMO_DIR = "demo"
@@ -127,6 +129,18 @@ def main() -> None:
         "grid": {"min": GRID_MIN, "max": GRID_MAX, "step": GRID_STEP},
         "rules": ["optimizer", "value", "random_mean", "oracle"],
         "note": "Derived from the real pipeline output; regenerate with scripts/make_demo.py",
+        # Full provenance: sources, licenses, matching audit, config hash
+        # and wage units. The audit is taken on the matched frame as
+        # used here: unmatched players are excluded from the ratings by
+        # build_ratings (no proxy wages are applied in the demo build),
+        # so proxy is 0 and unmatched is the excluded remainder.
+        "provenance": build_provenance(
+            config_path=CONFIG,
+            matched=wmap,
+            feature_version=FEATURE_VERSION,
+            seed=cfg.get("seed", 0),
+            run_name=cfg.get("run_name"),
+        ),
     }
     with open(os.path.join(DEMO_DIR, "meta.json"), "w") as f:
         json.dump(meta, f, indent=2)
