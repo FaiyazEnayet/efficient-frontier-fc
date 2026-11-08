@@ -46,6 +46,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 import unicodedata
@@ -55,10 +56,7 @@ from difflib import SequenceMatcher
 import numpy as np
 import pandas as pd
 
-SKILL_CLI = os.environ.get(
-    "API_FOOTBALL_CLI",
-    os.path.expanduser("~/workspace/custom-connectors/custom.legacy-api-football/bin/api-football"),
-)
+SKILL_CLI = os.environ.get("API_FOOTBALL_CLI") or shutil.which("api-football")
 STATE_DIR = os.path.join("data", "live")
 STATE_PATH = os.path.join(STATE_DIR, "state.json")
 STATE_VERSION = 2
@@ -149,11 +147,12 @@ def _direct_get(endpoint: str, params: dict) -> dict:
 def api_get(endpoint: str, **params) -> list | dict:
     """Call API-Football and return the response payload.
 
-    Prefers the Muse skill CLI (stored credential, never in env); falls
-    back to a direct call with API_FOOTBALL_KEY.
+    Prefers a locally installed provider CLI (its path comes from the
+    API_FOOTBALL_CLI environment variable or a PATH lookup); falls back
+    to a direct call with API_FOOTBALL_KEY.
     """
     data = None
-    if os.path.exists(SKILL_CLI):
+    if SKILL_CLI and os.path.exists(SKILL_CLI):
         cmd = [SKILL_CLI, endpoint] + [f"{k}={v}" for k, v in params.items()]
         try:
             proc = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
