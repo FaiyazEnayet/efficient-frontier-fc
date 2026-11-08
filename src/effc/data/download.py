@@ -12,6 +12,7 @@ Player ratings are computed on the target competition only.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -22,6 +23,14 @@ from tqdm import tqdm
 
 BASE = "https://raw.githubusercontent.com/statsbomb/open-data/master/data"
 FC24_URL = "https://raw.githubusercontent.com/mzafram2001/ea-fc/main/data/dataset_ea_fc_24.csv"
+
+# Pinned upstream revisions: the branch each source URL tracks. The
+# per-file SHA-256 recorded at download time (see _write_provenance)
+# pins the exact artifact bytes on top of the revision name.
+UPSTREAM_REVISIONS = {
+    "statsbomb_open_data": "master",
+    "ea_fc_24": "main",
+}
 
 # competitions whose events train the P(scores) / P(concedes) models
 MODEL_POOL = [
@@ -69,21 +78,144 @@ DATA_DIR = os.path.abspath(
 )
 
 
+def _payload_kind(dest: str) -> str:
+    """Which schema a destination file must satisfy."""
+    parts = dest.replace(os.sep, "/").split("/")
+    base = parts[-1]
+    if base.endswith(".csv"):
+        return "csv"
+    if "events" in parts:
+        return "events"
+    if "lineups" in parts:
+        return "lineups"
+    if base.startswith("matches_"):
+        return "matches"
+    return "json"
+
+
+def validate_payload(raw: bytes, dest: str):
+    """Parse and schema-validate downloaded bytes for `dest`.
+
+    Returns the parsed payload. Raises ValueError on truncated or
+    malformed JSON, on an HTTP error document saved as a body, and on
+    JSON that parses but does not match the schema the destination
+    requires. Nothing is accepted on existence/size alone.
+    """
+    kind = _payload_kind(dest)
+    if kind == "csv":
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise ValueError(f"{dest}: wage CSV is not UTF-8 text: {exc}") from exc
+        header = text.splitlines()[0].split(",") if text.splitlines() else []
+        missing = {"long_name", "wage_eur"} - {h.strip() for h in header}
+        if missing:
+            raise ValueError(f"{dest}: wage CSV header missing {sorted(missing)}")
+        return text
+    try:
+        data = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{dest}: downloaded body is not valid JSON: {exc}") from exc
+    if kind == "matches":
+        if not isinstance(data, list) or not data:
+            raise ValueError(f"{dest}: matches payload must be a non-empty list")
+        for row in data:
+            if not isinstance(row, dict) or "match_id" not in row or "match_date" not in row:
+                raise ValueError(f"{dest}: matches row lacks match_id/match_date: {row!r:.120}")
+    elif kind == "events":
+        if not isinstance(data, list):
+            raise ValueError(f"{dest}: events payload must be a list")
+        for row in data[:50]:
+            if not isinstance(row, dict) or "id" not in row or "type" not in row:
+                raise ValueError(f"{dest}: event row lacks id/type: {row!r:.120}")
+    elif kind == "lineups":
+        if not isinstance(data, list):
+            raise ValueError(f"{dest}: lineups payload must be a list")
+        for row in data:
+            if not isinstance(row, dict) or "lineup" not in row or (
+                "team_name" not in row and "team_id" not in row
+            ):
+                raise ValueError(f"{dest}: lineup row lacks team/lineup: {row!r:.120}")
+    return data
+
+
+def validate_cached_file(dest: str) -> bool:
+    """True only when an existing cache file parses and validates."""
+    try:
+        with open(dest, "rb") as f:
+            validate_payload(f.read(), dest)
+        return True
+    except (OSError, ValueError):
+        return False
+
+
+def artifact_sha256(path: str) -> str:
+    """SHA-256 hex digest of a file's bytes (the pinned artifact hash)."""
+    digest = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _write_provenance(dest: str, url: str, raw: bytes) -> None:
+    """Sidecar provenance for an accepted download: source URL, pinned
+    upstream revision, artifact SHA-256 and the validation outcome."""
+    upstream = (
+        UPSTREAM_REVISIONS["ea_fc_24"]
+        if "ea-fc" in url
+        else UPSTREAM_REVISIONS["statsbomb_open_data"]
+    )
+    record = {
+        "url": url,
+        "upstream": upstream,
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "bytes": len(raw),
+        "schema": _payload_kind(dest),
+        "validated": True,
+    }
+    with open(dest + ".provenance.json", "w") as f:
+        json.dump(record, f, indent=2, sort_keys=True)
+
+
 def _fetch(url: str, dest: str, retries: int = 5) -> None:
     if os.path.exists(dest) and os.path.getsize(dest) > 0:
-        return
+        if validate_cached_file(dest):
+            return
+        # A cached file that does not parse/validate (for example an
+        # HTTP error document stored by an older run) is never trusted:
+        # drop it and fetch a verified copy instead.
+        print(f"cached file failed validation, refetching: {dest}")
+        os.remove(dest)
+    parent = os.path.dirname(dest)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
     tmp = dest + ".tmp"
     last_err = ""
     for attempt in range(retries):
         r = subprocess.run(
-            ["curl", "-sS", "--max-time", "300", "-o", tmp, url],
+            ["curl", "-sS", "-f", "--max-time", "300", "-o", tmp, url],
             capture_output=True,
             text=True,
         )
         if r.returncode == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > 0:
+            with open(tmp, "rb") as f:
+                raw = f.read()
+            try:
+                validate_payload(raw, dest)
+            except ValueError as exc:
+                last_err = str(exc)[:200]
+                os.remove(tmp)
+                time.sleep(2 * (attempt + 1))
+                continue
+            # Only a parsed, schema-valid payload is atomically
+            # accepted; a partial temp file never becomes the cache.
             os.replace(tmp, dest)
+            _write_provenance(dest, url, raw)
             return
         last_err = r.stderr.strip()[:200]
+        if os.path.exists(tmp):
+            os.remove(tmp)
         time.sleep(2 * (attempt + 1))
     raise RuntimeError(f"failed {url}: {last_err}")
 

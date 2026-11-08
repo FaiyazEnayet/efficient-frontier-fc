@@ -43,9 +43,86 @@ def _cache_get(name):
 
 
 def _cache_put(name, obj):
+    """Atomic cache write: a partial temp file never becomes the entry,
+    so an interrupted write leaves any completed entry intact."""
     os.makedirs(CACHE, exist_ok=True)
-    with open(os.path.join(CACHE, name), "wb") as f:
+    path = os.path.join(CACHE, name)
+    tmp = path + ".tmp"
+    with open(tmp, "wb") as f:
         pickle.dump(obj, f)
+    os.replace(tmp, path)
+
+
+def frames_content_digest(frames) -> str:
+    """SHA-256 over the transformed frame contents (columns + values),
+    ordered by match ID. Same IDs with changed values digest differently."""
+    h = hashlib.sha256()
+    for f in sorted(frames, key=lambda df: int(df["match_id"].iloc[0])):
+        h.update(str(int(f["match_id"].iloc[0])).encode())
+        h.update(json.dumps([str(c) for c in f.columns]).encode())
+        h.update(pd.util.hash_pandas_object(f, index=True).values.tobytes())
+    return h.hexdigest()[:16]
+
+
+def _event_digest(match_ids):
+    """Raw event-file content digest for these IDs, or None when no
+    event file is present (provenance then cannot be verified)."""
+    try:
+        from effc.data.statsbomb import event_content_digest
+
+        return event_content_digest(match_ids)
+    except Exception:
+        return None
+
+
+def _record_cache_manifest(name, outcome, reason, content_digest=None):
+    """Append a hit/miss explanation to the cache entry's reproducibility
+    manifest (a JSON list next to the cache file)."""
+    os.makedirs(CACHE, exist_ok=True)
+    path = os.path.join(CACHE, name + ".manifest.json")
+    history = []
+    if os.path.exists(path):
+        try:
+            with open(path) as f:
+                history = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            history = []
+    history.append(
+        {
+            "cache_file": name,
+            "outcome": outcome,
+            "reason": reason,
+            "content_digest": content_digest,
+            "feature_version": FEATURE_VERSION,
+            "cache_version": CACHE_VERSION,
+            "verified_provenance": content_digest is not None,
+        }
+    )
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(history, f, indent=2)
+    os.replace(tmp, path)
+
+
+def pool_cache_key(match_ids, content_digest: str) -> str:
+    """Content-addressed key for the pooled featurized frames: binds the
+    sorted match IDs, the raw event content digest and the feature
+    version, so changed bytes at unchanged IDs miss the cache."""
+    h = hashlib.sha256()
+    h.update(json.dumps(sorted(int(m) for m in match_ids)).encode())
+    h.update(str(content_digest).encode())
+    h.update(str(FEATURE_VERSION).encode())
+    return f"pool_frames_v{CACHE_VERSION}_{h.hexdigest()[:16]}.pkl"
+
+
+def matches_cache_key(cache_name: str, match_ids, content_digest: str) -> str:
+    """Content-addressed variant of a caller-named frames cache."""
+    stem = cache_name[:-4] if cache_name.endswith(".pkl") else cache_name
+    h = hashlib.sha256()
+    h.update(json.dumps(sorted(int(m) for m in match_ids)).encode())
+    h.update(str(content_digest).encode())
+    h.update(str(FEATURE_VERSION).encode())
+    return f"{stem}_v{CACHE_VERSION}_{h.hexdigest()[:16]}.pkl"
 
 
 def _model_hash(models) -> str:
@@ -103,12 +180,7 @@ def pre_split_frames(
     return [f for f in frames if int(f["match_id"].iloc[0]) not in post_split_ids]
 
 
-def featurize_pool() -> list[pd.DataFrame]:
-    cached = _cache_get("pool_frames.pkl")
-    if cached is not None:
-        print(f"loaded {len(cached)} cached action frames")
-        return cached
-    matches = list_matches(MODEL_POOL)
+def _featurize_pool_frames(matches) -> list[pd.DataFrame]:
     frames = []
     for i, mid in enumerate(matches["match_id"].tolist()):
         try:
@@ -120,7 +192,49 @@ def featurize_pool() -> list[pd.DataFrame]:
             frames.append(df)
         if (i + 1) % 25 == 0:
             print(f"featurized {i + 1}/{len(matches)} matches")
-    _cache_put("pool_frames.pkl", frames)
+    return frames
+
+
+def featurize_pool() -> list[pd.DataFrame]:
+    """Featurized MODEL_POOL frames, cached under a content-addressed key.
+
+    The old fixed pool_frames.pkl name is never read or written: it
+    cannot say which raw bytes or feature version produced it. When the
+    raw event content cannot be digested, provenance is unverified and
+    the frames are computed fresh and not cached at all, so no output
+    is ever treated as measured on unverified inputs.
+    """
+    matches = list_matches(MODEL_POOL)
+    ids = [int(m) for m in matches["match_id"].tolist()]
+    digest = _event_digest(ids)
+    if digest is None:
+        print(
+            "[warn] event content digest unavailable; featurizing fresh "
+            "and skipping the cache (unverified provenance)"
+        )
+        _record_cache_manifest(
+            "pool_frames.pkl", "miss",
+            "raw event content digest unavailable; cache bypassed", None,
+        )
+        frames = _featurize_pool_frames(matches)
+        total = sum(len(f) for f in frames)
+        print(f"featurized {len(frames)} matches, {total} actions")
+        return frames
+    key = pool_cache_key(ids, digest)
+    cached = _cache_get(key)
+    if cached is not None:
+        _record_cache_manifest(
+            key, "hit",
+            "content digest and feature version match the recorded key",
+            digest,
+        )
+        print(f"loaded {len(cached)} cached action frames ({key})")
+        return cached
+    _record_cache_manifest(
+        key, "miss", "no verified cache entry for this content digest", digest
+    )
+    frames = _featurize_pool_frames(matches)
+    _cache_put(key, frames)
     total = sum(len(f) for f in frames)
     print(f"featurized {len(frames)} matches, {total} actions")
     return frames
@@ -140,20 +254,47 @@ def featurize_matches(match_ids, cache_name: str) -> list[pd.DataFrame]:
 
     Used for the pooled training competitions: pooled matches are
     training data only, so a single cache entry per pool is enough.
+    The entry is content-addressed (caller name + sorted IDs + raw
+    event content digest + feature version): the bare fixed filename
+    is never trusted, and when the digest is unavailable the frames
+    are computed fresh and not cached.
     """
-    cached = _cache_get(cache_name)
-    if cached is not None:
-        print(f"loaded {len(cached)} cached frames ({cache_name})")
-        return cached
+    ids = sorted({int(m) for m in match_ids})
+    digest = _event_digest(ids)
+    key = None
+    if digest is None:
+        print(
+            f"[warn] event content digest unavailable for {cache_name}; "
+            "featurizing fresh and skipping the cache (unverified provenance)"
+        )
+        _record_cache_manifest(
+            cache_name, "miss",
+            "raw event content digest unavailable; cache bypassed", None,
+        )
+    else:
+        key = matches_cache_key(cache_name, ids, digest)
+        cached = _cache_get(key)
+        if cached is not None:
+            _record_cache_manifest(
+                key, "hit",
+                "content digest and feature version match the recorded key",
+                digest,
+            )
+            print(f"loaded {len(cached)} cached frames ({key})")
+            return cached
+        _record_cache_manifest(
+            key, "miss", "no verified cache entry for this content digest",
+            digest,
+        )
     import multiprocessing
 
-    ids = sorted({int(m) for m in match_ids})
     with multiprocessing.Pool(processes=min(8, os.cpu_count() or 1)) as pool:
         results = pool.map(_featurize_one, ids, chunksize=8)
     frames = [r for r in results if r is not None]
     total = sum(len(f) for f in frames)
     print(f"featurized {len(frames)}/{len(ids)} pooled matches, {total} actions")
-    _cache_put(cache_name, frames)
+    if key is not None:
+        _cache_put(key, frames)
     return frames
 
 
@@ -305,9 +446,16 @@ def prepare_model_data(cfg: dict) -> dict:
         f"{len(train_frames)} train-group + {len(pool_frames)} pooled "
         f"matches; holding out {len(calib_frames)} for calibration"
     )
+    content_digest = _event_digest(sorted(set(train_ids) | pool_ids))
+    if content_digest is None:
+        print(
+            "[warn] event content digest unavailable; improved-model cache "
+            "binds the transformed frames only"
+        )
     models, calib_report = imp.train_improved_models_cached(
         train_frames, pool_frames, meta_all, config_name,
         seed=cfg.get("seed", 0),
+        content_digest=content_digest,
     )
     improvement = {
         "config": config_name,
@@ -390,6 +538,7 @@ def season_transfer_evaluation(
     )
     tr_models, calib_report = imp.train_improved_models_cached(
         tr_frames, era_frames, meta_all, config_name, seed=seed,
+        content_digest=_event_digest(sorted(set(tr_ids) | era_ids)),
     )
     tr_scored = cal.per_match_scores(tr_models, sc_frames)
     tr_base = cal.base_rate_scores(tr_frames, sc_frames)
