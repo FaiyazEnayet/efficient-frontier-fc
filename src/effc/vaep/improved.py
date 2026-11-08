@@ -83,6 +83,40 @@ def _frame_id(frame: pd.DataFrame) -> int:
     return int(frame["match_id"].iloc[0])
 
 
+def _frames_digest(frames) -> str:
+    """SHA-256 over the transformed frame contents (columns + values),
+    ordered by match ID. Binds a cache key to the actual feature values,
+    not just the ID list: same IDs with changed content digest differently."""
+    import json as _json
+
+    h = hashlib.sha256()
+    for f in sorted(frames, key=_frame_id):
+        h.update(str(_frame_id(f)).encode())
+        h.update(_json.dumps([str(c) for c in f.columns]).encode())
+        h.update(pd.util.hash_pandas_object(f, index=True).values.tobytes())
+    return h.hexdigest()[:16]
+
+
+def _append_cache_manifest(path: str, outcome: str, reason: str, key: str) -> None:
+    """Append a hit/miss explanation to a cache file's reproducibility
+    manifest (a JSON list in the sidecar <cache file>.manifest.json)."""
+    import json as _json
+
+    manifest_path = path + ".manifest.json"
+    history = []
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path) as fh:
+                history = _json.load(fh)
+        except (OSError, ValueError):
+            history = []
+    history.append({"cache_key": key, "outcome": outcome, "reason": reason})
+    tmp = manifest_path + ".tmp"
+    with open(tmp, "w") as fh:
+        _json.dump(history, fh, indent=2)
+    os.replace(tmp, manifest_path)
+
+
 def _recency_weights(frames, match_dates: dict, half_life_days: float):
     """Per-row sample weights from match dates (newest match weighs 1)."""
     dates = {mid: pd.to_datetime(d) for mid, d in match_dates.items()}
@@ -289,6 +323,12 @@ def crossfit_oof(
     )
     if content_digest is not None:
         key_src += f"|{content_digest}"
+    # Always bind the transformed frame contents, not just the IDs:
+    # changed bytes at unchanged match IDs change the frames, hence
+    # the digest, hence the key, so stale OOF predictions never hit.
+    key_src += (
+        f"|frames:{_frames_digest(group_frames)}|{_frames_digest(pool_capped)}"
+    )
     key = hashlib.md5(key_src.encode()).hexdigest()[:16]
     cache_dir = os.path.join(DATA_DIR, "cache")
     os.makedirs(cache_dir, exist_ok=True)
@@ -296,8 +336,17 @@ def crossfit_oof(
     if os.path.exists(path):
         with open(path, "rb") as fh:
             print(f"loaded cached cross-fit OOF (key {key})")
-            return pickle.load(fh)
+            cached = pickle.load(fh)
+        _append_cache_manifest(
+            path, "hit",
+            "config, seed, match IDs and frame content digest match the key",
+            key,
+        )
+        return cached
 
+    _append_cache_manifest(
+        path, "miss", "no cache entry for this frame content digest", key
+    )
     oof: dict = {}
     for k in range(n_folds):
         earlier = [f for fold in folds[:k] for f in fold]
@@ -307,8 +356,10 @@ def crossfit_oof(
         )
         for f in folds[k]:
             oof[_frame_id(f)] = raw_predict(bundle, f)
-    with open(path, "wb") as fh:
+    tmp_path = path + ".tmp"
+    with open(tmp_path, "wb") as fh:
         pickle.dump(oof, fh)
+    os.replace(tmp_path, path)
     return oof
 
 
@@ -477,6 +528,7 @@ def improved_cache_key(
     pool_ids,
     content_digest: str | None = None,
     feature_version: int | None = None,
+    frames_digest: str | None = None,
 ) -> str:
     """Disk-cache key for train_improved_models_cached.
 
@@ -484,9 +536,12 @@ def improved_cache_key(
     the exact sorted group/pool match-ID sets. content_digest, when
     given, additionally binds raw content, so the same IDs with changed
     raw data miss the cache instead of reusing a stale bundle.
-    feature_version defaults to the current FEATURE_VERSION; the FC6
-    manifest validator passes the recorded run-time version (2) to
-    recompute the historical fingerprints.
+    frames_digest, when given, additionally binds the transformed
+    feature values behind those IDs. With neither digest given the
+    historical derivation is reproduced exactly (the FC6 manifest
+    validator relies on that). feature_version defaults to the current
+    FEATURE_VERSION; the FC6 manifest validator passes the recorded
+    run-time version (2) to recompute the historical fingerprints.
     """
     from effc.vaep.features import FEATURE_VERSION
 
@@ -499,6 +554,8 @@ def improved_cache_key(
     )
     if content_digest is not None:
         key_src += f"|{content_digest}"
+    if frames_digest is not None:
+        key_src += f"|frames:{frames_digest}"
     return hashlib.md5(key_src.encode()).hexdigest()[:16]
 
 
@@ -526,8 +583,13 @@ def train_improved_models_cached(
 
     group_ids = sorted(_frame_id(f) for f in group_frames)
     pool_ids = sorted(_frame_id(f) for f in pool_frames)
+    # The runtime key always binds the transformed frame contents (and
+    # the raw content digest when the caller supplies one), so changed
+    # bytes at unchanged match IDs retrain instead of reusing a bundle.
+    frames_digest = _frames_digest(list(group_frames) + list(pool_frames))
     key = improved_cache_key(
-        config_name, seed, group_ids, pool_ids, content_digest=content_digest
+        config_name, seed, group_ids, pool_ids,
+        content_digest=content_digest, frames_digest=frames_digest,
     )
     cache_dir = os.path.join(DATA_DIR, "cache")
     os.makedirs(cache_dir, exist_ok=True)
@@ -536,11 +598,21 @@ def train_improved_models_cached(
         with open(path, "rb") as fh:
             models, report = pickle.load(fh)
         print(f"loaded cached improved models ({config_name}, key {key})")
+        _append_cache_manifest(
+            path, "hit",
+            "config, seed, match IDs and frame content digest match the key",
+            key,
+        )
         return models, report
+    _append_cache_manifest(
+        path, "miss", "no cache entry for this frame content digest", key
+    )
     models, report = train_improved_models(
         group_frames, pool_frames, meta, CONFIGS[config_name], seed=seed,
         content_digest=content_digest,
     )
-    with open(path, "wb") as fh:
+    tmp_path = path + ".tmp"
+    with open(tmp_path, "wb") as fh:
         pickle.dump((models, report), fh)
+    os.replace(tmp_path, path)
     return models, report
