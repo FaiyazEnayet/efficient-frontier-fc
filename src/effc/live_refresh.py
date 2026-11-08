@@ -4,8 +4,10 @@
                                 [--budget 700000] [--dry-run] [--rebuild-base]
 
 Base ratings come from the immutable, versioned baseline artifact in
-runs/live/ (tied to one fitted model and data snapshot; see
-effc.live.load_baseline_ratings). With --rebuild-base they are instead
+runs/live/ for the requested league (tied to one fitted model and
+data snapshot; see effc.live.load_baseline_ratings). A league with no
+baseline artifact falls back to the default artifact, so its players
+are watchlisted. With --rebuild-base they are instead
 rebuilt from the pipeline: the fitted models and training match IDs
 from prepare_model_data are passed to compute_target_vaep, as its
 signature requires. Fetched fixtures are folded into the ratings as
@@ -61,16 +63,19 @@ def _load_config(path: str = DEFAULT_CONFIG) -> dict:
 
 
 def base_ratings(min_minutes: float = 270.0, shrink_k: float = 900.0,
-                 rebuild: bool = False, config: dict | None = None) -> pd.DataFrame:
+                 rebuild: bool = False, config: dict | None = None,
+                 league: int | None = None) -> pd.DataFrame:
     """Base ratings for the refresh.
 
-    Default: the versioned baseline artifact (immutable, tied to a
-    fitted model and data snapshot). With rebuild=True, ratings are
-    rebuilt through the pipeline, passing the fitted models and the
-    training match IDs to compute_target_vaep.
+    Default: the versioned baseline artifact for `league` (immutable,
+    tied to a fitted model and data snapshot); a league with no
+    baseline artifact falls back to the default artifact, so its
+    players are watchlisted. With rebuild=True, ratings are rebuilt
+    through the pipeline (the Bundesliga config), passing the fitted
+    models and the training match IDs to compute_target_vaep.
     """
     if not rebuild:
-        return load_baseline_ratings()
+        return load_baseline_ratings(league=league)
     cfg = config if config is not None else _load_config()
     data = prepare_model_data(cfg)
     pm, mins, _ = compute_target_vaep(
@@ -193,7 +198,7 @@ def main() -> None:
               f"run again tomorrow")
         return
 
-    ratings = base_ratings(rebuild=args.rebuild_base)
+    ratings = base_ratings(rebuild=args.rebuild_base, league=args.league)
     working = copy.deepcopy(state)
     working.setdefault("processed_fixtures", {})
     matched, unmatched = 0, 0

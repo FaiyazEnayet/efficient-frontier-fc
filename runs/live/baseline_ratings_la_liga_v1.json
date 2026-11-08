@@ -1,0 +1,1328 @@
+{
+ "version": "baseline-v1",
+ "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+ "data_snapshot": "StatsBomb open data, La Liga 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 146)",
+ "config_hash": null,
+ "feature_version": 4,
+ "seed": 0,
+ "ratings": [
+  {
+   "player_id": "10476",
+   "player": "Timoth\u00e9e Kolodziejczak",
+   "team": "Sevilla",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3413274843095691,
+   "wage_eur": 3000.0,
+   "minutes": 2554.5333333333333
+  },
+  {
+   "player_id": "10612",
+   "player": "Yoel Rodr\u00edguez Oterino",
+   "team": "Rayo Vallecano",
+   "pos_group": "GK",
+   "vaep_per90": 0.25635046593248095,
+   "wage_eur": 5000.0,
+   "minutes": 855.0
+  },
+  {
+   "player_id": "10755",
+   "player": "Jonathan Viera Ramos",
+   "team": "Las Palmas",
+   "pos_group": "MID",
+   "vaep_per90": 0.5544129565575809,
+   "wage_eur": 33000.0,
+   "minutes": 3252.866666666667
+  },
+  {
+   "player_id": "10802",
+   "player": "Andr\u00e9 Filipe Tavares Gomes",
+   "team": "Valencia",
+   "pos_group": "MID",
+   "vaep_per90": 0.39765472071920155,
+   "wage_eur": 34000.0,
+   "minutes": 2489.9
+  },
+  {
+   "player_id": "11298",
+   "player": "Jos\u00e9 Ignacio Mart\u00ednez Garc\u00eda",
+   "team": "Rayo Vallecano",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3198712793067688,
+   "wage_eur": 5000.0,
+   "minutes": 1778.5333333333333
+  },
+  {
+   "player_id": "11539",
+   "player": "Adri\u00e1n Embarba Bl\u00e1zquez",
+   "team": "Rayo Vallecano",
+   "pos_group": "MID",
+   "vaep_per90": 0.37902992567348137,
+   "wage_eur": 24000.0,
+   "minutes": 1931.0833333333333
+  },
+  {
+   "player_id": "11634",
+   "player": "Cristiano Piccini",
+   "team": "Real Betis",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37595970709903015,
+   "wage_eur": 2000.0,
+   "minutes": 1488.2166666666667
+  },
+  {
+   "player_id": "11675",
+   "player": "Mois\u00e9s G\u00f3mez Bordonado",
+   "team": "Getafe",
+   "pos_group": "MID",
+   "vaep_per90": 0.37939949162028086,
+   "wage_eur": 35000.0,
+   "minutes": 1000.0166666666667
+  },
+  {
+   "player_id": "11813",
+   "player": "Emiliano Buend\u00eda",
+   "team": "Getafe",
+   "pos_group": "MID",
+   "vaep_per90": 0.37837742021022913,
+   "wage_eur": 83000.0,
+   "minutes": 832.75
+  },
+  {
+   "player_id": "12021",
+   "player": "\u00d3liver Torres Mu\u00f1oz",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "MID",
+   "vaep_per90": 0.33806403235925786,
+   "wage_eur": 33000.0,
+   "minutes": 874.9166666666666
+  },
+  {
+   "player_id": "13107",
+   "player": "Sergio \u00c1lvarez D\u00edaz",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "MID",
+   "vaep_per90": 0.3317697647843233,
+   "wage_eur": 9000.0,
+   "minutes": 2301.6833333333334
+  },
+  {
+   "player_id": "15893",
+   "player": "V\u00edctor Rodr\u00edguez Romero",
+   "team": "Getafe",
+   "pos_group": "MID",
+   "vaep_per90": 0.32688540770061686,
+   "wage_eur": 750.0,
+   "minutes": 2403.45
+  },
+  {
+   "player_id": "18398",
+   "player": "Omar Mascarell Gonz\u00e1lez",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "MID",
+   "vaep_per90": 0.30693321351200487,
+   "wage_eur": 24000.0,
+   "minutes": 1878.85
+  },
+  {
+   "player_id": "18724",
+   "player": "Sofiane Feghouli",
+   "team": "Valencia",
+   "pos_group": "MID",
+   "vaep_per90": 0.41064007617371306,
+   "wage_eur": 12000.0,
+   "minutes": 1343.3166666666666
+  },
+  {
+   "player_id": "19677",
+   "player": "Karim Benzema",
+   "team": "Real Madrid",
+   "pos_group": "FWD",
+   "vaep_per90": 0.9245022258258679,
+   "wage_eur": 86000.0,
+   "minutes": 2042.4666666666667
+  },
+  {
+   "player_id": "20055",
+   "player": "Marc-Andr\u00e9 ter Stegen",
+   "team": "Barcelona",
+   "pos_group": "GK",
+   "vaep_per90": 0.5057175216963612,
+   "wage_eur": 220000.0,
+   "minutes": 576.95
+  },
+  {
+   "player_id": "20064",
+   "player": "Hugo Miguel Almeida Costa Lopes",
+   "team": "Granada",
+   "pos_group": "DEF",
+   "vaep_per90": 0.38692838003998536,
+   "wage_eur": 4000.0,
+   "minutes": 2080.133333333333
+  },
+  {
+   "player_id": "20542",
+   "player": "\u00c1lvaro Negredo S\u00e1nchez",
+   "team": "Valencia",
+   "pos_group": "FWD",
+   "vaep_per90": 0.49195360370744556,
+   "wage_eur": 7000.0,
+   "minutes": 1245.15
+  },
+  {
+   "player_id": "21147",
+   "player": "Borja Mayoral Moya",
+   "team": "Real Madrid",
+   "pos_group": "FWD",
+   "vaep_per90": 0.41500539966886657,
+   "wage_eur": 33000.0,
+   "minutes": 297.68333333333334
+  },
+  {
+   "player_id": "21877",
+   "player": "Ignacio Monsalve Vicente",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34224243627528816,
+   "wage_eur": 2000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "23802",
+   "player": "Juan Mu\u00f1oz Mu\u00f1oz",
+   "team": "Sevilla",
+   "pos_group": "FWD",
+   "vaep_per90": 0.39189188369888195,
+   "wage_eur": 5000.0,
+   "minutes": 330.6333333333333
+  },
+  {
+   "player_id": "23843",
+   "player": "Diego Mari\u00f1o Villar",
+   "team": "Levante UD",
+   "pos_group": "GK",
+   "vaep_per90": 0.4321084118966695,
+   "wage_eur": 9000.0,
+   "minutes": 2185.0
+  },
+  {
+   "player_id": "23943",
+   "player": "Rub\u00e9n Garc\u00eda Santos",
+   "team": "Levante UD",
+   "pos_group": "MID",
+   "vaep_per90": 0.3841744928189461,
+   "wage_eur": 31000.0,
+   "minutes": 1104.3833333333334
+  },
+  {
+   "player_id": "23972",
+   "player": "Jos\u00e9 Joaqu\u00edn Matos Garc\u00eda",
+   "team": "Sevilla",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3555599241552237,
+   "wage_eur": 4000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "23974",
+   "player": "Roberto Antonio Correa Silva",
+   "team": "Espanyol",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31527427351722526,
+   "wage_eur": 5000.0,
+   "minutes": 516.6833333333333
+  },
+  {
+   "player_id": "24086",
+   "player": "Antonio Jos\u00e9 Raillo Arenas",
+   "team": "Espanyol",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31371482566367004,
+   "wage_eur": 22000.0,
+   "minutes": 380.0
+  },
+  {
+   "player_id": "24143",
+   "player": "\u00c1lvaro Vadillo Cifuentes",
+   "team": "Real Betis",
+   "pos_group": "MID",
+   "vaep_per90": 0.34976942342266504,
+   "wage_eur": 5000.0,
+   "minutes": 94.91666666666667
+  },
+  {
+   "player_id": "24255",
+   "player": "Juan Carlos Mart\u00edn Corral",
+   "team": "Rayo Vallecano",
+   "pos_group": "GK",
+   "vaep_per90": 0.32212081479288,
+   "wage_eur": 10000.0,
+   "minutes": 1907.4
+  },
+  {
+   "player_id": "24453",
+   "player": "Josip Rado\u0161evi\u0107",
+   "team": "Eibar",
+   "pos_group": "MID",
+   "vaep_per90": 0.3432694960655823,
+   "wage_eur": 5000.0,
+   "minutes": 440.3833333333333
+  },
+  {
+   "player_id": "27239",
+   "player": "Aleksandar Panti\u0107",
+   "team": "Eibar",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28208756654949846,
+   "wage_eur": 750.0,
+   "minutes": 1772.0666666666666
+  },
+  {
+   "player_id": "27240",
+   "player": "Jes\u00fas Fern\u00e1ndez Collado",
+   "team": "Granada",
+   "pos_group": "GK",
+   "vaep_per90": 0.4798065273998576,
+   "wage_eur": 1000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "27342",
+   "player": "Josep Se\u00f1\u00e9 Escudero",
+   "team": "Celta Vigo",
+   "pos_group": "MID",
+   "vaep_per90": 0.31420251859454384,
+   "wage_eur": 6000.0,
+   "minutes": 426.3666666666667
+  },
+  {
+   "player_id": "27348",
+   "player": "Ricky van Wolfswinkel",
+   "team": "Real Betis",
+   "pos_group": "FWD",
+   "vaep_per90": 0.40244168286117504,
+   "wage_eur": 12000.0,
+   "minutes": 681.4166666666666
+  },
+  {
+   "player_id": "27401",
+   "player": "Bernard Mensah",
+   "team": "Getafe",
+   "pos_group": "MID",
+   "vaep_per90": 0.3430837847229773,
+   "wage_eur": 19000.0,
+   "minutes": 97.33333333333331
+  },
+  {
+   "player_id": "3023",
+   "player": "Yuri Berchiche Izeta",
+   "team": "Real Sociedad",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36487635654088135,
+   "wage_eur": 31000.0,
+   "minutes": 1932.2666666666667
+  },
+  {
+   "player_id": "30454",
+   "player": "Francisco Jos\u00e9 S\u00e1nchez Rodr\u00edguez",
+   "team": "Sevilla",
+   "pos_group": "MID",
+   "vaep_per90": 0.3391737798962277,
+   "wage_eur": 8000.0,
+   "minutes": 320.23333333333335
+  },
+  {
+   "player_id": "3063",
+   "player": "Danilo Luiz da Silva",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.45072850444788154,
+   "wage_eur": 100000.0,
+   "minutes": 2147.55
+  },
+  {
+   "player_id": "3240",
+   "player": "Mathew Ryan",
+   "team": "Valencia",
+   "pos_group": "GK",
+   "vaep_per90": 0.48313952735196747,
+   "wage_eur": 10000.0,
+   "minutes": 760.0
+  },
+  {
+   "player_id": "3302",
+   "player": "Nordin Amrabat",
+   "team": "M\u00e1laga",
+   "pos_group": "MID",
+   "vaep_per90": 0.3222781248185659,
+   "wage_eur": 950.0,
+   "minutes": 1043.6
+  },
+  {
+   "player_id": "3379",
+   "player": "Alphonse Areola",
+   "team": "Villarreal",
+   "pos_group": "GK",
+   "vaep_per90": 0.6238346119510344,
+   "wage_eur": 57000.0,
+   "minutes": 3040.0
+  },
+  {
+   "player_id": "3508",
+   "player": "Sandro Ram\u00edrez Castillo",
+   "team": "Barcelona",
+   "pos_group": "FWD",
+   "vaep_per90": 0.39119794394555935,
+   "wage_eur": 21000.0,
+   "minutes": 382.25
+  },
+  {
+   "player_id": "3610",
+   "player": "Roque Mesa Quevedo",
+   "team": "Las Palmas",
+   "pos_group": "MID",
+   "vaep_per90": 0.36898655030104544,
+   "wage_eur": 10000.0,
+   "minutes": 2931.85
+  },
+  {
+   "player_id": "3637",
+   "player": "Grzegorz Krychowiak",
+   "team": "Sevilla",
+   "pos_group": "MID",
+   "vaep_per90": 0.2887633121591148,
+   "wage_eur": 11000.0,
+   "minutes": 2395.1
+  },
+  {
+   "player_id": "4353",
+   "player": "Aymeric Laporte",
+   "team": "Athletic Club",
+   "pos_group": "DEF",
+   "vaep_per90": 0.42183852972544966,
+   "wage_eur": 59000.0,
+   "minutes": 2379.9166666666665
+  },
+  {
+   "player_id": "4546",
+   "player": "Dimitri Foulquier",
+   "team": "Granada",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3343270410273963,
+   "wage_eur": 25000.0,
+   "minutes": 1621.7
+  },
+  {
+   "player_id": "4926",
+   "player": "Francisco Rom\u00e1n Alarc\u00f3n Su\u00e1rez",
+   "team": "Real Madrid",
+   "pos_group": "MID",
+   "vaep_per90": 0.42824468872188143,
+   "wage_eur": 32000.0,
+   "minutes": 1921.8333333333333
+  },
+  {
+   "player_id": "5186",
+   "player": "Denis Cheryshev",
+   "team": "Valencia",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5592908779031002,
+   "wage_eur": 4000.0,
+   "minutes": 522.9166666666666
+  },
+  {
+   "player_id": "5200",
+   "player": "Lucas V\u00e1zquez Iglesias",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.49477856954179933,
+   "wage_eur": 140000.0,
+   "minutes": 1340.7666666666667
+  },
+  {
+   "player_id": "5201",
+   "player": "Sergio Ramos Garc\u00eda",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4037461222306282,
+   "wage_eur": 28000.0,
+   "minutes": 2048.7833333333333
+  },
+  {
+   "player_id": "5202",
+   "player": "Jos\u00e9 Ignacio Fern\u00e1ndez Iglesias",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28613320744044524,
+   "wage_eur": 155000.0,
+   "minutes": 1234.7333333333333
+  },
+  {
+   "player_id": "5211",
+   "player": "Jordi Alba Ramos",
+   "team": "Barcelona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35087541046673887,
+   "wage_eur": 13000.0,
+   "minutes": 2722.95
+  },
+  {
+   "player_id": "5217",
+   "player": "Iago Aspas Juncal",
+   "team": "Celta Vigo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5756650395168956,
+   "wage_eur": 35000.0,
+   "minutes": 2750.6833333333334
+  },
+  {
+   "player_id": "5456",
+   "player": "Mateo Kova\u010di\u0107",
+   "team": "Real Madrid",
+   "pos_group": "MID",
+   "vaep_per90": 0.32422316938911755,
+   "wage_eur": 150000.0,
+   "minutes": 1153.8
+  },
+  {
+   "player_id": "5463",
+   "player": "Luka Modri\u0107",
+   "team": "Real Madrid",
+   "pos_group": "MID",
+   "vaep_per90": 0.4658494177906445,
+   "wage_eur": 175000.0,
+   "minutes": 2728.116666666667
+  },
+  {
+   "player_id": "5470",
+   "player": "Ivan Rakiti\u0107",
+   "team": "Barcelona",
+   "pos_group": "MID",
+   "vaep_per90": 0.5476239764925587,
+   "wage_eur": 35000.0,
+   "minutes": 2685.7166666666667
+  },
+  {
+   "player_id": "5485",
+   "player": "Rapha\u00ebl Varane",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2997653849198253,
+   "wage_eur": 135000.0,
+   "minutes": 2319.5166666666664
+  },
+  {
+   "player_id": "5487",
+   "player": "Antoine Griezmann",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "FWD",
+   "vaep_per90": 0.785389924498767,
+   "wage_eur": 135000.0,
+   "minutes": 3159.25
+  },
+  {
+   "player_id": "5719",
+   "player": "Marco Asensio Willemsen",
+   "team": "Espanyol",
+   "pos_group": "FWD",
+   "vaep_per90": 0.47006324151600687,
+   "wage_eur": 105000.0,
+   "minutes": 2953.0666666666666
+  },
+  {
+   "player_id": "5721",
+   "player": "Daniel Carvajal Ramos",
+   "team": "Real Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36419774146254047,
+   "wage_eur": 185000.0,
+   "minutes": 1711.45
+  },
+  {
+   "player_id": "5724",
+   "player": "Fay\u00e7al Fajr",
+   "team": "RC Deportivo La Coru\u00f1a",
+   "pos_group": "MID",
+   "vaep_per90": 0.43025574851576154,
+   "wage_eur": 27000.0,
+   "minutes": 2998.0333333333333
+  },
+  {
+   "player_id": "6038",
+   "player": "John Guidetti",
+   "team": "Celta Vigo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.45070744549677544,
+   "wage_eur": 3000.0,
+   "minutes": 1364.9166666666667
+  },
+  {
+   "player_id": "6376",
+   "player": "Stefan Savi\u0107",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2924244343825276,
+   "wage_eur": 57000.0,
+   "minutes": 985.1833333333333
+  },
+  {
+   "player_id": "6377",
+   "player": "\u00c1ngel Mart\u00edn Correa",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "FWD",
+   "vaep_per90": 0.638571300520749,
+   "wage_eur": 77000.0,
+   "minutes": 1045.3166666666666
+  },
+  {
+   "player_id": "6378",
+   "player": "Jan Oblak",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "GK",
+   "vaep_per90": 0.4842117518648093,
+   "wage_eur": 90000.0,
+   "minutes": 3610.0
+  },
+  {
+   "player_id": "6381",
+   "player": "Sa\u00fal \u00d1\u00edguez Esclapez",
+   "team": "Atl\u00e9tico Madrid",
+   "pos_group": "MID",
+   "vaep_per90": 0.416423550754546,
+   "wage_eur": 61000.0,
+   "minutes": 2463.8333333333335
+  },
+  {
+   "player_id": "6392",
+   "player": "\u00cd\u00f1igo Lekue Mart\u00ednez",
+   "team": "Athletic Club",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35090026954723313,
+   "wage_eur": 25000.0,
+   "minutes": 1232.1666666666667
+  },
+  {
+   "player_id": "6393",
+   "player": "I\u00f1aki Williams Arthuer",
+   "team": "Athletic Club",
+   "pos_group": "MID",
+   "vaep_per90": 0.5029758394176393,
+   "wage_eur": 40000.0,
+   "minutes": 1659.3166666666666
+  },
+  {
+   "player_id": "6401",
+   "player": "Kevin Gameiro",
+   "team": "Sevilla",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6978974421600567,
+   "wage_eur": 18000.0,
+   "minutes": 2173.05
+  },
+  {
+   "player_id": "6559",
+   "player": "Juan Carlos P\u00e9rez L\u00f3pez",
+   "team": "M\u00e1laga",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3234828017363731,
+   "wage_eur": 550.0,
+   "minutes": 1320.6666666666667
+  },
+  {
+   "player_id": "6561",
+   "player": "Luis Hern\u00e1ndez Rodr\u00edguez",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "DEF",
+   "vaep_per90": 0.42679256214234473,
+   "wage_eur": 25000.0,
+   "minutes": 3418.766666666667
+  },
+  {
+   "player_id": "6566",
+   "player": "Borja Gonz\u00e1lez Tom\u00e1s",
+   "team": "Eibar",
+   "pos_group": "FWD",
+   "vaep_per90": 0.570202846791706,
+   "wage_eur": 5000.0,
+   "minutes": 2689.7833333333333
+  },
+  {
+   "player_id": "6595",
+   "player": "Daniel Parejo Mu\u00f1oz",
+   "team": "Valencia",
+   "pos_group": "MID",
+   "vaep_per90": 0.5593953298069054,
+   "wage_eur": 54000.0,
+   "minutes": 2879.05
+  },
+  {
+   "player_id": "6596",
+   "player": "Jos\u00e9 Luis Gay\u00e0 Pe\u00f1a",
+   "team": "Valencia",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34272533456133736,
+   "wage_eur": 46000.0,
+   "minutes": 1524.9833333333333
+  },
+  {
+   "player_id": "6599",
+   "player": "Rub\u00e9n Salvador P\u00e9rez Del M\u00e1rmol",
+   "team": "Granada",
+   "pos_group": "MID",
+   "vaep_per90": 0.33083937324163676,
+   "wage_eur": 850.0,
+   "minutes": 2578.116666666667
+  },
+  {
+   "player_id": "6605",
+   "player": "Joseba Zald\u00faa Bengoetxea",
+   "team": "Real Sociedad",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36506014386238816,
+   "wage_eur": 23000.0,
+   "minutes": 971.0166666666667
+  },
+  {
+   "player_id": "6609",
+   "player": "Denis Su\u00e1rez Fern\u00e1ndez",
+   "team": "Villarreal",
+   "pos_group": "MID",
+   "vaep_per90": 0.45398942009746224,
+   "wage_eur": 29000.0,
+   "minutes": 2508.95
+  },
+  {
+   "player_id": "6610",
+   "player": "Iv\u00e1n Cu\u00e9llar Sacrist\u00e1n",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "GK",
+   "vaep_per90": 0.42838962469641306,
+   "wage_eur": 4000.0,
+   "minutes": 3040.0
+  },
+  {
+   "player_id": "6612",
+   "player": "Rub\u00e9n Duarte S\u00e1nchez",
+   "team": "Espanyol",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3311200957897016,
+   "wage_eur": 20000.0,
+   "minutes": 1963.2666666666667
+  },
+  {
+   "player_id": "6625",
+   "player": "Vicente Guaita Panadero",
+   "team": "Getafe",
+   "pos_group": "GK",
+   "vaep_per90": 0.46272594868206923,
+   "wage_eur": 13000.0,
+   "minutes": 3610.0
+  },
+  {
+   "player_id": "6626",
+   "player": "Mubarak Wakaso",
+   "team": "Las Palmas",
+   "pos_group": "MID",
+   "vaep_per90": 0.3529255486100705,
+   "wage_eur": 6000.0,
+   "minutes": 1000.5833333333334
+  },
+  {
+   "player_id": "6649",
+   "player": "\u00d3scar de Marcos Arana",
+   "team": "Athletic Club",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36283929702580264,
+   "wage_eur": 31000.0,
+   "minutes": 3040.366666666667
+  },
+  {
+   "player_id": "6654",
+   "player": "Antonio Ad\u00e1n Garrido",
+   "team": "Real Betis",
+   "pos_group": "GK",
+   "vaep_per90": 0.48499636396779044,
+   "wage_eur": 8000.0,
+   "minutes": 3387.1
+  },
+  {
+   "player_id": "6655",
+   "player": "Fabi\u00e1n Ruiz Pe\u00f1a",
+   "team": "Real Betis",
+   "pos_group": "MID",
+   "vaep_per90": 0.31679205202888433,
+   "wage_eur": 83000.0,
+   "minutes": 461.65
+  },
+  {
+   "player_id": "6656",
+   "player": "Mikel Rico Moreno",
+   "team": "Athletic Club",
+   "pos_group": "MID",
+   "vaep_per90": 0.3641376314083769,
+   "wage_eur": 3000.0,
+   "minutes": 756.2333333333333
+  },
+  {
+   "player_id": "6659",
+   "player": "V\u00edctor Camarasa Ferrando",
+   "team": "Levante UD",
+   "pos_group": "MID",
+   "vaep_per90": 0.3248322268804859,
+   "wage_eur": 6000.0,
+   "minutes": 2234.733333333333
+  },
+  {
+   "player_id": "6665",
+   "player": "\u00cd\u00f1igo Mart\u00ednez Berridi",
+   "team": "Real Sociedad",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40212464231295375,
+   "wage_eur": 145000.0,
+   "minutes": 2850.0
+  },
+  {
+   "player_id": "6666",
+   "player": "Sabin Merino Zuloaga",
+   "team": "Athletic Club",
+   "pos_group": "FWD",
+   "vaep_per90": 0.46746135422861346,
+   "wage_eur": 4000.0,
+   "minutes": 1189.0666666666666
+  },
+  {
+   "player_id": "6668",
+   "player": "Jos\u00e9 Luis Morales Nogales",
+   "team": "Levante UD",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5296961170437493,
+   "wage_eur": 28000.0,
+   "minutes": 2785.2
+  },
+  {
+   "player_id": "6684",
+   "player": "Roger Mart\u00ed Salvador",
+   "team": "Levante UD",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2981116290314634,
+   "wage_eur": 25000.0,
+   "minutes": 702.9333333333334
+  },
+  {
+   "player_id": "6685",
+   "player": "Mikel Oyarzabal Ugarte",
+   "team": "Real Sociedad",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5076792862651512,
+   "wage_eur": 54000.0,
+   "minutes": 1581.2333333333333
+  },
+  {
+   "player_id": "6692",
+   "player": "Oier Olaz\u00e1bal Paredes",
+   "team": "Real Sociedad",
+   "pos_group": "GK",
+   "vaep_per90": 0.4002383425977111,
+   "wage_eur": 3000.0,
+   "minutes": 241.98333333333335
+  },
+  {
+   "player_id": "6694",
+   "player": "Ger\u00f3nimo Rulli",
+   "team": "Real Sociedad",
+   "pos_group": "GK",
+   "vaep_per90": 0.4858859838954544,
+   "wage_eur": 16000.0,
+   "minutes": 3420.0
+  },
+  {
+   "player_id": "6697",
+   "player": "Daniel Ceballos Fern\u00e1ndez",
+   "team": "Real Betis",
+   "pos_group": "MID",
+   "vaep_per90": 0.34407358732129434,
+   "wage_eur": 140000.0,
+   "minutes": 2284.1666666666665
+  },
+  {
+   "player_id": "6699",
+   "player": "Ander Capa Rodr\u00edguez",
+   "team": "Eibar",
+   "pos_group": "DEF",
+   "vaep_per90": 0.42375366450911206,
+   "wage_eur": 9000.0,
+   "minutes": 3294.266666666667
+  },
+  {
+   "player_id": "6701",
+   "player": "Joan Jord\u00e1n Moreno",
+   "team": "Espanyol",
+   "pos_group": "MID",
+   "vaep_per90": 0.39870453659793337,
+   "wage_eur": 30000.0,
+   "minutes": 664.4833333333333
+  },
+  {
+   "player_id": "6709",
+   "player": "Anaitz Arbilla Zabala",
+   "team": "Espanyol",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3709773806280964,
+   "wage_eur": 6000.0,
+   "minutes": 665.0
+  },
+  {
+   "player_id": "6712",
+   "player": "Gonzalo Escalante",
+   "team": "Eibar",
+   "pos_group": "MID",
+   "vaep_per90": 0.389699802557357,
+   "wage_eur": 30000.0,
+   "minutes": 2949.233333333333
+  },
+  {
+   "player_id": "6713",
+   "player": "Diego Javier Llorente R\u00edos",
+   "team": "Rayo Vallecano",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34560469701586677,
+   "wage_eur": 46000.0,
+   "minutes": 3077.3
+  },
+  {
+   "player_id": "6718",
+   "player": "Sergio Escudero Palomo",
+   "team": "Sevilla",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3837315800035346,
+   "wage_eur": 10000.0,
+   "minutes": 1235.4
+  },
+  {
+   "player_id": "6720",
+   "player": "Pablo Sarabia Garc\u00eda",
+   "team": "Getafe",
+   "pos_group": "FWD",
+   "vaep_per90": 0.585219841540696,
+   "wage_eur": 65000.0,
+   "minutes": 2633.633333333333
+  },
+  {
+   "player_id": "6721",
+   "player": "Willian Jos\u00e9 da Silva",
+   "team": "Las Palmas",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5051148363619167,
+   "wage_eur": 25000.0,
+   "minutes": 1908.0833333333333
+  },
+  {
+   "player_id": "6725",
+   "player": "Zakaria Bakkali",
+   "team": "Valencia",
+   "pos_group": "MID",
+   "vaep_per90": 0.4182988871714701,
+   "wage_eur": 3000.0,
+   "minutes": 624.8666666666667
+  },
+  {
+   "player_id": "6733",
+   "player": "Pedro Mosquera Parada",
+   "team": "RC Deportivo La Coru\u00f1a",
+   "pos_group": "MID",
+   "vaep_per90": 0.2835242202761148,
+   "wage_eur": 4000.0,
+   "minutes": 3461.7
+  },
+  {
+   "player_id": "6736",
+   "player": "\u00c1lvaro Medr\u00e1n Just",
+   "team": "Getafe",
+   "pos_group": "MID",
+   "vaep_per90": 0.3294876173556419,
+   "wage_eur": 38000.0,
+   "minutes": 1559.9166666666667
+  },
+  {
+   "player_id": "6737",
+   "player": "Alfonso Pedraza Sag",
+   "team": "Villarreal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3334889299832888,
+   "wage_eur": 31000.0,
+   "minutes": 105.01666666666667
+  },
+  {
+   "player_id": "6749",
+   "player": "Diego Gonz\u00e1lez Polanco",
+   "team": "Sevilla",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4285412844591034,
+   "wage_eur": 4000.0,
+   "minutes": 118.0
+  },
+  {
+   "player_id": "6752",
+   "player": "V\u00edctor Ru\u00edz Torre",
+   "team": "Villarreal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3645153608807958,
+   "wage_eur": 7000.0,
+   "minutes": 3161.4333333333334
+  },
+  {
+   "player_id": "6761",
+   "player": "Leonardo Carrilho Baptist\u00e3o",
+   "team": "Villarreal",
+   "pos_group": "MID",
+   "vaep_per90": 0.3838256951179405,
+   "wage_eur": 22000.0,
+   "minutes": 1355.7666666666667
+  },
+  {
+   "player_id": "6764",
+   "player": "Pablo Fornals Malla",
+   "team": "M\u00e1laga",
+   "pos_group": "MID",
+   "vaep_per90": 0.36493870265145845,
+   "wage_eur": 23000.0,
+   "minutes": 1397.9333333333334
+  },
+  {
+   "player_id": "6765",
+   "player": "Rodrigo Hern\u00e1ndez Cascante",
+   "team": "Villarreal",
+   "pos_group": "MID",
+   "vaep_per90": 0.37722677444069175,
+   "wage_eur": 260000.0,
+   "minutes": 103.73333333333335
+  },
+  {
+   "player_id": "6766",
+   "player": "Gerard Moreno Balaguero",
+   "team": "Espanyol",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4721803207673716,
+   "wage_eur": 54000.0,
+   "minutes": 2025.3
+  },
+  {
+   "player_id": "6771",
+   "player": "Manuel Trigueros Mu\u00f1oz",
+   "team": "Villarreal",
+   "pos_group": "MID",
+   "vaep_per90": 0.35683773153458365,
+   "wage_eur": 29000.0,
+   "minutes": 2222.45
+  },
+  {
+   "player_id": "6772",
+   "player": "Mario Gaspar P\u00e9rez Mart\u00ednez",
+   "team": "Villarreal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3827782862806407,
+   "wage_eur": 7000.0,
+   "minutes": 3032.0166666666664
+  },
+  {
+   "player_id": "6775",
+   "player": "Daniel Garc\u00eda Carrillo",
+   "team": "Eibar",
+   "pos_group": "MID",
+   "vaep_per90": 0.3389617184488244,
+   "wage_eur": 25000.0,
+   "minutes": 3202.7833333333333
+  },
+  {
+   "player_id": "6791",
+   "player": "Javier L\u00f3pez Rodr\u00edguez",
+   "team": "Espanyol",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32471094250713234,
+   "wage_eur": 1000.0,
+   "minutes": 2557.866666666667
+  },
+  {
+   "player_id": "6792",
+   "player": "Pau L\u00f3pez Sabata",
+   "team": "Espanyol",
+   "pos_group": "GK",
+   "vaep_per90": 0.4174228366559594,
+   "wage_eur": 35000.0,
+   "minutes": 3375.0
+  },
+  {
+   "player_id": "6795",
+   "player": "Rub\u00e9n Blanco Veiga",
+   "team": "Celta Vigo",
+   "pos_group": "GK",
+   "vaep_per90": 0.2980604348454162,
+   "wage_eur": 23000.0,
+   "minutes": 750.0166666666667
+  },
+  {
+   "player_id": "6796",
+   "player": "Nemanja Radoja",
+   "team": "Celta Vigo",
+   "pos_group": "MID",
+   "vaep_per90": 0.3210307095835707,
+   "wage_eur": 7000.0,
+   "minutes": 1568.5833333333333
+  },
+  {
+   "player_id": "6797",
+   "player": "Daniel Wass",
+   "team": "Celta Vigo",
+   "pos_group": "MID",
+   "vaep_per90": 0.4084115620005302,
+   "wage_eur": 16000.0,
+   "minutes": 2803.8166666666666
+  },
+  {
+   "player_id": "6802",
+   "player": "Jonathan Castro Otto",
+   "team": "Celta Vigo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3719561875854962,
+   "wage_eur": 1000.0,
+   "minutes": 3165.7
+  },
+  {
+   "player_id": "6804",
+   "player": "Sergi G\u00f3mez Sol\u00e0",
+   "team": "Celta Vigo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32497024796306184,
+   "wage_eur": 8000.0,
+   "minutes": 2770.75
+  },
+  {
+   "player_id": "6823",
+   "player": "Sergio Rico Gonz\u00e1lez",
+   "team": "Sevilla",
+   "pos_group": "GK",
+   "vaep_per90": 0.5537617225500526,
+   "wage_eur": 39000.0,
+   "minutes": 3230.0
+  },
+  {
+   "player_id": "6828",
+   "player": "Jaume Vicent Costa Jord\u00e1",
+   "team": "Villarreal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33679363447579735,
+   "wage_eur": 18000.0,
+   "minutes": 1669.7666666666667
+  },
+  {
+   "player_id": "6829",
+   "player": "Samuel Castillejo Azuaga",
+   "team": "Villarreal",
+   "pos_group": "MID",
+   "vaep_per90": 0.31442536240393065,
+   "wage_eur": 31000.0,
+   "minutes": 1785.3166666666666
+  },
+  {
+   "player_id": "6841",
+   "player": "V\u00edctor Mach\u00edn P\u00e9rez",
+   "team": "Sevilla",
+   "pos_group": "MID",
+   "vaep_per90": 0.41633469678715895,
+   "wage_eur": 24000.0,
+   "minutes": 2196.5
+  },
+  {
+   "player_id": "6842",
+   "player": "Iker Muniain Go\u00f1i",
+   "team": "Athletic Club",
+   "pos_group": "MID",
+   "vaep_per90": 0.3659589926458844,
+   "wage_eur": 32000.0,
+   "minutes": 1067.5333333333333
+  },
+  {
+   "player_id": "6845",
+   "player": "Ager Aketxe Barrutia",
+   "team": "Athletic Club",
+   "pos_group": "MID",
+   "vaep_per90": 0.3415973495583042,
+   "wage_eur": 11000.0,
+   "minutes": 195.73333333333335
+  },
+  {
+   "player_id": "6862",
+   "player": "C\u00e9dric Bakambu",
+   "team": "Villarreal",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5372922816784931,
+   "wage_eur": 23000.0,
+   "minutes": 1960.1
+  },
+  {
+   "player_id": "6873",
+   "player": "Francisco Portillo Soler",
+   "team": "Real Betis",
+   "pos_group": "MID",
+   "vaep_per90": 0.2941846273062965,
+   "wage_eur": 10000.0,
+   "minutes": 1033.3833333333334
+  },
+  {
+   "player_id": "6890",
+   "player": "Andreu Font\u00e0s Prat",
+   "team": "Celta Vigo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.47269759693558033,
+   "wage_eur": 5000.0,
+   "minutes": 570.6166666666667
+  },
+  {
+   "player_id": "6898",
+   "player": "Jaume Dom\u00e9nech S\u00e1nchez",
+   "team": "Valencia",
+   "pos_group": "GK",
+   "vaep_per90": 0.8891351119477809,
+   "wage_eur": 17000.0,
+   "minutes": 1615.0
+  },
+  {
+   "player_id": "6906",
+   "player": "Jon Bautista Orgilles",
+   "team": "Real Sociedad",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5301842395507236,
+   "wage_eur": 6000.0,
+   "minutes": 127.28333333333333
+  },
+  {
+   "player_id": "6926",
+   "player": "Alen Halilovi\u0107",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "MID",
+   "vaep_per90": 0.3600840573104952,
+   "wage_eur": 10000.0,
+   "minutes": 2479.366666666667
+  },
+  {
+   "player_id": "6935",
+   "player": "Adri\u00e1n Mar\u00edn G\u00f3mez",
+   "team": "Villarreal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33613498899415206,
+   "wage_eur": 10000.0,
+   "minutes": 980.3
+  },
+  {
+   "player_id": "7005",
+   "player": "Jo\u00e3o Pedro Cavaco Cancelo",
+   "team": "Valencia",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40962694408905903,
+   "wage_eur": 195000.0,
+   "minutes": 2292.6666666666665
+  },
+  {
+   "player_id": "7068",
+   "player": "Marc Bartra Aregall",
+   "team": "Barcelona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4878970666137338,
+   "wage_eur": 24000.0,
+   "minutes": 560.4833333333333
+  },
+  {
+   "player_id": "7158",
+   "player": "Cristiano Biraghi",
+   "team": "Granada",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2848094058935294,
+   "wage_eur": 56000.0,
+   "minutes": 2966.6666666666665
+  },
+  {
+   "player_id": "7170",
+   "player": "Simone Verdi",
+   "team": "Eibar",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4242559528829197,
+   "wage_eur": 5000.0,
+   "minutes": 320.2833333333333
+  },
+  {
+   "player_id": "7782",
+   "player": "Luis Alberto Romero Alconchel",
+   "team": "RC Deportivo La Coru\u00f1a",
+   "pos_group": "MID",
+   "vaep_per90": 0.42087851135240345,
+   "wage_eur": 78000.0,
+   "minutes": 2185.883333333333
+  },
+  {
+   "player_id": "7788",
+   "player": "Ciro Immobile",
+   "team": "Sevilla",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5155558193964256,
+   "wage_eur": 84000.0,
+   "minutes": 351.55
+  },
+  {
+   "player_id": "7900",
+   "player": "Tiago Manuel Dias Correia",
+   "team": "Rayo Vallecano",
+   "pos_group": "MID",
+   "vaep_per90": 0.3613394792540691,
+   "wage_eur": 18000.0,
+   "minutes": 2328.016666666667
+  },
+  {
+   "player_id": "7905",
+   "player": "Ra\u00fal Lizo\u00e1in Cruz",
+   "team": "Las Palmas",
+   "pos_group": "GK",
+   "vaep_per90": 0.5407790660306132,
+   "wage_eur": 3000.0,
+   "minutes": 747.9
+  },
+  {
+   "player_id": "7907",
+   "player": "Pedro Bigas Rigo",
+   "team": "Las Palmas",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4195057745560449,
+   "wage_eur": 9000.0,
+   "minutes": 2480.7833333333333
+  },
+  {
+   "player_id": "8522",
+   "player": "Armindo Tu\u00e9 Na Bangna",
+   "team": "Real Sociedad",
+   "pos_group": "MID",
+   "vaep_per90": 0.38858797455946714,
+   "wage_eur": 17000.0,
+   "minutes": 1564.0
+  },
+  {
+   "player_id": "8697",
+   "player": "Andr\u00e9s Eduardo Fern\u00e1ndez Moreno",
+   "team": "Granada",
+   "pos_group": "GK",
+   "vaep_per90": 0.30146127084792185,
+   "wage_eur": 5000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "8818",
+   "player": "Jorge Mer\u00e9 P\u00e9rez",
+   "team": "Sporting Gij\u00f3n",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28897174364248646,
+   "wage_eur": 16000.0,
+   "minutes": 2285.3333333333335
+  }
+ ],
+ "ratings_sha256": "46e9e2e84f8155cc0d168d647bab63fdbe2df192414c949ad0f99bb8ea9f1961",
+ "league_id": 140,
+ "league": "La Liga",
+ "model_hash": "b86caaed47f745d4"
+}

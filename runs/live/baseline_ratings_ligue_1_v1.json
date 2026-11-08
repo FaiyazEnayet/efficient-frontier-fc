@@ -1,0 +1,1319 @@
+{
+ "version": "baseline-v1",
+ "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+ "data_snapshot": "StatsBomb open data, Ligue 1 2015/2016 (377 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 145)",
+ "config_hash": null,
+ "feature_version": 4,
+ "seed": 0,
+ "ratings": [
+  {
+   "player_id": "10448",
+   "player": "Adam Ounas",
+   "team": "Bordeaux",
+   "pos_group": "MID",
+   "vaep_per90": 0.5263822385805949,
+   "wage_eur": 25000.0,
+   "minutes": 1276.3333333333333
+  },
+  {
+   "player_id": "11332",
+   "player": "Ibrahim Amadou",
+   "team": "Lille",
+   "pos_group": "MID",
+   "vaep_per90": 0.3330956770683085,
+   "wage_eur": 13000.0,
+   "minutes": 1770.4333333333334
+  },
+  {
+   "player_id": "11603",
+   "player": "Mario Pa\u0161ali\u0107",
+   "team": "AS Monaco",
+   "pos_group": "MID",
+   "vaep_per90": 0.3736339571366626,
+   "wage_eur": 58000.0,
+   "minutes": 1045.05
+  },
+  {
+   "player_id": "12351",
+   "player": "Alejandro Bedoya",
+   "team": "Nantes",
+   "pos_group": "MID",
+   "vaep_per90": 0.33258457037489636,
+   "wage_eur": 4000.0,
+   "minutes": 2179.5
+  },
+  {
+   "player_id": "16056",
+   "player": "Niklas Hult",
+   "team": "OGC Nice",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3541667296878355,
+   "wage_eur": 3000.0,
+   "minutes": 911.4833333333333
+  },
+  {
+   "player_id": "18783",
+   "player": "Omenuke Mfulu",
+   "team": "Stade de Reims",
+   "pos_group": "MID",
+   "vaep_per90": 0.34112721347383823,
+   "wage_eur": 14000.0,
+   "minutes": 430.6166666666667
+  },
+  {
+   "player_id": "20039",
+   "player": "Anthony Martial",
+   "team": "AS Monaco",
+   "pos_group": "FWD",
+   "vaep_per90": 0.31565708952689103,
+   "wage_eur": 100000.0,
+   "minutes": 212.58333333333334
+  },
+  {
+   "player_id": "22111",
+   "player": "Dennis Appiah",
+   "team": "Stade Malherbe Caen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36320457356578195,
+   "wage_eur": 7000.0,
+   "minutes": 3610.0
+  },
+  {
+   "player_id": "23835",
+   "player": "Yaw Yeboah",
+   "team": "Lille",
+   "pos_group": "MID",
+   "vaep_per90": 0.36441946018620225,
+   "wage_eur": 3000.0,
+   "minutes": 111.43333333333334
+  },
+  {
+   "player_id": "24021",
+   "player": "Paul Nardi",
+   "team": "AS Monaco",
+   "pos_group": "GK",
+   "vaep_per90": 0.5088677580419033,
+   "wage_eur": 14000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "24469",
+   "player": "Jesper Hansen",
+   "team": "Bastia",
+   "pos_group": "GK",
+   "vaep_per90": 0.6439252496496516,
+   "wage_eur": 4000.0,
+   "minutes": 331.05
+  },
+  {
+   "player_id": "25377",
+   "player": "R\u00e9my Riou",
+   "team": "Nantes",
+   "pos_group": "GK",
+   "vaep_per90": 0.4700703810811191,
+   "wage_eur": 2000.0,
+   "minutes": 2945.0
+  },
+  {
+   "player_id": "27014",
+   "player": "Deniz H\u00fcmmet",
+   "team": "Troyes",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3333955504355738,
+   "wage_eur": 3000.0,
+   "minutes": 175.91666666666666
+  },
+  {
+   "player_id": "2946",
+   "player": "Fr\u00e9d\u00e9ric Guilbert",
+   "team": "Bordeaux",
+   "pos_group": "DEF",
+   "vaep_per90": 0.296284991341031,
+   "wage_eur": 21000.0,
+   "minutes": 2548.65
+  },
+  {
+   "player_id": "2947",
+   "player": "Anthony Lopes",
+   "team": "Lyon",
+   "pos_group": "GK",
+   "vaep_per90": 0.2565906626094261,
+   "wage_eur": 32000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "2948",
+   "player": "Nabil Fekir",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.5852207993277334,
+   "wage_eur": 36000.0,
+   "minutes": 498.9166666666667
+  },
+  {
+   "player_id": "2950",
+   "player": "Jonas Martin",
+   "team": "Montpellier",
+   "pos_group": "MID",
+   "vaep_per90": 0.39800320809701084,
+   "wage_eur": 13000.0,
+   "minutes": 3294.3166666666666
+  },
+  {
+   "player_id": "2961",
+   "player": "Yann Bodiger",
+   "team": "Toulouse",
+   "pos_group": "MID",
+   "vaep_per90": 0.41667878184930385,
+   "wage_eur": 5000.0,
+   "minutes": 1155.5833333333333
+  },
+  {
+   "player_id": "2967",
+   "player": "Mamadou Samassa",
+   "team": "Guingamp",
+   "pos_group": "GK",
+   "vaep_per90": 0.6175750963609477,
+   "wage_eur": 3000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "2981",
+   "player": "Alban Lafont",
+   "team": "Toulouse",
+   "pos_group": "GK",
+   "vaep_per90": 0.419100810248044,
+   "wage_eur": 15000.0,
+   "minutes": 2259.45
+  },
+  {
+   "player_id": "2989",
+   "player": "Alexander Djiku",
+   "team": "Bastia",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30722681869998125,
+   "wage_eur": 32000.0,
+   "minutes": 1679.45
+  },
+  {
+   "player_id": "2990",
+   "player": "Benjamin Andr\u00e9",
+   "team": "Rennes",
+   "pos_group": "MID",
+   "vaep_per90": 0.3531123175401377,
+   "wage_eur": 35000.0,
+   "minutes": 2807.2333333333336
+  },
+  {
+   "player_id": "2999",
+   "player": "Presnel Kimpembe",
+   "team": "Paris Saint-Germain",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3754561419662065,
+   "wage_eur": 81000.0,
+   "minutes": 354.25
+  },
+  {
+   "player_id": "3008",
+   "player": "Benjamin Lecomte",
+   "team": "Lorient",
+   "pos_group": "GK",
+   "vaep_per90": 0.4688187819485693,
+   "wage_eur": 19000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "3025",
+   "player": "Christopher Nkunku",
+   "team": "Paris Saint-Germain",
+   "pos_group": "FWD",
+   "vaep_per90": 0.34310564494022977,
+   "wage_eur": 170000.0,
+   "minutes": 342.9
+  },
+  {
+   "player_id": "3026",
+   "player": "Adrien Rabiot",
+   "team": "Paris Saint-Germain",
+   "pos_group": "MID",
+   "vaep_per90": 0.36007773165013884,
+   "wage_eur": 150000.0,
+   "minutes": 1742.6166666666666
+  },
+  {
+   "player_id": "30315",
+   "player": "Moryk\u00e9 Fofana",
+   "team": "Lorient",
+   "pos_group": "MID",
+   "vaep_per90": 0.35536500348612854,
+   "wage_eur": 7000.0,
+   "minutes": 145.7
+  },
+  {
+   "player_id": "3032",
+   "player": "Zin\u00e9dine Machach",
+   "team": "Toulouse",
+   "pos_group": "MID",
+   "vaep_per90": 0.3639413701297794,
+   "wage_eur": 5000.0,
+   "minutes": 903.2666666666667
+  },
+  {
+   "player_id": "3036",
+   "player": "Alexis Blin",
+   "team": "Toulouse",
+   "pos_group": "MID",
+   "vaep_per90": 0.32256393288486596,
+   "wage_eur": 8000.0,
+   "minutes": 1515.9666666666667
+  },
+  {
+   "player_id": "3045",
+   "player": "Isma\u00ebl Traor\u00e9",
+   "team": "Angers",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3042960165154205,
+   "wage_eur": 10000.0,
+   "minutes": 3177.2
+  },
+  {
+   "player_id": "3071",
+   "player": "Pierrick Capelle",
+   "team": "Angers",
+   "pos_group": "MID",
+   "vaep_per90": 0.4534575931376955,
+   "wage_eur": 4000.0,
+   "minutes": 1331.9333333333334
+  },
+  {
+   "player_id": "3075",
+   "player": "Javier Manquillo Gait\u00e1n",
+   "team": "Olympique de Marseille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3166082004924785,
+   "wage_eur": 14000.0,
+   "minutes": 2800.4333333333334
+  },
+  {
+   "player_id": "3109",
+   "player": "Malcom Filipe Silva de Oliveira",
+   "team": "Bordeaux",
+   "pos_group": "MID",
+   "vaep_per90": 0.3942220089324663,
+   "wage_eur": 56000.0,
+   "minutes": 515.9
+  },
+  {
+   "player_id": "31174",
+   "player": "Jean-Daniel Akpa Akpro",
+   "team": "Toulouse",
+   "pos_group": "MID",
+   "vaep_per90": 0.346674734874843,
+   "wage_eur": 34000.0,
+   "minutes": 2690.1
+  },
+  {
+   "player_id": "3118",
+   "player": "Jordan Ferri",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.37173504348851244,
+   "wage_eur": 21000.0,
+   "minutes": 2555.133333333333
+  },
+  {
+   "player_id": "3136",
+   "player": "R\u00e9mi Walter",
+   "team": "OGC Nice",
+   "pos_group": "MID",
+   "vaep_per90": 0.3186260865554127,
+   "wage_eur": 6000.0,
+   "minutes": 593.9666666666667
+  },
+  {
+   "player_id": "3138",
+   "player": "Abdoulaye Tour\u00e9",
+   "team": "Nantes",
+   "pos_group": "MID",
+   "vaep_per90": 0.3515933359234565,
+   "wage_eur": 13000.0,
+   "minutes": 222.61666666666667
+  },
+  {
+   "player_id": "3144",
+   "player": "L\u00e9o Dubois",
+   "team": "Nantes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3589736251025526,
+   "wage_eur": 34000.0,
+   "minutes": 2090.4333333333334
+  },
+  {
+   "player_id": "3184",
+   "player": "Enzo Crivelli",
+   "team": "Bordeaux",
+   "pos_group": "FWD",
+   "vaep_per90": 0.29770025323364424,
+   "wage_eur": 13000.0,
+   "minutes": 1665.5166666666667
+  },
+  {
+   "player_id": "3185",
+   "player": "Thomas Mangani",
+   "team": "Angers",
+   "pos_group": "MID",
+   "vaep_per90": 0.49663702393651954,
+   "wage_eur": 3000.0,
+   "minutes": 2655.766666666667
+  },
+  {
+   "player_id": "3191",
+   "player": "Ramy Bensebaini",
+   "team": "Montpellier",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4028007077373982,
+   "wage_eur": 42000.0,
+   "minutes": 1425.0833333333333
+  },
+  {
+   "player_id": "31911",
+   "player": "Damjan \u0110okovi\u0107",
+   "team": "Gaz\u00e9lec Ajaccio",
+   "pos_group": "MID",
+   "vaep_per90": 0.38653560625274735,
+   "wage_eur": 4000.0,
+   "minutes": 2415.3
+  },
+  {
+   "player_id": "3195",
+   "player": "Mehdi Zeffane",
+   "team": "Rennes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35125871831606126,
+   "wage_eur": 7000.0,
+   "minutes": 868.0166666666667
+  },
+  {
+   "player_id": "3196",
+   "player": "Wahbi Khazri",
+   "team": "Bordeaux",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5288145743721699,
+   "wage_eur": 21000.0,
+   "minutes": 1627.5666666666666
+  },
+  {
+   "player_id": "3204",
+   "player": "Almamy Tour\u00e9",
+   "team": "AS Monaco",
+   "pos_group": "DEF",
+   "vaep_per90": 0.5270545492214773,
+   "wage_eur": 8000.0,
+   "minutes": 797.85
+  },
+  {
+   "player_id": "3210",
+   "player": "Val\u00e8re Germain",
+   "team": "OGC Nice",
+   "pos_group": "FWD",
+   "vaep_per90": 0.47830707335158257,
+   "wage_eur": 5000.0,
+   "minutes": 3214.8
+  },
+  {
+   "player_id": "3218",
+   "player": "Marcos Paulo Mesquita Lopes",
+   "team": "Lille",
+   "pos_group": "MID",
+   "vaep_per90": 0.43784207791186097,
+   "wage_eur": 13000.0,
+   "minutes": 669.6833333333333
+  },
+  {
+   "player_id": "3230",
+   "player": "Alassane Pl\u00e9a",
+   "team": "OGC Nice",
+   "pos_group": "MID",
+   "vaep_per90": 0.48916440633586733,
+   "wage_eur": 29000.0,
+   "minutes": 1444.8666666666666
+  },
+  {
+   "player_id": "3235",
+   "player": "Ludovic Blas",
+   "team": "Guingamp",
+   "pos_group": "FWD",
+   "vaep_per90": 0.394964388118208,
+   "wage_eur": 46000.0,
+   "minutes": 683.2333333333333
+  },
+  {
+   "player_id": "3236",
+   "player": "Sergi Darder Moll",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.4077772037036409,
+   "wage_eur": 40000.0,
+   "minutes": 1533.3166666666666
+  },
+  {
+   "player_id": "3245",
+   "player": "Thomas Lemar",
+   "team": "AS Monaco",
+   "pos_group": "MID",
+   "vaep_per90": 0.47042500460517656,
+   "wage_eur": 63000.0,
+   "minutes": 1888.1666666666667
+  },
+  {
+   "player_id": "3247",
+   "player": "F\u00e1bio Henrique Tavares",
+   "team": "AS Monaco",
+   "pos_group": "MID",
+   "vaep_per90": 0.4933487991954045,
+   "wage_eur": 59000.0,
+   "minutes": 3226.9166666666665
+  },
+  {
+   "player_id": "3248",
+   "player": "Hamari Traor\u00e9",
+   "team": "Stade de Reims",
+   "pos_group": "DEF",
+   "vaep_per90": 0.42187996163288066,
+   "wage_eur": 36000.0,
+   "minutes": 3069.2166666666667
+  },
+  {
+   "player_id": "3254",
+   "player": "Florian Thauvin",
+   "team": "Olympique de Marseille",
+   "pos_group": "FWD",
+   "vaep_per90": 0.47367871913071413,
+   "wage_eur": 17000.0,
+   "minutes": 1013.55
+  },
+  {
+   "player_id": "3256",
+   "player": "Nicolas Pallois",
+   "team": "Bordeaux",
+   "pos_group": "DEF",
+   "vaep_per90": 0.38758304215554124,
+   "wage_eur": 12000.0,
+   "minutes": 1449.4
+  },
+  {
+   "player_id": "3261",
+   "player": "Benjamin Mendy",
+   "team": "Olympique de Marseille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.41089842254565795,
+   "wage_eur": 16000.0,
+   "minutes": 2059.266666666667
+  },
+  {
+   "player_id": "3322",
+   "player": "Jonas L\u00f6ssl",
+   "team": "Guingamp",
+   "pos_group": "GK",
+   "vaep_per90": 0.46258724886424785,
+   "wage_eur": 15000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "3357",
+   "player": "Baptiste Guillaume",
+   "team": "Lille",
+   "pos_group": "FWD",
+   "vaep_per90": 0.27797187061468365,
+   "wage_eur": 4000.0,
+   "minutes": 583.0166666666667
+  },
+  {
+   "player_id": "3359",
+   "player": "Jean Micha\u00ebl Seri",
+   "team": "OGC Nice",
+   "pos_group": "MID",
+   "vaep_per90": 0.3921268906427989,
+   "wage_eur": 14000.0,
+   "minutes": 3240.866666666667
+  },
+  {
+   "player_id": "3361",
+   "player": "Cl\u00e9ment Grenier",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.46465332690514793,
+   "wage_eur": 10000.0,
+   "minutes": 1076.25
+  },
+  {
+   "player_id": "3363",
+   "player": "Marcus Coco",
+   "team": "Guingamp",
+   "pos_group": "MID",
+   "vaep_per90": 0.27476916474590946,
+   "wage_eur": 15000.0,
+   "minutes": 1802.3666666666666
+  },
+  {
+   "player_id": "3365",
+   "player": "Valentin Rongier",
+   "team": "Nantes",
+   "pos_group": "MID",
+   "vaep_per90": 0.4259582328627772,
+   "wage_eur": 45000.0,
+   "minutes": 780.55
+  },
+  {
+   "player_id": "3372",
+   "player": "Rachid Ghezzal",
+   "team": "Lyon",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6410468305396282,
+   "wage_eur": 29000.0,
+   "minutes": 1705.25
+  },
+  {
+   "player_id": "3375",
+   "player": "Adrien Thomasson",
+   "team": "Nantes",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4281406400630551,
+   "wage_eur": 37000.0,
+   "minutes": 2615.3166666666666
+  },
+  {
+   "player_id": "3403",
+   "player": "Alexandre Mendy",
+   "team": "OGC Nice",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3335438117124861,
+   "wage_eur": 8000.0,
+   "minutes": 446.0
+  },
+  {
+   "player_id": "3404",
+   "player": "Youssouf Sabaly",
+   "team": "Nantes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.44640003656257143,
+   "wage_eur": 22000.0,
+   "minutes": 2635.75
+  },
+  {
+   "player_id": "3405",
+   "player": "Fran\u00e7ois Kamano",
+   "team": "Bastia",
+   "pos_group": "MID",
+   "vaep_per90": 0.36830342198937005,
+   "wage_eur": 9000.0,
+   "minutes": 1542.9
+  },
+  {
+   "player_id": "3413",
+   "player": "K\u00e9vin Th\u00e9ophile-Catherine",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36207832721476463,
+   "wage_eur": 550.0,
+   "minutes": 1992.6833333333334
+  },
+  {
+   "player_id": "3414",
+   "player": "Vincent Pajot",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "MID",
+   "vaep_per90": 0.2906262679976472,
+   "wage_eur": 3000.0,
+   "minutes": 1879.0
+  },
+  {
+   "player_id": "3420",
+   "player": "R\u00e9my Cabella",
+   "team": "Olympique de Marseille",
+   "pos_group": "MID",
+   "vaep_per90": 0.449159503363619,
+   "wage_eur": 30000.0,
+   "minutes": 2658.483333333333
+  },
+  {
+   "player_id": "3431",
+   "player": "Vincent Manceau",
+   "team": "Angers",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28116760375631306,
+   "wage_eur": 3000.0,
+   "minutes": 2514.9166666666665
+  },
+  {
+   "player_id": "3432",
+   "player": "Alexandre Letellier",
+   "team": "Angers",
+   "pos_group": "GK",
+   "vaep_per90": 0.39067316931173823,
+   "wage_eur": 18000.0,
+   "minutes": 1615.0
+  },
+  {
+   "player_id": "3433",
+   "player": "Lassana Coulibaly",
+   "team": "Bastia",
+   "pos_group": "MID",
+   "vaep_per90": 0.3532454502926465,
+   "wage_eur": 25000.0,
+   "minutes": 750.9166666666666
+  },
+  {
+   "player_id": "3446",
+   "player": "Djibril Sidib\u00e9",
+   "team": "Lille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3902584895732565,
+   "wage_eur": 900.0,
+   "minutes": 3452.5666666666666
+  },
+  {
+   "player_id": "3451",
+   "player": "Alexandre Lacazette",
+   "team": "Lyon",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5729906481190282,
+   "wage_eur": 51000.0,
+   "minutes": 3089.2833333333333
+  },
+  {
+   "player_id": "3481",
+   "player": "Serge Aurier",
+   "team": "Paris Saint-Germain",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40297706113033505,
+   "wage_eur": 37000.0,
+   "minutes": 1889.5833333333333
+  },
+  {
+   "player_id": "34953",
+   "player": "Denis Petri\u0107",
+   "team": "Troyes",
+   "pos_group": "GK",
+   "vaep_per90": 0.5602367796783814,
+   "wage_eur": 4000.0,
+   "minutes": 1045.0
+  },
+  {
+   "player_id": "3543",
+   "player": "Steve Mandanda",
+   "team": "Olympique de Marseille",
+   "pos_group": "GK",
+   "vaep_per90": 0.4712996534902793,
+   "wage_eur": 25000.0,
+   "minutes": 3420.0
+  },
+  {
+   "player_id": "3546",
+   "player": "Morgan Sanson",
+   "team": "Montpellier",
+   "pos_group": "MID",
+   "vaep_per90": 0.4986234714473088,
+   "wage_eur": 40000.0,
+   "minutes": 609.7
+  },
+  {
+   "player_id": "3549",
+   "player": "Romain Thomas",
+   "team": "Angers",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3125716235732693,
+   "wage_eur": 4000.0,
+   "minutes": 3392.8
+  },
+  {
+   "player_id": "36553",
+   "player": "Matthieu Dreyer",
+   "team": "Troyes",
+   "pos_group": "GK",
+   "vaep_per90": 0.38677395986340435,
+   "wage_eur": 7000.0,
+   "minutes": 1330.0
+  },
+  {
+   "player_id": "3676",
+   "player": "J\u00e9r\u00f4me Roussillon",
+   "team": "Montpellier",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37150905953638175,
+   "wage_eur": 28000.0,
+   "minutes": 2766.2
+  },
+  {
+   "player_id": "3753",
+   "player": "Pedro Filipe Teod\u00f3sio Mendes",
+   "team": "Rennes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33107431536123033,
+   "wage_eur": 7000.0,
+   "minutes": 1954.6333333333334
+  },
+  {
+   "player_id": "3761",
+   "player": "Mike Maignan",
+   "team": "Lille",
+   "pos_group": "GK",
+   "vaep_per90": 0.742066666276415,
+   "wage_eur": 90000.0,
+   "minutes": 308.6
+  },
+  {
+   "player_id": "3951",
+   "player": "Mario Lemina",
+   "team": "Marseille",
+   "pos_group": "MID",
+   "vaep_per90": 0.3384013473349256,
+   "wage_eur": 68000.0,
+   "minutes": 349.68333333333334
+  },
+  {
+   "player_id": "3955",
+   "player": "Tiemou\u00e9 Bakayoko",
+   "team": "AS Monaco",
+   "pos_group": "MID",
+   "vaep_per90": 0.3247123323508433,
+   "wage_eur": 18000.0,
+   "minutes": 1449.9833333333333
+  },
+  {
+   "player_id": "3980",
+   "player": "Johny Placide",
+   "team": "Stade de Reims",
+   "pos_group": "GK",
+   "vaep_per90": 0.5914221191507765,
+   "wage_eur": 1000.0,
+   "minutes": 1712.65
+  },
+  {
+   "player_id": "40431",
+   "player": "Aleksandar Pe\u0161i\u0107",
+   "team": "Toulouse",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3674586481438177,
+   "wage_eur": 1000.0,
+   "minutes": 711.5666666666666
+  },
+  {
+   "player_id": "40485",
+   "player": "Ryan Isaac Mendes da Gra\u00e7a",
+   "team": "Lille",
+   "pos_group": "MID",
+   "vaep_per90": 0.3613233531234668,
+   "wage_eur": 16000.0,
+   "minutes": 103.46666666666667
+  },
+  {
+   "player_id": "4253",
+   "player": "Ole Kristian Seln\u00e6s",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "MID",
+   "vaep_per90": 0.35822744406080276,
+   "wage_eur": 7000.0,
+   "minutes": 184.7
+  },
+  {
+   "player_id": "4254",
+   "player": "Valentin Eysseric",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "MID",
+   "vaep_per90": 0.5566032804101153,
+   "wage_eur": 20000.0,
+   "minutes": 1858.6833333333334
+  },
+  {
+   "player_id": "4255",
+   "player": "Jean-Victor Makengo",
+   "team": "Stade Malherbe Caen",
+   "pos_group": "MID",
+   "vaep_per90": 0.3100361883245083,
+   "wage_eur": 14000.0,
+   "minutes": 466.65
+  },
+  {
+   "player_id": "4256",
+   "player": "Jonathan Bamba",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "MID",
+   "vaep_per90": 0.39258979933578536,
+   "wage_eur": 24000.0,
+   "minutes": 302.8
+  },
+  {
+   "player_id": "4258",
+   "player": "Rona\u00ebl Pierre-Gabriel",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3420097828140546,
+   "wage_eur": 650.0,
+   "minutes": 376.75
+  },
+  {
+   "player_id": "4326",
+   "player": "Layvin Kurzawa",
+   "team": "Paris Saint-Germain",
+   "pos_group": "DEF",
+   "vaep_per90": 0.43555978373263643,
+   "wage_eur": 41000.0,
+   "minutes": 1603.2166666666667
+  },
+  {
+   "player_id": "4349",
+   "player": "Issa Diop",
+   "team": "Toulouse",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3682975561515676,
+   "wage_eur": 65000.0,
+   "minutes": 1994.4833333333333
+  },
+  {
+   "player_id": "4351",
+   "player": "Bouna Sarr",
+   "team": "Olympique de Marseille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4163587352439642,
+   "wage_eur": 28000.0,
+   "minutes": 1090.65
+  },
+  {
+   "player_id": "4352",
+   "player": "Issiaga Sylla",
+   "team": "Gaz\u00e9lec Ajaccio",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37105143615830327,
+   "wage_eur": 16000.0,
+   "minutes": 2928.866666666667
+  },
+  {
+   "player_id": "4372",
+   "player": "Marcos Ao\u00e1s Corr\u00eaa",
+   "team": "Paris Saint-Germain",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4003368497563038,
+   "wage_eur": 140000.0,
+   "minutes": 1963.4
+  },
+  {
+   "player_id": "4377",
+   "player": "Maxime Dup\u00e9",
+   "team": "Nantes",
+   "pos_group": "GK",
+   "vaep_per90": 0.42685460474528675,
+   "wage_eur": 27000.0,
+   "minutes": 665.0
+  },
+  {
+   "player_id": "4386",
+   "player": "Damien Da Silva",
+   "team": "Stade Malherbe Caen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3732788731889838,
+   "wage_eur": 5000.0,
+   "minutes": 2627.5
+  },
+  {
+   "player_id": "4390",
+   "player": "Charles Traor\u00e9",
+   "team": "Troyes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.38297185764348435,
+   "wage_eur": 2000.0,
+   "minutes": 474.23333333333335
+  },
+  {
+   "player_id": "4413",
+   "player": "Alo\u00efs Confais",
+   "team": "Troyes",
+   "pos_group": "MID",
+   "vaep_per90": 0.3352396695204227,
+   "wage_eur": 5000.0,
+   "minutes": 1219.6166666666666
+  },
+  {
+   "player_id": "4440",
+   "player": "Kevin Trapp",
+   "team": "Paris Saint-Germain",
+   "pos_group": "GK",
+   "vaep_per90": 0.31989178228126813,
+   "wage_eur": 42000.0,
+   "minutes": 3180.0
+  },
+  {
+   "player_id": "4464",
+   "player": "Adama Traor\u00e9",
+   "team": "AS Monaco",
+   "pos_group": "FWD",
+   "vaep_per90": 0.33860987237120965,
+   "wage_eur": 1000.0,
+   "minutes": 384.0
+  },
+  {
+   "player_id": "4506",
+   "player": "Nampalys Mendy",
+   "team": "OGC Nice",
+   "pos_group": "MID",
+   "vaep_per90": 0.32944496629839315,
+   "wage_eur": 28000.0,
+   "minutes": 3609.7
+  },
+  {
+   "player_id": "4547",
+   "player": "Ludovic Butelle",
+   "team": "Angers",
+   "pos_group": "GK",
+   "vaep_per90": 0.6829625244836587,
+   "wage_eur": 3000.0,
+   "minutes": 1805.0
+  },
+  {
+   "player_id": "4601",
+   "player": "Robert Beri\u010d",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "FWD",
+   "vaep_per90": 0.41196509165913914,
+   "wage_eur": 12000.0,
+   "minutes": 694.25
+  },
+  {
+   "player_id": "4723",
+   "player": "Micka\u00ebl Le Bihan",
+   "team": "OGC Nice",
+   "pos_group": "FWD",
+   "vaep_per90": 0.45524958288758677,
+   "wage_eur": 5000.0,
+   "minutes": 147.0
+  },
+  {
+   "player_id": "4766",
+   "player": "Neal Maupay",
+   "team": "Saint-\u00c9tienne",
+   "pos_group": "FWD",
+   "vaep_per90": 0.30637102625689283,
+   "wage_eur": 36000.0,
+   "minutes": 566.7666666666667
+  },
+  {
+   "player_id": "4803",
+   "player": "Mathieu Gorgelin",
+   "team": "Lyon",
+   "pos_group": "GK",
+   "vaep_per90": 0.6552291667113237,
+   "wage_eur": 6000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "4909",
+   "player": "Jeremie Boga",
+   "team": "Rennes",
+   "pos_group": "FWD",
+   "vaep_per90": 0.39028155092331773,
+   "wage_eur": 44000.0,
+   "minutes": 1101.4833333333333
+  },
+  {
+   "player_id": "5110",
+   "player": "Henri Saivet",
+   "team": "Bordeaux",
+   "pos_group": "MID",
+   "vaep_per90": 0.4126233177721125,
+   "wage_eur": 4000.0,
+   "minutes": 1643.95
+  },
+  {
+   "player_id": "5219",
+   "player": "Romain Sa\u00efss",
+   "team": "Angers",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3750873485972558,
+   "wage_eur": 34000.0,
+   "minutes": 3249.366666666667
+  },
+  {
+   "player_id": "5476",
+   "player": "Benjamin Pavard",
+   "team": "Lille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3333696046286539,
+   "wage_eur": 95000.0,
+   "minutes": 676.9166666666666
+  },
+  {
+   "player_id": "5477",
+   "player": "Ousmane Demb\u00e9l\u00e9",
+   "team": "Rennes",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6535361474367003,
+   "wage_eur": 150000.0,
+   "minutes": 2023.6833333333334
+  },
+  {
+   "player_id": "5480",
+   "player": "Corentin Tolisso",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.47475252127101913,
+   "wage_eur": 34000.0,
+   "minutes": 2719.516666666667
+  },
+  {
+   "player_id": "5615",
+   "player": "Isaac Kiese Thelin",
+   "team": "Bordeaux",
+   "pos_group": "FWD",
+   "vaep_per90": 0.29380944523789376,
+   "wage_eur": 7000.0,
+   "minutes": 323.31666666666666
+  },
+  {
+   "player_id": "5656",
+   "player": "Syam Ben Youssef",
+   "team": "Stade Malherbe Caen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40959777390987884,
+   "wage_eur": 2000.0,
+   "minutes": 1597.2666666666667
+  },
+  {
+   "player_id": "5667",
+   "player": "Kamil Grosicki",
+   "team": "Rennes",
+   "pos_group": "MID",
+   "vaep_per90": 0.655033329154166,
+   "wage_eur": 6000.0,
+   "minutes": 1651.6166666666666
+  },
+  {
+   "player_id": "5726",
+   "player": "Khalid Bouta\u00efb",
+   "team": "Gaz\u00e9lec Ajaccio",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3725210979484843,
+   "wage_eur": 2000.0,
+   "minutes": 1940.0666666666666
+  },
+  {
+   "player_id": "6335",
+   "player": "Lamine Gassama",
+   "team": "Lorient",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32437205408540914,
+   "wage_eur": 2000.0,
+   "minutes": 2859.5666666666666
+  },
+  {
+   "player_id": "6648",
+   "player": "A\u00efssa Mandi",
+   "team": "Stade de Reims",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4828387397596392,
+   "wage_eur": 27000.0,
+   "minutes": 3011.85
+  },
+  {
+   "player_id": "6716",
+   "player": "S\u00e9bastien Corchia",
+   "team": "Lille",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3584748895662186,
+   "wage_eur": 4000.0,
+   "minutes": 2773.633333333333
+  },
+  {
+   "player_id": "6723",
+   "player": "Wissam Ben Yedder",
+   "team": "Toulouse",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6215922044880162,
+   "wage_eur": 73000.0,
+   "minutes": 2991.5
+  },
+  {
+   "player_id": "6979",
+   "player": "Stephan El Shaarawy",
+   "team": "AS Monaco",
+   "pos_group": "MID",
+   "vaep_per90": 0.2883261982142417,
+   "wage_eur": 66000.0,
+   "minutes": 718.7166666666667
+  },
+  {
+   "player_id": "6982",
+   "player": "Maxime Gonalons",
+   "team": "Lyon",
+   "pos_group": "MID",
+   "vaep_per90": 0.3304652199261194,
+   "wage_eur": 15000.0,
+   "minutes": 3044.3333333333335
+  },
+  {
+   "player_id": "7190",
+   "player": "Denis Bouanga",
+   "team": "Lorient",
+   "pos_group": "FWD",
+   "vaep_per90": 0.41436429010733655,
+   "wage_eur": 14000.0,
+   "minutes": 201.88333333333333
+  },
+  {
+   "player_id": "7193",
+   "player": "Paul Bernardoni",
+   "team": "Troyes",
+   "pos_group": "GK",
+   "vaep_per90": 0.46729078801048196,
+   "wage_eur": 5000.0,
+   "minutes": 1995.0
+  },
+  {
+   "player_id": "7197",
+   "player": "Steven Moreira",
+   "team": "Rennes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3434885026458673,
+   "wage_eur": 4000.0,
+   "minutes": 1295.5666666666666
+  },
+  {
+   "player_id": "7198",
+   "player": "Franck Honorat",
+   "team": "OGC Nice",
+   "pos_group": "MID",
+   "vaep_per90": 0.349235634893239,
+   "wage_eur": 31000.0,
+   "minutes": 145.08333333333331
+  },
+  {
+   "player_id": "7323",
+   "player": "Olivier Boscagli",
+   "team": "OGC Nice",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3883093630987068,
+   "wage_eur": 18000.0,
+   "minutes": 874.4166666666666
+  },
+  {
+   "player_id": "7336",
+   "player": "Jimmy Cabot",
+   "team": "Troyes",
+   "pos_group": "DEF",
+   "vaep_per90": 0.5131933119508849,
+   "wage_eur": 22000.0,
+   "minutes": 1574.0
+  },
+  {
+   "player_id": "7344",
+   "player": "Jordan Ad\u00e9oti",
+   "team": "Stade Malherbe Caen",
+   "pos_group": "MID",
+   "vaep_per90": 0.2980625042584184,
+   "wage_eur": 2000.0,
+   "minutes": 1859.6
+  },
+  {
+   "player_id": "7350",
+   "player": "Birama Tour\u00e9",
+   "team": "Nantes",
+   "pos_group": "MID",
+   "vaep_per90": 0.33399419619303744,
+   "wage_eur": 17000.0,
+   "minutes": 1911.7333333333333
+  },
+  {
+   "player_id": "7367",
+   "player": "Grejohn Kyei",
+   "team": "Stade de Reims",
+   "pos_group": "FWD",
+   "vaep_per90": 0.38576886758582274,
+   "wage_eur": 14000.0,
+   "minutes": 770.0166666666667
+  },
+  {
+   "player_id": "7428",
+   "player": "Alexandre Coeff",
+   "team": "Gaz\u00e9lec Ajaccio",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37458021442805206,
+   "wage_eur": 2000.0,
+   "minutes": 2009.3333333333333
+  },
+  {
+   "player_id": "7469",
+   "player": "Salvatore Sirigu",
+   "team": "Paris Saint-Germain",
+   "pos_group": "GK",
+   "vaep_per90": 0.6330788487577587,
+   "wage_eur": 11000.0,
+   "minutes": 240.0
+  },
+  {
+   "player_id": "7567",
+   "player": "Maxime Barthelm\u00e9",
+   "team": "Lorient",
+   "pos_group": "MID",
+   "vaep_per90": 0.36127591529863917,
+   "wage_eur": 2000.0,
+   "minutes": 1306.15
+  },
+  {
+   "player_id": "7791",
+   "player": "Seko Fofana",
+   "team": "Bastia",
+   "pos_group": "MID",
+   "vaep_per90": 0.284772535462942,
+   "wage_eur": 54000.0,
+   "minutes": 2384.016666666667
+  },
+  {
+   "player_id": "8510",
+   "player": "Jean-K\u00e9vin Augustin",
+   "team": "Paris Saint-Germain",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3161038906112062,
+   "wage_eur": 5000.0,
+   "minutes": 469.68333333333334
+  },
+  {
+   "player_id": "8515",
+   "player": "Benjamin Stambouli",
+   "team": "Paris Saint-Germain",
+   "pos_group": "MID",
+   "vaep_per90": 0.32397693408853445,
+   "wage_eur": 15000.0,
+   "minutes": 1530.6333333333334
+  },
+  {
+   "player_id": "8677",
+   "player": "Marcel Tisserand",
+   "team": "Toulouse",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3668242987261009,
+   "wage_eur": 22000.0,
+   "minutes": 3015.5833333333335
+  },
+  {
+   "player_id": "9102",
+   "player": "Serhou Guirassy",
+   "team": "Lille",
+   "pos_group": "FWD",
+   "vaep_per90": 0.31851425099831254,
+   "wage_eur": 41000.0,
+   "minutes": 331.78333333333336
+  },
+  {
+   "player_id": "9554",
+   "player": "Steven Fletcher",
+   "team": "Olympique de Marseille",
+   "pos_group": "FWD",
+   "vaep_per90": 0.33608810227357844,
+   "wage_eur": 4000.0,
+   "minutes": 788.85
+  }
+ ],
+ "ratings_sha256": "872283429c14a40ce8d91d8e0dbd17875df7fe3d27f9a1e42fdc77f840708039",
+ "league_id": 61,
+ "league": "Ligue 1",
+ "model_hash": "b86caaed47f745d4"
+}

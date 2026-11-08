@@ -1,0 +1,1301 @@
+{
+ "version": "baseline-v1",
+ "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+ "data_snapshot": "StatsBomb open data, Serie A 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 143)",
+ "config_hash": null,
+ "feature_version": 4,
+ "seed": 0,
+ "ratings": [
+  {
+   "player_id": "11183",
+   "player": "Alex Nicolao Telles",
+   "team": "Inter Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.39236618239532806,
+   "wage_eur": 42000.0,
+   "minutes": 1647.25
+  },
+  {
+   "player_id": "11339",
+   "player": "Pawe\u0142 Wszo\u0142ek",
+   "team": "Hellas Verona",
+   "pos_group": "MID",
+   "vaep_per90": 0.3149078498818005,
+   "wage_eur": 7000.0,
+   "minutes": 1950.7166666666667
+  },
+  {
+   "player_id": "11426",
+   "player": "Andrea Seculin",
+   "team": "Chievo",
+   "pos_group": "GK",
+   "vaep_per90": 0.7572916273655418,
+   "wage_eur": 1000.0,
+   "minutes": 285.0
+  },
+  {
+   "player_id": "11499",
+   "player": "Riccardo Gagliolo",
+   "team": "Carpi",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4246660476745058,
+   "wage_eur": 2000.0,
+   "minutes": 2782.766666666667
+  },
+  {
+   "player_id": "11508",
+   "player": "\u0141ukasz Skorupski",
+   "team": "Empoli",
+   "pos_group": "GK",
+   "vaep_per90": 0.3734896473267866,
+   "wage_eur": 24000.0,
+   "minutes": 2945.0
+  },
+  {
+   "player_id": "11512",
+   "player": "Rade Kruni\u0107",
+   "team": "Empoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.39944598863690095,
+   "wage_eur": 68000.0,
+   "minutes": 548.9
+  },
+  {
+   "player_id": "11602",
+   "player": "Raffaele Maiello",
+   "team": "Empoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.4176882256810391,
+   "wage_eur": 3000.0,
+   "minutes": 514.55
+  },
+  {
+   "player_id": "13614",
+   "player": "Francesco Bardi",
+   "team": "Frosinone",
+   "pos_group": "GK",
+   "vaep_per90": 0.6760965955640519,
+   "wage_eur": 3000.0,
+   "minutes": 124.76666666666667
+  },
+  {
+   "player_id": "16202",
+   "player": "Nikola Maksimovi\u0107",
+   "team": "Torino",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3835870472362405,
+   "wage_eur": 4000.0,
+   "minutes": 1519.2
+  },
+  {
+   "player_id": "16495",
+   "player": "Omar El Kaddouri",
+   "team": "Napoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.41375507874471606,
+   "wage_eur": 8000.0,
+   "minutes": 342.6166666666667
+  },
+  {
+   "player_id": "17520",
+   "player": "Federico Barba",
+   "team": "Empoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34746370112401226,
+   "wage_eur": 4000.0,
+   "minutes": 933.3833333333333
+  },
+  {
+   "player_id": "20043",
+   "player": "Norbert Gy\u00f6mb\u00e9r",
+   "team": "AS Roma",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3526298049238254,
+   "wage_eur": 18000.0,
+   "minutes": 122.15
+  },
+  {
+   "player_id": "22041",
+   "player": "Marko Livaja",
+   "team": "Empoli",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3247510081198254,
+   "wage_eur": 1000.0,
+   "minutes": 678.8
+  },
+  {
+   "player_id": "23846",
+   "player": "Uro\u0161 \u0110ur\u0111evi\u0107",
+   "team": "Palermo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.43387815702166677,
+   "wage_eur": 5000.0,
+   "minutes": 518.3666666666667
+  },
+  {
+   "player_id": "24235",
+   "player": "Federico Dionisi",
+   "team": "Frosinone",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4795465891641778,
+   "wage_eur": 2000.0,
+   "minutes": 2546.116666666667
+  },
+  {
+   "player_id": "28974",
+   "player": "Fabio Daprel\u00e0",
+   "team": "Palermo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3500590852565,
+   "wage_eur": 4000.0,
+   "minutes": 244.26666666666665
+  },
+  {
+   "player_id": "3034",
+   "player": "Kamil Glik",
+   "team": "Torino",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31934676146405244,
+   "wage_eur": 2000.0,
+   "minutes": 3134.05
+  },
+  {
+   "player_id": "30512",
+   "player": "Aleksandar Trajkovski",
+   "team": "Palermo",
+   "pos_group": "MID",
+   "vaep_per90": 0.3692881824915768,
+   "wage_eur": 500.0,
+   "minutes": 1758.75
+  },
+  {
+   "player_id": "30704",
+   "player": "Gast\u00f3n Brugman",
+   "team": "Palermo",
+   "pos_group": "MID",
+   "vaep_per90": 0.40186099319624685,
+   "wage_eur": 8000.0,
+   "minutes": 1021.7333333333333
+  },
+  {
+   "player_id": "30735",
+   "player": "Mato Jajalo",
+   "team": "Palermo",
+   "pos_group": "MID",
+   "vaep_per90": 0.3515566599388038,
+   "wage_eur": 2000.0,
+   "minutes": 2139.6666666666665
+  },
+  {
+   "player_id": "30750",
+   "player": "Stefano Sabelli",
+   "team": "Carpi",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40717529445849876,
+   "wage_eur": 14000.0,
+   "minutes": 586.9333333333334
+  },
+  {
+   "player_id": "30772",
+   "player": "Panagiotis Tachtsidis",
+   "team": "Genoa",
+   "pos_group": "MID",
+   "vaep_per90": 0.5035410926830157,
+   "wage_eur": 8000.0,
+   "minutes": 928.7333333333333
+  },
+  {
+   "player_id": "30830",
+   "player": "Luca Lezzerini",
+   "team": "Fiorentina",
+   "pos_group": "GK",
+   "vaep_per90": 0.6800052965669565,
+   "wage_eur": 2000.0,
+   "minutes": 119.16666666666667
+  },
+  {
+   "player_id": "31572",
+   "player": "Luca Marrone",
+   "team": "Hellas Verona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36753229417361766,
+   "wage_eur": 1000.0,
+   "minutes": 1662.5166666666667
+  },
+  {
+   "player_id": "3167",
+   "player": "Antonio R\u00fcdiger",
+   "team": "AS Roma",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3427198831939975,
+   "wage_eur": 220000.0,
+   "minutes": 2784.233333333333
+  },
+  {
+   "player_id": "31737",
+   "player": "Michele Camporese",
+   "team": "Empoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34289131527251704,
+   "wage_eur": 2000.0,
+   "minutes": 165.4
+  },
+  {
+   "player_id": "32037",
+   "player": "Nicola Leali",
+   "team": "Frosinone",
+   "pos_group": "GK",
+   "vaep_per90": 0.7181995036748066,
+   "wage_eur": 9000.0,
+   "minutes": 3135.0
+  },
+  {
+   "player_id": "34355",
+   "player": "Riccardo Fiamozzi",
+   "team": "Genoa",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36839650974905735,
+   "wage_eur": 1000.0,
+   "minutes": 513.9
+  },
+  {
+   "player_id": "3477",
+   "player": "\u00c1lvaro Borja Morata Mart\u00edn",
+   "team": "Juventus",
+   "pos_group": "FWD",
+   "vaep_per90": 0.48638320478561436,
+   "wage_eur": 88000.0,
+   "minutes": 1565.9833333333333
+  },
+  {
+   "player_id": "34881",
+   "player": "Daniele Padelli",
+   "team": "Torino",
+   "pos_group": "GK",
+   "vaep_per90": 0.30507908047485705,
+   "wage_eur": 4000.0,
+   "minutes": 3325.0
+  },
+  {
+   "player_id": "3531",
+   "player": "Mohamed Salah",
+   "team": "AS Roma",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6078873890132084,
+   "wage_eur": 260000.0,
+   "minutes": 2816.2333333333336
+  },
+  {
+   "player_id": "3588",
+   "player": "Wesley Hoedt",
+   "team": "Lazio",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30904960270335463,
+   "wage_eur": 27000.0,
+   "minutes": 2162.4166666666665
+  },
+  {
+   "player_id": "3660",
+   "player": "Davide Zappacosta",
+   "team": "Torino",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36530295672314456,
+   "wage_eur": 48000.0,
+   "minutes": 1350.5666666666666
+  },
+  {
+   "player_id": "36927",
+   "player": "Boris Radunovi\u0107",
+   "team": "Atalanta",
+   "pos_group": "GK",
+   "vaep_per90": 0.6850193249457828,
+   "wage_eur": 10000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "38312",
+   "player": "Eugenio Lamanna",
+   "team": "Genoa",
+   "pos_group": "GK",
+   "vaep_per90": 0.6676922988780232,
+   "wage_eur": 1000.0,
+   "minutes": 1235.0
+  },
+  {
+   "player_id": "3951",
+   "player": "Mario Lemina",
+   "team": "Juventus",
+   "pos_group": "MID",
+   "vaep_per90": 0.4521606458914886,
+   "wage_eur": 68000.0,
+   "minutes": 768.4166666666666
+  },
+  {
+   "player_id": "3964",
+   "player": "Marcos Alonso Mendoza",
+   "team": "Fiorentina",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3485300832120233,
+   "wage_eur": 105000.0,
+   "minutes": 2562.4166666666665
+  },
+  {
+   "player_id": "4355",
+   "player": "Emerson Palmieri dos Santos",
+   "team": "AS Roma",
+   "pos_group": "DEF",
+   "vaep_per90": 0.39667286237040245,
+   "wage_eur": 63000.0,
+   "minutes": 216.61666666666667
+  },
+  {
+   "player_id": "4709",
+   "player": "Pontus Jansson",
+   "team": "Torino",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3833849819570343,
+   "wage_eur": 7000.0,
+   "minutes": 649.6
+  },
+  {
+   "player_id": "5204",
+   "player": "Bruno Miguel Borges Fernandes",
+   "team": "Udinese",
+   "pos_group": "MID",
+   "vaep_per90": 0.45371866381982984,
+   "wage_eur": 220000.0,
+   "minutes": 2200.9
+  },
+  {
+   "player_id": "5465",
+   "player": "Ante Rebi\u0107",
+   "team": "Hellas Verona",
+   "pos_group": "FWD",
+   "vaep_per90": 0.38142417614870644,
+   "wage_eur": 27000.0,
+   "minutes": 794.0333333333333
+  },
+  {
+   "player_id": "5469",
+   "player": "Marcelo Brozovi\u0107",
+   "team": "Inter Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.5021180261570501,
+   "wage_eur": 56000.0,
+   "minutes": 2528.85
+  },
+  {
+   "player_id": "5474",
+   "player": "Ivan Peri\u0161i\u0107",
+   "team": "Inter Milan",
+   "pos_group": "FWD",
+   "vaep_per90": 0.48622895342004246,
+   "wage_eur": 1000.0,
+   "minutes": 2539.85
+  },
+  {
+   "player_id": "5589",
+   "player": "Sergej Milinkovi\u0107-Savi\u0107",
+   "team": "Lazio",
+   "pos_group": "MID",
+   "vaep_per90": 0.36793450017908136,
+   "wage_eur": 84000.0,
+   "minutes": 1731.95
+  },
+  {
+   "player_id": "5630",
+   "player": "Dries Mertens",
+   "team": "Napoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.5952091446984715,
+   "wage_eur": 35000.0,
+   "minutes": 1237.45
+  },
+  {
+   "player_id": "5660",
+   "player": "Piotr Zieli\u0144ski",
+   "team": "Empoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.4291476541150412,
+   "wage_eur": 72000.0,
+   "minutes": 3159.55
+  },
+  {
+   "player_id": "5675",
+   "player": "Kalidou Koulibaly",
+   "team": "Napoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.39861609175474755,
+   "wage_eur": 62000.0,
+   "minutes": 3048.1666666666665
+  },
+  {
+   "player_id": "6305",
+   "player": "Milan Badelj",
+   "team": "Fiorentina",
+   "pos_group": "MID",
+   "vaep_per90": 0.4254604332241409,
+   "wage_eur": 18000.0,
+   "minutes": 2244.05
+  },
+  {
+   "player_id": "6358",
+   "player": "Emil Krafth",
+   "team": "Bologna",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3638637642480131,
+   "wage_eur": 63000.0,
+   "minutes": 159.38333333333333
+  },
+  {
+   "player_id": "6589",
+   "player": "Geoffrey Kondogbia",
+   "team": "Inter Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.353906679234505,
+   "wage_eur": 47000.0,
+   "minutes": 2067.3166666666666
+  },
+  {
+   "player_id": "6590",
+   "player": "Norberto Murara Neto",
+   "team": "Juventus",
+   "pos_group": "GK",
+   "vaep_per90": 0.45159930479705845,
+   "wage_eur": 37000.0,
+   "minutes": 285.0
+  },
+  {
+   "player_id": "6658",
+   "player": "Cristian Tello Herrera",
+   "team": "Fiorentina",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4344935578583333,
+   "wage_eur": 32000.0,
+   "minutes": 1105.0
+  },
+  {
+   "player_id": "6754",
+   "player": "David L\u00f3pez Silva",
+   "team": "Napoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36537524516701014,
+   "wage_eur": 31000.0,
+   "minutes": 845.3166666666666
+  },
+  {
+   "player_id": "6849",
+   "player": "Lucas Digne",
+   "team": "AS Roma",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3927072636908614,
+   "wage_eur": 80000.0,
+   "minutes": 3010.633333333333
+  },
+  {
+   "player_id": "6859",
+   "player": "Nicola Sansone",
+   "team": "Sassuolo",
+   "pos_group": "MID",
+   "vaep_per90": 0.45063348698374267,
+   "wage_eur": 16000.0,
+   "minutes": 2680.35
+  },
+  {
+   "player_id": "6894",
+   "player": "Ezequiel Mu\u00f1oz",
+   "team": "Genoa",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30309156468928977,
+   "wage_eur": 7000.0,
+   "minutes": 1477.9833333333333
+  },
+  {
+   "player_id": "6941",
+   "player": "Jasmin Kurti\u010d",
+   "team": "Atalanta",
+   "pos_group": "MID",
+   "vaep_per90": 0.3172082364419397,
+   "wage_eur": 2000.0,
+   "minutes": 2496.883333333333
+  },
+  {
+   "player_id": "6944",
+   "player": "Mattia De Sciglio",
+   "team": "AC Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34410864660756313,
+   "wage_eur": 72000.0,
+   "minutes": 1927.9166666666667
+  },
+  {
+   "player_id": "6945",
+   "player": "Alex Sandro Lobo Silva",
+   "team": "Juventus",
+   "pos_group": "DEF",
+   "vaep_per90": 0.43009167769144807,
+   "wage_eur": 77000.0,
+   "minutes": 1604.8
+  },
+  {
+   "player_id": "6952",
+   "player": "Alberto Grassi",
+   "team": "Atalanta",
+   "pos_group": "MID",
+   "vaep_per90": 0.31991893621752254,
+   "wage_eur": 8000.0,
+   "minutes": 998.85
+  },
+  {
+   "player_id": "6953",
+   "player": "Daniele Rugani",
+   "team": "Juventus",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30153562089232283,
+   "wage_eur": 72000.0,
+   "minutes": 1249.0166666666667
+  },
+  {
+   "player_id": "6963",
+   "player": "Lorenzo Pellegrini",
+   "team": "Sassuolo",
+   "pos_group": "MID",
+   "vaep_per90": 0.4654663951322682,
+   "wage_eur": 88000.0,
+   "minutes": 1205.2
+  },
+  {
+   "player_id": "6964",
+   "player": "Alessandro Florenzi",
+   "team": "AS Roma",
+   "pos_group": "DEF",
+   "vaep_per90": 0.5455773961847324,
+   "wage_eur": 45000.0,
+   "minutes": 2851.4333333333334
+  },
+  {
+   "player_id": "6969",
+   "player": "Juan Guilherme Nunes Jesus",
+   "team": "Inter Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3221785984170367,
+   "wage_eur": 36000.0,
+   "minutes": 1498.4333333333334
+  },
+  {
+   "player_id": "6973",
+   "player": "Edin D\u017eeko",
+   "team": "AS Roma",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3826521468683869,
+   "wage_eur": 43000.0,
+   "minutes": 2108.633333333333
+  },
+  {
+   "player_id": "6979",
+   "player": "Stephan El Shaarawy",
+   "team": "AS Roma",
+   "pos_group": "MID",
+   "vaep_per90": 0.5994907325630882,
+   "wage_eur": 66000.0,
+   "minutes": 1219.9833333333333
+  },
+  {
+   "player_id": "6980",
+   "player": "Kevin Strootman",
+   "team": "AS Roma",
+   "pos_group": "MID",
+   "vaep_per90": 0.3995411686757512,
+   "wage_eur": 20000.0,
+   "minutes": 208.36666666666667
+  },
+  {
+   "player_id": "6983",
+   "player": "Remo Freuler",
+   "team": "Atalanta",
+   "pos_group": "MID",
+   "vaep_per90": 0.39633621463567453,
+   "wage_eur": 35000.0,
+   "minutes": 470.0833333333333
+  },
+  {
+   "player_id": "6984",
+   "player": "Danilo D''Ambrosio",
+   "team": "Inter Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4036150180050313,
+   "wage_eur": 40000.0,
+   "minutes": 1713.0333333333333
+  },
+  {
+   "player_id": "6990",
+   "player": "Milan \u0160kriniar",
+   "team": "Sampdoria",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3386000956416506,
+   "wage_eur": 90000.0,
+   "minutes": 193.68333333333334
+  },
+  {
+   "player_id": "6991",
+   "player": "Etrit Berisha",
+   "team": "Lazio",
+   "pos_group": "GK",
+   "vaep_per90": 0.34616578289579786,
+   "wage_eur": 7000.0,
+   "minutes": 926.3
+  },
+  {
+   "player_id": "6992",
+   "player": "Andrea Masiello",
+   "team": "Atalanta",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36740874544433144,
+   "wage_eur": 2000.0,
+   "minutes": 2523.05
+  },
+  {
+   "player_id": "6993",
+   "player": "Bryan Cristante",
+   "team": "Palermo",
+   "pos_group": "MID",
+   "vaep_per90": 0.39783270498758666,
+   "wage_eur": 77000.0,
+   "minutes": 108.08333333333334
+  },
+  {
+   "player_id": "6994",
+   "player": "Marten de Roon",
+   "team": "Atalanta",
+   "pos_group": "MID",
+   "vaep_per90": 0.33660144882543563,
+   "wage_eur": 51000.0,
+   "minutes": 3241.05
+  },
+  {
+   "player_id": "7002",
+   "player": "Rafael Tol\u00f3i",
+   "team": "Atalanta",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36315902180185505,
+   "wage_eur": 48000.0,
+   "minutes": 2022.5833333333333
+  },
+  {
+   "player_id": "7018",
+   "player": "Emiliano Viviano",
+   "team": "Sampdoria",
+   "pos_group": "GK",
+   "vaep_per90": 0.5144727586052519,
+   "wage_eur": 900.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "7026",
+   "player": "Giacomo Bonaventura",
+   "team": "AC Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.4547994670515519,
+   "wage_eur": 58000.0,
+   "minutes": 2989.9166666666665
+  },
+  {
+   "player_id": "7028",
+   "player": "Jos\u00e9 Manuel Reina P\u00e1ez",
+   "team": "Napoli",
+   "pos_group": "GK",
+   "vaep_per90": 0.38075687409156234,
+   "wage_eur": 13000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "7029",
+   "player": "Jos\u00e9 Mar\u00eda Callej\u00f3n Bueno",
+   "team": "Napoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.37856901116188313,
+   "wage_eur": 13000.0,
+   "minutes": 2915.05
+  },
+  {
+   "player_id": "7031",
+   "player": "Elseid Hysaj",
+   "team": "Napoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32060281363763526,
+   "wage_eur": 40000.0,
+   "minutes": 3457.9166666666665
+  },
+  {
+   "player_id": "7032",
+   "player": "Davide Calabria",
+   "team": "AC Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3634907446565435,
+   "wage_eur": 63000.0,
+   "minutes": 395.3333333333333
+  },
+  {
+   "player_id": "7036",
+   "player": "Gianluigi Donnarumma",
+   "team": "AC Milan",
+   "pos_group": "GK",
+   "vaep_per90": 0.39349562813115124,
+   "wage_eur": 90000.0,
+   "minutes": 2773.633333333333
+  },
+  {
+   "player_id": "7037",
+   "player": "Lorenzo Insigne",
+   "team": "Napoli",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6066966427991579,
+   "wage_eur": 13000.0,
+   "minutes": 2654.1
+  },
+  {
+   "player_id": "7038",
+   "player": "Manuel Locatelli",
+   "team": "AC Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.40919450654752315,
+   "wage_eur": 105000.0,
+   "minutes": 103.9
+  },
+  {
+   "player_id": "7043",
+   "player": "Roberto Inglese",
+   "team": "Chievo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.323767883079616,
+   "wage_eur": 2000.0,
+   "minutes": 1469.9666666666667
+  },
+  {
+   "player_id": "7079",
+   "player": "Kamil Wilczek",
+   "team": "Carpi",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3770740809223978,
+   "wage_eur": 2000.0,
+   "minutes": 126.05
+  },
+  {
+   "player_id": "7107",
+   "player": "Danilo Cataldi",
+   "team": "Lazio",
+   "pos_group": "MID",
+   "vaep_per90": 0.41074984024310013,
+   "wage_eur": 43000.0,
+   "minutes": 1409.25
+  },
+  {
+   "player_id": "7108",
+   "player": "Berat Djimsiti",
+   "team": "Atalanta",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36668729091408914,
+   "wage_eur": 44000.0,
+   "minutes": 284.26666666666665
+  },
+  {
+   "player_id": "7109",
+   "player": "Matteo Politano",
+   "team": "Sassuolo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5301389790993315,
+   "wage_eur": 67000.0,
+   "minutes": 1119.65
+  },
+  {
+   "player_id": "7114",
+   "player": "Gaetano Letizia",
+   "team": "Carpi",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4389339073466333,
+   "wage_eur": 2000.0,
+   "minutes": 3039.633333333333
+  },
+  {
+   "player_id": "7119",
+   "player": "Francesco Acerbi",
+   "team": "Sassuolo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4410742149673602,
+   "wage_eur": 67000.0,
+   "minutes": 3420.0
+  },
+  {
+   "player_id": "7123",
+   "player": "Gianluca Pegolo",
+   "team": "Sassuolo",
+   "pos_group": "GK",
+   "vaep_per90": 0.6731889099275048,
+   "wage_eur": 4000.0,
+   "minutes": 159.93333333333334
+  },
+  {
+   "player_id": "7131",
+   "player": "Domenico Berardi",
+   "team": "Sassuolo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5372000649205053,
+   "wage_eur": 40000.0,
+   "minutes": 2289.3
+  },
+  {
+   "player_id": "7132",
+   "player": "Andrea Consigli",
+   "team": "Sassuolo",
+   "pos_group": "GK",
+   "vaep_per90": 0.4738985471230136,
+   "wage_eur": 10000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "7145",
+   "player": "Darko Lazovi\u0107",
+   "team": "Genoa",
+   "pos_group": "MID",
+   "vaep_per90": 0.39977125442799133,
+   "wage_eur": 25000.0,
+   "minutes": 699.2333333333333
+  },
+  {
+   "player_id": "7147",
+   "player": "Andrea Bertolacci",
+   "team": "AC Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.38684054570202214,
+   "wage_eur": 4000.0,
+   "minutes": 1900.3666666666668
+  },
+  {
+   "player_id": "7148",
+   "player": "Mattia Perin",
+   "team": "Genoa",
+   "pos_group": "GK",
+   "vaep_per90": 0.440153137608401,
+   "wage_eur": 73000.0,
+   "minutes": 2375.0
+  },
+  {
+   "player_id": "7150",
+   "player": "Riccardo Saponara",
+   "team": "Empoli",
+   "pos_group": "MID",
+   "vaep_per90": 0.4612413127226702,
+   "wage_eur": 15000.0,
+   "minutes": 2748.3333333333335
+  },
+  {
+   "player_id": "7151",
+   "player": "M\u00e1rio Rui Silva Duarte",
+   "team": "Empoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3717887178992328,
+   "wage_eur": 58000.0,
+   "minutes": 3414.55
+  },
+  {
+   "player_id": "7157",
+   "player": "Marco Sportiello",
+   "team": "Atalanta",
+   "pos_group": "GK",
+   "vaep_per90": 0.5730612071866977,
+   "wage_eur": 41000.0,
+   "minutes": 3420.0
+  },
+  {
+   "player_id": "7169",
+   "player": "Adam Masina",
+   "team": "Bologna",
+   "pos_group": "DEF",
+   "vaep_per90": 0.39968456731371527,
+   "wage_eur": 14000.0,
+   "minutes": 2772.5833333333335
+  },
+  {
+   "player_id": "7170",
+   "player": "Simone Verdi",
+   "team": "Carpi",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5934612466279767,
+   "wage_eur": 5000.0,
+   "minutes": 295.76666666666665
+  },
+  {
+   "player_id": "7172",
+   "player": "Simone Romagnoli",
+   "team": "Carpi",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31284762907037067,
+   "wage_eur": 8000.0,
+   "minutes": 2776.116666666667
+  },
+  {
+   "player_id": "7174",
+   "player": "Antonio Mirante",
+   "team": "Bologna",
+   "pos_group": "GK",
+   "vaep_per90": 0.5192856626316803,
+   "wage_eur": 16000.0,
+   "minutes": 3135.0
+  },
+  {
+   "player_id": "7457",
+   "player": "Gregoire Defrel",
+   "team": "Sassuolo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3653851212831187,
+   "wage_eur": 14000.0,
+   "minutes": 2232.3
+  },
+  {
+   "player_id": "7458",
+   "player": "Alessio Romagnoli",
+   "team": "AC Milan",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31289088866583886,
+   "wage_eur": 68000.0,
+   "minutes": 3161.3166666666666
+  },
+  {
+   "player_id": "7465",
+   "player": "Daniele Baselli",
+   "team": "Torino",
+   "pos_group": "MID",
+   "vaep_per90": 0.4156379870434899,
+   "wage_eur": 2000.0,
+   "minutes": 2366.1
+  },
+  {
+   "player_id": "7471",
+   "player": "Andrea Belotti",
+   "team": "Torino",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4535551981082391,
+   "wage_eur": 67000.0,
+   "minutes": 2713.016666666667
+  },
+  {
+   "player_id": "7473",
+   "player": "Lorenzo De Silvestri",
+   "team": "Sampdoria",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37530529104095545,
+   "wage_eur": 16000.0,
+   "minutes": 1456.5
+  },
+  {
+   "player_id": "7695",
+   "player": "Samuel Souprayen",
+   "team": "Hellas Verona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3373917920608735,
+   "wage_eur": 3000.0,
+   "minutes": 1714.8
+  },
+  {
+   "player_id": "7699",
+   "player": "Daniele Verde",
+   "team": "Frosinone",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3772595530992172,
+   "wage_eur": 3000.0,
+   "minutes": 151.53333333333333
+  },
+  {
+   "player_id": "7704",
+   "player": "Alex Ferrari",
+   "team": "Bologna",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3337204963981325,
+   "wage_eur": 2000.0,
+   "minutes": 1343.75
+  },
+  {
+   "player_id": "7770",
+   "player": "Federico Viviani",
+   "team": "Hellas Verona",
+   "pos_group": "MID",
+   "vaep_per90": 0.5392675463630437,
+   "wage_eur": 1000.0,
+   "minutes": 1677.4166666666667
+  },
+  {
+   "player_id": "7773",
+   "player": "Federico Bonazzoli",
+   "team": "Sampdoria",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3944310603738095,
+   "wage_eur": 21000.0,
+   "minutes": 92.23333333333335
+  },
+  {
+   "player_id": "7776",
+   "player": "Antonio Candreva",
+   "team": "Lazio",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6199300347165012,
+   "wage_eur": 29000.0,
+   "minutes": 2261.9333333333334
+  },
+  {
+   "player_id": "7777",
+   "player": "Federico Bernardeschi",
+   "team": "Fiorentina",
+   "pos_group": "FWD",
+   "vaep_per90": 0.35607628801485214,
+   "wage_eur": 11000.0,
+   "minutes": 2382.5666666666666
+  },
+  {
+   "player_id": "7787",
+   "player": "Stefan de Vrij",
+   "team": "Lazio",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3608018776986992,
+   "wage_eur": 86000.0,
+   "minutes": 189.75
+  },
+  {
+   "player_id": "7788",
+   "player": "Ciro Immobile",
+   "team": "Torino",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4618877402358885,
+   "wage_eur": 84000.0,
+   "minutes": 1031.2833333333333
+  },
+  {
+   "player_id": "7792",
+   "player": "Giuseppe Pezzella",
+   "team": "Palermo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.340831466199648,
+   "wage_eur": 8000.0,
+   "minutes": 623.4833333333333
+  },
+  {
+   "player_id": "7793",
+   "player": "Kevin Lasagna",
+   "team": "Carpi",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4180179129014103,
+   "wage_eur": 16000.0,
+   "minutes": 1648.7
+  },
+  {
+   "player_id": "7796",
+   "player": "Silvan Widmer",
+   "team": "Udinese",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35731253472842484,
+   "wage_eur": 23000.0,
+   "minutes": 2020.2333333333333
+  },
+  {
+   "player_id": "7804",
+   "player": "Alberto Brignoli",
+   "team": "Sampdoria",
+   "pos_group": "GK",
+   "vaep_per90": 0.4623737763532202,
+   "wage_eur": 650.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "7805",
+   "player": "Stipe Perica",
+   "team": "Udinese",
+   "pos_group": "FWD",
+   "vaep_per90": 0.42214228512577556,
+   "wage_eur": 5000.0,
+   "minutes": 499.65
+  },
+  {
+   "player_id": "7949",
+   "player": "Artur Ioni\u0163\u0103",
+   "team": "Hellas Verona",
+   "pos_group": "MID",
+   "vaep_per90": 0.3722172526081271,
+   "wage_eur": 4000.0,
+   "minutes": 2501.65
+  },
+  {
+   "player_id": "7966",
+   "player": "Filip Helander",
+   "team": "Hellas Verona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3577260098034183,
+   "wage_eur": 8000.0,
+   "minutes": 1975.3833333333332
+  },
+  {
+   "player_id": "8093",
+   "player": "Diego Falcinelli",
+   "team": "Sassuolo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2416080154151766,
+   "wage_eur": 2000.0,
+   "minutes": 1202.8166666666666
+  },
+  {
+   "player_id": "8102",
+   "player": "Edoardo Goldaniga",
+   "team": "Palermo",
+   "pos_group": "DEF",
+   "vaep_per90": 0.38383342664338305,
+   "wage_eur": 3000.0,
+   "minutes": 1287.7833333333333
+  },
+  {
+   "player_id": "8103",
+   "player": "Mattia Destro",
+   "team": "Bologna",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3946733892756974,
+   "wage_eur": 7000.0,
+   "minutes": 2237.133333333333
+  },
+  {
+   "player_id": "8180",
+   "player": "Leonardo Pavoletti",
+   "team": "Genoa",
+   "pos_group": "FWD",
+   "vaep_per90": 0.49885619990945174,
+   "wage_eur": 15000.0,
+   "minutes": 2098.9333333333334
+  },
+  {
+   "player_id": "8184",
+   "player": "Marco D''Alessandro",
+   "team": "Atalanta",
+   "pos_group": "FWD",
+   "vaep_per90": 0.44271295075549966,
+   "wage_eur": 22000.0,
+   "minutes": 1246.6833333333334
+  },
+  {
+   "player_id": "8190",
+   "player": "Patricio Gabarr\u00f3n Gil",
+   "team": "Lazio",
+   "pos_group": "DEF",
+   "vaep_per90": 0.342808301981842,
+   "wage_eur": 38000.0,
+   "minutes": 658.7333333333333
+  },
+  {
+   "player_id": "8274",
+   "player": "Pierluigi Gollini",
+   "team": "Hellas Verona",
+   "pos_group": "GK",
+   "vaep_per90": 0.4323299156619747,
+   "wage_eur": 33000.0,
+   "minutes": 2449.1
+  },
+  {
+   "player_id": "8284",
+   "player": "Amadou Diawara",
+   "team": "Bologna",
+   "pos_group": "MID",
+   "vaep_per90": 0.31987898062355047,
+   "wage_eur": 12000.0,
+   "minutes": 2959.5833333333335
+  },
+  {
+   "player_id": "8420",
+   "player": "Luca Cigarini",
+   "team": "Atalanta",
+   "pos_group": "MID",
+   "vaep_per90": 0.45607610404324517,
+   "wage_eur": 900.0,
+   "minutes": 1909.0333333333333
+  },
+  {
+   "player_id": "8421",
+   "player": "Matteo Bianchetti",
+   "team": "Hellas Verona",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36009277064453243,
+   "wage_eur": 3000.0,
+   "minutes": 1693.0166666666667
+  },
+  {
+   "player_id": "8552",
+   "player": "Robin Quaison",
+   "team": "Palermo",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2889441244864693,
+   "wage_eur": 15000.0,
+   "minutes": 1610.05
+  },
+  {
+   "player_id": "8653",
+   "player": "Jos\u00e9 Mauri",
+   "team": "AC Milan",
+   "pos_group": "MID",
+   "vaep_per90": 0.36189618459148165,
+   "wage_eur": 4000.0,
+   "minutes": 255.76666666666668
+  },
+  {
+   "player_id": "8657",
+   "player": "Andrea Conti",
+   "team": "Atalanta",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4497030434326339,
+   "wage_eur": 1000.0,
+   "minutes": 857.25
+  },
+  {
+   "player_id": "8662",
+   "player": "Vid Belec",
+   "team": "Carpi",
+   "pos_group": "GK",
+   "vaep_per90": 0.5161756645234012,
+   "wage_eur": 800.0,
+   "minutes": 2850.0
+  },
+  {
+   "player_id": "8675",
+   "player": "Jonathan de Guzm\u00e1n",
+   "team": "Carpi",
+   "pos_group": "MID",
+   "vaep_per90": 0.4761496718247777,
+   "wage_eur": 4000.0,
+   "minutes": 132.9
+  },
+  {
+   "player_id": "8876",
+   "player": "Faouzi Ghoulam",
+   "team": "Napoli",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3454254145953173,
+   "wage_eur": 12000.0,
+   "minutes": 3075.85
+  },
+  {
+   "player_id": "9884",
+   "player": "Niklas Moisander",
+   "team": "Sampdoria",
+   "pos_group": "DEF",
+   "vaep_per90": 0.330240522946118,
+   "wage_eur": 3000.0,
+   "minutes": 1880.7666666666667
+  },
+  {
+   "player_id": "9940",
+   "player": "Armando Izzo",
+   "team": "Genoa",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3335018615546197,
+   "wage_eur": 35000.0,
+   "minutes": 2896.8333333333335
+  }
+ ],
+ "ratings_sha256": "b5236659bebbb2ea27d061d81bdf71ce7d66e7b47b2ec2aa0cc3889737cda601",
+ "league_id": 135,
+ "league": "Serie A",
+ "model_hash": "b86caaed47f745d4"
+}

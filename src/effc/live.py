@@ -467,6 +467,51 @@ BASELINE_VERSION = "baseline-v1"
 BASELINE_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "..", "..",
     "runs", "live", "baseline_ratings_v1.json")
+BASELINE_DIR = os.path.dirname(os.path.normpath(BASELINE_PATH))
+
+# One baseline artifact per top-five league, keyed by the provider
+# league ID the refresh is run with. The Bundesliga entry is the
+# original artifact (BASELINE_PATH); the other four are snapshots of
+# the fitted five-league run (see each artifact's provenance fields).
+# A league with no entry has no baseline: callers fall back to the
+# default artifact, so its players are watchlisted, as before.
+LEAGUE_BASELINES = {
+    39: "baseline_ratings_premier_league_v1.json",
+    140: "baseline_ratings_la_liga_v1.json",
+    78: "baseline_ratings_v1.json",
+    135: "baseline_ratings_serie_a_v1.json",
+    61: "baseline_ratings_ligue_1_v1.json",
+}
+DEFAULT_LEAGUE_ID = 78
+
+
+def _league_key(league) -> int | None:
+    canon = canonical_id(league)
+    if canon is None:
+        return None
+    try:
+        return int(canon)
+    except ValueError:
+        return None
+
+
+def baseline_path_for_league(league) -> str | None:
+    """Path of the baseline artifact for a provider league ID.
+
+    Returns None when the league has no baseline artifact.
+    """
+    filename = LEAGUE_BASELINES.get(_league_key(league))
+    if filename is None:
+        return None
+    return os.path.join(BASELINE_DIR, filename)
+
+
+def _resolve_baseline_path(path: str | None, league) -> str:
+    if path is not None:
+        return path
+    if league is not None:
+        return baseline_path_for_league(league) or BASELINE_PATH
+    return BASELINE_PATH
 
 
 def _ratings_sha256(ratings: list[dict]) -> str:
@@ -474,9 +519,15 @@ def _ratings_sha256(ratings: list[dict]) -> str:
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
 
-def load_baseline_artifact(path: str | None = None) -> dict:
-    """Load the versioned baseline artifact and verify its contents hash."""
-    with open(path or BASELINE_PATH) as f:
+def load_baseline_artifact(path: str | None = None, *,
+                           league=None) -> dict:
+    """Load the versioned baseline artifact and verify its contents hash.
+
+    With `league` (a provider league ID) and no explicit path, the
+    artifact for that league is loaded; a league with no baseline
+    falls back to the default (Bundesliga) artifact.
+    """
+    with open(_resolve_baseline_path(path, league)) as f:
         artifact = json.load(f)
     if artifact.get("version") != BASELINE_VERSION:
         raise ValueError(
@@ -488,15 +539,20 @@ def load_baseline_artifact(path: str | None = None) -> dict:
     return artifact
 
 
-def load_baseline_ratings(path: str | None = None) -> pd.DataFrame:
+def load_baseline_ratings(path: str | None = None, *,
+                          league=None) -> pd.DataFrame:
     """Base ratings from the immutable baseline artifact.
 
     The artifact is tied to one fitted model and one data snapshot
     (recorded in its metadata); reloading it never recomputes ratings
     from whatever model happens to be in memory. Player IDs are
-    returned as canonical strings.
+    returned as canonical strings. With `league` (a provider league
+    ID) and no explicit path, that league's baseline is loaded; a
+    league with no baseline falls back to the default artifact, so
+    its players are watchlisted exactly as they were before per-league
+    baselines existed.
     """
-    artifact = load_baseline_artifact(path)
+    artifact = load_baseline_artifact(path, league=league)
     df = pd.DataFrame(artifact["ratings"])
     df["player_id"] = df["player_id"].map(canonical_id)
     return df
@@ -506,7 +562,10 @@ def write_baseline_artifact(ratings: pd.DataFrame, path: str, *,
                             model: str, data_snapshot: str,
                             config_hash: str | None = None,
                             feature_version: int | None = None,
-                            seed: int | None = None) -> dict:
+                            seed: int | None = None,
+                            league_id: int | None = None,
+                            league: str | None = None,
+                            model_hash: str | None = None) -> dict:
     """Write a baseline artifact from a ratings frame (build-time only)."""
     rows = []
     for _, r in ratings.iterrows():
@@ -525,6 +584,12 @@ def write_baseline_artifact(ratings: pd.DataFrame, path: str, *,
         "feature_version": feature_version, "seed": seed,
         "ratings": rows, "ratings_sha256": _ratings_sha256(rows),
     }
+    if league_id is not None:
+        artifact["league_id"] = int(league_id)
+    if league is not None:
+        artifact["league"] = league
+    if model_hash is not None:
+        artifact["model_hash"] = model_hash
     with open(path, "w") as f:
         json.dump(artifact, f, indent=1)
     return artifact

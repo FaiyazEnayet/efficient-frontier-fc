@@ -1,0 +1,1625 @@
+{
+ "version": "baseline-v1",
+ "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+ "data_snapshot": "StatsBomb open data, English Premier League 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 179)",
+ "config_hash": null,
+ "feature_version": 4,
+ "seed": 0,
+ "ratings": [
+  {
+   "player_id": "10457",
+   "player": "Patrick Bamford",
+   "team": "Norwich City",
+   "pos_group": "FWD",
+   "vaep_per90": 0.30837977520045634,
+   "wage_eur": 38000.0,
+   "minutes": 413.1
+  },
+  {
+   "player_id": "10779",
+   "player": "Cameron Borthwick-Jackson",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31918759700922655,
+   "wage_eur": 2000.0,
+   "minutes": 738.1833333333333
+  },
+  {
+   "player_id": "10931",
+   "player": "Joe Allen",
+   "team": "Liverpool",
+   "pos_group": "MID",
+   "vaep_per90": 0.4601357982424145,
+   "wage_eur": 11000.0,
+   "minutes": 798.9
+  },
+  {
+   "player_id": "10955",
+   "player": "Harry Kane",
+   "team": "Tottenham Hotspur",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6756690413761366,
+   "wage_eur": 170000.0,
+   "minutes": 3510.8166666666666
+  },
+  {
+   "player_id": "10956",
+   "player": "Eric Dier",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35587129097245995,
+   "wage_eur": 53000.0,
+   "minutes": 3425.9166666666665
+  },
+  {
+   "player_id": "10958",
+   "player": "Chris Smalling",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26878462458185487,
+   "wage_eur": 88000.0,
+   "minutes": 3325.0
+  },
+  {
+   "player_id": "10960",
+   "player": "Jamie Vardy",
+   "team": "Leicester City",
+   "pos_group": "FWD",
+   "vaep_per90": 0.688229998189292,
+   "wage_eur": 37000.0,
+   "minutes": 3314.5333333333333
+  },
+  {
+   "player_id": "11117",
+   "player": "Scott Sinclair",
+   "team": "Aston Villa",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2911548147040347,
+   "wage_eur": 3000.0,
+   "minutes": 1666.8333333333333
+  },
+  {
+   "player_id": "11333",
+   "player": "Adama Traor\u00e9 Diarra",
+   "team": "Aston Villa",
+   "pos_group": "MID",
+   "vaep_per90": 0.3839975212319043,
+   "wage_eur": 63000.0,
+   "minutes": 234.18333333333334
+  },
+  {
+   "player_id": "11386",
+   "player": "Santiago Cazorla Gonz\u00e1lez",
+   "team": "Arsenal",
+   "pos_group": "MID",
+   "vaep_per90": 0.5109000051052218,
+   "wage_eur": 8000.0,
+   "minutes": 1350.9
+  },
+  {
+   "player_id": "16027",
+   "player": "Kevin Mbabu",
+   "team": "Newcastle United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32442180429999995,
+   "wage_eur": 63000.0,
+   "minutes": 150.08333333333331
+  },
+  {
+   "player_id": "16181",
+   "player": "Jordy Clasie",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3413865829408297,
+   "wage_eur": 13000.0,
+   "minutes": 1576.2833333333333
+  },
+  {
+   "player_id": "18751",
+   "player": "Jack Rodwell",
+   "team": "Sunderland",
+   "pos_group": "DEF",
+   "vaep_per90": 0.25067644412522183,
+   "wage_eur": 2000.0,
+   "minutes": 1268.2666666666667
+  },
+  {
+   "player_id": "20005",
+   "player": "Toby Alderweireld",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4276769957596167,
+   "wage_eur": 37000.0,
+   "minutes": 3605.8333333333335
+  },
+  {
+   "player_id": "20039",
+   "player": "Anthony Martial",
+   "team": "Manchester United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5062581540557098,
+   "wage_eur": 100000.0,
+   "minutes": 2774.8
+  },
+  {
+   "player_id": "20066",
+   "player": "Darren Randolph",
+   "team": "West Ham United",
+   "pos_group": "GK",
+   "vaep_per90": 0.2189920132269077,
+   "wage_eur": 14000.0,
+   "minutes": 570.0
+  },
+  {
+   "player_id": "20527",
+   "player": "Jonas Olsson",
+   "team": "West Bromwich Albion",
+   "pos_group": "GK",
+   "vaep_per90": 0.30690143124016767,
+   "wage_eur": 550.0,
+   "minutes": 2118.3
+  },
+  {
+   "player_id": "20641",
+   "player": "Connor Wickham",
+   "team": "Crystal Palace",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3475875779718075,
+   "wage_eur": 5000.0,
+   "minutes": 1377.6666666666667
+  },
+  {
+   "player_id": "21254",
+   "player": "Carl Jenkinson",
+   "team": "West Ham United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3986749315304652,
+   "wage_eur": 700.0,
+   "minutes": 1329.15
+  },
+  {
+   "player_id": "22281",
+   "player": "Duncan Watmore",
+   "team": "Sunderland",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4559776519421279,
+   "wage_eur": 13000.0,
+   "minutes": 1012.8333333333334
+  },
+  {
+   "player_id": "22702",
+   "player": "Jonathan Leko",
+   "team": "West Bromwich Albion",
+   "pos_group": "FWD",
+   "vaep_per90": 0.38717889413055395,
+   "wage_eur": 5000.0,
+   "minutes": 284.18333333333334
+  },
+  {
+   "player_id": "23635",
+   "player": "John Ruddy",
+   "team": "Norwich City",
+   "pos_group": "GK",
+   "vaep_per90": 0.4610569878626183,
+   "wage_eur": 6000.0,
+   "minutes": 2565.0
+  },
+  {
+   "player_id": "23742",
+   "player": "Vadis Odjidja-Ofoe",
+   "team": "Norwich City",
+   "pos_group": "MID",
+   "vaep_per90": 0.37335258705743446,
+   "wage_eur": 550.0,
+   "minutes": 311.4666666666667
+  },
+  {
+   "player_id": "28782",
+   "player": "Ritchie De Laet",
+   "team": "Leicester City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3944356516956323,
+   "wage_eur": 19000.0,
+   "minutes": 696.6666666666666
+  },
+  {
+   "player_id": "2988",
+   "player": "Memphis Depay",
+   "team": "Manchester United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.39704283542121793,
+   "wage_eur": 84000.0,
+   "minutes": 1596.3333333333333
+  },
+  {
+   "player_id": "3041",
+   "player": "Ciaran Clark",
+   "team": "Aston Villa",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3464525452241719,
+   "wage_eur": 12000.0,
+   "minutes": 1524.7
+  },
+  {
+   "player_id": "3049",
+   "player": "Matt Ritchie",
+   "team": "AFC Bournemouth",
+   "pos_group": "MID",
+   "vaep_per90": 0.42299042980247503,
+   "wage_eur": 51000.0,
+   "minutes": 3119.9333333333334
+  },
+  {
+   "player_id": "3057",
+   "player": "Jonjo Shelvey",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4476544282922129,
+   "wage_eur": 53000.0,
+   "minutes": 2375.7833333333333
+  },
+  {
+   "player_id": "3062",
+   "player": "Aaron Cresswell",
+   "team": "West Ham United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34708143024666593,
+   "wage_eur": 52000.0,
+   "minutes": 3494.95
+  },
+  {
+   "player_id": "3065",
+   "player": "Paul Dummett",
+   "team": "Newcastle United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2939652951172387,
+   "wage_eur": 53000.0,
+   "minutes": 1984.3
+  },
+  {
+   "player_id": "3076",
+   "player": "Ayoze P\u00e9rez Guti\u00e9rrez",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4215536366603607,
+   "wage_eur": 30000.0,
+   "minutes": 2160.7
+  },
+  {
+   "player_id": "3077",
+   "player": "Jan Vertonghen",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2967353148367423,
+   "wage_eur": 20000.0,
+   "minutes": 2734.766666666667
+  },
+  {
+   "player_id": "3081",
+   "player": "Jamaal Lascelles",
+   "team": "Newcastle United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3625665886511093,
+   "wage_eur": 78000.0,
+   "minutes": 1235.5666666666666
+  },
+  {
+   "player_id": "3083",
+   "player": "Heung-Min Son",
+   "team": "Tottenham Hotspur",
+   "pos_group": "FWD",
+   "vaep_per90": 0.43962391631733994,
+   "wage_eur": 170000.0,
+   "minutes": 1184.75
+  },
+  {
+   "player_id": "3086",
+   "player": "Ben Davies",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3226604631092581,
+   "wage_eur": 65000.0,
+   "minutes": 1374.9166666666667
+  },
+  {
+   "player_id": "3089",
+   "player": "Kevin De Bruyne",
+   "team": "Manchester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.6020778112524742,
+   "wage_eur": 350000.0,
+   "minutes": 2108.2166666666667
+  },
+  {
+   "player_id": "3091",
+   "player": "Moussa Sissoko",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.33090684608066934,
+   "wage_eur": 19000.0,
+   "minutes": 3375.866666666667
+  },
+  {
+   "player_id": "3092",
+   "player": "Dwight Gayle",
+   "team": "Crystal Palace",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4337823580775445,
+   "wage_eur": 8000.0,
+   "minutes": 873.7166666666667
+  },
+  {
+   "player_id": "3098",
+   "player": "Victor Wanyama",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3365952302384299,
+   "wage_eur": 6000.0,
+   "minutes": 2699.2166666666667
+  },
+  {
+   "player_id": "3099",
+   "player": "Hugo Lloris",
+   "team": "Tottenham Hotspur",
+   "pos_group": "GK",
+   "vaep_per90": 0.5076975979640272,
+   "wage_eur": 6000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "3196",
+   "player": "Wahbi Khazri",
+   "team": "Sunderland",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4622527055779388,
+   "wage_eur": 21000.0,
+   "minutes": 1108.4
+  },
+  {
+   "player_id": "3205",
+   "player": "Kyle Walker",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35590901818933635,
+   "wage_eur": 155000.0,
+   "minutes": 3096.5333333333333
+  },
+  {
+   "player_id": "3233",
+   "player": "Raheem Sterling",
+   "team": "Manchester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.4755958785698805,
+   "wage_eur": 130000.0,
+   "minutes": 2000.0333333333333
+  },
+  {
+   "player_id": "3244",
+   "player": "John Stones",
+   "team": "Everton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2557674605276833,
+   "wage_eur": 180000.0,
+   "minutes": 2933.883333333333
+  },
+  {
+   "player_id": "3254",
+   "player": "Florian Thauvin",
+   "team": "Newcastle United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4200136347776848,
+   "wage_eur": 17000.0,
+   "minutes": 472.96666666666664
+  },
+  {
+   "player_id": "3262",
+   "player": "\u0141ukasz Fabia\u0144ski",
+   "team": "Swansea City",
+   "pos_group": "GK",
+   "vaep_per90": 0.5933316073707227,
+   "wage_eur": 35000.0,
+   "minutes": 3515.0
+  },
+  {
+   "player_id": "3272",
+   "player": "Oriol Romeu Vidal",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3693056358459144,
+   "wage_eur": 125000.0,
+   "minutes": 1719.6166666666668
+  },
+  {
+   "player_id": "3286",
+   "player": "Nathan Redmond",
+   "team": "Norwich City",
+   "pos_group": "MID",
+   "vaep_per90": 0.48803368174979966,
+   "wage_eur": 41000.0,
+   "minutes": 2482.766666666667
+  },
+  {
+   "player_id": "3290",
+   "player": "Federico Fern\u00e1ndez",
+   "team": "Swansea City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3802508763604012,
+   "wage_eur": 12000.0,
+   "minutes": 3040.0
+  },
+  {
+   "player_id": "3293",
+   "player": "Jesse Lingard",
+   "team": "Manchester United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4154780115374303,
+   "wage_eur": 8000.0,
+   "minutes": 1717.6833333333334
+  },
+  {
+   "player_id": "3297",
+   "player": "Andros Townsend",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.5594610503453701,
+   "wage_eur": 39000.0,
+   "minutes": 1218.25
+  },
+  {
+   "player_id": "3300",
+   "player": "Maya Yoshida",
+   "team": "Southampton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3646353196076571,
+   "wage_eur": 6000.0,
+   "minutes": 1106.05
+  },
+  {
+   "player_id": "3302",
+   "player": "Nordin Amrabat",
+   "team": "Watford",
+   "pos_group": "MID",
+   "vaep_per90": 0.3478965135070826,
+   "wage_eur": 950.0,
+   "minutes": 548.7833333333333
+  },
+  {
+   "player_id": "3306",
+   "player": "Nathan Ak\u00e9",
+   "team": "Watford",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3150248439720126,
+   "wage_eur": 135000.0,
+   "minutes": 2017.4666666666667
+  },
+  {
+   "player_id": "3307",
+   "player": "Marc Albrighton",
+   "team": "Leicester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.45928927698680666,
+   "wage_eur": 19000.0,
+   "minutes": 2842.8333333333335
+  },
+  {
+   "player_id": "3308",
+   "player": "Kieran Trippier",
+   "team": "Tottenham Hotspur",
+   "pos_group": "DEF",
+   "vaep_per90": 0.42042166833856887,
+   "wage_eur": 150000.0,
+   "minutes": 488.8833333333333
+  },
+  {
+   "player_id": "3310",
+   "player": "Tom Carroll",
+   "team": "Tottenham Hotspur",
+   "pos_group": "MID",
+   "vaep_per90": 0.41323281986435134,
+   "wage_eur": 2000.0,
+   "minutes": 588.1333333333333
+  },
+  {
+   "player_id": "3311",
+   "player": "Daley Blind",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.4161607520534438,
+   "wage_eur": 29000.0,
+   "minutes": 3274.85
+  },
+  {
+   "player_id": "3312",
+   "player": "Demarai Gray",
+   "team": "Leicester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.38237564084803133,
+   "wage_eur": 31000.0,
+   "minutes": 235.08333333333334
+  },
+  {
+   "player_id": "3316",
+   "player": "James Tomkins",
+   "team": "West Ham United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33177979675673197,
+   "wage_eur": 19000.0,
+   "minutes": 2054.05
+  },
+  {
+   "player_id": "3318",
+   "player": "Marcus Rashford",
+   "team": "Manchester United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4832969020375718,
+   "wage_eur": 130000.0,
+   "minutes": 877.7666666666667
+  },
+  {
+   "player_id": "3321",
+   "player": "Patrick van Aanholt",
+   "team": "Sunderland",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3696424118465811,
+   "wage_eur": 33000.0,
+   "minutes": 3134.8
+  },
+  {
+   "player_id": "3325",
+   "player": "Marko Arnautovi\u0107",
+   "team": "Stoke City",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5133173662657163,
+   "wage_eur": 44000.0,
+   "minutes": 2912.9833333333336
+  },
+  {
+   "player_id": "3326",
+   "player": "Chung-Yong Lee",
+   "team": "Crystal Palace",
+   "pos_group": "MID",
+   "vaep_per90": 0.42684562465604337,
+   "wage_eur": 5000.0,
+   "minutes": 432.0166666666667
+  },
+  {
+   "player_id": "3328",
+   "player": "James Ward-Prowse",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3867694357565503,
+   "wage_eur": 75000.0,
+   "minutes": 1673.65
+  },
+  {
+   "player_id": "3329",
+   "player": "C\u00e9dric Ricardo Alves Soares",
+   "team": "Southampton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35978621906926384,
+   "wage_eur": 60000.0,
+   "minutes": 2050.4333333333334
+  },
+  {
+   "player_id": "3339",
+   "player": "Asmir Begovi\u0107",
+   "team": "Chelsea",
+   "pos_group": "GK",
+   "vaep_per90": 0.3434769627214277,
+   "wage_eur": 6000.0,
+   "minutes": 1482.7
+  },
+  {
+   "player_id": "3340",
+   "player": "Kyle Naughton",
+   "team": "Swansea City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35117982894806077,
+   "wage_eur": 11000.0,
+   "minutes": 1948.8833333333334
+  },
+  {
+   "player_id": "3341",
+   "player": "Steve Cook",
+   "team": "AFC Bournemouth",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3812895866597629,
+   "wage_eur": 13000.0,
+   "minutes": 3369.8333333333335
+  },
+  {
+   "player_id": "3346",
+   "player": "Joshua King",
+   "team": "AFC Bournemouth",
+   "pos_group": "FWD",
+   "vaep_per90": 0.37721626698337424,
+   "wage_eur": 32000.0,
+   "minutes": 1984.1000000000001
+  },
+  {
+   "player_id": "3349",
+   "player": "Michail Antonio",
+   "team": "West Ham United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5916191915826937,
+   "wage_eur": 71000.0,
+   "minutes": 2147.516666666667
+  },
+  {
+   "player_id": "3381",
+   "player": "Nemanja Mati\u0107",
+   "team": "Chelsea",
+   "pos_group": "MID",
+   "vaep_per90": 0.4077442976800635,
+   "wage_eur": 40000.0,
+   "minutes": 2585.383333333333
+  },
+  {
+   "player_id": "3382",
+   "player": "Luke Shaw",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33006649769674434,
+   "wage_eur": 120000.0,
+   "minutes": 475.0
+  },
+  {
+   "player_id": "3389",
+   "player": "Eliaquim Mangala",
+   "team": "Manchester City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2518114034579765,
+   "wage_eur": 6000.0,
+   "minutes": 2114.45
+  },
+  {
+   "player_id": "3443",
+   "player": "Joel Ward",
+   "team": "Crystal Palace",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3666438155146071,
+   "wage_eur": 28000.0,
+   "minutes": 2836.05
+  },
+  {
+   "player_id": "3445",
+   "player": "Radamel Falcao Garc\u00eda Z\u00e1rate",
+   "team": "Chelsea",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4188986794762788,
+   "wage_eur": 15000.0,
+   "minutes": 283.7666666666667
+  },
+  {
+   "player_id": "3448",
+   "player": "Martin Kelly",
+   "team": "Crystal Palace",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29428099576387656,
+   "wage_eur": 15000.0,
+   "minutes": 1108.95
+  },
+  {
+   "player_id": "3450",
+   "player": "Jordan Ayew",
+   "team": "Aston Villa",
+   "pos_group": "MID",
+   "vaep_per90": 0.37388312094305065,
+   "wage_eur": 36000.0,
+   "minutes": 2544.95
+  },
+  {
+   "player_id": "3467",
+   "player": "Erik Pieters",
+   "team": "Stoke City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3347017549410334,
+   "wage_eur": 22000.0,
+   "minutes": 3253.15
+  },
+  {
+   "player_id": "3468",
+   "player": "Jordan Pickford",
+   "team": "Sunderland",
+   "pos_group": "GK",
+   "vaep_per90": 0.5228637323997519,
+   "wage_eur": 45000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "3471",
+   "player": "Dejan Lovren",
+   "team": "Liverpool",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28859928431132825,
+   "wage_eur": 26000.0,
+   "minutes": 1999.4333333333334
+  },
+  {
+   "player_id": "3472",
+   "player": "Willian Borges da Silva",
+   "team": "Chelsea",
+   "pos_group": "MID",
+   "vaep_per90": 0.5160380413607637,
+   "wage_eur": 71000.0,
+   "minutes": 2849.7666666666664
+  },
+  {
+   "player_id": "3476",
+   "player": "Muhamed Be\u0161i\u0107",
+   "team": "Everton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3595619659925359,
+   "wage_eur": 500.0,
+   "minutes": 595.7166666666667
+  },
+  {
+   "player_id": "3482",
+   "player": "James Collins",
+   "team": "West Ham United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3557517812745811,
+   "wage_eur": 5000.0,
+   "minutes": 1532.1833333333334
+  },
+  {
+   "player_id": "3488",
+   "player": "Wayne Hennessey",
+   "team": "Crystal Palace",
+   "pos_group": "GK",
+   "vaep_per90": 0.4831242486282865,
+   "wage_eur": 17000.0,
+   "minutes": 2755.0
+  },
+  {
+   "player_id": "3493",
+   "player": "Emre Can",
+   "team": "Liverpool",
+   "pos_group": "MID",
+   "vaep_per90": 0.3677545273679078,
+   "wage_eur": 57000.0,
+   "minutes": 2621.9
+  },
+  {
+   "player_id": "3495",
+   "player": "Joe Gomez",
+   "team": "Liverpool",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3237451156089847,
+   "wage_eur": 100000.0,
+   "minutes": 457.23333333333335
+  },
+  {
+   "player_id": "3504",
+   "player": "Ruben Loftus-Cheek",
+   "team": "Chelsea",
+   "pos_group": "MID",
+   "vaep_per90": 0.41661898058301206,
+   "wage_eur": 74000.0,
+   "minutes": 452.5333333333333
+  },
+  {
+   "player_id": "3507",
+   "player": "Wilfried Zaha",
+   "team": "Crystal Palace",
+   "pos_group": "MID",
+   "vaep_per90": 0.37836995953958524,
+   "wage_eur": 53000.0,
+   "minutes": 2602.2
+  },
+  {
+   "player_id": "3509",
+   "player": "Thibaut Courtois",
+   "team": "Chelsea",
+   "pos_group": "GK",
+   "vaep_per90": 0.4544789663490457,
+   "wage_eur": 250000.0,
+   "minutes": 2185.0
+  },
+  {
+   "player_id": "3511",
+   "player": "H\u00e9ctor Beller\u00edn Moruno",
+   "team": "Arsenal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3445638723317027,
+   "wage_eur": 23000.0,
+   "minutes": 3420.0
+  },
+  {
+   "player_id": "3514",
+   "player": "James McClean",
+   "team": "West Bromwich Albion",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33259528836397834,
+   "wage_eur": 7000.0,
+   "minutes": 2610.4833333333336
+  },
+  {
+   "player_id": "3515",
+   "player": "Alberto Moreno P\u00e9rez",
+   "team": "Liverpool",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3557458741147007,
+   "wage_eur": 27000.0,
+   "minutes": 2693.3
+  },
+  {
+   "player_id": "3517",
+   "player": "Aaron Ramsey",
+   "team": "Arsenal",
+   "pos_group": "MID",
+   "vaep_per90": 0.4910551486961831,
+   "wage_eur": 17000.0,
+   "minutes": 2767.25
+  },
+  {
+   "player_id": "3520",
+   "player": "Jeffrey Schlupp",
+   "team": "Leicester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.3527277172710974,
+   "wage_eur": 33000.0,
+   "minutes": 1478.5666666666666
+  },
+  {
+   "player_id": "3523",
+   "player": "Craig Dawson",
+   "team": "West Bromwich Albion",
+   "pos_group": "DEF",
+   "vaep_per90": 0.40187225922802694,
+   "wage_eur": 55000.0,
+   "minutes": 3570.0333333333333
+  },
+  {
+   "player_id": "3525",
+   "player": "Alex Oxlade-Chamberlain",
+   "team": "Arsenal",
+   "pos_group": "MID",
+   "vaep_per90": 0.4017279427645756,
+   "wage_eur": 30000.0,
+   "minutes": 998.5333333333334
+  },
+  {
+   "player_id": "3533",
+   "player": "Xherdan Shaqiri",
+   "team": "Stoke City",
+   "pos_group": "MID",
+   "vaep_per90": 0.411742742918514,
+   "wage_eur": 8000.0,
+   "minutes": 2105.016666666667
+  },
+  {
+   "player_id": "3535",
+   "player": "Roberto Firmino Barbosa de Oliveira",
+   "team": "Liverpool",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6321352450011121,
+   "wage_eur": 48000.0,
+   "minutes": 2053.766666666667
+  },
+  {
+   "player_id": "3537",
+   "player": "Jack Butland",
+   "team": "Stoke City",
+   "pos_group": "GK",
+   "vaep_per90": 0.3692399564559433,
+   "wage_eur": 36000.0,
+   "minutes": 2945.0
+  },
+  {
+   "player_id": "3539",
+   "player": "Simon Mignolet",
+   "team": "Liverpool",
+   "pos_group": "GK",
+   "vaep_per90": 0.27100957279097554,
+   "wage_eur": 14000.0,
+   "minutes": 3230.0
+  },
+  {
+   "player_id": "3567",
+   "player": "Georginio Wijnaldum",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.43466232446420305,
+   "wage_eur": 37000.0,
+   "minutes": 3320.9333333333334
+  },
+  {
+   "player_id": "3576",
+   "player": "Martin Olsson",
+   "team": "Norwich City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3105843507465409,
+   "wage_eur": 2000.0,
+   "minutes": 1883.4666666666667
+  },
+  {
+   "player_id": "3583",
+   "player": "Ashley Westwood",
+   "team": "Aston Villa",
+   "pos_group": "MID",
+   "vaep_per90": 0.382324753250574,
+   "wage_eur": 8000.0,
+   "minutes": 2862.9
+  },
+  {
+   "player_id": "3585",
+   "player": "Erik Lamela",
+   "team": "Tottenham Hotspur",
+   "pos_group": "FWD",
+   "vaep_per90": 0.45767224056860845,
+   "wage_eur": 34000.0,
+   "minutes": 2449.75
+  },
+  {
+   "player_id": "3594",
+   "player": "Danny Rose",
+   "team": "Tottenham Hotspur",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3763291138336532,
+   "wage_eur": 3000.0,
+   "minutes": 2234.233333333333
+  },
+  {
+   "player_id": "3595",
+   "player": "Manuel Lanzini",
+   "team": "West Ham United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4997041085910492,
+   "wage_eur": 18000.0,
+   "minutes": 1978.9833333333333
+  },
+  {
+   "player_id": "3606",
+   "player": "Ander Herrera Ag\u00fcera",
+   "team": "Manchester United",
+   "pos_group": "MID",
+   "vaep_per90": 0.4308438401553769,
+   "wage_eur": 32000.0,
+   "minutes": 1612.6833333333334
+  },
+  {
+   "player_id": "3612",
+   "player": "Ashley Young",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3937007771735404,
+   "wage_eur": 22000.0,
+   "minutes": 1139.45
+  },
+  {
+   "player_id": "3616",
+   "player": "Callum Wilson",
+   "team": "AFC Bournemouth",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5797676631383561,
+   "wage_eur": 135000.0,
+   "minutes": 807.3833333333333
+  },
+  {
+   "player_id": "3619",
+   "player": "Alex McCarthy",
+   "team": "Crystal Palace",
+   "pos_group": "GK",
+   "vaep_per90": 0.503944099445958,
+   "wage_eur": 20000.0,
+   "minutes": 665.0
+  },
+  {
+   "player_id": "3629",
+   "player": "Sadio Man\u00e9",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.5976993802933257,
+   "wage_eur": 74000.0,
+   "minutes": 2713.883333333333
+  },
+  {
+   "player_id": "3647",
+   "player": "Alex Iwobi",
+   "team": "Arsenal",
+   "pos_group": "MID",
+   "vaep_per90": 0.4821758158703121,
+   "wage_eur": 71000.0,
+   "minutes": 649.85
+  },
+  {
+   "player_id": "3649",
+   "player": "Karl Darlow",
+   "team": "Newcastle United",
+   "pos_group": "GK",
+   "vaep_per90": 0.43794534874166713,
+   "wage_eur": 25000.0,
+   "minutes": 855.0
+  },
+  {
+   "player_id": "3651",
+   "player": "Matt Targett",
+   "team": "Southampton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29010881727996346,
+   "wage_eur": 71000.0,
+   "minutes": 1112.8833333333334
+  },
+  {
+   "player_id": "3652",
+   "player": "Tom Davies",
+   "team": "Everton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3882756640499404,
+   "wage_eur": 23000.0,
+   "minutes": 107.93333333333334
+  },
+  {
+   "player_id": "3658",
+   "player": "DeAndre Yedlin",
+   "team": "Sunderland",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2996124472774937,
+   "wage_eur": 6000.0,
+   "minutes": 1910.0833333333333
+  },
+  {
+   "player_id": "3666",
+   "player": "Robert Kenedy Nunes do Nascimento",
+   "team": "Chelsea",
+   "pos_group": "MID",
+   "vaep_per90": 0.41171537837185185,
+   "wage_eur": 10000.0,
+   "minutes": 605.0166666666667
+  },
+  {
+   "player_id": "3669",
+   "player": "Virgil van Dijk",
+   "team": "Southampton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34094504131874154,
+   "wage_eur": 220000.0,
+   "minutes": 3229.75
+  },
+  {
+   "player_id": "3684",
+   "player": "Cheikhou Kouyat\u00e9",
+   "team": "West Ham United",
+   "pos_group": "MID",
+   "vaep_per90": 0.38469146553260625,
+   "wage_eur": 45000.0,
+   "minutes": 3188.233333333333
+  },
+  {
+   "player_id": "3685",
+   "player": "Jay Rodriguez",
+   "team": "Southampton",
+   "pos_group": "FWD",
+   "vaep_per90": 0.31614123421602347,
+   "wage_eur": 34000.0,
+   "minutes": 394.65000000000003
+  },
+  {
+   "player_id": "3709",
+   "player": "Daniel Amartey",
+   "team": "Leicester City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.33956329387178796,
+   "wage_eur": 15000.0,
+   "minutes": 116.35
+  },
+  {
+   "player_id": "3713",
+   "player": "Calum Chambers",
+   "team": "Arsenal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3252962805720976,
+   "wage_eur": 56000.0,
+   "minutes": 378.01666666666665
+  },
+  {
+   "player_id": "3721",
+   "player": "Etienne Capoue",
+   "team": "Watford",
+   "pos_group": "MID",
+   "vaep_per90": 0.3290110177879475,
+   "wage_eur": 42000.0,
+   "minutes": 2942.6
+  },
+  {
+   "player_id": "3726",
+   "player": "Gerard Deulofeu L\u00e1zaro",
+   "team": "Everton",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5420554584746449,
+   "wage_eur": 25000.0,
+   "minutes": 1455.9333333333334
+  },
+  {
+   "player_id": "3731",
+   "player": "Adrian Mariappa",
+   "team": "Crystal Palace",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3421614691073854,
+   "wage_eur": 2000.0,
+   "minutes": 265.4166666666667
+  },
+  {
+   "player_id": "3814",
+   "player": "Riyad Mahrez",
+   "team": "Leicester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.7265683608396977,
+   "wage_eur": 72000.0,
+   "minutes": 3116.5666666666666
+  },
+  {
+   "player_id": "3815",
+   "player": "Kasper Schmeichel",
+   "team": "Leicester City",
+   "pos_group": "GK",
+   "vaep_per90": 0.6910699837628305,
+   "wage_eur": 17000.0,
+   "minutes": 3610.0
+  },
+  {
+   "player_id": "3831",
+   "player": "Du\u0161an Tadi\u0107",
+   "team": "Southampton",
+   "pos_group": "FWD",
+   "vaep_per90": 0.6115905233433123,
+   "wage_eur": 52000.0,
+   "minutes": 2358.983333333333
+  },
+  {
+   "player_id": "3843",
+   "player": "Angelo Obinze Ogbonna",
+   "team": "West Ham United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2847424935076672,
+   "wage_eur": 38000.0,
+   "minutes": 2450.8166666666666
+  },
+  {
+   "player_id": "3897",
+   "player": "Pedro Mba Obiang Avomo",
+   "team": "West Ham United",
+   "pos_group": "MID",
+   "vaep_per90": 0.3496541621934252,
+   "wage_eur": 10000.0,
+   "minutes": 1177.95
+  },
+  {
+   "player_id": "3957",
+   "player": "C\u00e9sar Azpilicueta Tanco",
+   "team": "Chelsea",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36677175072888996,
+   "wage_eur": 51000.0,
+   "minutes": 3369.3333333333335
+  },
+  {
+   "player_id": "3960",
+   "player": "Jos\u00e9 Miguel da Rocha Fonte",
+   "team": "Southampton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36220205837508596,
+   "wage_eur": 9000.0,
+   "minutes": 3347.95
+  },
+  {
+   "player_id": "3961",
+   "player": "N''Golo Kant\u00e9",
+   "team": "Leicester City",
+   "pos_group": "MID",
+   "vaep_per90": 0.39154204371419427,
+   "wage_eur": 67000.0,
+   "minutes": 3194.616666666667
+  },
+  {
+   "player_id": "3966",
+   "player": "Charlie Austin",
+   "team": "Southampton",
+   "pos_group": "FWD",
+   "vaep_per90": 0.43970971339044496,
+   "wage_eur": 4000.0,
+   "minutes": 234.1
+  },
+  {
+   "player_id": "3970",
+   "player": "Fraser Forster",
+   "team": "Southampton",
+   "pos_group": "GK",
+   "vaep_per90": 0.30438074575335483,
+   "wage_eur": 28000.0,
+   "minutes": 1710.0
+  },
+  {
+   "player_id": "3991",
+   "player": "Allan Romeo Nyom",
+   "team": "Watford",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35793733641793263,
+   "wage_eur": 6000.0,
+   "minutes": 2585.4333333333334
+  },
+  {
+   "player_id": "4045",
+   "player": "Leroy Fer",
+   "team": "Swansea City",
+   "pos_group": "MID",
+   "vaep_per90": 0.3717670457552458,
+   "wage_eur": 13000.0,
+   "minutes": 790.75
+  },
+  {
+   "player_id": "4097",
+   "player": "Matt Grimes",
+   "team": "Swansea City",
+   "pos_group": "MID",
+   "vaep_per90": 0.39023157933721475,
+   "wage_eur": 23000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "41185",
+   "player": "Jakob Haugaard",
+   "team": "Stoke City",
+   "pos_group": "GK",
+   "vaep_per90": 0.27777149837662546,
+   "wage_eur": 1000.0,
+   "minutes": 430.0
+  },
+  {
+   "player_id": "4243",
+   "player": "Cameron Brannagan",
+   "team": "Liverpool",
+   "pos_group": "MID",
+   "vaep_per90": 0.4104841033306413,
+   "wage_eur": 6000.0,
+   "minutes": 127.28333333333333
+  },
+  {
+   "player_id": "4269",
+   "player": "Aleksandar Mitrovi\u0107",
+   "team": "Newcastle United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4211609445667499,
+   "wage_eur": 59000.0,
+   "minutes": 2345.75
+  },
+  {
+   "player_id": "4271",
+   "player": "Andy Carroll",
+   "team": "West Ham United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.5964950980227686,
+   "wage_eur": 4000.0,
+   "minutes": 1548.1333333333332
+  },
+  {
+   "player_id": "4273",
+   "player": "Reece Oxford",
+   "team": "West Ham United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2994861256374833,
+   "wage_eur": 17000.0,
+   "minutes": 230.8
+  },
+  {
+   "player_id": "4275",
+   "player": "Ross Barkley",
+   "team": "Everton",
+   "pos_group": "MID",
+   "vaep_per90": 0.5127198345052055,
+   "wage_eur": 49000.0,
+   "minutes": 3199.266666666667
+  },
+  {
+   "player_id": "42946",
+   "player": "Guangtai Jiang",
+   "team": "Everton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28685639823271425,
+   "wage_eur": 18000.0,
+   "minutes": 317.18333333333334
+  },
+  {
+   "player_id": "4347",
+   "player": "Jordan Amavi",
+   "team": "Aston Villa",
+   "pos_group": "DEF",
+   "vaep_per90": 0.343295597240184,
+   "wage_eur": 18000.0,
+   "minutes": 886.3833333333333
+  },
+  {
+   "player_id": "4416",
+   "player": "Max-Alain Gradel",
+   "team": "AFC Bournemouth",
+   "pos_group": "MID",
+   "vaep_per90": 0.3711360401258886,
+   "wage_eur": 8000.0,
+   "minutes": 908.9166666666666
+  },
+  {
+   "player_id": "4587",
+   "player": "Matteo Darmian",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3502808502292405,
+   "wage_eur": 80000.0,
+   "minutes": 2009.65
+  },
+  {
+   "player_id": "4589",
+   "player": "S\u00e9amus Coleman",
+   "team": "Everton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.36576564738902195,
+   "wage_eur": 33000.0,
+   "minutes": 2522.9833333333336
+  },
+  {
+   "player_id": "4700",
+   "player": "Matthew Pennington",
+   "team": "Everton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35179202897796047,
+   "wage_eur": 5000.0,
+   "minutes": 313.9166666666667
+  },
+  {
+   "player_id": "4726",
+   "player": "Kyle Bartley",
+   "team": "Swansea City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31854605607562064,
+   "wage_eur": 20000.0,
+   "minutes": 310.0333333333333
+  },
+  {
+   "player_id": "4807",
+   "player": "Cameron Jerome",
+   "team": "Norwich City",
+   "pos_group": "FWD",
+   "vaep_per90": 0.284110605966044,
+   "wage_eur": 2000.0,
+   "minutes": 1885.2
+  },
+  {
+   "player_id": "4831",
+   "player": "Nacer Chadli",
+   "team": "Tottenham Hotspur",
+   "pos_group": "MID",
+   "vaep_per90": 0.3804487163863576,
+   "wage_eur": 8000.0,
+   "minutes": 1055.6666666666667
+  },
+  {
+   "player_id": "4840",
+   "player": "Massadio Ha\u00efdara",
+   "team": "Newcastle United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.31881416584304434,
+   "wage_eur": 26000.0,
+   "minutes": 584.7833333333333
+  },
+  {
+   "player_id": "5110",
+   "player": "Henri Saivet",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.3914099729766374,
+   "wage_eur": 4000.0,
+   "minutes": 157.75
+  },
+  {
+   "player_id": "5836",
+   "player": "Bryan Oviedo",
+   "team": "Everton",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3227402829909939,
+   "wage_eur": 2000.0,
+   "minutes": 1046.0166666666667
+  },
+  {
+   "player_id": "6330",
+   "player": "Adnan Januzaj",
+   "team": "Manchester United",
+   "pos_group": "FWD",
+   "vaep_per90": 0.49368675973850323,
+   "wage_eur": 30000.0,
+   "minutes": 160.4
+  },
+  {
+   "player_id": "6409",
+   "player": "Adam Smith",
+   "team": "AFC Bournemouth",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3830575640834709,
+   "wage_eur": 36000.0,
+   "minutes": 2238.516666666667
+  },
+  {
+   "player_id": "6695",
+   "player": "Juan Miguel Jim\u00e9nez L\u00f3pez",
+   "team": "Southampton",
+   "pos_group": "MID",
+   "vaep_per90": 0.3608468036191636,
+   "wage_eur": 26000.0,
+   "minutes": 226.93333333333337
+  },
+  {
+   "player_id": "6746",
+   "player": "Gabriel Armando de Abreu",
+   "team": "Arsenal",
+   "pos_group": "DEF",
+   "vaep_per90": 0.34113995630310523,
+   "wage_eur": 43000.0,
+   "minutes": 1912.9666666666667
+  },
+  {
+   "player_id": "6821",
+   "player": "Jes\u00fas Navas Gonz\u00e1lez",
+   "team": "Manchester City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.37627618718327455,
+   "wage_eur": 22000.0,
+   "minutes": 2411.0333333333333
+  },
+  {
+   "player_id": "7153",
+   "player": "Jordan Veretout",
+   "team": "Aston Villa",
+   "pos_group": "MID",
+   "vaep_per90": 0.33444481994496933,
+   "wage_eur": 47000.0,
+   "minutes": 1908.8666666666666
+  },
+  {
+   "player_id": "7171",
+   "player": "Fabio Borini",
+   "team": "Sunderland",
+   "pos_group": "FWD",
+   "vaep_per90": 0.426156224134172,
+   "wage_eur": 5000.0,
+   "minutes": 1970.0666666666666
+  },
+  {
+   "player_id": "7745",
+   "player": "Steven Berghuis",
+   "team": "Watford",
+   "pos_group": "FWD",
+   "vaep_per90": 0.40725056931431003,
+   "wage_eur": 25000.0,
+   "minutes": 271.8
+  },
+  {
+   "player_id": "7848",
+   "player": "Matt Miazga",
+   "team": "Chelsea",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3569238768709425,
+   "wage_eur": 7000.0,
+   "minutes": 140.0
+  },
+  {
+   "player_id": "8251",
+   "player": "Marco van Ginkel",
+   "team": "Stoke City",
+   "pos_group": "MID",
+   "vaep_per90": 0.36427299949993436,
+   "wage_eur": 8000.0,
+   "minutes": 813.2666666666667
+  },
+  {
+   "player_id": "8520",
+   "player": "Nabil Bentaleb",
+   "team": "Tottenham Hotspur",
+   "pos_group": "MID",
+   "vaep_per90": 0.3763516361844503,
+   "wage_eur": 33000.0,
+   "minutes": 181.7
+  },
+  {
+   "player_id": "9536",
+   "player": "Modou Barrow",
+   "team": "Swansea City",
+   "pos_group": "MID",
+   "vaep_per90": 0.38078831896008564,
+   "wage_eur": 18000.0,
+   "minutes": 877.1833333333333
+  },
+  {
+   "player_id": "9539",
+   "player": "Vito Mannone",
+   "team": "Sunderland",
+   "pos_group": "GK",
+   "vaep_per90": 0.48893443899268785,
+   "wage_eur": 11000.0,
+   "minutes": 1805.0
+  },
+  {
+   "player_id": "9551",
+   "player": "Callum McManaman",
+   "team": "West Bromwich Albion",
+   "pos_group": "MID",
+   "vaep_per90": 0.3463208309979372,
+   "wage_eur": 2000.0,
+   "minutes": 324.9166666666667
+  },
+  {
+   "player_id": "9554",
+   "player": "Steven Fletcher",
+   "team": "Sunderland",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4384283962944543,
+   "wage_eur": 4000.0,
+   "minutes": 1045.4666666666667
+  },
+  {
+   "player_id": "9563",
+   "player": "Kristoffer Nordfeldt",
+   "team": "Swansea City",
+   "pos_group": "GK",
+   "vaep_per90": 0.4108009534696185,
+   "wage_eur": 3000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "9629",
+   "player": "Stephen Kingsley",
+   "team": "Swansea City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3071998560502114,
+   "wage_eur": 5000.0,
+   "minutes": 370.48333333333335
+  },
+  {
+   "player_id": "9638",
+   "player": "Jack Grealish",
+   "team": "Aston Villa",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3653412328462462,
+   "wage_eur": 200000.0,
+   "minutes": 886.4166666666667
+  },
+  {
+   "player_id": "9648",
+   "player": "Paddy McNair",
+   "team": "Manchester United",
+   "pos_group": "DEF",
+   "vaep_per90": 0.349857481584143,
+   "wage_eur": 20000.0,
+   "minutes": 341.76666666666665
+  },
+  {
+   "player_id": "9649",
+   "player": "Jack Colback",
+   "team": "Newcastle United",
+   "pos_group": "MID",
+   "vaep_per90": 0.32853855778580837,
+   "wage_eur": 8000.0,
+   "minutes": 2484.2166666666667
+  },
+  {
+   "player_id": "9914",
+   "player": "Danny Ward",
+   "team": "Liverpool",
+   "pos_group": "GK",
+   "vaep_per90": 0.28820409848741496,
+   "wage_eur": 22000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9930",
+   "player": "Ryan Bennett",
+   "team": "Norwich City",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29087347812332504,
+   "wage_eur": 2000.0,
+   "minutes": 1937.8
+  }
+ ],
+ "ratings_sha256": "75e15aab0643a01b56a737e044ef7875cc2e0823d132a4797b2d8e35102eafe8",
+ "league_id": 39,
+ "league": "English Premier League",
+ "model_hash": "b86caaed47f745d4"
+}
