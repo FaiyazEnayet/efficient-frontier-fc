@@ -1,0 +1,2423 @@
+{
+ "version": "baseline-v1",
+ "model": "improved goal models, config fc6_pool (see demo/meta.json provenance)",
+ "data_snapshot": "demo/players.csv from run bundesliga_2seasons, config configs/bundesliga_2seasons.yaml",
+ "config_hash": "86e40fda714d21a78027747473d8de4a6dc2c9f561a372ea1c8123ece54435c7",
+ "feature_version": 4,
+ "seed": 0,
+ "ratings": [
+  {
+   "player_id": "10016",
+   "player": "Leart Paqarada",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2973077434792963,
+   "wage_eur": 18000.0,
+   "minutes": 121.2
+  },
+  {
+   "player_id": "10287",
+   "player": "\u0130lkay G\u00fcndo\u011fan",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.32087605870996483,
+   "wage_eur": 220000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "10303",
+   "player": "Patrick Mainka",
+   "team": "FC Heidenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.278495939488495,
+   "wage_eur": 27000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "10336",
+   "player": "Alejandro Grimaldo Garc\u00eda",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.5258047683107671,
+   "wage_eur": 88000.0,
+   "minutes": 2924.95
+  },
+  {
+   "player_id": "10480",
+   "player": "Anthony Caci",
+   "team": "FSV Mainz 05",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2637621348906648,
+   "wage_eur": 22000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "10955",
+   "player": "Harry Kane",
+   "team": "Bayern Munich",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3327441013288772,
+   "wage_eur": 170000.0,
+   "minutes": 179.78333333333333
+  },
+  {
+   "player_id": "10956",
+   "player": "Eric Dier",
+   "team": "Bayern Munich",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29077710292718695,
+   "wage_eur": 53000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "11278",
+   "player": "Karim Onisiwo",
+   "team": "FSV Mainz 05",
+   "pos_group": "FWD",
+   "vaep_per90": 0.27349955689306443,
+   "wage_eur": 24000.0,
+   "minutes": 166.06666666666666
+  },
+  {
+   "player_id": "11279",
+   "player": "Davie Selke",
+   "team": "FC K\u00f6ln",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2811423849046757,
+   "wage_eur": 25000.0,
+   "minutes": 90.96666666666667
+  },
+  {
+   "player_id": "11282",
+   "player": "Vincenzo Grifo",
+   "team": "Freiburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.315087228896817,
+   "wage_eur": 38000.0,
+   "minutes": 141.18333333333334
+  },
+  {
+   "player_id": "11382",
+   "player": "Tim Kleindienst",
+   "team": "FC Heidenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.349260211671071,
+   "wage_eur": 32000.0,
+   "minutes": 175.98333333333335
+  },
+  {
+   "player_id": "11391",
+   "player": "Borja Iglesias Quintas",
+   "team": "Bayer Leverkusen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.24899540332855968,
+   "wage_eur": 35000.0,
+   "minutes": 282.3
+  },
+  {
+   "player_id": "11396",
+   "player": "Florian Grillitsch",
+   "team": "Hoffenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.35272802391949076,
+   "wage_eur": 29000.0,
+   "minutes": 189.48333333333335
+  },
+  {
+   "player_id": "11459",
+   "player": "Lukas K\u00fcbler",
+   "team": "Freiburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.271038533617869,
+   "wage_eur": 22000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "11814",
+   "player": "Christoph Zimmermann",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27209457561908507,
+   "wage_eur": 16000.0,
+   "minutes": 160.66666666666669
+  },
+  {
+   "player_id": "12034",
+   "player": "David Raum",
+   "team": "RB Leipzig",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2846858018455992,
+   "wage_eur": 51000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "12294",
+   "player": "Andre Hoffmann",
+   "team": "Hannover 96",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28371047880365047,
+   "wage_eur": 15000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "12299",
+   "player": "Marvin Ducksch",
+   "team": "Werder Bremen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3058534038169861,
+   "wage_eur": 28000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "12303",
+   "player": "Kevin St\u00f6ger",
+   "team": "Bochum",
+   "pos_group": "MID",
+   "vaep_per90": 0.315146889593706,
+   "wage_eur": 25000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "12304",
+   "player": "Alfredo Morales",
+   "team": "Ingolstadt",
+   "pos_group": "MID",
+   "vaep_per90": 0.3041991618749657,
+   "wage_eur": 4000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "12323",
+   "player": "Florian Neuhaus",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "MID",
+   "vaep_per90": 0.31294895365185593,
+   "wage_eur": 29000.0,
+   "minutes": 145.25
+  },
+  {
+   "player_id": "12365",
+   "player": "Alphonso Davies",
+   "team": "Bayern Munich",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2780452930031433,
+   "wage_eur": 59000.0,
+   "minutes": 95.21666666666667
+  },
+  {
+   "player_id": "12387",
+   "player": "Julian Ryerson",
+   "team": "Borussia Dortmund",
+   "pos_group": "DEF",
+   "vaep_per90": 0.35463756023280246,
+   "wage_eur": 39000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "12407",
+   "player": "Maximilian Mittelst\u00e4dt",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28823395414385483,
+   "wage_eur": 25000.0,
+   "minutes": 170.71666666666667
+  },
+  {
+   "player_id": "12411",
+   "player": "Arne Maier",
+   "team": "Augsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.31961846285273515,
+   "wage_eur": 22000.0,
+   "minutes": 123.83333333333334
+  },
+  {
+   "player_id": "12418",
+   "player": "Lucas H\u00f6ler",
+   "team": "Freiburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.29709318733366075,
+   "wage_eur": 25000.0,
+   "minutes": 170.05
+  },
+  {
+   "player_id": "12420",
+   "player": "Frederik R\u00f8nnow",
+   "team": "Union Berlin",
+   "pos_group": "GK",
+   "vaep_per90": 0.08971330622872098,
+   "wage_eur": 30000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "12422",
+   "player": "Manuel Gulde",
+   "team": "Freiburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3637321423192706,
+   "wage_eur": 20000.0,
+   "minutes": 123.73333333333333
+  },
+  {
+   "player_id": "12624",
+   "player": "Anthony Ujah",
+   "team": "Werder Bremen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2933997411901976,
+   "wage_eur": 10000.0,
+   "minutes": 106.66666666666667
+  },
+  {
+   "player_id": "131243",
+   "player": "Deniz Undav",
+   "team": "VfB Stuttgart",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3819880848725807,
+   "wage_eur": 90000.0,
+   "minutes": 158.65
+  },
+  {
+   "player_id": "13294",
+   "player": "Robin Koch",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2792301798887069,
+   "wage_eur": 48000.0,
+   "minutes": 155.51666666666665
+  },
+  {
+   "player_id": "13309",
+   "player": "Pavao Pervan",
+   "team": "Wolfsburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.3129866335970306,
+   "wage_eur": 16000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "133208",
+   "player": "Patrick Osterhage",
+   "team": "Bochum",
+   "pos_group": "MID",
+   "vaep_per90": 0.28472026615360535,
+   "wage_eur": 17000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "133483",
+   "player": "Lennard Maloney",
+   "team": "FC Heidenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.3249223591383437,
+   "wage_eur": 16000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "134272",
+   "player": "David Jur\u00e1sek",
+   "team": "Hoffenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27681052592156274,
+   "wage_eur": 9000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "134880",
+   "player": "Faride Alidou",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.3005650616033376,
+   "wage_eur": 12000.0,
+   "minutes": 143.03333333333333
+  },
+  {
+   "player_id": "143728",
+   "player": "Hugo Larsson",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.3006999035185901,
+   "wage_eur": 16000.0,
+   "minutes": 98.0
+  },
+  {
+   "player_id": "15155",
+   "player": "Janis Blaswich",
+   "team": "RB Leipzig",
+   "pos_group": "GK",
+   "vaep_per90": 0.18958485417966026,
+   "wage_eur": 37000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "153361",
+   "player": "Matej Maglica",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2717496278283336,
+   "wage_eur": 11000.0,
+   "minutes": 107.06666666666668
+  },
+  {
+   "player_id": "15458",
+   "player": "Sepp van den Berg",
+   "team": "FSV Mainz 05",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27495417777074194,
+   "wage_eur": 47000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "15546",
+   "player": "Mat\u00fa\u0161 Bero",
+   "team": "Bochum",
+   "pos_group": "MID",
+   "vaep_per90": 0.2867421644651073,
+   "wage_eur": 18000.0,
+   "minutes": 129.81666666666666
+  },
+  {
+   "player_id": "15581",
+   "player": "Bernd Leno",
+   "team": "Bayer Leverkusen",
+   "pos_group": "GK",
+   "vaep_per90": 0.3478026139486377,
+   "wage_eur": 76000.0,
+   "minutes": 3135.0
+  },
+  {
+   "player_id": "15797",
+   "player": "Matthias Bader",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28526362462281624,
+   "wage_eur": 18000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "15854",
+   "player": "Marco Friedl",
+   "team": "Werder Bremen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28393957088064614,
+   "wage_eur": 19000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "15890",
+   "player": "Noussair Mazraoui",
+   "team": "Bayern Munich",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27510808018982974,
+   "wage_eur": 60000.0,
+   "minutes": 129.98333333333335
+  },
+  {
+   "player_id": "16027",
+   "player": "Kevin Mbabu",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2673363293281831,
+   "wage_eur": 63000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "161995",
+   "player": "Jamie Jermaine Bynoe-Gittens",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.29176335367368006,
+   "wage_eur": 12000.0,
+   "minutes": 146.41666666666669
+  },
+  {
+   "player_id": "16532",
+   "player": "Daniel Olmo Carvajal",
+   "team": "RB Leipzig",
+   "pos_group": "MID",
+   "vaep_per90": 0.3934154022430062,
+   "wage_eur": 71000.0,
+   "minutes": 169.16666666666669
+  },
+  {
+   "player_id": "16534",
+   "player": "Roman Neust\u00e4dter",
+   "team": "Schalke 04",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28035513942660456,
+   "wage_eur": 4000.0,
+   "minutes": 99.55
+  },
+  {
+   "player_id": "16554",
+   "player": "Joakim M\u00e6hle",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26583515346946235,
+   "wage_eur": 39000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "17974",
+   "player": "Gregor Kobel",
+   "team": "Borussia Dortmund",
+   "pos_group": "GK",
+   "vaep_per90": 0.39940197261578303,
+   "wage_eur": 64000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "18789",
+   "player": "Danilho Doekhi",
+   "team": "Union Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2715247784306599,
+   "wage_eur": 32000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "19405",
+   "player": "Robin Zentner",
+   "team": "FSV Mainz 05",
+   "pos_group": "GK",
+   "vaep_per90": 0.05371190240877424,
+   "wage_eur": 20000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "196651",
+   "player": "Arthur Augusto de Matos Soares",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2857509960937599,
+   "wage_eur": 13000.0,
+   "minutes": 199.28333333333333
+  },
+  {
+   "player_id": "20606",
+   "player": "Paul Jaeckel",
+   "team": "Union Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26751228465832977,
+   "wage_eur": 20000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "20662",
+   "player": "Alexander N\u00fcbel",
+   "team": "VfB Stuttgart",
+   "pos_group": "GK",
+   "vaep_per90": 0.34365924705358636,
+   "wage_eur": 45000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "20814",
+   "player": "Sebastiaan Bornauw",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27248830022024245,
+   "wage_eur": 28000.0,
+   "minutes": 141.0
+  },
+  {
+   "player_id": "20947",
+   "player": "Atakan Karazor",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.3190534121821593,
+   "wage_eur": 21000.0,
+   "minutes": 189.78333333333333
+  },
+  {
+   "player_id": "21168",
+   "player": "Marlon Frey",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.2820132455925184,
+   "wage_eur": 1000.0,
+   "minutes": 281.6333333333333
+  },
+  {
+   "player_id": "217047",
+   "player": "Fares Cha\u00efbi",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.2999725898701139,
+   "wage_eur": 25000.0,
+   "minutes": 161.60000000000002
+  },
+  {
+   "player_id": "21865",
+   "player": "Senne Lynen",
+   "team": "Werder Bremen",
+   "pos_group": "MID",
+   "vaep_per90": 0.33365147158083125,
+   "wage_eur": 17000.0,
+   "minutes": 107.48333333333333
+  },
+  {
+   "player_id": "22314",
+   "player": "Maxence Lacroix",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3685435545946068,
+   "wage_eur": 31000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "23198",
+   "player": "Michael Zetterer",
+   "team": "Werder Bremen",
+   "pos_group": "GK",
+   "vaep_per90": 0.1542386469390078,
+   "wage_eur": 17000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "23351",
+   "player": "Keven Schlotterbeck",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.25645688554793183,
+   "wage_eur": 22000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "23402",
+   "player": "Leandro Barreiro Martins",
+   "team": "FSV Mainz 05",
+   "pos_group": "MID",
+   "vaep_per90": 0.29871716657767217,
+   "wage_eur": 23000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "23452",
+   "player": "Alex Kr\u00e1l",
+   "team": "Union Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.3032954767690357,
+   "wage_eur": 27000.0,
+   "minutes": 127.78333333333333
+  },
+  {
+   "player_id": "23614",
+   "player": "Chris F\u00fchrich",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.4850010334041365,
+   "wage_eur": 25000.0,
+   "minutes": 156.83333333333334
+  },
+  {
+   "player_id": "23658",
+   "player": "Aur\u00e9lio Gabriel Ulineia Buta",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.30146613607939093,
+   "wage_eur": 32000.0,
+   "minutes": 110.81666666666666
+  },
+  {
+   "player_id": "24118",
+   "player": "Nico Schlotterbeck",
+   "team": "Borussia Dortmund",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2949112918229822,
+   "wage_eur": 56000.0,
+   "minutes": 158.53333333333333
+  },
+  {
+   "player_id": "24243",
+   "player": "Brenden Aaronson",
+   "team": "Union Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.3002079613439663,
+   "wage_eur": 29000.0,
+   "minutes": 109.93333333333334
+  },
+  {
+   "player_id": "24442",
+   "player": "Mads Pedersen",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27579462500454843,
+   "wage_eur": 20000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "24914",
+   "player": "Edgar Prib",
+   "team": "Hannover 96",
+   "pos_group": "MID",
+   "vaep_per90": 0.3041316995711638,
+   "wage_eur": 3000.0,
+   "minutes": 170.16666666666669
+  },
+  {
+   "player_id": "24919",
+   "player": "Sebastian Jung",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.285099674455764,
+   "wage_eur": 8000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "25118",
+   "player": "Iago Amaral Borduchi",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2680050505437663,
+   "wage_eur": 23000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "28239",
+   "player": "Adam Hlo\u017eek",
+   "team": "Bayer Leverkusen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3360278809362339,
+   "wage_eur": 36000.0,
+   "minutes": 537.0333333333333
+  },
+  {
+   "player_id": "28573",
+   "player": "Felix Agu",
+   "team": "Werder Bremen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.296885422372527,
+   "wage_eur": 11000.0,
+   "minutes": 107.73333333333335
+  },
+  {
+   "player_id": "28805",
+   "player": "Jamie Leweling",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.3189833146157141,
+   "wage_eur": 19000.0,
+   "minutes": 109.58333333333333
+  },
+  {
+   "player_id": "29003",
+   "player": "Jonas Omlin",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "GK",
+   "vaep_per90": 0.33161342110843256,
+   "wage_eur": 28000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "29227",
+   "player": "Leonidas Stergiou",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26762645079988734,
+   "wage_eur": 10000.0,
+   "minutes": 99.75
+  },
+  {
+   "player_id": "29682",
+   "player": "Rasmus Carstensen",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2990802379791093,
+   "wage_eur": 7000.0,
+   "minutes": 185.75
+  },
+  {
+   "player_id": "29760",
+   "player": "Erhan Ma\u0161ovi\u0107",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2644165691310313,
+   "wage_eur": 16000.0,
+   "minutes": 118.5
+  },
+  {
+   "player_id": "30360",
+   "player": "Mohamed Simakan",
+   "team": "RB Leipzig",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2873357984375642,
+   "wage_eur": 46000.0,
+   "minutes": 169.16666666666669
+  },
+  {
+   "player_id": "30439",
+   "player": "Tolga Ci\u011ferci",
+   "team": "Hertha Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.32769717467014153,
+   "wage_eur": 12000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "3053",
+   "player": "Leroy San\u00e9",
+   "team": "Bayern Munich",
+   "pos_group": "MID",
+   "vaep_per90": 0.38475450667081823,
+   "wage_eur": 105000.0,
+   "minutes": 380.0
+  },
+  {
+   "player_id": "3097",
+   "player": "Pascal Gro\u00df",
+   "team": "Ingolstadt",
+   "pos_group": "MID",
+   "vaep_per90": 0.35848292230813533,
+   "wage_eur": 88000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "3117",
+   "player": "Lucas Tousart",
+   "team": "Union Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.31390521065485816,
+   "wage_eur": 29000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "31310",
+   "player": "Jan-Niklas Beste",
+   "team": "FC Heidenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.3050027112119552,
+   "wage_eur": 27000.0,
+   "minutes": 156.11666666666667
+  },
+  {
+   "player_id": "3164",
+   "player": "Marcelo Ant\u00f4nio Guedes Filho",
+   "team": "Hannover 96",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2844926944362647,
+   "wage_eur": 4000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "3230",
+   "player": "Alassane Pl\u00e9a",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "MID",
+   "vaep_per90": 0.30350575315658274,
+   "wage_eur": 29000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "32537",
+   "player": "Yorbe Vertessen",
+   "team": "Union Berlin",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2813465475013818,
+   "wage_eur": 27000.0,
+   "minutes": 92.13333333333333
+  },
+  {
+   "player_id": "32712",
+   "player": "Jeremie Frimpong",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.5379163932834526,
+   "wage_eur": 63000.0,
+   "minutes": 2304.05
+  },
+  {
+   "player_id": "3275",
+   "player": "Henrikh Mkhitaryan",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.3360891584904859,
+   "wage_eur": 95000.0,
+   "minutes": 175.05
+  },
+  {
+   "player_id": "33088",
+   "player": "Lucas Silva Melo",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "DEF",
+   "vaep_per90": 0.24234918161131025,
+   "wage_eur": 27000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "33335",
+   "player": "Jan Thielmann",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.29243017077705236,
+   "wage_eur": 14000.0,
+   "minutes": 91.98333333333333
+  },
+  {
+   "player_id": "33401",
+   "player": "Amine Adli",
+   "team": "Bayer Leverkusen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.4700449480171395,
+   "wage_eur": 45000.0,
+   "minutes": 976.6833333333333
+  },
+  {
+   "player_id": "3428",
+   "player": "Tom\u00e1\u0161 Koubek",
+   "team": "Augsburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.311822800874429,
+   "wage_eur": 14000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "34870",
+   "player": "Nick Woltemade",
+   "team": "Werder Bremen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2852747082324055,
+   "wage_eur": 10000.0,
+   "minutes": 92.31666666666666
+  },
+  {
+   "player_id": "3493",
+   "player": "Emre Can",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.3163043245210135,
+   "wage_eur": 57000.0,
+   "minutes": 163.91666666666669
+  },
+  {
+   "player_id": "3500",
+   "player": "Granit Xhaka",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.4615853918969437,
+   "wage_eur": 74000.0,
+   "minutes": 3138.0333333333333
+  },
+  {
+   "player_id": "3510",
+   "player": "Sead Kola\u0161inac",
+   "team": "Schalke 04",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28682515910897405,
+   "wage_eur": 48000.0,
+   "minutes": 112.05
+  },
+  {
+   "player_id": "35242",
+   "player": "Maximilian Beier",
+   "team": "Hoffenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.377532535955421,
+   "wage_eur": 27000.0,
+   "minutes": 158.55
+  },
+  {
+   "player_id": "35578",
+   "player": "Christoph Klarer",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27335299225555604,
+   "wage_eur": 14000.0,
+   "minutes": 109.61666666666666
+  },
+  {
+   "player_id": "35637",
+   "player": "Timo H\u00fcbers",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26915629601645663,
+   "wage_eur": 23000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "3570",
+   "player": "Pierre-Emile H\u00f8jbjerg",
+   "team": "Schalke 04",
+   "pos_group": "MID",
+   "vaep_per90": 0.3079234214486642,
+   "wage_eur": 86000.0,
+   "minutes": 150.08333333333331
+  },
+  {
+   "player_id": "3630",
+   "player": "Loris Karius",
+   "team": "FSV Mainz 05",
+   "pos_group": "GK",
+   "vaep_per90": 0.20338080731735836,
+   "wage_eur": 43000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "363583",
+   "player": "Brajan Gruda",
+   "team": "FSV Mainz 05",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3153857890131444,
+   "wage_eur": 10000.0,
+   "minutes": 138.8
+  },
+  {
+   "player_id": "36811",
+   "player": "Moritz Nicolas",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "GK",
+   "vaep_per90": 0.28118788839702913,
+   "wage_eur": 15000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "36830",
+   "player": "Joseph Scally",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3265490292761476,
+   "wage_eur": 16000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "37005",
+   "player": "Finn Dahmen",
+   "team": "Augsburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.3329011457237957,
+   "wage_eur": 18000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "3712",
+   "player": "Pierre-Emerick Aubameyang",
+   "team": "Borussia Dortmund",
+   "pos_group": "FWD",
+   "vaep_per90": 0.46413819463643435,
+   "wage_eur": 54000.0,
+   "minutes": 181.73333333333335
+  },
+  {
+   "player_id": "3767",
+   "player": "Ellyes Joris Skhiri",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.32292224495516897,
+   "wage_eur": 46000.0,
+   "minutes": 100.65
+  },
+  {
+   "player_id": "38009",
+   "player": "Kevin Paredes",
+   "team": "Wolfsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.3026244810512121,
+   "wage_eur": 21000.0,
+   "minutes": 112.5
+  },
+  {
+   "player_id": "38991",
+   "player": "Eric Martel",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.2823908819007608,
+   "wage_eur": 17000.0,
+   "minutes": 156.65
+  },
+  {
+   "player_id": "39070",
+   "player": "Ansgar Knauff",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.29403658030353697,
+   "wage_eur": 25000.0,
+   "minutes": 120.95
+  },
+  {
+   "player_id": "3913",
+   "player": "Edimilson Fernandes",
+   "team": "FSV Mainz 05",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2748074122112525,
+   "wage_eur": 22000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "39160",
+   "player": "Bartol Franji\u0107",
+   "team": "Darmstadt 98",
+   "pos_group": "MID",
+   "vaep_per90": 0.33552504841518166,
+   "wage_eur": 17000.0,
+   "minutes": 175.43333333333334
+  },
+  {
+   "player_id": "39167",
+   "player": "Xavi Simons",
+   "team": "RB Leipzig",
+   "pos_group": "MID",
+   "vaep_per90": 0.3880288567718286,
+   "wage_eur": 71000.0,
+   "minutes": 144.05
+  },
+  {
+   "player_id": "39360",
+   "player": "Angelo Stiller",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.3280098152317671,
+   "wage_eur": 24000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "39460",
+   "player": "Nicolas Seiwald",
+   "team": "RB Leipzig",
+   "pos_group": "MID",
+   "vaep_per90": 0.3042515419832805,
+   "wage_eur": 38000.0,
+   "minutes": 135.65
+  },
+  {
+   "player_id": "39565",
+   "player": "Jamal Musiala",
+   "team": "Bayern Munich",
+   "pos_group": "MID",
+   "vaep_per90": 0.2872052584160682,
+   "wage_eur": 79000.0,
+   "minutes": 115.81666666666666
+  },
+  {
+   "player_id": "3959",
+   "player": "Andreas Christensen",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.300789092862802,
+   "wage_eur": 155000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "40538",
+   "player": "Jin-Su Kim",
+   "team": "Hoffenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28543606516213665,
+   "wage_eur": 6000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "405983",
+   "player": "Max Finkgr\u00e4fe",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.256627710240654,
+   "wage_eur": 5000.0,
+   "minutes": 128.91666666666666
+  },
+  {
+   "player_id": "40724",
+   "player": "Florian Wirtz",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.6690407942204255,
+   "wage_eur": 77000.0,
+   "minutes": 2458.366666666667
+  },
+  {
+   "player_id": "40761",
+   "player": "Omar Marmoush",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2965979516034767,
+   "wage_eur": 37000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "42543",
+   "player": "Oscar Vilhelmsson",
+   "team": "Darmstadt 98",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3812962273718269,
+   "wage_eur": 6000.0,
+   "minutes": 124.33333333333334
+  },
+  {
+   "player_id": "426425",
+   "player": "Tim Drexler",
+   "team": "Hoffenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.273790763679944,
+   "wage_eur": 1000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "4279",
+   "player": "Konstantinos Stafylidis",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27226821005223883,
+   "wage_eur": 8000.0,
+   "minutes": 106.03333333333333
+  },
+  {
+   "player_id": "43565",
+   "player": "Min Jae Kim",
+   "team": "Bayern Munich",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3079118943726565,
+   "wage_eur": 82000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "44198",
+   "player": "Ivan Ordets",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.275657851741347,
+   "wage_eur": 20000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "4440",
+   "player": "Kevin Trapp",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "GK",
+   "vaep_per90": 0.0845731729669767,
+   "wage_eur": 42000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "45115",
+   "player": "Enzo Millot",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.30469625161183717,
+   "wage_eur": 18000.0,
+   "minutes": 139.16666666666669
+  },
+  {
+   "player_id": "46046",
+   "player": "Mat\u011bj Kov\u00e1\u0159",
+   "team": "Bayer Leverkusen",
+   "pos_group": "GK",
+   "vaep_per90": 0.2567698286910723,
+   "wage_eur": 27000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "46430",
+   "player": "Tim Siersleben",
+   "team": "FC Heidenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27762277907244026,
+   "wage_eur": 15000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "48031",
+   "player": "Niels Nkounkou",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2790703149273897,
+   "wage_eur": 24000.0,
+   "minutes": 164.05
+  },
+  {
+   "player_id": "48240",
+   "player": "Merlin R\u00f6hl",
+   "team": "Freiburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.2872714118193378,
+   "wage_eur": 18000.0,
+   "minutes": 155.39999999999998
+  },
+  {
+   "player_id": "48246",
+   "player": "Noah Atubolu",
+   "team": "Freiburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.17914588771465623,
+   "wage_eur": 11000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "48500",
+   "player": "Moritz Jenz",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2677338082218518,
+   "wage_eur": 30000.0,
+   "minutes": 188.98333333333332
+  },
+  {
+   "player_id": "48644",
+   "player": "Anton Stach",
+   "team": "Hoffenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.41009385106385243,
+   "wage_eur": 30000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "48655",
+   "player": "Luca Pfeiffer",
+   "team": "Darmstadt 98",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2783707941893493,
+   "wage_eur": 12000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "48959",
+   "player": "Omar Haktab Traor\u00e8",
+   "team": "FC Heidenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2781846452360658,
+   "wage_eur": 21000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "49337",
+   "player": "Josip Stani\u0161i\u0107",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.435890102612577,
+   "wage_eur": 41000.0,
+   "minutes": 1354.3166666666666
+  },
+  {
+   "player_id": "51769",
+   "player": "Juli\u00e1n Malatini",
+   "team": "Werder Bremen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2572278433794511,
+   "wage_eur": 7000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "5481",
+   "player": "Mathew Leckie",
+   "team": "Ingolstadt",
+   "pos_group": "MID",
+   "vaep_per90": 0.37948268469197216,
+   "wage_eur": 12000.0,
+   "minutes": 156.48333333333335
+  },
+  {
+   "player_id": "5514",
+   "player": "Alfre\u00f0 Finnbogason",
+   "team": "Augsburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.30776537046970176,
+   "wage_eur": 6000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "5548",
+   "player": "Steven Zuber",
+   "team": "Hoffenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3741584241326318,
+   "wage_eur": 1000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "5550",
+   "player": "Yann Sommer",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "GK",
+   "vaep_per90": 0.060059622945212304,
+   "wage_eur": 100000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "5555",
+   "player": "Julian Brandt",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.552197195155753,
+   "wage_eur": 72000.0,
+   "minutes": 1886.2166666666667
+  },
+  {
+   "player_id": "5557",
+   "player": "Timo Werner",
+   "team": "VfB Stuttgart",
+   "pos_group": "FWD",
+   "vaep_per90": 0.24225334983874283,
+   "wage_eur": 63000.0,
+   "minutes": 213.51666666666665
+  },
+  {
+   "player_id": "5559",
+   "player": "Marco Reus",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.29559942406656525,
+   "wage_eur": 60000.0,
+   "minutes": 159.81666666666666
+  },
+  {
+   "player_id": "5562",
+   "player": "Thomas M\u00fcller",
+   "team": "Bayern Munich",
+   "pos_group": "MID",
+   "vaep_per90": 0.44482730944321647,
+   "wage_eur": 75000.0,
+   "minutes": 226.46666666666667
+  },
+  {
+   "player_id": "5570",
+   "player": "Manuel Neuer",
+   "team": "Bayern Munich",
+   "pos_group": "GK",
+   "vaep_per90": 0.1626261277207329,
+   "wage_eur": 55000.0,
+   "minutes": 285.0
+  },
+  {
+   "player_id": "5572",
+   "player": "Mats Hummels",
+   "team": "Borussia Dortmund",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30666907748584293,
+   "wage_eur": 66000.0,
+   "minutes": 380.0
+  },
+  {
+   "player_id": "5579",
+   "player": "Joshua Kimmich",
+   "team": "Bayern Munich",
+   "pos_group": "MID",
+   "vaep_per90": 0.3277566645007864,
+   "wage_eur": 110000.0,
+   "minutes": 191.11666666666667
+  },
+  {
+   "player_id": "5591",
+   "player": "Filip Kosti\u0107",
+   "team": "VfB Stuttgart",
+   "pos_group": "MID",
+   "vaep_per90": 0.30716244654511493,
+   "wage_eur": 130000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "5623",
+   "player": "Jae-Sung Lee",
+   "team": "FSV Mainz 05",
+   "pos_group": "MID",
+   "vaep_per90": 0.302602267352854,
+   "wage_eur": 27000.0,
+   "minutes": 163.7
+  },
+  {
+   "player_id": "5624",
+   "player": "Albin Ekdal",
+   "team": "Hamburger SV",
+   "pos_group": "MID",
+   "vaep_per90": 0.3089564645553354,
+   "wage_eur": 6000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "5627",
+   "player": "Ja-Cheol Koo",
+   "team": "Augsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.5663110085704811,
+   "wage_eur": 2000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "5668",
+   "player": "Robert Lewandowski",
+   "team": "Bayern Munich",
+   "pos_group": "FWD",
+   "vaep_per90": 0.27450694804089204,
+   "wage_eur": 340000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "5697",
+   "player": "Genki Haraguchi",
+   "team": "Hertha Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.3178923967337637,
+   "wage_eur": 13000.0,
+   "minutes": 128.03333333333333
+  },
+  {
+   "player_id": "5835",
+   "player": "Josip Drmic",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2854355345195766,
+   "wage_eur": 500.0,
+   "minutes": 129.33333333333334
+  },
+  {
+   "player_id": "6309",
+   "player": "Tin Jedvaj",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2763460909435198,
+   "wage_eur": 750.0,
+   "minutes": 1001.3000000000001
+  },
+  {
+   "player_id": "6321",
+   "player": "Milos Veljkovic",
+   "team": "Werder Bremen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27238744823626015,
+   "wage_eur": 18000.0,
+   "minutes": 224.2
+  },
+  {
+   "player_id": "6322",
+   "player": "Niklas S\u00fcle",
+   "team": "Hoffenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.24389657610702775,
+   "wage_eur": 60000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "6324",
+   "player": "Leon Goretzka",
+   "team": "Bayern Munich",
+   "pos_group": "MID",
+   "vaep_per90": 0.3653048374082695,
+   "wage_eur": 100000.0,
+   "minutes": 260.5833333333333
+  },
+  {
+   "player_id": "6874",
+   "player": "Ermedin Demirovi\u0107",
+   "team": "Augsburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2684297617166109,
+   "wage_eur": 32000.0,
+   "minutes": 170.0
+  },
+  {
+   "player_id": "6985",
+   "player": "Robin Gosens",
+   "team": "Union Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27293493345620473,
+   "wage_eur": 39000.0,
+   "minutes": 94.08333333333333
+  },
+  {
+   "player_id": "7039",
+   "player": "Hakan \u00c7alhano\u011flu",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.47245162836935006,
+   "wage_eur": 140000.0,
+   "minutes": 2347.2666666666664
+  },
+  {
+   "player_id": "7044",
+   "player": "Patrik Schick",
+   "team": "Bayer Leverkusen",
+   "pos_group": "FWD",
+   "vaep_per90": 0.40364655897557655,
+   "wage_eur": 73000.0,
+   "minutes": 1118.4333333333334
+  },
+  {
+   "player_id": "7095",
+   "player": "Marvin Schw\u00e4be",
+   "team": "FC K\u00f6ln",
+   "pos_group": "GK",
+   "vaep_per90": 0.26193180245121994,
+   "wage_eur": 24000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "7198",
+   "player": "Franck Honorat",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "MID",
+   "vaep_per90": 0.3207864957489532,
+   "wage_eur": 31000.0,
+   "minutes": 148.48333333333335
+  },
+  {
+   "player_id": "7829",
+   "player": "Wout Weghorst",
+   "team": "Hoffenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.36742547237980283,
+   "wage_eur": 51000.0,
+   "minutes": 171.86666666666667
+  },
+  {
+   "player_id": "79429",
+   "player": "Kiliann Sildillia",
+   "team": "Freiburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2720793554942199,
+   "wage_eur": 14000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8068",
+   "player": "Maximilian W\u00f6ber",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2817794575485305,
+   "wage_eur": 39000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8207",
+   "player": "Dominik Kohr",
+   "team": "Augsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.3484830218037093,
+   "wage_eur": 24000.0,
+   "minutes": 353.73333333333335
+  },
+  {
+   "player_id": "8208",
+   "player": "Sven Ulreich",
+   "team": "Bayern Munich",
+   "pos_group": "GK",
+   "vaep_per90": 0.28100420045694674,
+   "wage_eur": 32000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8211",
+   "player": "Benjamin Henrichs",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.281155034068575,
+   "wage_eur": 53000.0,
+   "minutes": 701.2333333333333
+  },
+  {
+   "player_id": "8212",
+   "player": "Wendell Nascimento Borges",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3089051727303753,
+   "wage_eur": 13000.0,
+   "minutes": 2535.016666666667
+  },
+  {
+   "player_id": "8215",
+   "player": "Kevin Volland",
+   "team": "Hoffenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.28460031216492526,
+   "wage_eur": 35000.0,
+   "minutes": 171.0
+  },
+  {
+   "player_id": "8221",
+   "player": "Jonathan Tah",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.32402571382856965,
+   "wage_eur": 74000.0,
+   "minutes": 5475.416666666667
+  },
+  {
+   "player_id": "8222",
+   "player": "Kevin Kampl",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.4157704104224463,
+   "wage_eur": 50000.0,
+   "minutes": 1900.0166666666667
+  },
+  {
+   "player_id": "8225",
+   "player": "Roman B\u00fcrki",
+   "team": "Borussia Dortmund",
+   "pos_group": "GK",
+   "vaep_per90": 0.2963186841600477,
+   "wage_eur": 8000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8226",
+   "player": "Dan-Axel Zagadou",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28101483559632584,
+   "wage_eur": 21000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8227",
+   "player": "Mario G\u00f6tze",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.3038081721733827,
+   "wage_eur": 49000.0,
+   "minutes": 175.86666666666667
+  },
+  {
+   "player_id": "8230",
+   "player": "Josuha Guilavogui",
+   "team": "Wolfsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2717632922564647,
+   "wage_eur": 22000.0,
+   "minutes": 165.88333333333333
+  },
+  {
+   "player_id": "8231",
+   "player": "Yannick Gerhardt",
+   "team": "Wolfsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.2996694436485219,
+   "wage_eur": 45000.0,
+   "minutes": 259.4
+  },
+  {
+   "player_id": "8235",
+   "player": "Maximilian Arnold",
+   "team": "Wolfsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.2804778090777638,
+   "wage_eur": 51000.0,
+   "minutes": 357.98333333333335
+  },
+  {
+   "player_id": "8238",
+   "player": "Mahmoud Dahoud",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "MID",
+   "vaep_per90": 0.30374716596075374,
+   "wage_eur": 71000.0,
+   "minutes": 177.45
+  },
+  {
+   "player_id": "8239",
+   "player": "Robin Knoche",
+   "team": "Union Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26082507047352754,
+   "wage_eur": 28000.0,
+   "minutes": 152.93333333333334
+  },
+  {
+   "player_id": "8240",
+   "player": "Koen Casteels",
+   "team": "Wolfsburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.2331470810357859,
+   "wage_eur": 50000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8241",
+   "player": "Felix Passlack",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2593192612688509,
+   "wage_eur": 9000.0,
+   "minutes": 93.7
+  },
+  {
+   "player_id": "8245",
+   "player": "Felix Uduokhai",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2791215987426348,
+   "wage_eur": 22000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8306",
+   "player": "Christian Mathenia",
+   "team": "Darmstadt 98",
+   "pos_group": "GK",
+   "vaep_per90": 0.5051377890660254,
+   "wage_eur": 4000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8309",
+   "player": "Michael Gregoritsch",
+   "team": "Freiburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.2732316169798655,
+   "wage_eur": 35000.0,
+   "minutes": 92.81666666666666
+  },
+  {
+   "player_id": "8314",
+   "player": "Marwin Hitz",
+   "team": "Augsburg",
+   "pos_group": "GK",
+   "vaep_per90": 0.28964239324162744,
+   "wage_eur": 7000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8318",
+   "player": "Jeffrey Gouweleeuw",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.3132852802587018,
+   "wage_eur": 25000.0,
+   "minutes": 285.0
+  },
+  {
+   "player_id": "8319",
+   "player": "Philipp Max",
+   "team": "Augsburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29313523747770037,
+   "wage_eur": 31000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8352",
+   "player": "Julian Chabot",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.21968006533698262,
+   "wage_eur": 23000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8361",
+   "player": "Ritsu Doan",
+   "team": "Freiburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.3822745174796749,
+   "wage_eur": 27000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8393",
+   "player": "Oliver Baumann",
+   "team": "Hoffenheim",
+   "pos_group": "GK",
+   "vaep_per90": 0.5093295760346503,
+   "wage_eur": 34000.0,
+   "minutes": 380.0
+  },
+  {
+   "player_id": "8397",
+   "player": "Kevin Vogt",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30747068779334447,
+   "wage_eur": 29000.0,
+   "minutes": 330.0
+  },
+  {
+   "player_id": "8403",
+   "player": "Nadiem Amiri",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.30123625391446845,
+   "wage_eur": 29000.0,
+   "minutes": 224.41666666666669
+  },
+  {
+   "player_id": "8406",
+   "player": "Florian Kainz",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.30059490916926274,
+   "wage_eur": 27000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8507",
+   "player": "Lukas Klostermann",
+   "team": "RB Leipzig",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2560767913114604,
+   "wage_eur": 50000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8508",
+   "player": "Max Meyer",
+   "team": "Schalke 04",
+   "pos_group": "MID",
+   "vaep_per90": 0.3036093149356138,
+   "wage_eur": 11000.0,
+   "minutes": 182.66666666666669
+  },
+  {
+   "player_id": "8509",
+   "player": "Willi Orban",
+   "team": "RB Leipzig",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29135784623244954,
+   "wage_eur": 67000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8517",
+   "player": "Ralf F\u00e4hrmann",
+   "team": "Schalke 04",
+   "pos_group": "GK",
+   "vaep_per90": 0.3073426933809773,
+   "wage_eur": 6000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8518",
+   "player": "Marcel Sabitzer",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.29539354554675323,
+   "wage_eur": 63000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8538",
+   "player": "Waldemar Anton",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2853080494516219,
+   "wage_eur": 28000.0,
+   "minutes": 189.58333333333331
+  },
+  {
+   "player_id": "8541",
+   "player": "Kenan Karaman",
+   "team": "Hannover 96",
+   "pos_group": "MID",
+   "vaep_per90": 0.3024180640783114,
+   "wage_eur": 12000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8546",
+   "player": "Niclas F\u00fcllkrug",
+   "team": "Borussia Dortmund",
+   "pos_group": "FWD",
+   "vaep_per90": 0.34349690459884324,
+   "wage_eur": 60000.0,
+   "minutes": 189.46666666666667
+  },
+  {
+   "player_id": "8549",
+   "player": "Giulio Donati",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28825146088062825,
+   "wage_eur": 25000.0,
+   "minutes": 1075.7833333333333
+  },
+  {
+   "player_id": "8559",
+   "player": "Stefan Bell",
+   "team": "FSV Mainz 05",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2638868369270178,
+   "wage_eur": 20000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8561",
+   "player": "Fabian Frei",
+   "team": "FSV Mainz 05",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26906433210414815,
+   "wage_eur": 9000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8570",
+   "player": "Niklas Stark",
+   "team": "Hertha Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2651677086736748,
+   "wage_eur": 21000.0,
+   "minutes": 107.58333333333333
+  },
+  {
+   "player_id": "8573",
+   "player": "\u00d6mer Toprak",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.29861997715925204,
+   "wage_eur": 15000.0,
+   "minutes": 1468.4666666666667
+  },
+  {
+   "player_id": "8574",
+   "player": "Alexander Esswein",
+   "team": "Augsburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.29747041159218623,
+   "wage_eur": 1000.0,
+   "minutes": 149.73333333333335
+  },
+  {
+   "player_id": "8576",
+   "player": "Mitchell Weiser",
+   "team": "Hertha Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26008266413572645,
+   "wage_eur": 25000.0,
+   "minutes": 380.0
+  },
+  {
+   "player_id": "8606",
+   "player": "Emir Karic",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26794810118142787,
+   "wage_eur": 10000.0,
+   "minutes": 164.66666666666666
+  },
+  {
+   "player_id": "8623",
+   "player": "Dejan Ljubicic",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.2984952930181298,
+   "wage_eur": 23000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8667",
+   "player": "Luk\u00e1\u0161 Hr\u00e1deck\u00fd",
+   "team": "Bayer Leverkusen",
+   "pos_group": "GK",
+   "vaep_per90": 0.17319597970562914,
+   "wage_eur": 50000.0,
+   "minutes": 3325.0
+  },
+  {
+   "player_id": "8670",
+   "player": "Timothy Chandler",
+   "team": "Eintracht Frankfurt",
+   "pos_group": "MID",
+   "vaep_per90": 0.3077322092711031,
+   "wage_eur": 19000.0,
+   "minutes": 168.33333333333331
+  },
+  {
+   "player_id": "8679",
+   "player": "Yunus Mall\u0131",
+   "team": "FSV Mainz 05",
+   "pos_group": "MID",
+   "vaep_per90": 0.4695964305104895,
+   "wage_eur": 9000.0,
+   "minutes": 181.23333333333335
+  },
+  {
+   "player_id": "8769",
+   "player": "Xaver Schlager",
+   "team": "RB Leipzig",
+   "pos_group": "MID",
+   "vaep_per90": 0.30039912952740017,
+   "wage_eur": 54000.0,
+   "minutes": 178.03333333333333
+  },
+  {
+   "player_id": "8784",
+   "player": "Romano Schmid",
+   "team": "Werder Bremen",
+   "pos_group": "MID",
+   "vaep_per90": 0.31196039081960664,
+   "wage_eur": 19000.0,
+   "minutes": 177.51666666666665
+  },
+  {
+   "player_id": "8804",
+   "player": "Jonas Hofmann",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.42092053839815724,
+   "wage_eur": 74000.0,
+   "minutes": 2340.5333333333333
+  },
+  {
+   "player_id": "8805",
+   "player": "Christoph Kramer",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.2947187241376655,
+   "wage_eur": 23000.0,
+   "minutes": 2538.5333333333333
+  },
+  {
+   "player_id": "8808",
+   "player": "Matthias Ginter",
+   "team": "Borussia Dortmund",
+   "pos_group": "DEF",
+   "vaep_per90": 0.28335171563611544,
+   "wage_eur": 43000.0,
+   "minutes": 345.8833333333333
+  },
+  {
+   "player_id": "8809",
+   "player": "Oscar Wendt",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27264851319737615,
+   "wage_eur": 1000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8814",
+   "player": "Nico Elvedi",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2772950683651227,
+   "wage_eur": 25000.0,
+   "minutes": 240.0
+  },
+  {
+   "player_id": "8815",
+   "player": "Jannik Vestergaard",
+   "team": "Werder Bremen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.24473591345902493,
+   "wage_eur": 36000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8816",
+   "player": "Julian Weigl",
+   "team": "Borussia Dortmund",
+   "pos_group": "MID",
+   "vaep_per90": 0.266313168784367,
+   "wage_eur": 33000.0,
+   "minutes": 303.43333333333334
+  },
+  {
+   "player_id": "8821",
+   "player": "Timo Horn",
+   "team": "FC K\u00f6ln",
+   "pos_group": "GK",
+   "vaep_per90": 0.17242652216861504,
+   "wage_eur": 12000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8826",
+   "player": "Leonardo Bittencourt",
+   "team": "FC K\u00f6ln",
+   "pos_group": "MID",
+   "vaep_per90": 0.32060589658851546,
+   "wage_eur": 21000.0,
+   "minutes": 323.9
+  },
+  {
+   "player_id": "8828",
+   "player": "Dominique Heintz",
+   "team": "FC K\u00f6ln",
+   "pos_group": "DEF",
+   "vaep_per90": 0.30238512510277094,
+   "wage_eur": 16000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8919",
+   "player": "Marcel Schuhen",
+   "team": "Darmstadt 98",
+   "pos_group": "GK",
+   "vaep_per90": 0.17608533098053175,
+   "wage_eur": 16000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8924",
+   "player": "Maximilian Wittek",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26973779180589763,
+   "wage_eur": 18000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8931",
+   "player": "Philipp Lienhart",
+   "team": "Freiburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2820442470415747,
+   "wage_eur": 31000.0,
+   "minutes": 100.38333333333333
+  },
+  {
+   "player_id": "8938",
+   "player": "Janik Haberer",
+   "team": "Union Berlin",
+   "pos_group": "MID",
+   "vaep_per90": 0.29813109445216623,
+   "wage_eur": 30000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8939",
+   "player": "Nicolas H\u00f6fler",
+   "team": "Freiburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.287788908927503,
+   "wage_eur": 25000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8945",
+   "player": "Christian G\u00fcnter",
+   "team": "Freiburg",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26669135899507246,
+   "wage_eur": 31000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "8947",
+   "player": "Ron-Robert Zieler",
+   "team": "Hannover 96",
+   "pos_group": "GK",
+   "vaep_per90": 0.31797783130656027,
+   "wage_eur": 18000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "8956",
+   "player": "Timo Baumgartl",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2815786959116958,
+   "wage_eur": 6000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "9082",
+   "player": "Przemys\u0142aw Tyto\u0144",
+   "team": "VfB Stuttgart",
+   "pos_group": "GK",
+   "vaep_per90": 0.3281575242136737,
+   "wage_eur": 2000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9088",
+   "player": "Danilo Teodoro Soares",
+   "team": "Bochum",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2837422937568909,
+   "wage_eur": 18000.0,
+   "minutes": 145.0
+  },
+  {
+   "player_id": "9089",
+   "player": "Anthony Losilla",
+   "team": "Bochum",
+   "pos_group": "MID",
+   "vaep_per90": 0.2916865357586293,
+   "wage_eur": 14000.0,
+   "minutes": 146.83333333333334
+  },
+  {
+   "player_id": "9095",
+   "player": "Manuel Riemann",
+   "team": "Bochum",
+   "pos_group": "GK",
+   "vaep_per90": 0.30245845058733756,
+   "wage_eur": 21000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9102",
+   "player": "Serhou Guirassy",
+   "team": "VfB Stuttgart",
+   "pos_group": "FWD",
+   "vaep_per90": 0.21519587989481428,
+   "wage_eur": 41000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9109",
+   "player": "Jonas F\u00f6hrenbach",
+   "team": "FC Heidenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2585615744208384,
+   "wage_eur": 17000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9133",
+   "player": "Marius B\u00fclter",
+   "team": "Hoffenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.3191055248428466,
+   "wage_eur": 31000.0,
+   "minutes": 112.8
+  },
+  {
+   "player_id": "9159",
+   "player": "Grischa Pr\u00f6mel",
+   "team": "Hoffenheim",
+   "pos_group": "MID",
+   "vaep_per90": 0.3106152168041833,
+   "wage_eur": 36000.0,
+   "minutes": 133.1
+  },
+  {
+   "player_id": "9164",
+   "player": "Christopher Trimmel",
+   "team": "Union Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27406797686104706,
+   "wage_eur": 21000.0,
+   "minutes": 112.13333333333333
+  },
+  {
+   "player_id": "9174",
+   "player": "Marvin Friedrich",
+   "team": "Borussia M\u00f6nchengladbach",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2633669881568001,
+   "wage_eur": 20000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9195",
+   "player": "Robert Andrich",
+   "team": "Bayer Leverkusen",
+   "pos_group": "MID",
+   "vaep_per90": 0.4629968584188745,
+   "wage_eur": 65000.0,
+   "minutes": 1814.75
+  },
+  {
+   "player_id": "9198",
+   "player": "Niklas Dorsch",
+   "team": "Augsburg",
+   "pos_group": "MID",
+   "vaep_per90": 0.3049809176532747,
+   "wage_eur": 22000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9201",
+   "player": "Nikola Dovedan",
+   "team": "FC Heidenheim",
+   "pos_group": "FWD",
+   "vaep_per90": 0.31466204221267985,
+   "wage_eur": 18000.0,
+   "minutes": 113.05
+  },
+  {
+   "player_id": "9205",
+   "player": "Kevin M\u00fcller",
+   "team": "FC Heidenheim",
+   "pos_group": "GK",
+   "vaep_per90": 0.40222832810885445,
+   "wage_eur": 19000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9209",
+   "player": "Tim Skarke",
+   "team": "Darmstadt 98",
+   "pos_group": "MID",
+   "vaep_per90": 0.29686133335893716,
+   "wage_eur": 26000.0,
+   "minutes": 131.81666666666666
+  },
+  {
+   "player_id": "9219",
+   "player": "Tobias Kempe",
+   "team": "Darmstadt 98",
+   "pos_group": "MID",
+   "vaep_per90": 0.32192160231731753,
+   "wage_eur": 15000.0,
+   "minutes": 133.3
+  },
+  {
+   "player_id": "9221",
+   "player": "Phillip Tietz",
+   "team": "Augsburg",
+   "pos_group": "FWD",
+   "vaep_per90": 0.3037771096221562,
+   "wage_eur": 25000.0,
+   "minutes": 153.41666666666666
+  },
+  {
+   "player_id": "9222",
+   "player": "Fabian Holland",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.263825871873707,
+   "wage_eur": 18000.0,
+   "minutes": 256.2
+  },
+  {
+   "player_id": "9225",
+   "player": "Marvin Mehlem",
+   "team": "Darmstadt 98",
+   "pos_group": "MID",
+   "vaep_per90": 0.28071272353788124,
+   "wage_eur": 21000.0,
+   "minutes": 97.01666666666667
+  },
+  {
+   "player_id": "9363",
+   "player": "Andr\u00e9 Ramalho Silva",
+   "team": "Bayer Leverkusen",
+   "pos_group": "DEF",
+   "vaep_per90": 0.24117911857743907,
+   "wage_eur": 15000.0,
+   "minutes": 1219.3666666666666
+  },
+  {
+   "player_id": "9397",
+   "player": "Pavel Kade\u0159\u00e1bek",
+   "team": "Hoffenheim",
+   "pos_group": "DEF",
+   "vaep_per90": 0.25318819204985504,
+   "wage_eur": 28000.0,
+   "minutes": 285.0
+  },
+  {
+   "player_id": "9404",
+   "player": "Luca Caldirola",
+   "team": "Darmstadt 98",
+   "pos_group": "DEF",
+   "vaep_per90": 0.26258252759197787,
+   "wage_eur": 35000.0,
+   "minutes": 190.0
+  },
+  {
+   "player_id": "9410",
+   "player": "Marius Wolf",
+   "team": "Borussia Dortmund",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2942869225270044,
+   "wage_eur": 35000.0,
+   "minutes": 145.0
+  },
+  {
+   "player_id": "95272",
+   "player": "Hiroki Ito",
+   "team": "VfB Stuttgart",
+   "pos_group": "DEF",
+   "vaep_per90": 0.2769309996382932,
+   "wage_eur": 22000.0,
+   "minutes": 95.0
+  },
+  {
+   "player_id": "9722",
+   "player": "Peter Pekar\u00edk",
+   "team": "Hertha Berlin",
+   "pos_group": "DEF",
+   "vaep_per90": 0.27714416353187643,
+   "wage_eur": 4000.0,
+   "minutes": 95.0
+  }
+ ],
+ "ratings_sha256": "f4487b803dfc423ec4da7b6204698b406eda47b9cc9cfcdd1cba3399582ebc74"
+}
