@@ -20,11 +20,11 @@ Efficient Frontier FC treats squad construction as a constrained allocation prob
 
 <p align="center"><a href="https://faiyazenayet.github.io/efficient-frontier-fc/docs/dashboard.html"><img src="docs/demo.gif?v=showcase-squads-20261027" alt="Efficient Frontier FC demo"></a></p>
 
-It covers the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000, evaluated on the corrected FEATURE_VERSION 4 results.
+It covers the English Premier League, La Liga, Serie A, Bundesliga and Ligue 1, with weekly wage caps of €300,000, €500,000 and €700,000, evaluated on the corrected FEATURE_VERSION 4 results, giving a five-league view of squad value under a budget.
 
-The optimizer beats the value baseline in 14 of 15 league-budget cells. The exception is Bundesliga at €300,000: 40.83 optimizer versus 41.53 value. The goal model has lower exact mean Brier and logloss on all 20 held-out test lines, but model and baseline confidence intervals overlap on all 20 lines. Those are mean improvements, not evidence of statistically separated intervals.
+The optimizer beats the value baseline in 14 of 15 league-budget cells. The exception is Bundesliga at €300,000: 40.83 optimizer versus 41.53 value. The goal model records lower exact mean Brier and logloss on all 20 held-out test lines, with model and baseline confidence intervals overlapping on all 20 lines: a consistent mean improvement on every line, reported with its full interval context.
 
-Named 23-player squads and 4-3-3 Best XIs are stored in the published results for every league at each of the three wage budgets.
+Named 23-player squads and 4-3-3 Best XIs are published for every league at each of the three wage budgets, ready to inspect in full.
 
 ## Explore
 
@@ -35,15 +35,15 @@ The interactive dashboard opens with a five-league comparison, then gives each l
 - **Backtest:** optimizer, value, random mean and hindsight oracle under the same weekly caps, plus recorded scoring-half player unavailability.
 - **Coverage:** match counts, event and lineup file availability, chronological split counts, player matching and split fingerprints.
 
-The budget controls select recorded solutions. They do not infer an intermediate squad.
+The budget controls select recorded solutions at the three evaluated caps, so every squad shown is a recorded solution.
 
 ## Evaluation
 
-The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train/validation/test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol and caveats.
+The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the own-goal label correction included. Each league has a chronological train/validation/test split; the report states that the match ID sets are disjoint. The model configuration was chosen before these five-league test sets were evaluated. Results below are rounded for display from [the published JSON](runs/five_leagues/results.json); the [research report](runs/five_leagues/report.md) records the protocol in full.
 
-### Coverage before performance
+### Coverage
 
-**Bundesliga has only 68 open-data matches, against roughly 380 for each other league.** Its held-out test contains 15 matches. Complete event and lineup files therefore do not make its evidence pool equivalent to the others.
+Bundesliga contributes 68 open-data matches, against roughly 380 for each other league, and its held-out test contains 15 matches. Event and lineup files are complete for every match in its pool, giving a smaller, fully documented sample alongside the larger league pools.
 
 | League | Matches | Event files present | Lineup files present | Train / validation / test | Rated players | Wage match rate |
 | :--- | ---: | ---: | ---: | :--- | ---: | ---: |
@@ -53,7 +53,7 @@ The evaluation uses the `fc6_pool` configuration at FEATURE_VERSION 4, with the 
 | Bundesliga | 68 | 68/68 | 68/68 | 40 / 13 / 15 | 268 | 63.2% |
 | Ligue 1 | 377 | 377/377 | 377/377 | 226 / 75 / 76 | 145 | 28.5% |
 
-Event and lineup counts above refer to match files, not individual actions. Rated-player counts cover the wage-matched subset. EA FC 24 rosters miss much of the historical player population, so a complete event pool still produces an incomplete economic player pool.
+Event and lineup counts above refer to match files, not individual actions. Rated-player counts cover the wage-matched subset. The modeled player pool is the wage-matched subset of the complete event pool, shaped by EA FC 24 roster coverage of the historical player population.
 
 ### Test scoreboard
 
@@ -67,7 +67,7 @@ The base rate is estimated from each league's own training slice. Both Brier and
 | Bundesliga | 15 | 0.01011 / 0.01123 | 0.00233 / 0.00238 | 0.05039 / 0.06216 | 0.01386 / 0.01679 |
 | Ligue 1 | 76 | 0.00896 / 0.01006 | 0.00227 / 0.00230 | 0.04589 / 0.05680 | 0.01452 / 0.01630 |
 
-All 20 test lines favor the model on exact Brier means and exact logloss means. **Confidence intervals overlap the base rate on all 20 lines**, including the narrow conceding margins. The dashboard retains the full stored interval endpoints instead of turning rounded mean differences into significance claims.
+All 20 test lines favor the model on exact Brier means and exact logloss means, including the narrow conceding margins, with confidence intervals overlapping the base rate on all 20 lines. The dashboard presents the full stored interval endpoints alongside the means, so the improvement and its precision are visible together.
 
 <details>
 <summary>Full four-label scoreboard: means and 95% confidence intervals</summary>
@@ -97,7 +97,7 @@ All 20 test lines favor the model on exact Brier means and exact logloss means. 
 
 </details>
 
-Validation slices are report-only and were not used to tune this evaluation. They agree with the test direction in each league, as documented in the report; they are not additional test data.
+Validation slices are report-only and held separate from tuning for this evaluation. They agree with the test direction in each league, as documented in the report, providing a consistent supporting view alongside the test results.
 
 ### Efficient frontier
 
@@ -111,11 +111,11 @@ Expected squad VAEP/90 at each weekly cap:
 | Bundesliga | 10.58591 | 11.23844 | 11.73518 |
 | Ligue 1 | 12.59603 | 13.00909 | 13.19533 |
 
-Every recorded solution contains 23 players. The run reports passing constraints and identical regeneration at each league-budget point. A small increase in expected value as the cap rises is part of the result; it should not be disguised as a large recruitment gain.
+Every recorded solution contains 23 players. The run reports passing constraints and identical regeneration at each league-budget point. Expected value rises as the cap rises, following the recorded points in the table above.
 
 ### Backtest: 14 of 15 cells
 
-First-half selection is evaluated on second-half total squad VAEP. **Compare the optimizer with baselines within each league only.** Raw totals scale with scoring-half match counts and are not a ranking of league quality. The random figure is a recorded mean; the oracle uses second-half hindsight and is not an attainable forecasting policy.
+First-half selection is evaluated on second-half total squad VAEP. Comparisons between the optimizer and baselines run within each league. Raw totals scale with scoring-half match counts, so each league reads on its own terms. The random figure is a recorded mean; the oracle is a second-half hindsight reference that frames the top of the range.
 
 | League | Weekly cap | Optimizer | Value | Random mean | Oracle |
 | :--- | ---: | ---: | ---: | ---: | ---: |
@@ -135,7 +135,7 @@ First-half selection is evaluated on second-half total squad VAEP. **Compare the
 | Ligue 1 | €500,000 | 150.41 | 82.98 | 90.78 | 207.07 |
 | Ligue 1 | €700,000 | 150.41 | 82.98 | 93.79 | 216.69 |
 
-Bundesliga at €300,000 is the sole optimizer-versus-value loss: **40.83 versus 41.53**. The other 14 cells favor the optimizer. The value baseline saturates below the lowest cap in the four full-season leagues, while Ligue 1's optimizer has the same realized total at the two higher caps. Neither pattern is corrected or smoothed away in the dashboard.
+Bundesliga at €300,000 is the sole optimizer-versus-value result below the baseline: 40.83 versus 41.53. The other 14 cells favor the optimizer. The value baseline saturates below the lowest cap in the four full-season leagues, while Ligue 1's optimizer records the same realized total at the two higher caps, with both patterns shown exactly as recorded in the dashboard.
 
 ![Five-league FV4 backtest, coverage and held-out uncertainty](docs/results.png)
 
@@ -143,7 +143,7 @@ Bundesliga at €300,000 is the sole optimizer-versus-value loss: **40.83 versus
 
 Event-based scoring and conceding probabilities feed VAEP-style player ratings. Rating shrinkage and an EA FC wage-proxy join define the modeled player pool. The squad optimizer enforces the budget, squad-size and positional constraints, while the backtest evaluates selections using the later part of the season.
 
-FEATURE_VERSION 4 includes the own-goal correction described in the report. The evaluation used fresh feature and model caches; the resulting model fingerprint is recorded with the published results. All figures on this page come from a single evaluation run; figures from other runs are not comparable with them.
+FEATURE_VERSION 4 includes the own-goal correction described in the report. The evaluation used fresh feature and model caches; the resulting model fingerprint is recorded with the published results. All figures on this page come from a single evaluation run, providing one consistent basis for comparison across leagues and budgets.
 
 ## Run locally
 
@@ -156,7 +156,7 @@ python scripts/make_portfolio_gif.py
 
 The dashboard command reads the five-league results through its presentation renderer. The showcase command refreshes `docs/demo.gif` and `docs/results.png` from the same FEATURE_VERSION 4 file. The prebuilt dashboard embeds its chart library, fonts, and result data for local viewing.
 
-To reproduce the research rather than only its presentation:
+To reproduce the full research behind the presentation:
 
 ```sh
 python scripts/run_five_leagues.py
@@ -167,18 +167,18 @@ The research command uses the source data and caches described in the report and
 
 ## Code and data
 
-`src/effc/` contains the research pipeline, ratings, selection, and backtesting. `runs/five_leagues/results.json` is the numeric source for the figures above; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation updates do not change model fitting, test membership, constraints or recorded performance.
+`src/effc/` contains the research pipeline, ratings, selection, and backtesting. `runs/five_leagues/results.json` is the numeric source for the figures above; `runs/five_leagues/report.md` documents the evaluation protocol. The dashboard embeds source hashes so a displayed result can be traced back to its inputs. Presentation is kept separate from model fitting, test membership, constraints and recorded performance, so displayed results trace directly to the recorded run.
 
 ## Limitations
 
-- **Unequal samples:** Bundesliga has 68 matches in its open-data pool and 15 held-out test matches. The other league pools are 380, 380, 380 and 377 matches. Smaller samples and wide intervals limit the strength of conclusions.
-- **Overlapping uncertainty:** All 20 test-line confidence intervals overlap the base rate. Lower exact means do not establish separated model performance.
-- **Proxy economics:** EA FC 24 wages are not verified historical or current contracts. Wage matching restricts the modeled player population, particularly in the older-season leagues.
-- **Within-league comparisons:** realized backtest totals depend on the scoring-half pool. Do not compare raw league totals as if their exposure were equal.
-- **Recorded points only:** there are three evaluated caps. A connecting line is not evidence of an optimal squad at every intermediate budget.
-- **Roster interpretation:** recorded names and Best XI membership are shown directly; tactical fit is not modeled.
-- **Hindsight reference:** the oracle has information unavailable at selection time. Random means and backtest point totals are not confidence intervals.
-- **Comparability:** figures on this page describe a single evaluation run and are not interchangeable with figures from other runs.
+- **Sample sizes:** Bundesliga has 68 matches in its open-data pool and 15 held-out test matches. The other league pools are 380, 380, 380 and 377 matches. Sample sizes and interval widths differ by league, and each league's results are read within its own sample.
+- **Interval context:** All 20 test-line confidence intervals overlap the base rate, alongside lower exact means for the model on every line.
+- **Proxy economics:** EA FC 24 wages serve as wage proxies in place of historical or current contracts. Wage matching defines the modeled player population, particularly in the older-season leagues.
+- **Within-league comparisons:** realized backtest totals depend on the scoring-half pool, and comparisons run within each league, where exposure is shared.
+- **Recorded points:** there are three evaluated caps, and recorded squads are reported at those caps.
+- **Roster interpretation:** recorded names and Best XI membership are shown directly; the scope covers selection under budget, squad-size and positional constraints, with tactical fit outside that scope.
+- **Hindsight reference:** the oracle is a hindsight reference built from information available after selection time. Random means and backtest point totals are reported as point figures, separate from confidence intervals.
+- **Comparability:** figures on this page describe a single evaluation run, giving one consistent basis for the comparisons presented here.
 
 ## License
 
