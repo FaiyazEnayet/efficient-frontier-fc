@@ -1,0 +1,1471 @@
+{
+ "study": "event-summary proxy vs fitted VAEP",
+ "league": "English Premier League",
+ "league_id": 39,
+ "season": "2015/2016",
+ "competition_id": 2,
+ "season_id": 27,
+ "matches": 380,
+ "matches_sha256": "e07d6d360b30e0cd17f9aeea0db1502d2a5666d298f1b44b83a2d2f21ba3d21b",
+ "events_digest": "3ab29aa712a2f9d9",
+ "data_source": "StatsBomb open data, https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/2/27.json and per-match events/lineups",
+ "baseline": {
+  "league_id": 39,
+  "artifact": "baseline_ratings_premier_league_v1.json",
+  "ratings_sha256": "75e15aab0643a01b56a737e044ef7875cc2e0823d132a4797b2d8e35102eafe8",
+  "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+  "data_snapshot": "StatsBomb open data, English Premier League 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 179)",
+  "feature_version": 4,
+  "seed": 0,
+  "model_hash": "b86caaed47f745d4"
+ },
+ "comparison": {
+  "n": 179,
+  "n_proxy_players": 660,
+  "n_proxy_players_min_minutes": 495,
+  "n_baseline_rated": 179,
+  "min_minutes": 90.0,
+  "pearson": 0.69394149792879,
+  "spearman": 0.6074219852026242,
+  "slope": 0.439915535207524,
+  "intercept": 0.34458355917100486,
+  "mae": 0.045993869308601026,
+  "mean_proxy_per90": 0.11645118620356879,
+  "mean_vaep_per90": 0.39581224507529894
+ },
+ "verdict": "not calibrated: the calibration slope is 0.44, not near 1; the intercept is 0.345, not near 0; the Pearson correlation is 0.69, below 0.7.",
+ "matched_players": [
+  {
+   "player_id": "6409",
+   "player": "Adam Smith",
+   "team": "AFC Bournemouth",
+   "minutes": 2239.616666666667,
+   "proxy_per90": 0.0663059898643369,
+   "vaep_per90": 0.3830575640834709
+  },
+  {
+   "player_id": "3616",
+   "player": "Callum Wilson",
+   "team": "AFC Bournemouth",
+   "minutes": 810.8833333333333,
+   "proxy_per90": 0.4772573119848724,
+   "vaep_per90": 0.5797676631383561
+  },
+  {
+   "player_id": "3346",
+   "player": "Joshua King",
+   "team": "AFC Bournemouth",
+   "minutes": 1984.1000000000001,
+   "proxy_per90": 0.2789677939619979,
+   "vaep_per90": 0.37721626698337424
+  },
+  {
+   "player_id": "3049",
+   "player": "Matt Ritchie",
+   "team": "AFC Bournemouth",
+   "minutes": 3119.9333333333334,
+   "proxy_per90": 0.16586892882326545,
+   "vaep_per90": 0.42299042980247503
+  },
+  {
+   "player_id": "4416",
+   "player": "Max-Alain Gradel",
+   "team": "AFC Bournemouth",
+   "minutes": 908.9166666666666,
+   "proxy_per90": 0.16338131475199413,
+   "vaep_per90": 0.3711360401258886
+  },
+  {
+   "player_id": "3341",
+   "player": "Steve Cook",
+   "team": "AFC Bournemouth",
+   "minutes": 3369.8333333333335,
+   "proxy_per90": 0.09214105544290024,
+   "vaep_per90": 0.3812895866597629
+  },
+  {
+   "player_id": "3517",
+   "player": "Aaron Ramsey",
+   "team": "Arsenal",
+   "minutes": 2767.25,
+   "proxy_per90": 0.19351341584605658,
+   "vaep_per90": 0.4910551486961831
+  },
+  {
+   "player_id": "3647",
+   "player": "Alex Iwobi",
+   "team": "Arsenal",
+   "minutes": 652.35,
+   "proxy_per90": 0.35870315014945964,
+   "vaep_per90": 0.4821758158703121
+  },
+  {
+   "player_id": "3525",
+   "player": "Alex Oxlade-Chamberlain",
+   "team": "Arsenal",
+   "minutes": 998.5333333333334,
+   "proxy_per90": 0.08111897449592735,
+   "vaep_per90": 0.4017279427645756
+  },
+  {
+   "player_id": "3713",
+   "player": "Calum Chambers",
+   "team": "Arsenal",
+   "minutes": 378.01666666666665,
+   "proxy_per90": -0.023808474053172258,
+   "vaep_per90": 0.3252962805720976
+  },
+  {
+   "player_id": "6746",
+   "player": "Gabriel Armando de Abreu",
+   "team": "Arsenal",
+   "minutes": 1912.9666666666667,
+   "proxy_per90": 0.03528550767568698,
+   "vaep_per90": 0.34113995630310523
+  },
+  {
+   "player_id": "3511",
+   "player": "H\u00e9ctor Beller\u00edn Moruno",
+   "team": "Arsenal",
+   "minutes": 3420.0,
+   "proxy_per90": 0.07236842105263158,
+   "vaep_per90": 0.3445638723317027
+  },
+  {
+   "player_id": "11386",
+   "player": "Santiago Cazorla Gonz\u00e1lez",
+   "team": "Arsenal",
+   "minutes": 1350.9,
+   "proxy_per90": 0.05329780146568954,
+   "vaep_per90": 0.5109000051052218
+  },
+  {
+   "player_id": "11333",
+   "player": "Adama Traor\u00e9 Diarra",
+   "team": "Aston Villa",
+   "minutes": 234.18333333333334,
+   "proxy_per90": 0.1345099992883069,
+   "vaep_per90": 0.3839975212319043
+  },
+  {
+   "player_id": "3583",
+   "player": "Ashley Westwood",
+   "team": "Aston Villa",
+   "minutes": 2862.9,
+   "proxy_per90": 0.07230430682175416,
+   "vaep_per90": 0.382324753250574
+  },
+  {
+   "player_id": "3041",
+   "player": "Ciaran Clark",
+   "team": "Aston Villa",
+   "minutes": 1529.45,
+   "proxy_per90": 0.03824904377390565,
+   "vaep_per90": 0.3464525452241719
+  },
+  {
+   "player_id": "9638",
+   "player": "Jack Grealish",
+   "team": "Aston Villa",
+   "minutes": 886.4166666666667,
+   "proxy_per90": 0.08630252890852683,
+   "vaep_per90": 0.3653412328462462
+  },
+  {
+   "player_id": "4347",
+   "player": "Jordan Amavi",
+   "team": "Aston Villa",
+   "minutes": 886.3833333333333,
+   "proxy_per90": 0.07107534362484252,
+   "vaep_per90": 0.343295597240184
+  },
+  {
+   "player_id": "3450",
+   "player": "Jordan Ayew",
+   "team": "Aston Villa",
+   "minutes": 2544.95,
+   "proxy_per90": 0.1962710465824476,
+   "vaep_per90": 0.37388312094305065
+  },
+  {
+   "player_id": "7153",
+   "player": "Jordan Veretout",
+   "team": "Aston Villa",
+   "minutes": 1908.8666666666666,
+   "proxy_per90": 0.08486711137498693,
+   "vaep_per90": 0.33444481994496933
+  },
+  {
+   "player_id": "11117",
+   "player": "Scott Sinclair",
+   "team": "Aston Villa",
+   "minutes": 1674.0333333333333,
+   "proxy_per90": 0.08601979251707453,
+   "vaep_per90": 0.2911548147040347
+  },
+  {
+   "player_id": "3339",
+   "player": "Asmir Begovi\u0107",
+   "team": "Chelsea",
+   "minutes": 1482.7,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3434769627214277
+  },
+  {
+   "player_id": "3957",
+   "player": "C\u00e9sar Azpilicueta Tanco",
+   "team": "Chelsea",
+   "minutes": 3369.3333333333335,
+   "proxy_per90": 0.08280569845666798,
+   "vaep_per90": 0.36677175072888996
+  },
+  {
+   "player_id": "7848",
+   "player": "Matt Miazga",
+   "team": "Chelsea",
+   "minutes": 140.0,
+   "proxy_per90": -0.03214285714285714,
+   "vaep_per90": 0.3569238768709425
+  },
+  {
+   "player_id": "3381",
+   "player": "Nemanja Mati\u0107",
+   "team": "Chelsea",
+   "minutes": 2585.383333333333,
+   "proxy_per90": 0.07136272506333684,
+   "vaep_per90": 0.4077442976800635
+  },
+  {
+   "player_id": "3445",
+   "player": "Radamel Falcao Garc\u00eda Z\u00e1rate",
+   "team": "Chelsea",
+   "minutes": 283.7666666666667,
+   "proxy_per90": 0.26958768941618694,
+   "vaep_per90": 0.4188986794762788
+  },
+  {
+   "player_id": "3666",
+   "player": "Robert Kenedy Nunes do Nascimento",
+   "team": "Chelsea",
+   "minutes": 605.0166666666667,
+   "proxy_per90": 0.1338806093496047,
+   "vaep_per90": 0.41171537837185185
+  },
+  {
+   "player_id": "3504",
+   "player": "Ruben Loftus-Cheek",
+   "team": "Chelsea",
+   "minutes": 456.2166666666667,
+   "proxy_per90": 0.17754721806159351,
+   "vaep_per90": 0.41661898058301206
+  },
+  {
+   "player_id": "3509",
+   "player": "Thibaut Courtois",
+   "team": "Chelsea",
+   "minutes": 2185.0,
+   "proxy_per90": -0.02471395881006865,
+   "vaep_per90": 0.4544789663490457
+  },
+  {
+   "player_id": "3472",
+   "player": "Willian Borges da Silva",
+   "team": "Chelsea",
+   "minutes": 2849.7666666666664,
+   "proxy_per90": 0.22896611418478707,
+   "vaep_per90": 0.5160380413607637
+  },
+  {
+   "player_id": "3731",
+   "player": "Adrian Mariappa",
+   "team": "Crystal Palace",
+   "minutes": 265.4166666666667,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3421614691073854
+  },
+  {
+   "player_id": "3619",
+   "player": "Alex McCarthy",
+   "team": "Crystal Palace",
+   "minutes": 665.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.503944099445958
+  },
+  {
+   "player_id": "3326",
+   "player": "Chung-Yong Lee",
+   "team": "Crystal Palace",
+   "minutes": 432.0166666666667,
+   "proxy_per90": 0.18749276648277455,
+   "vaep_per90": 0.42684562465604337
+  },
+  {
+   "player_id": "20641",
+   "player": "Connor Wickham",
+   "team": "Crystal Palace",
+   "minutes": 1377.6666666666667,
+   "proxy_per90": 0.3560367771594483,
+   "vaep_per90": 0.3475875779718075
+  },
+  {
+   "player_id": "3092",
+   "player": "Dwight Gayle",
+   "team": "Crystal Palace",
+   "minutes": 873.7166666666667,
+   "proxy_per90": 0.23691890963889897,
+   "vaep_per90": 0.4337823580775445
+  },
+  {
+   "player_id": "3443",
+   "player": "Joel Ward",
+   "team": "Crystal Palace",
+   "minutes": 2836.05,
+   "proxy_per90": 0.06346855661924154,
+   "vaep_per90": 0.3666438155146071
+  },
+  {
+   "player_id": "3448",
+   "player": "Martin Kelly",
+   "team": "Crystal Palace",
+   "minutes": 1108.95,
+   "proxy_per90": -0.012173677803327473,
+   "vaep_per90": 0.29428099576387656
+  },
+  {
+   "player_id": "3488",
+   "player": "Wayne Hennessey",
+   "team": "Crystal Palace",
+   "minutes": 2755.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.4831242486282865
+  },
+  {
+   "player_id": "3507",
+   "player": "Wilfried Zaha",
+   "team": "Crystal Palace",
+   "minutes": 2602.2,
+   "proxy_per90": 0.0709015448466682,
+   "vaep_per90": 0.37836995953958524
+  },
+  {
+   "player_id": "5836",
+   "player": "Bryan Oviedo",
+   "team": "Everton",
+   "minutes": 1046.0166666666667,
+   "proxy_per90": 0.03441627762463951,
+   "vaep_per90": 0.3227402829909939
+  },
+  {
+   "player_id": "3726",
+   "player": "Gerard Deulofeu L\u00e1zaro",
+   "team": "Everton",
+   "minutes": 1455.9333333333334,
+   "proxy_per90": 0.3307156921104446,
+   "vaep_per90": 0.5420554584746449
+  },
+  {
+   "player_id": "42946",
+   "player": "Guangtai Jiang",
+   "team": "Everton",
+   "minutes": 317.18333333333334,
+   "proxy_per90": -0.014187378487730547,
+   "vaep_per90": 0.28685639823271425
+  },
+  {
+   "player_id": "3244",
+   "player": "John Stones",
+   "team": "Everton",
+   "minutes": 2933.883333333333,
+   "proxy_per90": -0.004601409962904683,
+   "vaep_per90": 0.2557674605276833
+  },
+  {
+   "player_id": "4700",
+   "player": "Matthew Pennington",
+   "team": "Everton",
+   "minutes": 313.9166666666667,
+   "proxy_per90": -0.014335014600477832,
+   "vaep_per90": 0.35179202897796047
+  },
+  {
+   "player_id": "3476",
+   "player": "Muhamed Be\u0161i\u0107",
+   "team": "Everton",
+   "minutes": 595.7166666666667,
+   "proxy_per90": -0.007553926642979046,
+   "vaep_per90": 0.3595619659925359
+  },
+  {
+   "player_id": "4275",
+   "player": "Ross Barkley",
+   "team": "Everton",
+   "minutes": 3199.266666666667,
+   "proxy_per90": 0.2770947508804101,
+   "vaep_per90": 0.5127198345052055
+  },
+  {
+   "player_id": "4589",
+   "player": "S\u00e9amus Coleman",
+   "team": "Everton",
+   "minutes": 2522.9833333333336,
+   "proxy_per90": 0.05350808236281122,
+   "vaep_per90": 0.36576564738902195
+  },
+  {
+   "player_id": "3652",
+   "player": "Tom Davies",
+   "team": "Everton",
+   "minutes": 107.93333333333334,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3882756640499404
+  },
+  {
+   "player_id": "3709",
+   "player": "Daniel Amartey",
+   "team": "Leicester City",
+   "minutes": 120.64999999999999,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.33956329387178796
+  },
+  {
+   "player_id": "3312",
+   "player": "Demarai Gray",
+   "team": "Leicester City",
+   "minutes": 235.08333333333334,
+   "proxy_per90": 0.1531371853952499,
+   "vaep_per90": 0.38237564084803133
+  },
+  {
+   "player_id": "10960",
+   "player": "Jamie Vardy",
+   "team": "Leicester City",
+   "minutes": 3314.5333333333333,
+   "proxy_per90": 0.59872681926063,
+   "vaep_per90": 0.688229998189292
+  },
+  {
+   "player_id": "3520",
+   "player": "Jeffrey Schlupp",
+   "team": "Leicester City",
+   "minutes": 1478.5666666666666,
+   "proxy_per90": 0.0973916180084316,
+   "vaep_per90": 0.3527277172710974
+  },
+  {
+   "player_id": "3815",
+   "player": "Kasper Schmeichel",
+   "team": "Leicester City",
+   "minutes": 3610.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.6910699837628305
+  },
+  {
+   "player_id": "3307",
+   "player": "Marc Albrighton",
+   "team": "Leicester City",
+   "minutes": 2842.8333333333335,
+   "proxy_per90": 0.13929764905903735,
+   "vaep_per90": 0.45928927698680666
+  },
+  {
+   "player_id": "3961",
+   "player": "N''Golo Kant\u00e9",
+   "team": "Leicester City",
+   "minutes": 3194.616666666667,
+   "proxy_per90": 0.05493616865873319,
+   "vaep_per90": 0.39154204371419427
+  },
+  {
+   "player_id": "28782",
+   "player": "Ritchie De Laet",
+   "team": "Leicester City",
+   "minutes": 699.6166666666667,
+   "proxy_per90": 0.10934559401577054,
+   "vaep_per90": 0.3944356516956323
+  },
+  {
+   "player_id": "3814",
+   "player": "Riyad Mahrez",
+   "team": "Leicester City",
+   "minutes": 3116.5666666666666,
+   "proxy_per90": 0.5327978437810839,
+   "vaep_per90": 0.7265683608396977
+  },
+  {
+   "player_id": "3515",
+   "player": "Alberto Moreno P\u00e9rez",
+   "team": "Liverpool",
+   "minutes": 2693.3,
+   "proxy_per90": 0.07852819960643077,
+   "vaep_per90": 0.3557458741147007
+  },
+  {
+   "player_id": "4243",
+   "player": "Cameron Brannagan",
+   "team": "Liverpool",
+   "minutes": 127.28333333333333,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.4104841033306413
+  },
+  {
+   "player_id": "9914",
+   "player": "Danny Ward",
+   "team": "Liverpool",
+   "minutes": 190.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.28820409848741496
+  },
+  {
+   "player_id": "3471",
+   "player": "Dejan Lovren",
+   "team": "Liverpool",
+   "minutes": 1999.4333333333334,
+   "proxy_per90": -0.004501275361352384,
+   "vaep_per90": 0.28859928431132825
+  },
+  {
+   "player_id": "3493",
+   "player": "Emre Can",
+   "team": "Liverpool",
+   "minutes": 2621.9,
+   "proxy_per90": 0.017163125977344675,
+   "vaep_per90": 0.3677545273679078
+  },
+  {
+   "player_id": "10931",
+   "player": "Joe Allen",
+   "team": "Liverpool",
+   "minutes": 798.9,
+   "proxy_per90": 0.24784078107397675,
+   "vaep_per90": 0.4601357982424145
+  },
+  {
+   "player_id": "3495",
+   "player": "Joe Gomez",
+   "team": "Liverpool",
+   "minutes": 457.23333333333335,
+   "proxy_per90": 0.0590508128599548,
+   "vaep_per90": 0.3237451156089847
+  },
+  {
+   "player_id": "3535",
+   "player": "Roberto Firmino Barbosa de Oliveira",
+   "team": "Liverpool",
+   "minutes": 2053.766666666667,
+   "proxy_per90": 0.5170986642429357,
+   "vaep_per90": 0.6321352450011121
+  },
+  {
+   "player_id": "3539",
+   "player": "Simon Mignolet",
+   "team": "Liverpool",
+   "minutes": 3230.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.27100957279097554
+  },
+  {
+   "player_id": "3389",
+   "player": "Eliaquim Mangala",
+   "team": "Manchester City",
+   "minutes": 2114.45,
+   "proxy_per90": -0.017025704083804303,
+   "vaep_per90": 0.2518114034579765
+  },
+  {
+   "player_id": "6821",
+   "player": "Jes\u00fas Navas Gonz\u00e1lez",
+   "team": "Manchester City",
+   "minutes": 2411.0333333333333,
+   "proxy_per90": 0.10265308097496234,
+   "vaep_per90": 0.37627618718327455
+  },
+  {
+   "player_id": "3089",
+   "player": "Kevin De Bruyne",
+   "team": "Manchester City",
+   "minutes": 2108.2166666666667,
+   "proxy_per90": 0.4204975769410166,
+   "vaep_per90": 0.6020778112524742
+  },
+  {
+   "player_id": "3233",
+   "player": "Raheem Sterling",
+   "team": "Manchester City",
+   "minutes": 2000.0333333333333,
+   "proxy_per90": 0.2789953500774987,
+   "vaep_per90": 0.4755958785698805
+  },
+  {
+   "player_id": "6330",
+   "player": "Adnan Januzaj",
+   "team": "Manchester United",
+   "minutes": 160.4,
+   "proxy_per90": 0.476932668329177,
+   "vaep_per90": 0.49368675973850323
+  },
+  {
+   "player_id": "3606",
+   "player": "Ander Herrera Ag\u00fcera",
+   "team": "Manchester United",
+   "minutes": 1612.6833333333334,
+   "proxy_per90": 0.17579396657744337,
+   "vaep_per90": 0.4308438401553769
+  },
+  {
+   "player_id": "20039",
+   "player": "Anthony Martial",
+   "team": "Manchester United",
+   "minutes": 2774.8,
+   "proxy_per90": 0.35678247080870695,
+   "vaep_per90": 0.5062581540557098
+  },
+  {
+   "player_id": "3612",
+   "player": "Ashley Young",
+   "team": "Manchester United",
+   "minutes": 1139.45,
+   "proxy_per90": 0.11452893940058802,
+   "vaep_per90": 0.3937007771735404
+  },
+  {
+   "player_id": "10779",
+   "player": "Cameron Borthwick-Jackson",
+   "team": "Manchester United",
+   "minutes": 738.1833333333333,
+   "proxy_per90": 0.04876837280711657,
+   "vaep_per90": 0.31918759700922655
+  },
+  {
+   "player_id": "10958",
+   "player": "Chris Smalling",
+   "team": "Manchester United",
+   "minutes": 3325.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.26878462458185487
+  },
+  {
+   "player_id": "3311",
+   "player": "Daley Blind",
+   "team": "Manchester United",
+   "minutes": 3274.85,
+   "proxy_per90": 0.03297860970731484,
+   "vaep_per90": 0.4161607520534438
+  },
+  {
+   "player_id": "3293",
+   "player": "Jesse Lingard",
+   "team": "Manchester United",
+   "minutes": 1717.6833333333334,
+   "proxy_per90": 0.20172519187665555,
+   "vaep_per90": 0.4154780115374303
+  },
+  {
+   "player_id": "3382",
+   "player": "Luke Shaw",
+   "team": "Manchester United",
+   "minutes": 475.0,
+   "proxy_per90": 0.06631578947368422,
+   "vaep_per90": 0.33006649769674434
+  },
+  {
+   "player_id": "3318",
+   "player": "Marcus Rashford",
+   "team": "Manchester United",
+   "minutes": 877.7666666666667,
+   "proxy_per90": 0.5844377776933886,
+   "vaep_per90": 0.4832969020375718
+  },
+  {
+   "player_id": "4587",
+   "player": "Matteo Darmian",
+   "team": "Manchester United",
+   "minutes": 2009.65,
+   "proxy_per90": 0.022391958798795807,
+   "vaep_per90": 0.3502808502292405
+  },
+  {
+   "player_id": "2988",
+   "player": "Memphis Depay",
+   "team": "Manchester United",
+   "minutes": 1596.3333333333333,
+   "proxy_per90": 0.09866360409271246,
+   "vaep_per90": 0.39704283542121793
+  },
+  {
+   "player_id": "9648",
+   "player": "Paddy McNair",
+   "team": "Manchester United",
+   "minutes": 341.76666666666665,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.349857481584143
+  },
+  {
+   "player_id": "4269",
+   "player": "Aleksandar Mitrovi\u0107",
+   "team": "Newcastle United",
+   "minutes": 2345.75,
+   "proxy_per90": 0.33187679846530965,
+   "vaep_per90": 0.4211609445667499
+  },
+  {
+   "player_id": "3297",
+   "player": "Andros Townsend",
+   "team": "Newcastle United",
+   "minutes": 1137.0333333333333,
+   "proxy_per90": 0.3482747500806192,
+   "vaep_per90": 0.5594610503453701
+  },
+  {
+   "player_id": "3076",
+   "player": "Ayoze P\u00e9rez Guti\u00e9rrez",
+   "team": "Newcastle United",
+   "minutes": 2160.7,
+   "proxy_per90": 0.24991900772897674,
+   "vaep_per90": 0.4215536366603607
+  },
+  {
+   "player_id": "3254",
+   "player": "Florian Thauvin",
+   "team": "Newcastle United",
+   "minutes": 472.96666666666664,
+   "proxy_per90": -0.009514412573120024,
+   "vaep_per90": 0.4200136347776848
+  },
+  {
+   "player_id": "3567",
+   "player": "Georginio Wijnaldum",
+   "team": "Newcastle United",
+   "minutes": 3320.9333333333334,
+   "proxy_per90": 0.3062392098606817,
+   "vaep_per90": 0.43466232446420305
+  },
+  {
+   "player_id": "5110",
+   "player": "Henri Saivet",
+   "team": "Newcastle United",
+   "minutes": 157.75,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3914099729766374
+  },
+  {
+   "player_id": "9649",
+   "player": "Jack Colback",
+   "team": "Newcastle United",
+   "minutes": 2484.2166666666667,
+   "proxy_per90": 0.030794415409283946,
+   "vaep_per90": 0.32853855778580837
+  },
+  {
+   "player_id": "3081",
+   "player": "Jamaal Lascelles",
+   "team": "Newcastle United",
+   "minutes": 1235.5666666666666,
+   "proxy_per90": 0.10926160735964605,
+   "vaep_per90": 0.3625665886511093
+  },
+  {
+   "player_id": "3057",
+   "player": "Jonjo Shelvey",
+   "team": "Newcastle United",
+   "minutes": 1113.6333333333334,
+   "proxy_per90": 0.08485737376156126,
+   "vaep_per90": 0.4476544282922129
+  },
+  {
+   "player_id": "3649",
+   "player": "Karl Darlow",
+   "team": "Newcastle United",
+   "minutes": 855.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.43794534874166713
+  },
+  {
+   "player_id": "16027",
+   "player": "Kevin Mbabu",
+   "team": "Newcastle United",
+   "minutes": 150.08333333333331,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.32442180429999995
+  },
+  {
+   "player_id": "4840",
+   "player": "Massadio Ha\u00efdara",
+   "team": "Newcastle United",
+   "minutes": 584.7833333333333,
+   "proxy_per90": -0.007695157750733891,
+   "vaep_per90": 0.31881416584304434
+  },
+  {
+   "player_id": "3091",
+   "player": "Moussa Sissoko",
+   "team": "Newcastle United",
+   "minutes": 3375.866666666667,
+   "proxy_per90": 0.09464236344247404,
+   "vaep_per90": 0.33090684608066934
+  },
+  {
+   "player_id": "3065",
+   "player": "Paul Dummett",
+   "team": "Newcastle United",
+   "minutes": 1984.3,
+   "proxy_per90": 0.03401703371466008,
+   "vaep_per90": 0.2939652951172387
+  },
+  {
+   "player_id": "4807",
+   "player": "Cameron Jerome",
+   "team": "Norwich City",
+   "minutes": 1885.2,
+   "proxy_per90": 0.1623169955442393,
+   "vaep_per90": 0.284110605966044
+  },
+  {
+   "player_id": "23635",
+   "player": "John Ruddy",
+   "team": "Norwich City",
+   "minutes": 2565.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.4610569878626183
+  },
+  {
+   "player_id": "3576",
+   "player": "Martin Olsson",
+   "team": "Norwich City",
+   "minutes": 1883.4666666666667,
+   "proxy_per90": 0.07645476426447685,
+   "vaep_per90": 0.3105843507465409
+  },
+  {
+   "player_id": "3286",
+   "player": "Nathan Redmond",
+   "team": "Norwich City",
+   "minutes": 2482.766666666667,
+   "proxy_per90": 0.23924922465529047,
+   "vaep_per90": 0.48803368174979966
+  },
+  {
+   "player_id": "10457",
+   "player": "Patrick Bamford",
+   "team": "Norwich City",
+   "minutes": 261.31666666666666,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.30837977520045634
+  },
+  {
+   "player_id": "9930",
+   "player": "Ryan Bennett",
+   "team": "Norwich City",
+   "minutes": 1937.8,
+   "proxy_per90": -0.016255547528124678,
+   "vaep_per90": 0.29087347812332504
+  },
+  {
+   "player_id": "23742",
+   "player": "Vadis Odjidja-Ofoe",
+   "team": "Norwich City",
+   "minutes": 311.4666666666667,
+   "proxy_per90": 0.21671660958904107,
+   "vaep_per90": 0.37335258705743446
+  },
+  {
+   "player_id": "3329",
+   "player": "C\u00e9dric Ricardo Alves Soares",
+   "team": "Southampton",
+   "minutes": 2050.4333333333334,
+   "proxy_per90": 0.028530554516931383,
+   "vaep_per90": 0.35978621906926384
+  },
+  {
+   "player_id": "3966",
+   "player": "Charlie Austin",
+   "team": "Southampton",
+   "minutes": 234.1,
+   "proxy_per90": 0.3460059803502777,
+   "vaep_per90": 0.43970971339044496
+  },
+  {
+   "player_id": "3831",
+   "player": "Du\u0161an Tadi\u0107",
+   "team": "Southampton",
+   "minutes": 2358.983333333333,
+   "proxy_per90": 0.39678109920234,
+   "vaep_per90": 0.6115905233433123
+  },
+  {
+   "player_id": "3970",
+   "player": "Fraser Forster",
+   "team": "Southampton",
+   "minutes": 1710.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.30438074575335483
+  },
+  {
+   "player_id": "3328",
+   "player": "James Ward-Prowse",
+   "team": "Southampton",
+   "minutes": 1673.65,
+   "proxy_per90": 0.1613240522211932,
+   "vaep_per90": 0.3867694357565503
+  },
+  {
+   "player_id": "3685",
+   "player": "Jay Rodriguez",
+   "team": "Southampton",
+   "minutes": 394.65000000000003,
+   "proxy_per90": -0.011402508551881414,
+   "vaep_per90": 0.31614123421602347
+  },
+  {
+   "player_id": "16181",
+   "player": "Jordy Clasie",
+   "team": "Southampton",
+   "minutes": 1576.2833333333333,
+   "proxy_per90": -0.011419266840775242,
+   "vaep_per90": 0.3413865829408297
+  },
+  {
+   "player_id": "3960",
+   "player": "Jos\u00e9 Miguel da Rocha Fonte",
+   "team": "Southampton",
+   "minutes": 3347.95,
+   "proxy_per90": 0.034946758464134774,
+   "vaep_per90": 0.36220205837508596
+  },
+  {
+   "player_id": "6695",
+   "player": "Juan Miguel Jim\u00e9nez L\u00f3pez",
+   "team": "Southampton",
+   "minutes": 226.93333333333337,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3608468036191636
+  },
+  {
+   "player_id": "3651",
+   "player": "Matt Targett",
+   "team": "Southampton",
+   "minutes": 1112.8833333333334,
+   "proxy_per90": 0.02830485375825558,
+   "vaep_per90": 0.29010881727996346
+  },
+  {
+   "player_id": "3300",
+   "player": "Maya Yoshida",
+   "team": "Southampton",
+   "minutes": 1106.05,
+   "proxy_per90": 0.07323357895212694,
+   "vaep_per90": 0.3646353196076571
+  },
+  {
+   "player_id": "3272",
+   "player": "Oriol Romeu Vidal",
+   "team": "Southampton",
+   "minutes": 1719.6166666666668,
+   "proxy_per90": 0.028785485137191428,
+   "vaep_per90": 0.3693056358459144
+  },
+  {
+   "player_id": "3629",
+   "player": "Sadio Man\u00e9",
+   "team": "Southampton",
+   "minutes": 2713.883333333333,
+   "proxy_per90": 0.3813723262483649,
+   "vaep_per90": 0.5976993802933257
+  },
+  {
+   "player_id": "3098",
+   "player": "Victor Wanyama",
+   "team": "Southampton",
+   "minutes": 2699.2166666666667,
+   "proxy_per90": 0.0033343006921761295,
+   "vaep_per90": 0.3365952302384299
+  },
+  {
+   "player_id": "3669",
+   "player": "Virgil van Dijk",
+   "team": "Southampton",
+   "minutes": 3229.75,
+   "proxy_per90": 0.07245142812911216,
+   "vaep_per90": 0.34094504131874154
+  },
+  {
+   "player_id": "3467",
+   "player": "Erik Pieters",
+   "team": "Stoke City",
+   "minutes": 3253.15,
+   "proxy_per90": -3.839358476256247e-19,
+   "vaep_per90": 0.3347017549410334
+  },
+  {
+   "player_id": "3537",
+   "player": "Jack Butland",
+   "team": "Stoke City",
+   "minutes": 2945.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.3692399564559433
+  },
+  {
+   "player_id": "41185",
+   "player": "Jakob Haugaard",
+   "team": "Stoke City",
+   "minutes": 430.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.27777149837662546
+  },
+  {
+   "player_id": "8251",
+   "player": "Marco van Ginkel",
+   "team": "Stoke City",
+   "minutes": 813.2666666666667,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.36427299949993436
+  },
+  {
+   "player_id": "3325",
+   "player": "Marko Arnautovi\u0107",
+   "team": "Stoke City",
+   "minutes": 2912.9833333333336,
+   "proxy_per90": 0.3599402674234319,
+   "vaep_per90": 0.5133173662657163
+  },
+  {
+   "player_id": "3533",
+   "player": "Xherdan Shaqiri",
+   "team": "Stoke City",
+   "minutes": 2105.016666666667,
+   "proxy_per90": 0.19667302713359355,
+   "vaep_per90": 0.411742742918514
+  },
+  {
+   "player_id": "3658",
+   "player": "DeAndre Yedlin",
+   "team": "Sunderland",
+   "minutes": 1910.0833333333333,
+   "proxy_per90": 0.011779590768291087,
+   "vaep_per90": 0.2996124472774937
+  },
+  {
+   "player_id": "22281",
+   "player": "Duncan Watmore",
+   "team": "Sunderland",
+   "minutes": 1012.8333333333334,
+   "proxy_per90": 0.27546486753332233,
+   "vaep_per90": 0.4559776519421279
+  },
+  {
+   "player_id": "7171",
+   "player": "Fabio Borini",
+   "team": "Sunderland",
+   "minutes": 1970.0666666666666,
+   "proxy_per90": 0.21928191939359076,
+   "vaep_per90": 0.426156224134172
+  },
+  {
+   "player_id": "18751",
+   "player": "Jack Rodwell",
+   "team": "Sunderland",
+   "minutes": 1268.2666666666667,
+   "proxy_per90": 0.046125946173254835,
+   "vaep_per90": 0.25067644412522183
+  },
+  {
+   "player_id": "3468",
+   "player": "Jordan Pickford",
+   "team": "Sunderland",
+   "minutes": 190.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.5228637323997519
+  },
+  {
+   "player_id": "3321",
+   "player": "Patrick van Aanholt",
+   "team": "Sunderland",
+   "minutes": 3134.8,
+   "proxy_per90": 0.1478563225724129,
+   "vaep_per90": 0.3696424118465811
+  },
+  {
+   "player_id": "9554",
+   "player": "Steven Fletcher",
+   "team": "Sunderland",
+   "minutes": 1045.4666666666667,
+   "proxy_per90": 0.3099094503252136,
+   "vaep_per90": 0.4384283962944543
+  },
+  {
+   "player_id": "9539",
+   "player": "Vito Mannone",
+   "team": "Sunderland",
+   "minutes": 1805.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.48893443899268785
+  },
+  {
+   "player_id": "3196",
+   "player": "Wahbi Khazri",
+   "team": "Sunderland",
+   "minutes": 1108.4,
+   "proxy_per90": 0.16645615301335254,
+   "vaep_per90": 0.4622527055779388
+  },
+  {
+   "player_id": "3290",
+   "player": "Federico Fern\u00e1ndez",
+   "team": "Swansea City",
+   "minutes": 3040.0,
+   "proxy_per90": 0.03404605263157894,
+   "vaep_per90": 0.3802508763604012
+  },
+  {
+   "player_id": "9563",
+   "player": "Kristoffer Nordfeldt",
+   "team": "Swansea City",
+   "minutes": 95.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.4108009534696185
+  },
+  {
+   "player_id": "4726",
+   "player": "Kyle Bartley",
+   "team": "Swansea City",
+   "minutes": 310.0333333333333,
+   "proxy_per90": -0.02902913665197291,
+   "vaep_per90": 0.31854605607562064
+  },
+  {
+   "player_id": "3340",
+   "player": "Kyle Naughton",
+   "team": "Swansea City",
+   "minutes": 1948.8833333333334,
+   "proxy_per90": 0.03694423302232903,
+   "vaep_per90": 0.35117982894806077
+  },
+  {
+   "player_id": "4045",
+   "player": "Leroy Fer",
+   "team": "Swansea City",
+   "minutes": 790.75,
+   "proxy_per90": 0.07967119822952894,
+   "vaep_per90": 0.3717670457552458
+  },
+  {
+   "player_id": "4097",
+   "player": "Matt Grimes",
+   "team": "Swansea City",
+   "minutes": 95.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.39023157933721475
+  },
+  {
+   "player_id": "9536",
+   "player": "Modou Barrow",
+   "team": "Swansea City",
+   "minutes": 877.1833333333333,
+   "proxy_per90": 0.21546237008607097,
+   "vaep_per90": 0.38078831896008564
+  },
+  {
+   "player_id": "9629",
+   "player": "Stephen Kingsley",
+   "team": "Swansea City",
+   "minutes": 370.48333333333335,
+   "proxy_per90": 0.09717036303927302,
+   "vaep_per90": 0.3071998560502114
+  },
+  {
+   "player_id": "3262",
+   "player": "\u0141ukasz Fabia\u0144ski",
+   "team": "Swansea City",
+   "minutes": 3515.0,
+   "proxy_per90": 0.010241820768136558,
+   "vaep_per90": 0.5933316073707227
+  },
+  {
+   "player_id": "3086",
+   "player": "Ben Davies",
+   "team": "Tottenham Hotspur",
+   "minutes": 1374.9166666666667,
+   "proxy_per90": 0.04254803321413419,
+   "vaep_per90": 0.3226604631092581
+  },
+  {
+   "player_id": "3594",
+   "player": "Danny Rose",
+   "team": "Tottenham Hotspur",
+   "minutes": 2234.233333333333,
+   "proxy_per90": 0.07250809375326363,
+   "vaep_per90": 0.3763291138336532
+  },
+  {
+   "player_id": "10956",
+   "player": "Eric Dier",
+   "team": "Tottenham Hotspur",
+   "minutes": 3425.9166666666665,
+   "proxy_per90": 0.07881102381357788,
+   "vaep_per90": 0.35587129097245995
+  },
+  {
+   "player_id": "3585",
+   "player": "Erik Lamela",
+   "team": "Tottenham Hotspur",
+   "minutes": 2449.75,
+   "proxy_per90": 0.2663537095622002,
+   "vaep_per90": 0.45767224056860845
+  },
+  {
+   "player_id": "10955",
+   "player": "Harry Kane",
+   "team": "Tottenham Hotspur",
+   "minutes": 3510.8166666666666,
+   "proxy_per90": 0.556280827347863,
+   "vaep_per90": 0.6756690413761366
+  },
+  {
+   "player_id": "3083",
+   "player": "Heung-Min Son",
+   "team": "Tottenham Hotspur",
+   "minutes": 1184.75,
+   "proxy_per90": 0.3038615741717662,
+   "vaep_per90": 0.43962391631733994
+  },
+  {
+   "player_id": "3099",
+   "player": "Hugo Lloris",
+   "team": "Tottenham Hotspur",
+   "minutes": 3515.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.5076975979640272
+  },
+  {
+   "player_id": "3077",
+   "player": "Jan Vertonghen",
+   "team": "Tottenham Hotspur",
+   "minutes": 2734.766666666667,
+   "proxy_per90": -0.006581914361980913,
+   "vaep_per90": 0.2967353148367423
+  },
+  {
+   "player_id": "3308",
+   "player": "Kieran Trippier",
+   "team": "Tottenham Hotspur",
+   "minutes": 488.8833333333333,
+   "proxy_per90": 0.23011625132103775,
+   "vaep_per90": 0.42042166833856887
+  },
+  {
+   "player_id": "3205",
+   "player": "Kyle Walker",
+   "team": "Tottenham Hotspur",
+   "minutes": 3096.5333333333333,
+   "proxy_per90": 0.042143902859111265,
+   "vaep_per90": 0.35590901818933635
+  },
+  {
+   "player_id": "8520",
+   "player": "Nabil Bentaleb",
+   "team": "Tottenham Hotspur",
+   "minutes": 188.73333333333335,
+   "proxy_per90": -0.023843164959378313,
+   "vaep_per90": 0.3763516361844503
+  },
+  {
+   "player_id": "4831",
+   "player": "Nacer Chadli",
+   "team": "Tottenham Hotspur",
+   "minutes": 1059.8333333333333,
+   "proxy_per90": 0.29721654348167953,
+   "vaep_per90": 0.3804487163863576
+  },
+  {
+   "player_id": "20005",
+   "player": "Toby Alderweireld",
+   "team": "Tottenham Hotspur",
+   "minutes": 3605.8333333333335,
+   "proxy_per90": 0.10732609198058701,
+   "vaep_per90": 0.4276769957596167
+  },
+  {
+   "player_id": "3310",
+   "player": "Tom Carroll",
+   "team": "Tottenham Hotspur",
+   "minutes": 588.1333333333333,
+   "proxy_per90": 0.12242121967807755,
+   "vaep_per90": 0.41323281986435134
+  },
+  {
+   "player_id": "3991",
+   "player": "Allan Romeo Nyom",
+   "team": "Watford",
+   "minutes": 2585.4333333333334,
+   "proxy_per90": 0.0017405206090532863,
+   "vaep_per90": 0.35793733641793263
+  },
+  {
+   "player_id": "3721",
+   "player": "Etienne Capoue",
+   "team": "Watford",
+   "minutes": 2942.6,
+   "proxy_per90": 0.0030585196764765865,
+   "vaep_per90": 0.3290110177879475
+  },
+  {
+   "player_id": "3306",
+   "player": "Nathan Ak\u00e9",
+   "team": "Watford",
+   "minutes": 2017.4666666666667,
+   "proxy_per90": 0.02007468111823409,
+   "vaep_per90": 0.3150248439720126
+  },
+  {
+   "player_id": "3302",
+   "player": "Nordin Amrabat",
+   "team": "Watford",
+   "minutes": 551.35,
+   "proxy_per90": -0.07345606239230978,
+   "vaep_per90": 0.3478965135070826
+  },
+  {
+   "player_id": "7745",
+   "player": "Steven Berghuis",
+   "team": "Watford",
+   "minutes": 271.8,
+   "proxy_per90": 0.23178807947019867,
+   "vaep_per90": 0.40725056931431003
+  },
+  {
+   "player_id": "9551",
+   "player": "Callum McManaman",
+   "team": "West Bromwich Albion",
+   "minutes": 324.9166666666667,
+   "proxy_per90": 0.11079764042062067,
+   "vaep_per90": 0.3463208309979372
+  },
+  {
+   "player_id": "3523",
+   "player": "Craig Dawson",
+   "team": "West Bromwich Albion",
+   "minutes": 3570.0333333333333,
+   "proxy_per90": 0.08697397783400716,
+   "vaep_per90": 0.40187225922802694
+  },
+  {
+   "player_id": "3514",
+   "player": "James McClean",
+   "team": "West Bromwich Albion",
+   "minutes": 2610.4833333333336,
+   "proxy_per90": 0.06895274821393228,
+   "vaep_per90": 0.33259528836397834
+  },
+  {
+   "player_id": "20527",
+   "player": "Jonas Olsson",
+   "team": "West Bromwich Albion",
+   "minutes": 2118.3,
+   "proxy_per90": 0.04673558985979323,
+   "vaep_per90": 0.30690143124016767
+  },
+  {
+   "player_id": "22702",
+   "player": "Jonathan Leko",
+   "team": "West Bromwich Albion",
+   "minutes": 284.18333333333334,
+   "proxy_per90": 0.12667878716790806,
+   "vaep_per90": 0.38717889413055395
+  },
+  {
+   "player_id": "3062",
+   "player": "Aaron Cresswell",
+   "team": "West Ham United",
+   "minutes": 3494.95,
+   "proxy_per90": 0.08626732857408546,
+   "vaep_per90": 0.34708143024666593
+  },
+  {
+   "player_id": "4271",
+   "player": "Andy Carroll",
+   "team": "West Ham United",
+   "minutes": 1548.1333333333332,
+   "proxy_per90": 0.47670312634570666,
+   "vaep_per90": 0.5964950980227686
+  },
+  {
+   "player_id": "3843",
+   "player": "Angelo Obinze Ogbonna",
+   "team": "West Ham United",
+   "minutes": 2454.7833333333333,
+   "proxy_per90": -0.007332622702614623,
+   "vaep_per90": 0.2847424935076672
+  },
+  {
+   "player_id": "21254",
+   "player": "Carl Jenkinson",
+   "team": "West Ham United",
+   "minutes": 1329.15,
+   "proxy_per90": 0.0947974269269834,
+   "vaep_per90": 0.3986749315304652
+  },
+  {
+   "player_id": "3684",
+   "player": "Cheikhou Kouyat\u00e9",
+   "team": "West Ham United",
+   "minutes": 3188.233333333333,
+   "proxy_per90": 0.1340867983313643,
+   "vaep_per90": 0.38469146553260625
+  },
+  {
+   "player_id": "20066",
+   "player": "Darren Randolph",
+   "team": "West Ham United",
+   "minutes": 570.0,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.2189920132269077
+  },
+  {
+   "player_id": "3482",
+   "player": "James Collins",
+   "team": "West Ham United",
+   "minutes": 1532.1833333333334,
+   "proxy_per90": -0.026432868129357884,
+   "vaep_per90": 0.3557517812745811
+  },
+  {
+   "player_id": "3316",
+   "player": "James Tomkins",
+   "team": "West Ham United",
+   "minutes": 2054.05,
+   "proxy_per90": -0.006572381392858012,
+   "vaep_per90": 0.33177979675673197
+  },
+  {
+   "player_id": "3595",
+   "player": "Manuel Lanzini",
+   "team": "West Ham United",
+   "minutes": 1978.9833333333333,
+   "proxy_per90": 0.23648506387960147,
+   "vaep_per90": 0.4997041085910492
+  },
+  {
+   "player_id": "3349",
+   "player": "Michail Antonio",
+   "team": "West Ham United",
+   "minutes": 2147.516666666667,
+   "proxy_per90": 0.3457481897695788,
+   "vaep_per90": 0.5916191915826937
+  },
+  {
+   "player_id": "3897",
+   "player": "Pedro Mba Obiang Avomo",
+   "team": "West Ham United",
+   "minutes": 1181.15,
+   "proxy_per90": 0.022859078017186642,
+   "vaep_per90": 0.3496541621934252
+  },
+  {
+   "player_id": "4273",
+   "player": "Reece Oxford",
+   "team": "West Ham United",
+   "minutes": 230.8,
+   "proxy_per90": 0.0,
+   "vaep_per90": 0.2994861256374833
+  }
+ ]
+}
