@@ -30,15 +30,21 @@ State semantics (state version 2):
   as a ratings table whose IDs are numeric,
 - processed fixtures are recorded in a processing ledger keyed by
   fixture ID, each entry carrying the fixture's source timestamp,
-  its processing status and any errors; membership in the ledger,
-  never a highest-ID watermark, decides what still needs processing,
-  so fixtures discovered out of order are never skipped,
+  full fetch and processing timestamps, the availability latency from
+  fixture date to events fetch, its processing status, any errors,
+  and the per-fixture player contributions with their hash;
+  membership in the ledger, never a highest-ID watermark, decides
+  what still needs processing, so fixtures discovered out of order
+  are never skipped,
 - updates are transactional and idempotent: a fixture's contributions
   are staged and only committed to the live totals when its events
   and lineups both arrive, and replaying a processed fixture changes
   nothing,
 - a fixture whose statistics are missing or failed is recorded as
-  such in the ledger and is not counted as zero production.
+  such in the ledger and is not counted as zero production,
+- every saved state carries a SHA-256 digest of its contents, checked
+  on every load, and the live totals reconcile exactly to the ledger
+  contributions that produced them (see `verify_state`).
 """
 
 from __future__ import annotations
@@ -215,9 +221,20 @@ def fetch_fixture_lineups(fixture_id: int) -> list[dict]:
     return api_get("fixtures/lineups", fixture=fixture_id)
 
 
-def _norm(s: str) -> str:
+def normalize_name(s: str) -> str:
+    """Player/team name normalization shared by the matcher and the
+    proxy study: accents stripped, lowercased, punctuation dropped.
+
+    Two spellings of one name (for example a doubled apostrophe in
+    the source data) normalize to the same key, so one player is one
+    row wherever names are grouped.
+    """
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
     return "".join(c for c in s.lower() if c.isalnum() or c == " ").strip()
+
+
+def _norm(s: str) -> str:
+    return normalize_name(s)
 
 
 def _team_overlap(a: str, b: str) -> float:
@@ -411,7 +428,121 @@ def normalize_state(state: dict | None) -> dict:
     out["history"] = list(src.get("history") or [])
     if src.get("last_fixture_id") is not None:
         out["last_fixture_id"] = src["last_fixture_id"]
+    if isinstance(src.get("state_sha256"), str):
+        out["state_sha256"] = src["state_sha256"]
     return out
+
+
+def state_digest(state: dict | None) -> str:
+    """SHA-256 identifying a normalized state exactly.
+
+    The digest covers every normalized field except the digest itself,
+    so two states with the same ratings, ledger, aliases, watchlist,
+    calls and history have the same digest, and any change to any of
+    them moves it.
+    """
+    payload = normalize_state(state)
+    payload.pop("state_sha256", None)
+    return canonical_json_sha256(payload)
+
+
+def verify_state(state: dict | None) -> dict:
+    """Check a state for integrity and reconciling totals.
+
+    Returns {"ok": bool, "errors": [...], "warnings": [...]}. Errors
+    are corruption or inconsistency: a stored digest that does not
+    match the contents, a ledger entry with an unknown status or a
+    missing fixture ID, contributions that do not match their recorded
+    hash, or live totals that do not equal the sum of the ledger
+    contributions for the fixtures that recorded them. Warnings are
+    gaps that predate this check and cannot be repaired from the state
+    itself: ledger entries written before per-fixture contributions
+    were recorded, which cannot be reconciled, and live totals for
+    players whose contributions are only in such legacy entries.
+    """
+    st = normalize_state(state)
+    errors: list[str] = []
+    warnings: list[str] = []
+    stored = st.get("state_sha256")
+    if stored is not None and stored != state_digest(st):
+        errors.append(
+            "state_sha256 mismatch: the stored digest does not match "
+            "the state contents")
+    ledger = st["processed_fixtures"]
+    expected_minutes: dict[str, float] = {}
+    expected_contrib: dict[str, float] = {}
+    legacy: list[str] = []
+    for fid in sorted(ledger):
+        entry = ledger[fid]
+        if not isinstance(entry, dict):
+            errors.append(f"ledger entry {fid} is not a mapping")
+            continue
+        if entry.get("status") not in ("ok", "error", "missing_statistics"):
+            errors.append(
+                f"ledger entry {fid} has unknown status "
+                f"{entry.get('status')!r}")
+        if "fixture_id" not in entry:
+            errors.append(f"ledger entry {fid} has no fixture_id")
+        if entry.get("source_timestamp") is None:
+            warnings.append(f"ledger entry {fid} has no source timestamp")
+        if "processed_at" not in entry:
+            warnings.append(f"ledger entry {fid} has no processed_at timestamp")
+        if entry.get("status") != "ok":
+            continue
+        contributions = entry.get("contributions")
+        if contributions is None:
+            legacy.append(fid)
+            continue
+        if not isinstance(contributions, list):
+            errors.append(f"ledger entry {fid} contributions are not a list")
+            continue
+        if entry.get("contributions_sha256") != canonical_json_sha256(
+                contributions):
+            errors.append(
+                f"ledger entry {fid} contributions do not match their "
+                "recorded hash")
+        for row in contributions:
+            pid = canonical_id((row or {}).get("player_id"))
+            if pid is None:
+                errors.append(
+                    f"ledger entry {fid} has a contribution without "
+                    "a player_id")
+                continue
+            expected_minutes[pid] = expected_minutes.get(pid, 0.0) + float(
+                row.get("minutes", 0.0))
+            expected_contrib[pid] = expected_contrib.get(pid, 0.0) + float(
+                row.get("contrib", 0.0))
+    if legacy:
+        warnings.append(
+            f"{len(legacy)} processed fixture(s) predate per-fixture "
+            f"contributions and cannot be reconciled: {legacy}")
+    for pid, minutes in expected_minutes.items():
+        live_minutes = st["live_minutes"].get(pid, 0.0)
+        if abs(live_minutes - minutes) > 1e-9:
+            errors.append(
+                f"live minutes for player {pid} ({live_minutes}) do not "
+                f"match ledger contributions ({minutes})")
+    for pid, contrib in expected_contrib.items():
+        live_contrib = st["live_contrib"].get(pid, 0.0)
+        if abs(live_contrib - contrib) > 1e-9:
+            errors.append(
+                f"live contribution for player {pid} ({live_contrib}) does "
+                f"not match ledger contributions ({contrib})")
+    unaccounted = [pid for pid in st["live_minutes"]
+                   if pid not in expected_minutes
+                   and (st["live_minutes"][pid] != 0.0
+                        or st["live_contrib"].get(pid, 0.0) != 0.0)]
+    if unaccounted:
+        if legacy:
+            warnings.append(
+                "live totals for "
+                f"{len(unaccounted)} player(s) cannot be reconciled "
+                "(legacy ledger entries present)")
+        else:
+            errors.append(
+                "live totals for player(s) "
+                f"{sorted(unaccounted)[:5]} have no ledger contributions")
+    return {"ok": not errors, "errors": errors, "warnings": warnings}
 
 
 def processed_fixture_ids(state: dict) -> set[str]:
@@ -442,14 +573,28 @@ def unprocessed_fixtures(fixtures: list[dict], state: dict) -> list[dict]:
 def load_state() -> dict:
     if os.path.exists(STATE_PATH):
         with open(STATE_PATH) as f:
-            return normalize_state(json.load(f))
+            raw = json.load(f)
+        stored = raw.get("state_sha256") if isinstance(raw, dict) else None
+        if isinstance(stored, str) and stored != state_digest(raw):
+            raise ValueError(
+                "state integrity check failed: the stored state digest "
+                "does not match the state file contents; the file may "
+                "be corrupted or hand-edited")
+        return normalize_state(raw)
     return _empty_state()
 
 
 def save_state(state: dict) -> None:
-    """Save the normalized state atomically (temp file plus rename)."""
+    """Save the normalized state atomically (temp file plus rename).
+
+    The saved file carries a SHA-256 digest of its own contents, so a
+    later load can tell a corrupted or hand-edited file from a good
+    one. States written before digests existed load without one and
+    gain one on their next save.
+    """
     os.makedirs(STATE_DIR, exist_ok=True)
     payload = normalize_state(state)
+    payload["state_sha256"] = state_digest(payload)
     fd, tmp = tempfile.mkstemp(dir=STATE_DIR, prefix=".state-", suffix=".tmp")
     try:
         with os.fdopen(fd, "w") as f:
@@ -595,6 +740,115 @@ def write_baseline_artifact(ratings: pd.DataFrame, path: str, *,
     return artifact
 
 
+# --- versioned baseline bundle ----------------------------------------------
+
+# One manifest tying the five league artifacts together, so a refresh
+# can verify the whole baseline set it runs on instead of trusting
+# each file in isolation, and so a run can record exactly which
+# artifacts, model and seed it used. The manifest records each
+# artifact's file hash and ratings hash; loading the bundle re-verifies
+# both, so a tampered artifact or a tampered manifest fails the load.
+BUNDLE_VERSION = "baseline-bundle-v1"
+BUNDLE_PATH = os.path.join(BASELINE_DIR, "baseline_bundle_v1.json")
+
+LEAGUE_NAMES = {
+    39: "English Premier League",
+    140: "La Liga",
+    78: "Bundesliga",
+    135: "Serie A",
+    61: "Ligue 1",
+}
+
+
+def build_baseline_bundle() -> dict:
+    """Build the bundle manifest from the artifacts on disk.
+
+    Every artifact is loaded through the same verification a refresh
+    uses (version plus ratings hash), so a corrupt artifact fails the
+    build instead of being recorded.
+    """
+    entries = []
+    for league_id in sorted(LEAGUE_BASELINES):
+        path = baseline_path_for_league(league_id)
+        artifact = load_baseline_artifact(path)
+        name = LEAGUE_NAMES[league_id]
+        if artifact.get("league") is not None and artifact["league"] != name:
+            raise ValueError(
+                f"league {league_id}: artifact says "
+                f"{artifact['league']!r}, expected {name!r}")
+        entries.append({
+            "league_id": league_id,
+            "league": name,
+            "artifact": os.path.basename(path),
+            "file_sha256": file_sha256(path),
+            "ratings_sha256": artifact["ratings_sha256"],
+            "n_rated": len(artifact["ratings"]),
+            "model": artifact.get("model"),
+            "data_snapshot": artifact.get("data_snapshot"),
+            "config_hash": artifact.get("config_hash"),
+            "feature_version": artifact.get("feature_version"),
+            "seed": artifact.get("seed"),
+            "model_hash": artifact.get("model_hash"),
+        })
+    return {"version": BUNDLE_VERSION, "entries": entries}
+
+
+def write_baseline_bundle(path: str | None = None) -> dict:
+    """Write the bundle manifest for the artifacts on disk."""
+    manifest = build_baseline_bundle()
+    manifest["generated_at"] = utc_today()
+    with open(path or BUNDLE_PATH, "w") as f:
+        json.dump(manifest, f, indent=1)
+    return manifest
+
+
+def load_baseline_bundle(path: str | None = None) -> dict:
+    """Load the bundle manifest and verify every member artifact.
+
+    Checks the manifest version, that it covers exactly the five
+    leagues, and for each entry that the artifact file exists, matches
+    its recorded file hash, and loads with a matching ratings hash and
+    rated-player count. Raises ValueError on any mismatch.
+    """
+    path = path or BUNDLE_PATH
+    with open(path) as f:
+        manifest = json.load(f)
+    if manifest.get("version") != BUNDLE_VERSION:
+        raise ValueError(
+            f"baseline bundle version {manifest.get('version')!r} "
+            f"!= {BUNDLE_VERSION!r}")
+    entries = manifest.get("entries") or []
+    if {e.get("league_id") for e in entries} != set(LEAGUE_BASELINES):
+        raise ValueError(
+            "baseline bundle does not cover exactly the five leagues")
+    base = os.path.dirname(os.path.abspath(path))
+    for entry in entries:
+        artifact_path = os.path.join(base, entry["artifact"])
+        if not os.path.exists(artifact_path):
+            raise ValueError(
+                f"baseline bundle artifact missing: {entry['artifact']}")
+        if file_sha256(artifact_path) != entry["file_sha256"]:
+            raise ValueError(
+                f"baseline bundle artifact {entry['artifact']} does not "
+                "match its recorded file hash")
+        artifact = load_baseline_artifact(artifact_path)
+        if artifact["ratings_sha256"] != entry["ratings_sha256"]:
+            raise ValueError(
+                f"baseline bundle artifact {entry['artifact']} ratings "
+                "do not match their recorded hash")
+        if len(artifact["ratings"]) != entry["n_rated"]:
+            raise ValueError(
+                f"baseline bundle artifact {entry['artifact']} has "
+                f"{len(artifact['ratings'])} rated players, manifest "
+                f"says {entry['n_rated']}")
+    return manifest
+
+
+def verify_baseline_bundle(path: str | None = None) -> dict:
+    """Load and verify the bundle; returns the manifest when it passes."""
+    return load_baseline_bundle(path)
+
+
 # --- blending -------------------------------------------------------------------
 
 def _as_date(value):
@@ -686,3 +940,25 @@ def rebalance_report(old: pd.DataFrame, new: pd.DataFrame,
 
 def utc_today() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def utc_now_iso() -> str:
+    """Full UTC timestamp, for ledger entries that need ordering
+    within a day (a date alone cannot tell two runs apart)."""
+    return datetime.now(timezone.utc).isoformat()
+
+
+def file_sha256(path: str) -> str:
+    """SHA-256 of a file's bytes."""
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def canonical_json_sha256(value) -> str:
+    """SHA-256 of a value's canonical JSON form (sorted keys, tight
+    separators), so the same value always hashes the same way."""
+    blob = json.dumps(value, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()

@@ -1,0 +1,76 @@
+{
+ "version": "baseline-bundle-v1",
+ "entries": [
+  {
+   "league_id": 39,
+   "league": "English Premier League",
+   "artifact": "baseline_ratings_premier_league_v1.json",
+   "file_sha256": "3082a55c5f11aa766645c984feb9f7900eb63af76958fd35be1b4551fd54d7cb",
+   "ratings_sha256": "75e15aab0643a01b56a737e044ef7875cc2e0823d132a4797b2d8e35102eafe8",
+   "n_rated": 179,
+   "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+   "data_snapshot": "StatsBomb open data, English Premier League 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 179)",
+   "config_hash": null,
+   "feature_version": 4,
+   "seed": 0,
+   "model_hash": "b86caaed47f745d4"
+  },
+  {
+   "league_id": 61,
+   "league": "Ligue 1",
+   "artifact": "baseline_ratings_ligue_1_v1.json",
+   "file_sha256": "8e9a5eebf1e62396282e04db62d17e41ed80c2daa2b3581d9fcaadd0fc9bf959",
+   "ratings_sha256": "872283429c14a40ce8d91d8e0dbd17875df7fe3d27f9a1e42fdc77f840708039",
+   "n_rated": 145,
+   "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+   "data_snapshot": "StatsBomb open data, Ligue 1 2015/2016 (377 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 145)",
+   "config_hash": null,
+   "feature_version": 4,
+   "seed": 0,
+   "model_hash": "b86caaed47f745d4"
+  },
+  {
+   "league_id": 78,
+   "league": "Bundesliga",
+   "artifact": "baseline_ratings_v1.json",
+   "file_sha256": "db9279cf19acc00d2c92b27ba1bce2c6590ca4d0f7c6cc238c636f5159b9838b",
+   "ratings_sha256": "f4487b803dfc423ec4da7b6204698b406eda47b9cc9cfcdd1cba3399582ebc74",
+   "n_rated": 268,
+   "model": "improved goal models, config fc6_pool (see demo/meta.json provenance)",
+   "data_snapshot": "demo/players.csv from run bundesliga_2seasons, config configs/bundesliga_2seasons.yaml",
+   "config_hash": "86e40fda714d21a78027747473d8de4a6dc2c9f561a372ea1c8123ece54435c7",
+   "feature_version": 4,
+   "seed": 0,
+   "model_hash": null
+  },
+  {
+   "league_id": 135,
+   "league": "Serie A",
+   "artifact": "baseline_ratings_serie_a_v1.json",
+   "file_sha256": "00fa11cddfd25ce39fca76aa5b2b28599ab13cca1033fa12a450939209f495ec",
+   "ratings_sha256": "b5236659bebbb2ea27d061d81bdf71ce7d66e7b47b2ec2aa0cc3889737cda601",
+   "n_rated": 143,
+   "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+   "data_snapshot": "StatsBomb open data, Serie A 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 143)",
+   "config_hash": null,
+   "feature_version": 4,
+   "seed": 0,
+   "model_hash": "b86caaed47f745d4"
+  },
+  {
+   "league_id": 140,
+   "league": "La Liga",
+   "artifact": "baseline_ratings_la_liga_v1.json",
+   "file_sha256": "6030f7165c3417cf99d256bb864dfa85eb7196879be82de3d70aa310f7b193b9",
+   "ratings_sha256": "46e9e2e84f8155cc0d168d647bab63fdbe2df192414c949ad0f99bb8ea9f1961",
+   "n_rated": 146,
+   "model": "improved goal models, config fc6_pool (five-league run, runs/five_leagues/results.json)",
+   "data_snapshot": "StatsBomb open data, La Liga 2015/2016 (380 matches), EA FC 24 wages; ratings as published in runs/five_leagues/results.json (n_rated 146)",
+   "config_hash": null,
+   "feature_version": 4,
+   "seed": 0,
+   "model_hash": "b86caaed47f745d4"
+  }
+ ],
+ "generated_at": "2026-11-18"
+}

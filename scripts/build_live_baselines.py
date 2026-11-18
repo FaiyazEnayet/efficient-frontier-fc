@@ -44,9 +44,11 @@ from effc.data.statsbomb import minutes_played  # noqa: E402
 from effc.data.wages import load_wages, match_players  # noqa: E402
 from effc.leagues import LEAGUES, audit_league  # noqa: E402
 from effc.live import (  # noqa: E402
+    BUNDLE_PATH,
     baseline_path_for_league,
     load_baseline_artifact,
     write_baseline_artifact,
+    write_baseline_bundle,
 )
 from effc.ratings.ratings import build_ratings  # noqa: E402
 from effc.vaep.values import add_vaep, player_match_vaep  # noqa: E402
@@ -171,6 +173,10 @@ def main() -> None:
         print(f"{name}: wrote {out_path} "
               f"({len(artifact['ratings'])} rated, "
               f"ratings sha256 {artifact['ratings_sha256']})")
+    bundle = write_baseline_bundle()
+    print(f"baseline bundle: wrote {BUNDLE_PATH} "
+          f"({len(bundle['entries'])} leagues, version "
+          f"{bundle['version']})")
 
 
 if __name__ == "__main__":
