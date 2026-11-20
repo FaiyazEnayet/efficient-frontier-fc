@@ -1,0 +1,268 @@
+{
+  "name": "forward_backtest_real_data_fixture_ledger_v1",
+  "description": "Real-data fixture ledger for Stage 3 U04 part 1. It anchors the forward-only backtest contract to the committed real data: hashes of the committed artifacts, the published five-league and demo backtest tables copied verbatim as the pre-U04 baseline, the frozen FC6 manifest hash, the pooled-training leak as committed in the source, and the record hashes of the forward run regenerated from the frozen synthetic fixture. Nothing here replaces any published result.",
+  "artifacts": [
+    {
+      "path": "demo/backtest.csv",
+      "sha256": "b5094b08f9de68583f75242e8c48cb1e186dc2cb34c77d656237d34ee24be9d8"
+    },
+    {
+      "path": "demo/players.csv",
+      "sha256": "98ec55bf3451bbbb5e74eb29fb07ac116e581d9a1e7af9ccd9dcfe95712eb782"
+    },
+    {
+      "path": "demo/squads.csv",
+      "sha256": "4b1c99d93f9a1231d44dfa8d51bd710c58c47f07ecea9e21b40dc49a7da91b72"
+    },
+    {
+      "path": "demo/meta.json",
+      "sha256": "2c4824a291ce2f3a12390a63ead28380cd2fce174d2d4d74db860a9a5adb0377"
+    },
+    {
+      "path": "runs/five_leagues/results.json",
+      "sha256": "cc06551506ea82cbf07d560c9f5c892384195ec7d2de8453734a8d794f3f9a99"
+    },
+    {
+      "path": "protocol/fc6_manifest.json",
+      "sha256": "ca67cb1b30b861e65c6c546fef5189cb1c7a919f2635943a44c8921baa68ba64"
+    },
+    {
+      "path": "tests/fixtures/forward_backtest/forward_fixture.json",
+      "sha256": "fa166b4ade86a666d49a3d2f63c34c63e4a95535e24c9ae4ee97aafbba4c4ca7"
+    }
+  ],
+  "baseline": {
+    "five_leagues": {
+      "model_hash": "b86caaed47f745d4",
+      "model_config": "fc6_pool",
+      "seed": 0,
+      "budgets_eur": [
+        300000.0,
+        500000.0,
+        700000.0
+      ],
+      "train_pool_matches": 1116,
+      "optimizer_wins": "14 of 15",
+      "backtest": {
+        "English Premier League": [
+          {
+            "budget": 300000.0,
+            "optimizer": 128.29013571105213,
+            "value": 96.78893902643182,
+            "random_mean": 75.48353386981555,
+            "oracle": 179.71329479945197,
+            "optimizer_unavail": 1,
+            "value_unavail": 1,
+            "random_unavail_mean": 1.4,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 500000.0,
+            "optimizer": 147.88053797386328,
+            "value": 96.78893902643182,
+            "random_mean": 85.79121184958741,
+            "oracle": 208.82117430335933,
+            "optimizer_unavail": 1,
+            "value_unavail": 1,
+            "random_unavail_mean": 1.25,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 700000.0,
+            "optimizer": 173.7012238408414,
+            "value": 96.78893902643182,
+            "random_mean": 89.75510628427477,
+            "oracle": 224.4785953997146,
+            "optimizer_unavail": 0,
+            "value_unavail": 1,
+            "random_unavail_mean": 1.5,
+            "oracle_unavail": 0
+          }
+        ],
+        "La Liga": [
+          {
+            "budget": 300000.0,
+            "optimizer": 128.54553070017207,
+            "value": 98.15046083718113,
+            "random_mean": 85.85687291965543,
+            "oracle": 183.11429299914045,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 2.05,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 500000.0,
+            "optimizer": 148.61414653104572,
+            "value": 98.15046083718113,
+            "random_mean": 95.09792392724141,
+            "oracle": 200.8767090439037,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 1.7,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 700000.0,
+            "optimizer": 159.67905630300123,
+            "value": 98.15046083718113,
+            "random_mean": 102.04164911193493,
+            "oracle": 210.75260224446805,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 1.5,
+            "oracle_unavail": 0
+          }
+        ],
+        "Serie A": [
+          {
+            "budget": 300000.0,
+            "optimizer": 149.39131406419634,
+            "value": 124.38459462161438,
+            "random_mean": 97.70022232920802,
+            "oracle": 195.3600471953942,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 1.55,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 500000.0,
+            "optimizer": 157.73123454830605,
+            "value": 124.38459462161438,
+            "random_mean": 98.19757854867657,
+            "oracle": 209.43189722099555,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 1.7,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 700000.0,
+            "optimizer": 162.1963049413211,
+            "value": 124.38459462161438,
+            "random_mean": 101.7822876146895,
+            "oracle": 216.7862534638907,
+            "optimizer_unavail": 0,
+            "value_unavail": 0,
+            "random_unavail_mean": 1.65,
+            "oracle_unavail": 0
+          }
+        ],
+        "Bundesliga": [
+          {
+            "budget": 300000.0,
+            "optimizer": 40.82708521238794,
+            "value": 41.52648839343268,
+            "random_mean": 8.23452549216804,
+            "oracle": 55.29151672760696,
+            "optimizer_unavail": 2,
+            "value_unavail": 3,
+            "random_unavail_mean": 5.3,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 500000.0,
+            "optimizer": 62.14071486051305,
+            "value": 58.68017010305961,
+            "random_mean": 8.604256705415926,
+            "oracle": 81.80868960712914,
+            "optimizer_unavail": 2,
+            "value_unavail": 2,
+            "random_unavail_mean": 5.75,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 700000.0,
+            "optimizer": 82.22978821825258,
+            "value": 79.42915746515166,
+            "random_mean": 12.566279738099567,
+            "oracle": 103.553094833324,
+            "optimizer_unavail": 1,
+            "value_unavail": 1,
+            "random_unavail_mean": 5.45,
+            "oracle_unavail": 0
+          }
+        ],
+        "Ligue 1": [
+          {
+            "budget": 300000.0,
+            "optimizer": 122.56154841996468,
+            "value": 82.98020466396025,
+            "random_mean": 86.07550125222096,
+            "oracle": 187.316334646675,
+            "optimizer_unavail": 1,
+            "value_unavail": 2,
+            "random_unavail_mean": 3.25,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 500000.0,
+            "optimizer": 150.41080132273837,
+            "value": 82.98020466396025,
+            "random_mean": 90.78108933371604,
+            "oracle": 207.07247309822299,
+            "optimizer_unavail": 1,
+            "value_unavail": 2,
+            "random_unavail_mean": 3.15,
+            "oracle_unavail": 0
+          },
+          {
+            "budget": 700000.0,
+            "optimizer": 150.41080132273837,
+            "value": 82.98020466396025,
+            "random_mean": 93.7914583268196,
+            "oracle": 216.68678390121352,
+            "optimizer_unavail": 1,
+            "value_unavail": 2,
+            "random_unavail_mean": 3.15,
+            "oracle_unavail": 0
+          }
+        ]
+      }
+    },
+    "demo_backtest_csv": "budget,rule,score\n300000.0,optimizer,37.353588878638206\n500000.0,optimizer,49.82729303098397\n700000.0,optimizer,75.91568612127934\n300000.0,value,35.378797309938946\n500000.0,value,55.60227915338045\n700000.0,value,72.08681832187757\n300000.0,random_mean,6.995481442084577\n500000.0,random_mean,7.497296754695694\n700000.0,random_mean,11.444569540201714\n300000.0,oracle,53.62503142068829\n500000.0,oracle,80.14297801210347\n700000.0,oracle,100.68716512121563\n"
+  },
+  "fc6": {
+    "manifest_sha256": "ca67cb1b30b861e65c6c546fef5189cb1c7a919f2635943a44c8921baa68ba64",
+    "note": "Frozen FC6 scoreboard. U04 part 1 changes no FC6 artifact or number."
+  },
+  "pool_leak": {
+    "note": "The goal models behind the backtest train on EXTRA_POOL plus the era pool. EXTRA_POOL holds UEFA Euro 2020 (51 matches, played June-July 2021) and the Indian Super League 2021/22 (115 matches, played November 2021 to March 2022). Both postdate every 2015/16 decision cutoff, so a 2015/16 decision uses a model that has seen events from 2021 and 2022. The era pool is contemporaneous 2015/16 leagues only (1,517 matches).",
+    "extra_pool": [
+      {
+        "competition_id": 55,
+        "season_id": 43,
+        "competition": "UEFA Euro 2020",
+        "matches": 51,
+        "played": "2021-06 to 2021-07"
+      },
+      {
+        "competition_id": 1238,
+        "season_id": 108,
+        "competition": "Indian Super League",
+        "season": "2021/2022",
+        "matches": 115,
+        "played": "2021-11 to 2022-03"
+      }
+    ],
+    "era_pool_matches": 1517
+  },
+  "forward_run": {
+    "fixture": "tests/fixtures/forward_backtest/forward_fixture.json",
+    "fixture_sha256": "fa166b4ade86a666d49a3d2f63c34c63e4a95535e24c9ae4ee97aafbba4c4ca7",
+    "budgets": [
+      300000,
+      500000,
+      10000
+    ],
+    "seed": 0,
+    "n_random": 20,
+    "results_rows": 20,
+    "failure_rows": 10,
+    "records": {
+      "fwd-01-2015-11-01": "4d70bd8b61c699520bfed5ed9d78b85509ad4d5507e84f64e7d6dae531886ae6",
+      "fwd-02-2016-02-01": "6955c2d4d412fa366a3c32482d84c16604d7696b0e359086e9d70c51ae1ba381"
+    }
+  }
+}
