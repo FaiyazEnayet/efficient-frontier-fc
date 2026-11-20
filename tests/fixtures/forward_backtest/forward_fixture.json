@@ -1,0 +1,2867 @@
+{
+  "name": "forward_backtest_frozen_fixture_v1",
+  "description": "Frozen synthetic forward fixture for Stage 3 U04 part 1. Twelve 2015/16 matches, 40 players, two decision cutoffs. Player 0 is a planted star for decision 1 with no realized rows in window 1; player 39 is a planted star for decision 2 with no realized rows in window 2. Wages are dated 2015-08-01, before both cutoffs.",
+  "cutoffs": [
+    "2015-11-01",
+    "2016-02-01"
+  ],
+  "horizon_days": 120,
+  "budgets": [
+    300000,
+    500000,
+    10000
+  ],
+  "seed": 0,
+  "n_random": 20,
+  "matches": [
+    {
+      "match_id": 1,
+      "season_id": 27,
+      "match_date": "2015-08-08"
+    },
+    {
+      "match_id": 2,
+      "season_id": 27,
+      "match_date": "2015-08-15"
+    },
+    {
+      "match_id": 3,
+      "season_id": 27,
+      "match_date": "2015-09-12"
+    },
+    {
+      "match_id": 4,
+      "season_id": 27,
+      "match_date": "2015-10-03"
+    },
+    {
+      "match_id": 5,
+      "season_id": 27,
+      "match_date": "2015-10-24"
+    },
+    {
+      "match_id": 6,
+      "season_id": 27,
+      "match_date": "2015-11-21"
+    },
+    {
+      "match_id": 7,
+      "season_id": 27,
+      "match_date": "2015-12-05"
+    },
+    {
+      "match_id": 8,
+      "season_id": 27,
+      "match_date": "2016-01-16"
+    },
+    {
+      "match_id": 9,
+      "season_id": 27,
+      "match_date": "2016-02-06"
+    },
+    {
+      "match_id": 10,
+      "season_id": 27,
+      "match_date": "2016-03-05"
+    },
+    {
+      "match_id": 11,
+      "season_id": 27,
+      "match_date": "2016-04-02"
+    },
+    {
+      "match_id": 12,
+      "season_id": 27,
+      "match_date": "2016-05-07"
+    }
+  ],
+  "players": [
+    {
+      "player_id": 0,
+      "player": "Fixture Player 0",
+      "pos_group": "GK",
+      "wage_eur": 2000,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 1,
+      "player": "Fixture Player 1",
+      "pos_group": "GK",
+      "wage_eur": 2911,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 2,
+      "player": "Fixture Player 2",
+      "pos_group": "GK",
+      "wage_eur": 3822,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 3,
+      "player": "Fixture Player 3",
+      "pos_group": "GK",
+      "wage_eur": 4733,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 4,
+      "player": "Fixture Player 4",
+      "pos_group": "GK",
+      "wage_eur": 5644,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 5,
+      "player": "Fixture Player 5",
+      "pos_group": "GK",
+      "wage_eur": 6555,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 6,
+      "player": "Fixture Player 6",
+      "pos_group": "DEF",
+      "wage_eur": 7466,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 7,
+      "player": "Fixture Player 7",
+      "pos_group": "DEF",
+      "wage_eur": 8377,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 8,
+      "player": "Fixture Player 8",
+      "pos_group": "DEF",
+      "wage_eur": 9288,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 9,
+      "player": "Fixture Player 9",
+      "pos_group": "DEF",
+      "wage_eur": 10199,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 10,
+      "player": "Fixture Player 10",
+      "pos_group": "DEF",
+      "wage_eur": 11110,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 11,
+      "player": "Fixture Player 11",
+      "pos_group": "DEF",
+      "wage_eur": 12021,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 12,
+      "player": "Fixture Player 12",
+      "pos_group": "DEF",
+      "wage_eur": 12932,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 13,
+      "player": "Fixture Player 13",
+      "pos_group": "DEF",
+      "wage_eur": 13843,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 14,
+      "player": "Fixture Player 14",
+      "pos_group": "DEF",
+      "wage_eur": 14754,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 15,
+      "player": "Fixture Player 15",
+      "pos_group": "DEF",
+      "wage_eur": 15665,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 16,
+      "player": "Fixture Player 16",
+      "pos_group": "DEF",
+      "wage_eur": 16576,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 17,
+      "player": "Fixture Player 17",
+      "pos_group": "DEF",
+      "wage_eur": 17487,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 18,
+      "player": "Fixture Player 18",
+      "pos_group": "MID",
+      "wage_eur": 18398,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 19,
+      "player": "Fixture Player 19",
+      "pos_group": "MID",
+      "wage_eur": 19309,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 20,
+      "player": "Fixture Player 20",
+      "pos_group": "MID",
+      "wage_eur": 20220,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 21,
+      "player": "Fixture Player 21",
+      "pos_group": "MID",
+      "wage_eur": 21131,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 22,
+      "player": "Fixture Player 22",
+      "pos_group": "MID",
+      "wage_eur": 2042,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 23,
+      "player": "Fixture Player 23",
+      "pos_group": "MID",
+      "wage_eur": 2953,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 24,
+      "player": "Fixture Player 24",
+      "pos_group": "MID",
+      "wage_eur": 3864,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 25,
+      "player": "Fixture Player 25",
+      "pos_group": "MID",
+      "wage_eur": 4775,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 26,
+      "player": "Fixture Player 26",
+      "pos_group": "MID",
+      "wage_eur": 5686,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 27,
+      "player": "Fixture Player 27",
+      "pos_group": "MID",
+      "wage_eur": 6597,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 28,
+      "player": "Fixture Player 28",
+      "pos_group": "MID",
+      "wage_eur": 7508,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 29,
+      "player": "Fixture Player 29",
+      "pos_group": "MID",
+      "wage_eur": 8419,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 30,
+      "player": "Fixture Player 30",
+      "pos_group": "FWD",
+      "wage_eur": 9330,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 31,
+      "player": "Fixture Player 31",
+      "pos_group": "FWD",
+      "wage_eur": 10241,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 32,
+      "player": "Fixture Player 32",
+      "pos_group": "FWD",
+      "wage_eur": 11152,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 33,
+      "player": "Fixture Player 33",
+      "pos_group": "FWD",
+      "wage_eur": 12063,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 34,
+      "player": "Fixture Player 34",
+      "pos_group": "FWD",
+      "wage_eur": 12974,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 35,
+      "player": "Fixture Player 35",
+      "pos_group": "FWD",
+      "wage_eur": 13885,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 36,
+      "player": "Fixture Player 36",
+      "pos_group": "FWD",
+      "wage_eur": 14796,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 37,
+      "player": "Fixture Player 37",
+      "pos_group": "FWD",
+      "wage_eur": 15707,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 38,
+      "player": "Fixture Player 38",
+      "pos_group": "FWD",
+      "wage_eur": 16618,
+      "wage_effective_date": "2015-08-01"
+    },
+    {
+      "player_id": 39,
+      "player": "Fixture Player 39",
+      "pos_group": "FWD",
+      "wage_eur": 17529,
+      "wage_effective_date": "2015-08-01"
+    }
+  ],
+  "vaep_rows": [
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 0,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 1,
+      "vaep": 0.576,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 2,
+      "vaep": 0.948,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 4,
+      "vaep": 0.492,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 5,
+      "vaep": 0.864,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 6,
+      "vaep": 0.036,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 8,
+      "vaep": 0.78,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 9,
+      "vaep": 1.152,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 10,
+      "vaep": 0.324,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 12,
+      "vaep": 1.068,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 13,
+      "vaep": 0.24,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 14,
+      "vaep": 0.612,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 16,
+      "vaep": 0.156,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 17,
+      "vaep": 0.528,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 18,
+      "vaep": 0.9,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 20,
+      "vaep": 0.444,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 21,
+      "vaep": 0.816,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 22,
+      "vaep": 1.188,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 24,
+      "vaep": 0.732,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 25,
+      "vaep": 1.104,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 26,
+      "vaep": 0.276,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 28,
+      "vaep": 1.02,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 29,
+      "vaep": 0.192,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 30,
+      "vaep": 0.564,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 32,
+      "vaep": 0.108,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 33,
+      "vaep": 0.48,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 34,
+      "vaep": 0.852,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 36,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 37,
+      "vaep": 0.768,
+      "minutes": 90
+    },
+    {
+      "match_id": 1,
+      "match_date": "2015-08-08",
+      "player_id": 38,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 0,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 1,
+      "vaep": 0.78,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 3,
+      "vaep": 0.324,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 4,
+      "vaep": 0.696,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 5,
+      "vaep": 1.068,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 7,
+      "vaep": 0.612,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 8,
+      "vaep": 0.984,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 9,
+      "vaep": 0.156,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 11,
+      "vaep": 0.9,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 12,
+      "vaep": 0.072,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 13,
+      "vaep": 0.444,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 15,
+      "vaep": 1.188,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 16,
+      "vaep": 0.36,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 17,
+      "vaep": 0.732,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 19,
+      "vaep": 0.276,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 20,
+      "vaep": 0.648,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 21,
+      "vaep": 1.02,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 23,
+      "vaep": 0.564,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 24,
+      "vaep": 0.936,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 25,
+      "vaep": 0.108,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 27,
+      "vaep": 0.852,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 28,
+      "vaep": 0.024,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 29,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 31,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 32,
+      "vaep": 0.312,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 33,
+      "vaep": 0.684,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 35,
+      "vaep": 0.228,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 36,
+      "vaep": 0.6,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 37,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 2,
+      "match_date": "2015-08-15",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 0,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 2,
+      "vaep": 0.156,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 3,
+      "vaep": 0.528,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 4,
+      "vaep": 0.9,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 6,
+      "vaep": 0.444,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 7,
+      "vaep": 0.816,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 8,
+      "vaep": 1.188,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 10,
+      "vaep": 0.732,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 11,
+      "vaep": 1.104,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 12,
+      "vaep": 0.276,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 14,
+      "vaep": 1.02,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 15,
+      "vaep": 0.192,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 16,
+      "vaep": 0.564,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 18,
+      "vaep": 0.108,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 19,
+      "vaep": 0.48,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 20,
+      "vaep": 0.852,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 22,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 23,
+      "vaep": 0.768,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 24,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 26,
+      "vaep": 0.684,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 27,
+      "vaep": 1.056,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 28,
+      "vaep": 0.228,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 30,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 31,
+      "vaep": 0.144,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 32,
+      "vaep": 0.516,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 34,
+      "vaep": 0.06,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 35,
+      "vaep": 0.432,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 36,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 38,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 3,
+      "match_date": "2015-09-12",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 1,
+      "vaep": 1.188,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 2,
+      "vaep": 0.36,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 3,
+      "vaep": 0.732,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 5,
+      "vaep": 0.276,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 6,
+      "vaep": 0.648,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 7,
+      "vaep": 1.02,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 9,
+      "vaep": 0.564,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 10,
+      "vaep": 0.936,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 11,
+      "vaep": 0.108,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 13,
+      "vaep": 0.852,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 14,
+      "vaep": 0.024,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 15,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 17,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 18,
+      "vaep": 0.312,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 19,
+      "vaep": 0.684,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 21,
+      "vaep": 0.228,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 22,
+      "vaep": 0.6,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 23,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 25,
+      "vaep": 0.516,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 26,
+      "vaep": 0.888,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 27,
+      "vaep": 0.06,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 29,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 30,
+      "vaep": 1.176,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 31,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 33,
+      "vaep": 1.092,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 34,
+      "vaep": 0.264,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 35,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 37,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 38,
+      "vaep": 0.552,
+      "minutes": 90
+    },
+    {
+      "match_id": 4,
+      "match_date": "2015-10-03",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 0,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 1,
+      "vaep": 0.192,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 2,
+      "vaep": 0.564,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 4,
+      "vaep": 0.108,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 5,
+      "vaep": 0.48,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 6,
+      "vaep": 0.852,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 8,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 9,
+      "vaep": 0.768,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 10,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 12,
+      "vaep": 0.684,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 13,
+      "vaep": 1.056,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 14,
+      "vaep": 0.228,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 16,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 17,
+      "vaep": 0.144,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 18,
+      "vaep": 0.516,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 20,
+      "vaep": 0.06,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 21,
+      "vaep": 0.432,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 22,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 24,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 25,
+      "vaep": 0.72,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 26,
+      "vaep": 1.092,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 28,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 29,
+      "vaep": 1.008,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 30,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 32,
+      "vaep": 0.924,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 33,
+      "vaep": 0.096,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 34,
+      "vaep": 0.468,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 36,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 37,
+      "vaep": 0.384,
+      "minutes": 90
+    },
+    {
+      "match_id": 5,
+      "match_date": "2015-10-24",
+      "player_id": 38,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 1,
+      "vaep": 0.396,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 3,
+      "vaep": 1.14,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 4,
+      "vaep": 0.312,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 5,
+      "vaep": 0.684,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 7,
+      "vaep": 0.228,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 8,
+      "vaep": 0.6,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 9,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 11,
+      "vaep": 0.516,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 12,
+      "vaep": 0.888,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 13,
+      "vaep": 0.06,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 15,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 16,
+      "vaep": 1.176,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 17,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 19,
+      "vaep": 1.092,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 20,
+      "vaep": 0.264,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 21,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 23,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 24,
+      "vaep": 0.552,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 25,
+      "vaep": 0.924,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 27,
+      "vaep": 0.468,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 28,
+      "vaep": 0.84,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 29,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 31,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 32,
+      "vaep": 1.128,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 33,
+      "vaep": 0.3,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 35,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 36,
+      "vaep": 0.216,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 37,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 6,
+      "match_date": "2015-11-21",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 2,
+      "vaep": 0.972,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 3,
+      "vaep": 0.144,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 4,
+      "vaep": 0.516,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 6,
+      "vaep": 0.06,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 7,
+      "vaep": 0.432,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 8,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 10,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 11,
+      "vaep": 0.72,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 12,
+      "vaep": 1.092,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 14,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 15,
+      "vaep": 1.008,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 16,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 18,
+      "vaep": 0.924,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 19,
+      "vaep": 0.096,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 20,
+      "vaep": 0.468,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 22,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 23,
+      "vaep": 0.384,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 24,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 26,
+      "vaep": 0.3,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 27,
+      "vaep": 0.672,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 28,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 30,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 31,
+      "vaep": 0.96,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 32,
+      "vaep": 0.132,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 34,
+      "vaep": 0.876,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 35,
+      "vaep": 0.048,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 36,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 38,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 7,
+      "match_date": "2015-12-05",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 1,
+      "vaep": 0.804,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 2,
+      "vaep": 1.176,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 3,
+      "vaep": 0.348,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 5,
+      "vaep": 1.092,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 6,
+      "vaep": 0.264,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 7,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 9,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 10,
+      "vaep": 0.552,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 11,
+      "vaep": 0.924,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 13,
+      "vaep": 0.468,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 14,
+      "vaep": 0.84,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 15,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 17,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 18,
+      "vaep": 1.128,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 19,
+      "vaep": 0.3,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 21,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 22,
+      "vaep": 0.216,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 23,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 25,
+      "vaep": 0.132,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 26,
+      "vaep": 0.504,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 27,
+      "vaep": 0.876,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 29,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 30,
+      "vaep": 0.792,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 31,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 33,
+      "vaep": 0.708,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 34,
+      "vaep": 1.08,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 35,
+      "vaep": 0.252,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 37,
+      "vaep": 0.996,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 38,
+      "vaep": 0.168,
+      "minutes": 90
+    },
+    {
+      "match_id": 8,
+      "match_date": "2016-01-16",
+      "player_id": 39,
+      "vaep": 2.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 0,
+      "vaep": 0.636,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 1,
+      "vaep": 1.008,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 2,
+      "vaep": 0.18,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 4,
+      "vaep": 0.924,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 5,
+      "vaep": 0.096,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 6,
+      "vaep": 0.468,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 8,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 9,
+      "vaep": 0.384,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 10,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 12,
+      "vaep": 0.3,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 13,
+      "vaep": 0.672,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 14,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 16,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 17,
+      "vaep": 0.96,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 18,
+      "vaep": 0.132,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 20,
+      "vaep": 0.876,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 21,
+      "vaep": 0.048,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 22,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 24,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 25,
+      "vaep": 0.336,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 26,
+      "vaep": 0.708,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 28,
+      "vaep": 0.252,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 29,
+      "vaep": 0.624,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 30,
+      "vaep": 0.996,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 32,
+      "vaep": 0.54,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 33,
+      "vaep": 0.912,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 34,
+      "vaep": 0.084,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 36,
+      "vaep": 0.828,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 37,
+      "vaep": 0.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 9,
+      "match_date": "2016-02-06",
+      "player_id": 38,
+      "vaep": 0.372,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 0,
+      "vaep": 0.84,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 1,
+      "vaep": 0.012,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 3,
+      "vaep": 0.756,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 4,
+      "vaep": 1.128,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 5,
+      "vaep": 0.3,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 7,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 8,
+      "vaep": 0.216,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 9,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 11,
+      "vaep": 0.132,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 12,
+      "vaep": 0.504,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 13,
+      "vaep": 0.876,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 15,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 16,
+      "vaep": 0.792,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 17,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 19,
+      "vaep": 0.708,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 20,
+      "vaep": 1.08,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 21,
+      "vaep": 0.252,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 23,
+      "vaep": 0.996,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 24,
+      "vaep": 0.168,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 25,
+      "vaep": 0.54,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 27,
+      "vaep": 0.084,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 28,
+      "vaep": 0.456,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 29,
+      "vaep": 0.828,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 31,
+      "vaep": 0.372,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 32,
+      "vaep": 0.744,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 33,
+      "vaep": 1.116,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 35,
+      "vaep": 0.66,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 36,
+      "vaep": 1.032,
+      "minutes": 90
+    },
+    {
+      "match_id": 10,
+      "match_date": "2016-03-05",
+      "player_id": 37,
+      "vaep": 0.204,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 0,
+      "vaep": 1.044,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 2,
+      "vaep": 0.588,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 3,
+      "vaep": 0.96,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 4,
+      "vaep": 0.132,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 6,
+      "vaep": 0.876,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 7,
+      "vaep": 0.048,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 8,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 10,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 11,
+      "vaep": 0.336,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 12,
+      "vaep": 0.708,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 14,
+      "vaep": 0.252,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 15,
+      "vaep": 0.624,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 16,
+      "vaep": 0.996,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 18,
+      "vaep": 0.54,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 19,
+      "vaep": 0.912,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 20,
+      "vaep": 0.084,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 22,
+      "vaep": 0.828,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 23,
+      "vaep": 0.0,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 24,
+      "vaep": 0.372,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 26,
+      "vaep": 1.116,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 27,
+      "vaep": 0.288,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 28,
+      "vaep": 0.66,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 30,
+      "vaep": 0.204,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 31,
+      "vaep": 0.576,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 32,
+      "vaep": 0.948,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 34,
+      "vaep": 0.492,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 35,
+      "vaep": 0.864,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 36,
+      "vaep": 0.036,
+      "minutes": 90
+    },
+    {
+      "match_id": 11,
+      "match_date": "2016-04-02",
+      "player_id": 38,
+      "vaep": 0.78,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 1,
+      "vaep": 0.42,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 2,
+      "vaep": 0.792,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 3,
+      "vaep": 1.164,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 5,
+      "vaep": 0.708,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 6,
+      "vaep": 1.08,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 7,
+      "vaep": 0.252,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 9,
+      "vaep": 0.996,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 10,
+      "vaep": 0.168,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 11,
+      "vaep": 0.54,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 13,
+      "vaep": 0.084,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 14,
+      "vaep": 0.456,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 15,
+      "vaep": 0.828,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 17,
+      "vaep": 0.372,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 18,
+      "vaep": 0.744,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 19,
+      "vaep": 1.116,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 21,
+      "vaep": 0.66,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 22,
+      "vaep": 1.032,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 23,
+      "vaep": 0.204,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 25,
+      "vaep": 0.948,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 26,
+      "vaep": 0.12,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 27,
+      "vaep": 0.492,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 29,
+      "vaep": 0.036,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 30,
+      "vaep": 0.408,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 31,
+      "vaep": 0.78,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 33,
+      "vaep": 0.324,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 34,
+      "vaep": 0.696,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 35,
+      "vaep": 1.068,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 37,
+      "vaep": 0.612,
+      "minutes": 90
+    },
+    {
+      "match_id": 12,
+      "match_date": "2016-05-07",
+      "player_id": 38,
+      "vaep": 0.984,
+      "minutes": 90
+    }
+  ],
+  "pool_leak_rows": [
+    {
+      "match_id": 9003,
+      "competition": "Premier League",
+      "season": "2015/2016",
+      "match_date": "2015-08-15"
+    },
+    {
+      "match_id": 9001,
+      "competition": "UEFA Euro 2020",
+      "season": 2020,
+      "match_date": "2021-06-11"
+    },
+    {
+      "match_id": 9002,
+      "competition": "Indian Super League",
+      "season": "2021/2022",
+      "match_date": "2021-11-19"
+    }
+  ]
+}
