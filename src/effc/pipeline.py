@@ -650,17 +650,29 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
     )
 
     # 3. wages + ratings
+    from effc.data.wages import wage_join_audit
+
     wages = load_wages()
     sb_players = (
         pm[["player", "team"]].drop_duplicates().reset_index(drop=True)
     )
     wmap = match_players(sb_players, wages)
-    print(f"wage match rate: {wmap['matched'].mean():.1%}")
+    wage_match_audit = wage_join_audit(wmap)
+    print(f"wage match rate: {wmap['matched'].mean():.1%} "
+          f"({wage_match_audit['counts']})")
     ratings = build_ratings(
         pm, mins, wmap,
         min_minutes=cfg.get("min_minutes", 270),
         shrink_k=cfg.get("shrink_k", 900),
     )
+    # Every optimizer row needs one traceable wage source (build_ratings
+    # already fails closed on this; the check here names the invariant
+    # at the point the ratings enter the frontier).
+    if ratings["wage_source"].isna().any():
+        missing = ratings.loc[
+            ratings["wage_source"].isna(), "player"].tolist()
+        raise ValueError(
+            f"rated players without a wage source: {missing[:5]}")
     print(f"rated players: {len(ratings)}")
 
     # 4. factor covariance on target matches
@@ -754,6 +766,7 @@ def main(config_path: str = "configs/bundesliga_2324.yaml"):
         "season_transfer": transfer_report,
         "wage_match_rate": float(wmap["matched"].mean()),
         "wage_match_split": summarize_wage_matches(wmap),
+        "wage_match_audit": wage_match_audit,
         "risk_objective": risk_objective,
         "n_rated": len(ratings),
         # cov_info now carries per-player Series (idio_var, beta,
