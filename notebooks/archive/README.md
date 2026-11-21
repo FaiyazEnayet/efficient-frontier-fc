@@ -1,9 +1,13 @@
 # ARCHIVED notebooks (historical, not active)
 
-The three notebooks in this directory are historical artifacts from the
+The four notebooks in this directory are historical artifacts from the
 v1.5.0 era, before the five-league expansion. They are kept byte-identical
 for provenance and must not be used as walkthroughs: they do not run in a
 clean checkout, and their claims contradict the published results.
+
+- 01_data.ipynb: narrates the pre-five-league setup, with the same season
+  on both sides (2023/24) and ratings described as Bundesliga 2023/24
+  only, superseded by the five-league run.
 
 - 02_vaep.ipynb: trains the goal models on pooled frames loaded from the
   unversioned cache file pool_frames.pkl, then evaluates Brier scores on
