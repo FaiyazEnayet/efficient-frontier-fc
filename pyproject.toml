@@ -23,7 +23,12 @@ dependencies = ["beautifulsoup4>=4.11",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=7.4"]
+# socceraction is the reference for the Stage 3 U06 action-value audit
+# (analysis/action_audit.py). It pins numpy<2 and pandas<3, and its
+# pandera 0.17 dependency only imports under multimethod 1.x, hence the
+# multimethod pin. The audit tests run wherever dev dependencies are
+# installed, including CI.
+dev = ["pytest>=7.4", "socceraction>=1.5,<2", "multimethod<2"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
