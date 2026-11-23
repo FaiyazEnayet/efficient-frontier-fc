@@ -550,11 +550,13 @@ def test_stage3_efficient_frontier_fc_6_pipeline_records_audit():
 
 
 def test_stage3_efficient_frontier_fc_6_summarize_counts_all_types():
+    # U05 added "reviewed" as an eighth match type; the count table
+    # covers it alongside the seven C6 types.
     counts = summarize_wage_matches(pd.DataFrame({
         "match_type": ["exact", "exact_other_club", "alias", "fuzzy",
-                       "ambiguous", "proxy", "unmatched"],
+                       "reviewed", "ambiguous", "proxy", "unmatched"],
     }))
     assert counts == {
         "exact": 1, "exact_other_club": 1, "alias": 1, "fuzzy": 1,
-        "ambiguous": 1, "proxy": 1, "unmatched": 1,
+        "reviewed": 1, "ambiguous": 1, "proxy": 1, "unmatched": 1,
     }

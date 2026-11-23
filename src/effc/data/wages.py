@@ -79,14 +79,18 @@ CLUB_EXONYMS = {"munich": "munchen"}
 CLUB_ALIASES: dict[str, str] = {}
 
 # Match types. "exact" and "exact_other_club", "alias" and "fuzzy" are
-# matches (matched True). "ambiguous" is quarantine (matched False, no
+# matches (matched True). "reviewed" is a match decided by a human in the
+# reviewed mapping registry (``effc.analysis.entity_audit``): the identity
+# is verified, the wage still comes from another club and season, so it
+# counts as matched with the same interval half width as
+# "exact_other_club". "ambiguous" is quarantine (matched False, no
 # wage). "proxy" is a labeled stand-in (matched False). "unmatched"
 # has no wage row at all.
 MATCH_TYPES = (
-    "exact", "exact_other_club", "alias", "fuzzy",
+    "exact", "exact_other_club", "alias", "fuzzy", "reviewed",
     "ambiguous", "proxy", "unmatched",
 )
-_MATCHED_TYPES = ("exact", "exact_other_club", "alias", "fuzzy")
+_MATCHED_TYPES = ("exact", "exact_other_club", "alias", "fuzzy", "reviewed")
 
 
 def annual_wage_eur(weekly_eur: float) -> float:
@@ -519,6 +523,7 @@ WAGE_INTERVAL_HALF_WIDTH = {
     "exact_other_club": 0.15,
     "alias": 0.25,
     "fuzzy": 0.25,
+    "reviewed": 0.15,
     "proxy": 0.50,
 }
 

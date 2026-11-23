@@ -3,6 +3,7 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
-/data/
+/data/*
+!/data/mapping_registry.csv
 *.ipynb_checkpoints/
 .DS_Store
