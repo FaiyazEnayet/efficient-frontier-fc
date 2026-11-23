@@ -5,7 +5,7 @@
   "formation": "4-3-3",
   "xi_budget_eur": 943000.0,
   "n_rated": 268,
-  "wage_match_rate": 0.6317280453257791,
+  "wage_match_rate": 0.6756373937677054,
   "grid": {
     "min": 300000,
     "max": 1500000,
@@ -50,12 +50,16 @@
       "annual": "EUR/year (weekly x 52)"
     },
     "matching_audit": {
-      "exact": 435,
-      "fuzzy": 11,
+      "exact": 314,
+      "exact_other_club": 120,
+      "alias": 0,
+      "fuzzy": 0,
+      "reviewed": 43,
+      "ambiguous": 0,
       "proxy": 0,
-      "unmatched": 260,
+      "unmatched": 229,
       "n_players": 706,
-      "match_rate": 0.6317280453257791
+      "match_rate": 0.6756373937677054
     },
     "run_name": "bundesliga_2seasons"
   }
