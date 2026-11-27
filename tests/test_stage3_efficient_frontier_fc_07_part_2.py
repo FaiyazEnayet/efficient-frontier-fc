@@ -424,6 +424,10 @@ def test_stage3_efficient_frontier_fc_07_part_2_artifact_matches_trial(
             paired["mean_difference"], abs=1e-6)
         assert paired_f["ci95"] == pytest.approx(paired["ci95"], abs=1e-6)
         assert paired_f["n_matches"] == paired["n_matches"]
+    # The candidate scores are recomputed through the same BLAS path,
+    # and CI showed thread-count noise of about 4.3e-6 on one candidate,
+    # so this comparison allows 1e-5: still far tighter than the 0.002
+    # selection margin, and still tight enough to catch a real change.
     for key in ("a", "b", "c", "d", "e", "f"):
         assert frozen["candidates"][key]["status"] == \
             ablation["candidates"][key]["status"]
@@ -431,7 +435,7 @@ def test_stage3_efficient_frontier_fc_07_part_2_artifact_matches_trial(
             assert frozen["candidates"][key]["mean_headline_brier"] == \
                 pytest.approx(
                     ablation["candidates"][key]["mean_headline_brier"],
-                    abs=1e-6)
+                    abs=1e-5)
     for key, model in benchmark["models"].items():
         assert frozen["benchmark"]["models"][key]["mean_headline_brier"] == \
             pytest.approx(model["mean_headline_brier"], abs=1e-6)
