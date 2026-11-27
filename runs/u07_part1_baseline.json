@@ -1,0 +1,76 @@
+{
+  "artifact": "u07 part 1 baseline capture (synthetic fixture, not FC6 data)",
+  "fixture_seed": 7,
+  "n_actions_per_match": 120,
+  "test_match_ids_frozen_unscored": [
+    105,
+    106
+  ],
+  "split_registry": {
+    "train_ids": [
+      101,
+      102,
+      103
+    ],
+    "dev_ids": [
+      104
+    ],
+    "test_ids": [
+      105,
+      106
+    ]
+  },
+  "config_name": "fc6_pool",
+  "feature_version": 4,
+  "catalog_digest": "0e17e0fa79a3ec25",
+  "split_digest": "52749c2cb612cc4c",
+  "train_match_ids": [
+    101,
+    102,
+    103
+  ],
+  "scored_match_ids": [
+    104
+  ],
+  "n_train_actions": 360,
+  "n_scored_actions": 120,
+  "runtime_seconds": 0.8350633340005515,
+  "labels": {
+    "scores_incl": {
+      "brier": 0.10058034629152053,
+      "log_loss": 0.5576467064038897,
+      "prevalence": 0.09166666865348816,
+      "n_positive": 11,
+      "n_scored": 120,
+      "train_base_rate": 0.08055555820465088,
+      "brier_skill_vs_base_rate": -0.20618237147992047
+    },
+    "scores_excl": {
+      "brier": 0.09050828119329977,
+      "log_loss": 0.4889916993409577,
+      "prevalence": 0.0833333358168602,
+      "n_positive": 10,
+      "n_scored": 120,
+      "train_base_rate": 0.07222222536802292,
+      "brier_skill_vs_base_rate": -0.1829238859791078
+    },
+    "concedes_incl": {
+      "brier": 0.07415813075123517,
+      "log_loss": 0.4066806987545371,
+      "prevalence": 0.07500000298023224,
+      "n_positive": 9,
+      "n_scored": 120,
+      "train_base_rate": 0.0555555559694767,
+      "brier_skill_vs_base_rate": -0.0631519632276536
+    },
+    "concedes_excl": {
+      "brier": 0.07853214820266077,
+      "log_loss": 0.42551218318212397,
+      "prevalence": 0.0833333358168602,
+      "n_positive": 10,
+      "n_scored": 120,
+      "train_base_rate": 0.05833333358168602,
+      "brier_skill_vs_base_rate": -0.019714097656135632
+    }
+  }
+}
